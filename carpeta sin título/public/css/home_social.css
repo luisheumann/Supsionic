@@ -1,0 +1,116 @@
+.contenedor-home{
+	margin-top: -1px;
+	margin-left: -15px;
+}
+.lista-post{
+	/*background: #FFF;*/
+}
+.publicar{
+	width: 100%;
+	background: #FFF;
+}
+.publicar img{
+	display: inline-block;
+}
+
+.publicar h1{
+	display: inline-block;
+	font-size: 33px;
+	color: #024959;
+	padding: 10px;
+}
+
+.publicar form{
+	background: #D1D3D4;
+	padding: 0px 15px 10px 15px;
+}
+.publicar form h3{
+	color: #6D6E71;
+	margin: 0px;
+	font-size: 14px;
+	padding: 7px 0px;
+}
+
+.publi {
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    text-align: right;
+    padding: 10px;
+    height: 60px;
+    border-radius: 0px;
+    border-right: none;
+    font-size: 20px;
+    color: #6E6E6E;
+}
+
+.publi:focus{
+	font-family: sans-serif;
+	text-align: left;
+	border-color: #ccc;
+}
+
+.form-buscar .btn-camara{
+	background: #FFF;
+	color: #ccc;
+	border-bottom: 2px solid #ccc;
+	border-top: 2px solid #ccc;
+	border-right: 0px;
+	border-radius: 0px;
+	height: 60px;
+	box-shadow: none;
+
+}
+
+.form-buscar .btn-public, .btn-public:active, .btn-public:focus{
+	background: #037E8C !important;
+	color: #FFF;
+	border: none;
+	border-radius: 0px;
+	height: 60px;
+	box-shadow: none;
+}
+
+.form-buscar .btn-public:hover{
+	background: #F24C27 !important;
+}
+
+.post{
+	background: #FFF;
+	margin: 15px 0px;
+	padding: 15px;
+	border-bottom: 1px solid #ccc;
+}
+
+.post img{
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.post h1{
+	width: 80%;
+	display: inline-block;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	font-size: 18px;
+	border-bottom: 1px solid #D1D3D4;
+}
+.post p{
+	font-family: 'Lato';
+	font-size: 15px;
+	margin-left: 77px;
+	line-height: 1.4em;
+}
+
+.post button{
+	padding: 4px 7px;
+	margin-bottom: 10px;
+	font-size: 13px;
+	float: right;
+	text-align: center;
+}
+
+.post button img{
+	padding: 0px;
+	margin: 0px;
+}

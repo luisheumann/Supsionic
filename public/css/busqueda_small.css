@@ -1,0 +1,111 @@
+.busqueda{
+	position: absolute;
+	background: url(../images/home/mapa_small.png) no-repeat;
+	width: 336px;
+	height: 680px;
+	text-align: center;
+	z-index: 50;
+	padding-left: 16px;
+}
+
+.form_home_buscar{
+	padding: 0px 20px;
+}
+
+.busqueda .titulo_busqueda{
+	margin-top: 10px;
+}
+
+.input_hidden {
+	    position: absolute;
+	    left: -9999px;
+	}
+
+.selected {
+	border-bottom: 3px solid #D66F3F;
+}
+.salto_linea {
+	width: 85%;
+	margin: 15px auto;
+	border-bottom: 1px solid #2A4A58;
+}
+#sites label {
+    display: inline-block;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+#sites label:hover {
+	border-bottom: 3px solid #D66F3F;
+}
+
+#sites label img {
+    padding: 10px 30px;
+}
+
+.paso_1{
+	text-align: left;
+	margin: 0px 54px;
+}
+
+.num{
+	color: #2A4A58;
+	font-weight: bold;
+	font-size: 67px;
+}
+
+.num_form{
+	color: #2A4A58;
+	font-weight: bold;
+	font-size: 55px;
+	line-height: 39px;
+}
+
+.num_text {
+	position: absolute;
+	color: #E6E6E6;
+	font-size: 29px;
+	margin-top: 32px;
+	margin-left: 15px;
+}
+#busqueda label{
+	padding-top: 0px;
+}
+#busqueda input[type="text"], #busqueda select{
+	background: #2A4A58;
+	color: #D66F3F;
+	border: none;
+	border-radius: 0px;
+	padding: 0px 20px;
+	font-size: 16px;
+	height: 52px;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:  #D66F3F !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #D66F3F !important;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #D66F3F !important;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #D66F3F !important;
+}
+
+
+.col-xs-3{
+	position: relative;
+	min-height: 1px;
+	padding: 0px !important;
+	/* padding-right: 15px; */
+	/* padding-left: 15px; */
+}
+#busqueda button {
+	color: #FFF !important;
+	font-weight: normal;
+}
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<title>Supply</title>
+		<meta name="description" content="A search input that morphs into a fullscreen search page." />
+		<meta name="keywords" content="search, input, effect, morph, transition, inspiration" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/cs-select.css" />
+		<link rel="stylesheet" type="text/css" href="css/cs-skin-border.css" />		
+		<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+
+	<div class="container">	
+		<header class="header">
+		<div class="boton_registro"></div>
+			<div id="open-registro" class="registro">
+				<div class="registro-content">
+					<!-- <h1>Contenido</h1> -->
+
+				</div>
+				<span class="registro-close"></span>
+			</div>
+		</header>			
+		<div class="overlay"></div>
+	</div>
+	<script src="js/classie.js"></script>
+	<script src="js/funciones.js"></script>
+		<script src="js/selectFx.js"></script>
+		<script>
+			(function() {
+				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
+					new SelectFx(el);
+				} );
+			})();
+		</script>	
+	</body>
+</html>

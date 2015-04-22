@@ -1,0 +1,27 @@
+[
+	{
+		"nombre": "Argos",
+		"imagen": "images/home/avatar_argos.png",
+		"descripcion" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut non, in minus molestias dolorum harum eveniet dignissimos mollitia, asperiores, aliquam voluptatum"
+	},
+	{
+		"nombre": "Pfizer",
+		"imagen": "images/home/avatar2.png",
+		"descripcion" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut non, in minus molestias dolorum harum eveniet dignissimos mollitia, asperiores, aliquam voluptatum"
+	},	
+	{
+		"nombre": "Rodoviti",
+		"imagen": "images/home/avatar3.png",
+		"descripcion" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut non, in minus molestias dolorum harum eveniet dignissimos mollitia, asperiores, aliquam voluptatum"
+	},
+	{
+		"nombre": "Corey",
+		"imagen": "images/home/avatar4.png",
+		"descripcion" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut non, in minus molestias dolorum harum eveniet dignissimos mollitia, asperiores, aliquam voluptatum"
+	},	
+	{
+		"nombre": "Ecopetrol",
+		"imagen": "images/home/avatar4.png",
+		"descripcion" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut non, in minus molestias dolorum harum eveniet dignissimos mollitia, asperiores, aliquam voluptatum"
+	}			
+]
