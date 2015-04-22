@@ -1,0 +1,171 @@
+*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
+.clearfix:before, .clearfix:after { content: ''; display: table; }
+.clearfix:after { clear: both; }
+
+html, body {
+	height: 100%;
+}
+
+body {
+	overflow-x: hidden;
+	overflow-y: auto;
+    background: url(../images/bg.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;	
+}
+
+.header{
+	width: 100%;
+	height: 100px;
+	background: rgba(2,73,89,0.7);
+  /*background: url(../img/head.png) no-repeat center center fixed; */
+	  -webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	  background-size: cover;
+}
+.boton_registro{
+	width: 200px;
+	min-height: 100px;
+    position: absolute;
+	background: url(../images/btn.jpg) no-repeat; 
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	float: right;
+	cursor: pointer;
+	z-index: 99;
+}
+
+.registro {
+	width: 300px;
+	min-height: 100px;
+	/*background: url(../images/btn.jpg); */
+	position: absolute;
+	z-index: 10000;
+	top: 0px;
+	right: 0px;
+	cursor: pointer;
+	-webkit-transform-origin: 100% 0;
+	transform-origin: 100% 0;
+	-webkit-transition-property: min-height, width, top, right;
+	transition-property: min-height, width, top, right;
+	-webkit-transition-duration: 0.5s;
+	transition-duration: 0.5s;
+	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.registro.open {
+	width: 100%;
+	min-height: 100%;
+	top: 0px;
+	right: 0px;
+	background-color: #f9f9f9 !important;
+    background: url(../images/bg_registro.jpg) no-repeat fixed; 
+    -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;	
+
+
+}
+
+.registro-close {
+	width: 36px;
+	height: 36px;
+	position: absolute;
+	right: 1em;
+	top: 1em;
+	overflow: hidden;
+	text-indent: 100%;
+	cursor: pointer;
+	pointer-events: none;
+	opacity: 0;
+	-webkit-transform: scale3d(0,0,1);
+	transform: scale3d(0,0,1);
+}
+
+.registro.open .registro-close {
+	opacity: 1;
+	pointer-events: auto;
+	-webkit-transform: scale3d(1,1,1);
+	transform: scale3d(1,1,1);
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+	-webkit-transition-delay: 0.5s;
+	transition-delay: 0.5s;
+}
+
+.registro-close::before,
+.registro-close::after {
+	content: '';
+	position: absolute;
+	width: 2px;
+	height: 100%;
+	top: 0;
+	left: 50%;
+	border-radius: 3px;
+	opacity: 0.9;
+	background: #FFF;
+}
+
+.registro-close:hover.registro-close::before,
+.registro-close:hover.registro-close::after {
+	opacity: 1;
+}
+
+.registro-close::before {
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.registro-close::after {
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.registro-content {
+	color: #333;
+	margin-top: 4.5em;
+	width: 100%;
+	height: 0;
+	overflow: hidden;
+	padding: 0 10.5%;
+	position: absolute;
+	pointer-events: none;
+	opacity: 0;
+}
+
+.registro.open .registro-content {
+	opacity: 1;
+	height: auto;
+	overflow: visible; /* this breaks the transition of the children in FF: https://bugzilla.mozilla.org/show_bug.cgi?id=625289 */
+	pointer-events: auto;
+	-webkit-transition: opacity 0.3s 0.5s;
+	transition: opacity 0.3s 0.5s;
+}
+
+
+/* Overlay */
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	opacity: 0;
+	pointer-events: none;
+	-webkit-transition: opacity 0.5s;
+	transition: opacity 0.5s;
+	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.registro.open ~ .overlay {
+	opacity: 1;
+}
+
