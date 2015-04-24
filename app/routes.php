@@ -51,13 +51,16 @@ Route::group(array('before' => 'AuthSentryInv'), function()
 	Route::post('{post}/registro_basico','PerfilEmpresaController@postRegistroBasico');
 
 	// Post guarda el producto
-	Route::post('{post}/producto_exportador','ProductosController@postRegistroProductoExportador');
+	Route::post('producto_exportador','ProductosController@postRegistroProductoExportador');
 
 	// Post cambia el perfil 
 	Route::post('{post}/cambio_perfil','PerfilEmpresaController@postCambioPerfil');
 
 	// Obtiene todos los productos
 	Route::get('{post}/productos','ProductosController@ProductosbyEmpresa');
+
+	Route::get('productos/add','ProductosController@ProductoAdd');
+
 
 	// Obtiene el producto por el id
 	Route::get('{post}/producto/{id}','ProductosController@ProductoById');

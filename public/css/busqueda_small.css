@@ -76,7 +76,7 @@
 	color: #D66F3F;
 	border: none;
 	border-radius: 0px;
-	padding: 0px 20px;
+
 	font-size: 16px;
 	height: 52px;
 }
@@ -107,5 +107,21 @@
 #busqueda button {
 	color: #FFF !important;
 	font-weight: normal;
+}
+
+span.tt-dropdown-menu {
+  background-color: rgba(42, 74, 88, 0.83);
+  padding: 10px;
+  color: #D66F3F;
+  margin-top: 1px;
+}
+
+.typeahead{
+	width: 228px;
+
+	  padding-left: 7px;
+
+
+
 }
 

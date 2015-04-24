@@ -135,6 +135,22 @@ class ProductosController extends BaseController {
     	return View::make('perfil.completar.exportador.productos.detalles', array('producto' =>$producto, 'rutas' => $rutas));
     }
 
+
+
+     public function ProductoAdd()
+    {
+                $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
+     $producto  = Empresa::find(12)->productos; //los productos de la empresa en cuestión
+         $unidades = Unidades::Get();
+      $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
+        $empresa = User::find(12)->empresas->first();
+        $perfil  = Empresa::find(12)->perfil->first();
+
+        return View::make('perfil.completar.exportador.productos.add', array('producto' =>$producto, 'categorias' => $categorias, 'unidades' =>$unidades, 'paises'=>$paises, 'empresa'=>$empresa,'perfil'=>$perfil));
+    }
+
+
+
     public function ProductoBySlugId($slug, $lug_producto, $id)
     {
         $producto = Productos::find($id);

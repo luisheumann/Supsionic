@@ -45,7 +45,15 @@
 	    	<img src="{{asset('images/home/tres.png')}}" alt="">
 	    </label>
 	    <div class="col-xs-10">
-	      <input type="text" class="form-control" id="producto" placeholder="PRODUCTO">
+	      
+	       <div id="prefetch">
+
+
+		      <input type="text" class="form-control typeahead" id="producto" placeholder="PRODUCTO">
+		    </div>
+
+
+
 	    </div>
 	  </div>
 
@@ -59,8 +67,8 @@
 	      <select name="region" id="region" class="form-control">
 	      	<option value="">REGIÓN</option>
 	      	<option value="">Europa</option>
-	      	<option value="">América</option>
-	      	<option value="">Asia</option>
+	      	<option value="">América2</option>
+	      	<option value="">Asia2</option>
 	      </select>
 	    </div>
 	  </div>
@@ -147,3 +155,4 @@ $( document ).ready(function() {
 
 {{HTML::style('css/busqueda_small.css')}}
 {{HTML::script('js/jquery.ddslick.min.js')}}
+{{HTML::script('js/typeahead.bundle.js')}}

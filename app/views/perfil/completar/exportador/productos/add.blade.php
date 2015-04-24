@@ -1,5 +1,5 @@
 
-<form class="form-horizontal" id="form_exportador"  enctype="multipart/form-data">
+<form class="form-horizontal" id="form_exportador" action="/public/producto_exportador" method="post" enctype="multipart/form-data">
   <div class="row">
 	<div class="col-md-6">
 	  <div class="form-group">
