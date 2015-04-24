@@ -71,27 +71,6 @@ abstract class AbstractDecoder
     }
 
     /**
-     * Init from given stream
-     *
-     * @param $stream
-     * @return \Intervention\Image\Image
-     */
-    public function initFromStream($stream)
-    {
-        $offset = ftell($stream);
-        rewind($stream);
-        $data = @stream_get_contents($stream);
-        fseek($stream, $offset);
-        if ($data) {
-            return $this->initFromBinary($data);
-        }
-
-        throw new \Intervention\Image\Exception\NotReadableException(
-            "Unable to init from given stream"
-        );
-    }
-
-    /**
      * Determines if current source data is GD resource
      *
      * @return boolean
@@ -167,19 +146,6 @@ abstract class AbstractDecoder
     public function isUrl()
     {
         return (bool) filter_var($this->data, FILTER_VALIDATE_URL);
-    }
-
-    /**
-     * Determines if current source data is a stream resource
-     *
-     * @return boolean
-     */
-    public function isStream()
-    {
-        if (!is_resource($this->data)) return false;
-        if (get_resource_type($this->data) !== 'stream') return false;
-
-        return true;
     }
 
     /**
@@ -277,9 +243,6 @@ abstract class AbstractDecoder
 
             case $this->isUrl():
                 return $this->initFromUrl($this->data);
-
-            case $this->isStream():
-                return $this->initFromStream($this->data);
 
             case $this->isFilePath():
                 return $this->initFromPath($this->data);

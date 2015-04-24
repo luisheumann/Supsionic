@@ -56,14 +56,12 @@ return array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'supply_supply',
-			'username'  => 'vet',
-			'password'  => '1234',
+			'username'  => 'supply_supply',
+			'password'  => '0aU]&nTcx*LO',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 		),
-
-
 
 		'pgsql' => array(
 			'driver'   => 'pgsql',
