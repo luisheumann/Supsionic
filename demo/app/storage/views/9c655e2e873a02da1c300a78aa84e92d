@@ -1,0 +1,39 @@
+
+<?php $__env->startSection('content'); ?>
+
+<?php $__env->startSection('title'); ?>
+@parent
+ <?php echo ucfirst($empresa->nombre); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php if(Sentry::check()): ?>
+	<?php echo $__env->make('includes.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php else: ?>
+	<?php echo $__env->make('includes.header_public', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php endif; ?>
+<div class="row home-red">
+  <div class="col-xs-7 home-perfil"> 
+    <?php echo $__env->make('perfil/perfil_home', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  </div>  
+    <div class="col-xs-5">  
+  <div class="row">
+    <div class="col-xs-6">
+      <?php echo $__env->make('noticias/index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>    
+    <div class="col-xs-6">
+      <?php echo $__env->make('pautas/index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div> 
+  </div>
+  </div>
+ 
+</div>
+
+<?php $__env->startSection('estilos'); ?>
+@parent
+<?php echo HTML::style('css/main_home.css'); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts/default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

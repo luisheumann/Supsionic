@@ -1,0 +1,66 @@
+
+<button class="btn btn-success pull-right" data-toggle="modal" data-target="#addProducto">
+ 	<i class="fa fa-cube"></i> Agregar Producto
+ </button>
+ <br><br>
+
+<!-- Mensaje de exito -->
+<div class="alert alert-success alert-dismissible fade in" role="alert" id="ok_export" style="display:none">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+  <strong><i class="fa fa-check"></i></strong> El producto se guardaro correctamente
+</div>
+
+ <h4>Productos Agregados (<?php echo count($productos); ?>)</h4>
+<!-- tabla con los productos registrados -->	
+<table class="table table-bordered table-striped table-hover" id="tabla_productos">
+	<thead>
+		<th>No</th>
+		<th>Imagen</th>
+		<th>Codigo</th>
+		<th>Nombre</th>
+		<th>Ver Detalles</th>
+	</thead>
+	<tbody>
+	<?php foreach($productos as $producto): ?>
+	<?php
+		$imagen = Recursos::imagenProducto($producto->id);
+	?>
+		<tr>
+			<td>1</td>
+			<td>
+				<img src="<?php echo asset('uploads/productos/thumbnail/'.$imagen); ?>" alt="">
+			</td>
+			<td><?php echo $producto->codigo; ?></td>
+			<td><?php echo $producto->nombre; ?></td>
+			<td>
+				<a data-toggle="modal" class="link" href="producto/<?php echo $producto->id; ?>" data-target="#myModalE">
+				Click me !</a>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</tbody>
+</table>
+
+ 
+<!-- Modal -->
+<div class="modal fade" id="myModalE" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div> 
+    </div>
+</div> 
+
+<!-- Modal -->
+<div class="modal fade" id="addProducto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Agregar Producto</h4>
+      </div>
+      <div class="modal-body">
+        <?php echo $__env->make('perfil.exportador.productos.add', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+      </div>
+    </div>
+  </div>
+</div>

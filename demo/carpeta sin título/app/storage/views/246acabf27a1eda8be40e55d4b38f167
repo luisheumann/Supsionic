@@ -1,0 +1,57 @@
+<?php $__env->startSection('content'); ?>
+
+<?php $__env->startSection('title'); ?>
+@parent
+ ¡ Bienvenido a SupplyME !
+<?php $__env->stopSection(); ?>
+
+
+
+
+<div class="row home-red center-block" style="float:none">
+  <div class="col-xs-6">
+    <div class="row contenedor-home">
+      <?php echo $__env->make('busqueda', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+  </div>
+  <div class="col-xs-3">
+      <?php echo $__env->make('noticias/index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  </div>    
+  <div class="col-xs-3">
+      <?php echo $__env->make('pautas/index', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  </div>  
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog-registro">
+    <div class="modal-content-registro">
+      <div class="modal-body" align="center">
+        <h1>¡BIENVENIDO!</h1>
+        <img src="<?php echo asset('images/flecha.png'); ?>" >
+        <h2>DESEA CONTINUAR COMPLETANDO SU PERFIL</h2>
+        <a href="<?php echo URL::to($slug.'/registro'); ?>" class="btn-borde btn-borde-n">CONTINUAR</a><br>
+        <a href="#" class="btn-borde btn-borde-a" data-dismiss="modal">OMITIR</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		//$('#myModal').modal('show');
+	});
+</script>
+<?php $__env->startSection('estilos'); ?>
+@parent
+<?php echo HTML::style('css/main_home.css'); ?>
+
+<?php echo HTML::style('css/home_social.css'); ?>
+
+
+<?php $__env->stopSection(); ?>
+
+<!-- Finaliza el render de la pagina -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts/default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

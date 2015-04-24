@@ -1,0 +1,32 @@
+<?php $__env->startSection('content'); ?>
+
+<?php $__env->startSection('title'); ?>
+@parent
+ ¡ Completar Registro !
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('includes.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<div class="contenedor-perfil">
+	<div class="row home-perfil">
+	  <div class="col-md-4 barra-lateral"> 
+	    <?php echo $__env->make('perfil/estado', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	    
+	    <img src="<?php echo asset('images/perfil/proceso.jpg'); ?>">
+	    <img src="<?php echo asset('images/perfil/indicadores.jpg'); ?>">
+	  </div>  
+	  <div class="col-md-7 form-registro">
+	    <?php echo $__env->make('perfil/tabs', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	  </div>  
+	</div>	
+</div>
+
+<?php $__env->startSection('estilos'); ?>
+@parent
+<?php echo HTML::style('css/main_home.css'); ?>
+
+<?php echo HTML::style('css/perfil-formulario.css'); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts/default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

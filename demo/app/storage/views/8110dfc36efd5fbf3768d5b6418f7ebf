@@ -1,0 +1,145 @@
+<?php $__env->startSection('content'); ?>
+
+<?php $__env->startSection('title'); ?>
+@parent
+SUPPLY
+<?php $__env->stopSection(); ?>
+
+<div class="container">
+	<section style="float:right">
+		<button class="btn btn-warning" id="trigger-overlay" type="button">Open Overlay</button>
+	</section>
+
+
+
+
+
+<!-- open/close -->
+<div class="overlay overlay-hugeinc">
+	<button type="button" class="overlay-close">Close</button>
+
+<!-- Seleccionar Perfil  -->
+<section id="perfil">
+	<select class="cs-select cs-skin-border">
+		<option value="" disabled selected>SELECCIONE SU PERFIL</option>
+		<option value="exportador">Exportador</option>
+		<option value="importador">Importador</option>
+		<option value="transportador">Transportador</option>
+	</select>
+</section>
+
+<!-- Formulario de Registro  -->
+<section>
+	<form id="theForm" class="simform" autocomplete="on" style="display:none" method="GET">
+		<div class="simform-inner">
+			<ol class="questions">
+				<li>
+					<span><label for="empresa">¿Cuál es el nombre de la empresa?</label></span>
+					<input id="empresa" name="empresa" type="text" required/>
+				</li>
+				<li>
+					<span><label for="nombre">¿Cuál es su nombre?</label></span>
+					<input id="nombre" name="nombre" type="text"/>
+				</li>
+				<li>
+					<span><label for="email">¿Cuál es su E-mail?</label></span>
+					<input id="email" name="email" type="text"/>
+				</li>
+				<li>
+					<span><label for="password">¿Escriba una contraseña?</label></span>
+					<input id="password" name="password" type="password"/>
+				</li>
+				<li>
+					<span><label for="password_confirme">Repita la contraseña?</label></span>
+					<input id="password_confirme" name="password_confirme" type="password"/>
+				</li>
+			</ol><!-- /questions -->
+
+			<button class="submit" type="submit">Send answers</button>
+			<div class="controls">
+				<button class="next"><i class="fa fa-angle-double-right"></i></button>
+				<div class="progress"></div>
+				<span class="number">
+					<span class="number-current"></span>
+					<span class="number-total"></span>
+				</span>
+				<span class="error-message"></span>
+			</div><!-- / controls -->
+
+		</div><!-- /simform-inner -->
+		<span class="final-message"></span>
+		<input type="hidden" name="perfil" id="value_perfil">
+	</form><!-- /simform -->			
+</section>
+<!-- Fin Formulario de Registro  -->
+
+</div><!-- Ventana open/close -->
+
+</div><!-- /container -->
+
+<script src="js/classie.js"></script> <!-- Libreria  -->
+<script src="js/overlay.js"></script> <!-- Ventana full -->
+<script src="js/selectFx.js"></script> <!-- Select -->
+<script src="js/stepsForm.js"></script> <!-- formulario paso a paso -->
+
+<script>
+// Da forma al SELECT
+(function() {
+	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
+		new SelectFx(el);
+		
+	} );
+})();
+
+
+
+// Para enviar el formulario de registro
+var theForm = document.getElementById( 'theForm' );
+
+new stepsForm( theForm, {
+	onSubmit : function( form ) {
+		// hide form
+		var formData = $('#theForm').serializeArray();
+		console.log(formData);		
+		//return false;
+		classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
+
+		/*
+		form.submit()
+		or
+		AJAX request (maybe show loading indicator while we don't have an answer..)
+		*/
+
+		// let's just simulate something...
+		var messageEl = theForm.querySelector( '.final-message' );
+		messageEl.innerHTML = 'Thank you! We\'ll be in touch.';
+		classie.addClass( messageEl, 'show' );
+	}
+});
+
+// Imagenes randon de fondo
+$(function() {
+    var images = ['bg1.jpg', 'bg2.jpg'];
+    var img_randon = images[Math.floor(Math.random(2) * images.length)];
+    $('body').css({
+    	'background-image': 'url(images/bg/' + img_randon + ')',
+    	'background-repeat': 'no-repeat',
+    	'background-attachment': 'fixed',
+    	'background-position': 'center'
+    	  });
+});
+</script>
+
+<?php $__env->startSection('estilos'); ?>
+@parent
+<?php echo HTML::style('css/home.css'); ?>
+
+<?php echo HTML::style('css/cs-select.css'); ?>
+
+<?php echo HTML::style('css/cs-skin-border.css'); ?>
+
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts/default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

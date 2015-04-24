@@ -1,0 +1,199 @@
+<form class="form-horizontal" id="form_exportador"  enctype="multipart/form-data">
+
+  <div class="row">
+	<div class="col-md-6">
+	  <div class="form-group">
+    	<label for="categoria_producto">Categoría</label>
+    	<select name="categoria_producto" id="categoria_producto" class="form-control">
+	    	<option value="">Seleccione...</option>	
+	    	<?php foreach($categorias as $categoria): ?>
+	    		<option value="1"><?php echo $categoria->nombre; ?></option>
+	    	<?php endforeach; ?>
+    	</select>
+     </div>
+    </div>
+	 <div class="col-md-6">
+	  <div class="form-group">
+    	<label for="nombre_producto">Nombre del producto</label>
+    	<input type="text" class="form-control" name="producto" id="nombre_producto" placeholder="Nombre del producto" value="">
+     </div>
+   </div>    
+  </div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="codigo">Código del producto</label>
+      <input type="text" class="form-control" name="codigo" id="codigo" placeholder="Código del producto">
+     </div>
+  </div>    
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="unidad_medida">Unidad de medida del producto</label>
+      <select name="unidad_medida" id="unidad_medida" class="form-control">
+        <option value="">Seleccione...</option> 
+        <?php foreach($unidades as $unidade): ?>
+          <option value="<?php echo $unidade->id; ?>"><?php echo $unidade->nombre; ?></option>
+        <?php endforeach; ?>
+      </select>
+     </div>   
+  </div>  
+  </div>
+
+  <div class="row">
+	<div class="col-md-12">
+	  <div class="form-group">
+	    <label for="detalles_producto">Detalles del producto</label>
+	    <textarea name="detalles_producto" class="form-control" id="detalles_producto" rows="4" placeholder="Descripción"></textarea>
+	  </div>
+	</div>	
+   </div>
+
+   <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <button class="btn btn-default btn-block" id="add_img">
+        <i class="fa fa-picture-o"></i> Agregar imagenes</button>
+      </div>    
+    </div>
+		<div class="col-md-6">
+		  <div class="form-group">
+		 	  <button class="btn btn-default btn-block" id="add_doc">
+        <i class="fa fa-file-text"></i> Agregar documentos</button>
+		  </div>		
+	  </div>
+   </div>
+   <hr>
+
+  <div class="row">
+	<div class="col-md-6">
+	  <div class="form-group">
+    	<label for="pais_origen">País de Origen</label>
+    	<select name="pais_origen" id="pais_origen" class="form-control">
+	      <option value="">Seleccione...</option>
+	      <?php foreach($paises as $pais): ?>
+	         <?php if($empresa->pais_id == $pais->id): ?>
+				<option selected value="<?php echo $pais->id; ?>"><?php echo $pais->nombre; ?></option>
+			 <?php else: ?>
+			 	<option value="<?php echo $pais->id; ?>"><?php echo $pais->nombre; ?></option>
+	         <?php endif; ?>
+	      <?php endforeach; ?>	
+    	</select>
+     </div>
+    </div>
+
+	<div class="col-md-6">
+	  <div class="form-group">
+    	<label for="selec_paises">Paises de destino</label><br>
+         <select id="selec_paises" name="destinos[]" multiple="multiple">
+          <?php foreach($paises as $pais): ?>
+            <option value="<?php echo $pais->id; ?>"><?php echo $pais->nombre; ?></option>
+          <?php endforeach; ?> 
+        </select>
+     </div>
+    </div>
+   </div>
+<hr>
+<!-- Capacidad de producción al mes -->
+  <div class="row">
+	<div class="col-md-6">
+	  <div class="form-group">
+    	<label for="cantidad_pm">Capacidad de producción al mes</label>
+    	<input type="number" class="form-control" name="capacidad_produccion" id="cantidad_pm" placeholder="Solo número (Ej: 900)">
+     </div>   
+	</div>
+	<div class="col-md-6">
+	  <div class="form-group">
+    	<label for="unidad">Unidad</label>
+    	 <input type="text" class="form-control unidad" placeholder="Unidad" readonly>
+    </div>
+	</div>	
+  </div>
+<hr>
+<!-- Cantidad minima de venta -->
+  <div class="row">
+	<div class="col-md-6">
+	  <div class="form-group">
+    	<label for="cantidad_min">Cantidad mínima de venta</label>
+    	<input type="number" id="cantidad_min" name="cantidad_minima" class="form-control" placeholder="Solo número (Ej: 100)">
+     </div>   
+	</div>
+	<div class="col-md-6">
+    <div class="form-group">
+      <label for="unidad">Unidad</label>
+       <input type="text" class="form-control unidad" placeholder="Unidad" readonly>
+    </div>
+	</div>	
+  </div>
+<hr>
+<!-- Cantidad disponible -->
+  <div class="row">
+	<div class="col-md-6">
+	  <div class="form-group">
+    	<label for="cantidad_disp">Cantidad disponible</label>
+    	<input type="number" class="form-control" name="cantidad_disponible" id="cantidad_disp" placeholder="Solo número (Ej: 500)">
+     </div>   
+	</div>
+	<div class="col-md-6">
+    <div class="form-group">
+      <label for="unidad">Unidad</label>
+      <input type="text" class="form-control unidad" placeholder="Unidad" readonly>
+    </div>  
+	</div>	
+  </div>
+<hr>
+
+  <!-- Loader -->
+  <div align="center">
+    <img src="<?php echo asset('images/load.gif'); ?>" id="load_export" style="display:none">  
+  </div>
+
+    <!-- Mensaje de errores -->
+    <div class="alert alert-danger danger" id="alerta_export" style="display:none">
+      <ul></ul>
+    </div> 
+
+  <!-- Mensaje de exito -->
+    <div class="alert alert-success alert-dismissible fade in" role="alert" id="ok_export" style="display:none">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      <strong><i class="fa fa-check"></i></strong> Los datos se guardaron correctamente
+    </div>
+
+
+<div align="center">
+	<button class="btn btn-success" id="btn_export">
+		GUARDAR
+	</button>
+</div>
+<input type="hidden" name="perfil_empresa" value="<?php echo $perfil->pivot->id; ?>">
+</form>
+<!-- Initialize the plugin: -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#selec_paises').multiselect({
+           maxHeight: 200,
+           buttonClass: 'btn btn-default btn-lg s_paises',
+           enableFiltering: true,
+           includeSelectAllOption: true,
+           enableCaseInsensitiveFiltering: true,
+           filterPlaceholder: 'Buscar Pais...',
+           nonSelectedText: 'Seleccione...'
+        });
+
+        $("#add_img").click(function(event) {
+          event.preventDefault();
+          alert('Agregar imagenes');
+        });
+
+        $("#add_doc").click(function(event) {
+          event.preventDefault();
+          alert('Agregar Documentos');
+        });
+
+      $('#unidad_medida').on('change', function() {
+        var optionSelected = $("option:selected", this);
+        $('.unidad').attr('value', optionSelected.text());
+      });
+
+    });
+</script>

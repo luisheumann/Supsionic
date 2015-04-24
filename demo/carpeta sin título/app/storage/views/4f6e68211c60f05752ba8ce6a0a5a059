@@ -1,0 +1,29 @@
+<!-- Inclue JS  -->
+<?php $__env->startSection('scripts'); ?> 
+	 <?php echo HTML::script('js/jquery-1.11.0.min.js'); ?>
+
+	 <?php echo HTML::script('js/bootstrap.min.js'); ?>
+
+	 <?php echo HTML::script('js/modernizr-2.6.2-respond-1.1.0.min.js'); ?>
+
+	 
+<?php echo $__env->yieldSection(); ?>
+
+<!-- Inclue CSS  -->
+<?php $__env->startSection('estilos'); ?> 
+     <?php echo HTML::style('css/normalize.css'); ?>
+
+	 <?php echo HTML::style('css/bootstrap.min.css'); ?>
+
+	 <?php echo HTML::style('css/font-awesome.min.css'); ?>
+
+	 <?php echo HTML::style('css/overlay.css'); ?>
+
+	 <?php echo HTML::style('css/main.css'); ?>
+
+
+	 <?php echo HTML::style('css/main.css'); ?>
+
+	 <?php echo HTML::style('css/step_form.css'); ?>	 
+<?php echo $__env->yieldSection(); ?> 
+

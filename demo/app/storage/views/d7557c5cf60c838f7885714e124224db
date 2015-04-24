@@ -1,0 +1,34 @@
+
+<?php $__env->startSection('content'); ?>
+
+<?php $__env->startSection('title'); ?>
+@parent
+ <?php echo $producto->nombre; ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php if(Sentry::check()): ?>
+	<?php echo $__env->make('includes.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php else: ?>
+	<?php echo $__env->make('includes.header_public', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php endif; ?>
+<div class="row home-red">
+  <div class="col-xs-9 home-perfil"> 
+    <h1>Detalles del producto: <?php echo $producto->nombre; ?> </h1>
+    <p><?php echo var_dump($producto); ?></p>
+    <p><hr></p>
+    <p><?php echo var_dump($imagenes); ?></p>
+  </div>  
+  <div class="col-xs-3">
+    <?php echo $__env->make('includes/menu-lateral', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  </div>  
+</div>
+
+<?php $__env->startSection('estilos'); ?>
+@parent
+<?php echo HTML::style('css/main_home.css'); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts/default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

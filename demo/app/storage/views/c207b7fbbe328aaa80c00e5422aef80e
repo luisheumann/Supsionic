@@ -1,0 +1,107 @@
+<div class="col-md-6 lista-post"> 
+	<div class="publicar">
+		<img src="<?php echo asset('images/home/foto-home.jpg'); ?>">	
+		<h1>ARCOS BIOMEDICAL</h1>
+		<form>
+			<h3>Escribe acerca de tu empresa</h3>
+		   <div class="input-group form-buscar">
+		      <input type="text" class="form-control publi" placeholder="Escribe acerca de tu empresa...">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default btn-camara" type="button"><i class="fa fa-camera"></i></button>
+		        <button class="btn btn-default btn-public" type="button">Publicar</button>
+		      </span>
+		    </div><!-- /input-group -->
+		</form>
+	</div>
+
+	<div class="post">
+		<img src="<?php echo asset('images/home/avatar.png'); ?>">
+		<h1>Argos</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut non, in minus molestias dolorum harum eveniet dignissimos mollitia, asperiores, aliquam voluptatum laboriosam ipsum consequuntur nihil cumque rem dolor dolore, autem.</p>
+		<p>
+			Aenean nec commodo velit. Proin interdum, felis at commodo ultricies, elit quam mollis nibh, id convallis leo turpis vitae dolor. 
+		</p>
+		<button class="btn-borde btn-borde-ai">Conectar 
+			<img src="<?php echo asset('images/home/conect.png'); ?>">
+		</button>
+		<div class="clearfix"></div>
+	</div>
+
+	<div class="post">
+		<img src="<?php echo asset('images/home/pfizer.png'); ?>">
+		<h1>Argos</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut non, in minus molestias dolorum harum eveniet dignissimos mollitia, asperiores, aliquam voluptatum laboriosam ipsum consequuntur nihil cumque rem dolor dolore, autem.</p>
+		<p>
+			Aenean nec commodo velit. Proin interdum, felis at commodo ultricies, elit quam mollis nibh, id convallis leo turpis vitae dolor. 
+		</p>
+		<button class="btn-borde btn-borde-ai">Conectar 
+			<img src="<?php echo asset('images/home/conect.png'); ?>">
+		</button>
+		<div class="clearfix"></div>
+	</div>
+
+	<div class="post">
+		<img src="<?php echo asset('images/home/avatar.png'); ?>">
+		<h1>Argos</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut non, in minus molestias dolorum harum eveniet dignissimos mollitia, asperiores, aliquam voluptatum laboriosam ipsum consequuntur nihil cumque rem dolor dolore, autem.</p>
+		<p>
+			Aenean nec commodo velit. Proin interdum, felis at commodo ultricies, elit quam mollis nibh, id convallis leo turpis vitae dolor. 
+		</p>
+		<button class="btn-borde btn-borde-ai">Conectar 
+			<img src="<?php echo asset('images/home/conect.png'); ?>">
+		</button>
+		<div class="clearfix"></div>
+	</div>
+
+</div>
+
+<div class="col-md-6"> 
+    <img src="<?php echo asset('images/perfil/proceso.jpg'); ?>" class="img-responsive" style="width:100%">
+
+
+
+	<div class="post">
+		<img src="<?php echo asset('images/home/cero.png'); ?>">
+		<h1>Argos</h1>
+		<p>
+			Aenean nec commodo velit. Proin interdum, felis at commodo ultricies, elit quam mollis nibh, id convallis leo turpis vitae dolor. 
+		</p>
+		<!-- 4:3 aspect ratio -->
+		<div class="embed-responsive embed-responsive-4by3">
+		  <iframe class="embed-responsive-item" src="//www.youtube.com/embed/Ri-vtwUgkIo?rel=0" frameborder="0" allowfullscreen></iframe>
+		</div><br>
+		<button class="btn-borde btn-borde-ai">Conectar 
+			<img src="<?php echo asset('images/home/conect.png'); ?>">
+		</button>
+		<br>
+		<div class="clearfix"></div>
+	</div>
+
+
+
+	<div class="post">
+		<img src="<?php echo asset('images/home/cero.png'); ?>">
+		<h1>Argos</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut non, in minus molestias dolorum harum eveniet dignissimos mollitia, asperiores, aliquam voluptatum laboriosam ipsum consequuntur nihil cumque rem dolor dolore, autem.</p>
+		<p>
+			Aenean nec commodo velit. Proin interdum, felis at commodo ultricies, elit quam mollis nibh, id convallis leo turpis vitae dolor. 
+		</p>
+		<button class="btn-borde btn-borde-ai">Conectar 
+			<img src="<?php echo asset('images/home/conect.png'); ?>">
+		</button>
+		<div class="clearfix"></div>
+	</div>
+
+	<div class="post">
+		<img src="<?php echo asset('images/home/rodo.png'); ?>">
+		<h1>Argos</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut non, in minus molestias dolorum harum eveniet dignissimos mollitia, asperiores, aliquam voluptatum laboriosam ipsum consequuntur nihil cumque rem dolor dolore, autem.</p>
+		<p>
+			Aenean nec commodo velit. Proin interdum, felis at commodo ultricies, elit quam mollis nibh, id convallis leo turpis vitae dolor. 
+		</p>
+		<button class="btn-borde btn-borde-ai">Conectar 
+			<img src="<?php echo asset('images/home/conect.png'); ?>">
+		</button>
+		<div class="clearfix"></div>
+	</div>
+</div>
