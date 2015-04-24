@@ -65,7 +65,11 @@
 		    	<img src="{{asset('images/home/tres.png')}}" alt="">
 		    </label>
 		    <div class="col-xs-10">
-		      <input type="text" class="form-control input-lg" id="producto" placeholder="PRODUCTO">
+		    <div id="prefetch">
+
+
+		      <input type="text" class="form-control input-lg typeahead" id="producto" placeholder="PRODUCTO">
+		    </div>
 		    </div>
 		  </div>
 		</div>	  
@@ -82,7 +86,7 @@
 	      	<option value="">REGIÓN</option>
 	      	<option value="">Colombia</option>
 	      	<option value="">Ecuador</option>
-	      	<option value="">Perú</option>
+	      	<option value="">Perú2</option>
 	      </select>
 	    </div>
 	  </div>
@@ -141,4 +145,5 @@
 </script>
 
 {{HTML::style('css/busqueda.css')}}
+{{HTML::script('js/typeahead.bundle.js')}}
 

@@ -147,4 +147,3 @@ $( document ).ready(function() {
 
 {{HTML::style('css/busqueda_small.css')}}
 {{HTML::script('js/jquery.ddslick.min.js')}}
-

@@ -23,4 +23,22 @@ class HomeController extends BaseController {
 		return Redirect::to('/');
 	}
 
+
+		public function productojson()
+	{
+
+		$producto = Productos::orderBy('nombre', 'ASC')->lists('nombre');
+
+
+	
+		return Response::json($producto, 200);
+	}
+
+
+
+
+	
+
+
+
 }
