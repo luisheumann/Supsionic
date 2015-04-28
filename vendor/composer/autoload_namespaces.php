@@ -34,6 +34,7 @@ return array(
     'Jeremeamia\\SuperClosure' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
     'Illuminate' => array($vendorDir . '/laravel/framework/src'),
     'File' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
+    'Darsain\\Console\\' => array($vendorDir . '/darsain/laravel-console/src'),
     'Cviebrock\\EloquentSluggable' => array($vendorDir . '/cviebrock/eloquent-sluggable/src'),
     'Crypt' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'ClassPreloader' => array($vendorDir . '/classpreloader/classpreloader/src'),
