@@ -6,6 +6,7 @@
 	text-align: center;
 	z-index: 50;
 	padding-left: 16px;
+
 }
 
 .form_home_buscar{
@@ -79,6 +80,7 @@
 
 	font-size: 16px;
 	height: 52px;
+	  width: 100%;
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
@@ -125,3 +127,8 @@ span.tt-dropdown-menu {
 
 }
 
+
+span.twitter-typeahead {
+  /* width: 288px; */
+  width: 100%;
+}

@@ -27,6 +27,8 @@
           processData:false,
 
           success:function(data_basico){
+                      window.location = "registro#info_comercial";
+                      location.reload();
             console.dir(data_basico);
 
             $alerta.hide().find('ul').empty();
@@ -38,6 +40,7 @@
                $alerta.slideDown('slow');
                $btn.show();
                $load.hide();
+
             }
             else{
                resetForm()

@@ -1,5 +1,4 @@
 
-
 <button class="btn btn-success pull-right" data-toggle="modal" data-target="#addProducto">
 
  	<i class="fa fa-cube"></i> Agregar Producto
@@ -85,7 +84,16 @@
 	</tbody>
 
 </table>
+<div align="right">
+<a href="#detalles-comercio" aria-controls="detalles-comercio" role="tab" data-toggle="tab">
+	  	DETALLES DE COMERCIO</a>
 
+
+<a href="#detalles-comercio">
+	<input type="submit"  id="btn_basico" class="btn-borde btn-borde-n-i" value="SIGUIENTE">
+	</a>
+
+</div>
 
 
  
@@ -134,6 +142,8 @@
 
 </div>
 
+
+</script>
 
 
 

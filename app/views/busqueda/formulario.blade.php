@@ -13,6 +13,8 @@
 	    	<img src="{{asset('images/home/uno.png')}}" alt="">
 	    </label>
 	    <div class="col-xs-10">
+
+
 	      <select name="perfil" id="perfil"  class="form-control">
 	      	<option value="">Seleccione...</option>
 	      	<option value="1">Importar</option>
@@ -64,12 +66,20 @@
 	    	<img src="{{asset('images/home/cuatro.png')}}" alt="">
 	    </label>
 	    <div class="col-xs-10">
-	      <select name="region" id="region" class="form-control">
-	      	<option value="">REGIÓN</option>
-	      	<option value="">Europa</option>
-	      	<option value="">América2</option>
-	      	<option value="">Asia2</option>
-	      </select>
+	    
+	      
+<select name="country" class="country" id="country" class="form-control">
+<option selected="selected">REGION</option>
+
+	      	 	<option value="África">Africa</option>
+	      	 	<option value="América">América</option>
+	      	 	<option value="Asia">Asia</option>
+	      	 	<option value="Europa">Europa</option>
+	      	 	<option value="Oceanía">Oceanía</option>
+	
+
+
+</select>
 	    </div>
 	  </div>
 
@@ -79,12 +89,11 @@
 	    	<img src="{{asset('images/home/cinco.png')}}" alt="">
 	    </label>
 	    <div class="col-xs-10">
-	      <select name="destino" id="destino"  class="form-control">
-	      	<option value="">PAÍS DE DESTINO</option>
-		      @foreach($paises as $pais)
-				 	<option value="{{$pais->id}}">{{$pais->nombre}}</option>
-		      @endforeach	
-	      </select>
+	      
+   <select name="city" class="city" id="city" class="form-control">
+<option selected="selected">PAÍS DE ORIGEN</option>
+</select>
+	     
 	    </div>
 	  </div>
 
@@ -93,12 +102,13 @@
 	    	<img src="{{asset('images/home/seix.png')}}" alt="">
 	    </label>
 	    <div class="col-xs-10">
-	      <select name="origen" id="origen" class="form-control">
-	      	<option value="">PAÍS ORIGEN</option>
+ <select name="destino" id="destino"  class="form-control">
+	      	<option value="">PAÍS DE DESTINO</option>
 		      @foreach($paises as $pais)
 				 	<option value="{{$pais->id}}">{{$pais->nombre}}</option>
-		      @endforeach
+		      @endforeach	
 	      </select>
+	  
 	    </div>
 	  </div>
 
@@ -107,7 +117,16 @@
 	</div>
 </form>
 </div>
+
+
+
+
+
 <script>
+
+
+
+
 
 $('#sites input:radio').addClass('input_hidden');
 
@@ -116,6 +135,24 @@ $('#sites label').click(function() {
 });
 
 $( document ).ready(function() {
+
+
+	  $('select#country').change(function(){
+        var countryId = $(this).val();
+
+        $ciudaditems = $('.cityItems').remove();
+        $.get('../public/api/filtropais/'+countryId, function(data){
+
+            $.each(data[0], function(index, element){
+            		console.log(index);
+                $('select#city').append('<option value="'+index+'" class="cityItems">'+element+'</option>')
+            });
+        }, 'json');
+    });
+
+
+
+
 	$('#perfil').change(function(event) {
 		/* Act on the event */
    		var optionSelected = $(this).find("option:selected");

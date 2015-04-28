@@ -118,6 +118,7 @@ class PerfilEmpresaController extends BaseController {
 		$empresa_update->imagen      = $fileName;
 		$empresa_update->save();
 
+
 		return Response::json(['success'=>true]);
 
 	}

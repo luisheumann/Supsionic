@@ -83,4 +83,13 @@ Route::group(array('before' => 'AuthSentryInv'), function()
 Route::get('api/producto.json', 'HomeController@productojson');
 
 
+
+
+Route::get('api/filtropais/{id}', 'BusquedaController@filtropais', array('only' => 'show'));
+
+
+
+
+
+
 });

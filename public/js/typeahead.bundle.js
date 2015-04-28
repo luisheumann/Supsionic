@@ -1792,7 +1792,7 @@ var countries = new Bloodhound({
   prefetch: {
     // url points to a json file that contains an array of country names, see
     // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
-    url: 'api/producto.json',
+    url: '../public/api/producto.json',
 
     filter: function(list) {
       return $.map(list, function(country) { return { name: country }; });
