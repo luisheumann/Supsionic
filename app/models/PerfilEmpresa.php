@@ -6,7 +6,7 @@ class PerfilEmpresa extends Eloquent
 
     public function empresas()
     {
-        return $this->hasMany('Empresa', 'empresa_id');
+        return $this->belongsTo('Empresa', 'empresa_id');
     }
 
     public function perfil()

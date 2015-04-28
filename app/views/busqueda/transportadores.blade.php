@@ -25,11 +25,11 @@
 		<img src="{{asset('images/transporte/empresa1.png')}}" id="img_trans1">
 	</div>
 	<div class="col-xs-7">
-		<h1 class="titulo_transporte1">{{$transportadore->empresa_id}}</h1>
+		<h1 class="titulo_transporte1">{{$transportadore->empresas->nombre}}</h1>
 		<ul class="r_dtalles_producto">
 			<li>Región</li>
-			<li>Ubicación</li>
-			<li>Categoría de transporte</li>
+			<li>Ubicación: {{$transportadore->empresas->pais_id}}</li>
+			<li>Categoría de transporte: </li>
 			<li>Especialidad</li>
 		</ul>
 	</div>	

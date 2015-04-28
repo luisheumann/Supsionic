@@ -6,8 +6,8 @@ class RutaExportador extends Eloquent
 
 
 
-	   public function nombrepais(){
-        return $this->belongsTo('Paises', 'perfil_empresa_id');
+	   public function pais(){
+        return $this->belongsTo('Paises', 'pais_origen');
     }
 
 

@@ -10,7 +10,14 @@
 		"cviebrock/eloquent-sluggable": "~2.0",
 		"thapp/jitimage": "~0.1",
 		"intervention/image": "dev-master"
+
 	},
+	"require-dev": {
+    
+       "darsain/laravel-console": "dev-master"
+      
+   },
+
 	"autoload": {
 	   "files": [
             "app/classes/Recursos.php"

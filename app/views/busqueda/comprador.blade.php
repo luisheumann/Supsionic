@@ -27,7 +27,14 @@
 	<div class="col-xs-7">
 		<h1 class="titulo_comprador<?php echo $i ?>">{{$producto->nombre}}</h1>
 		<ul class="r_dtalles_producto">
-			<li>Región - Ubicación</li>
+			<li>Región - Ubicación @if($producto->ruta_exportador->count() > 0) 
+										@if(!is_null($producto->ruta_exportador->first()->pais))
+											{{$producto->ruta_exportador->first()->pais->nombre}} 
+										@endif
+									@endif
+
+
+</li>
 			<li>Cantidad disponible</li>
 			<li>{{$producto->venta_minima}} mín {{$producto->produccion_mes}} máx</li>
 			<li>Términos de pago</li>

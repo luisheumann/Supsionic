@@ -125,7 +125,8 @@ return array(
 		'Cartalyst\Sentry\SentryServiceProvider',
 		'Cviebrock\EloquentSluggable\SluggableServiceProvider',
 		'Thapp\JitImage\JitImageServiceProvider',
-		'Intervention\Image\ImageServiceProvider'
+		'Intervention\Image\ImageServiceProvider',
+		'Darsain\Console\ConsoleServiceProvider'
 	),
 
 	/*
