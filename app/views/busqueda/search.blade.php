@@ -14,30 +14,35 @@
 
 <div class="col-xs-9">
 
-  <div class="col-xs-4" id="cambio_vista" data-cambio="1">
+  <div class="col-xs-4" id="cambio_vista" data-cambio="<?php echo $perfil ?>">
       <div id="vista_vendedor">
- 
-
+ @include('busqueda/vendedor')
+          
       </div>
       <div id="vista_comprador" style="display:none">
-    
+             @include('busqueda/comprador')
       </div>       
   </div>  
 
   <div class="col-xs-4">
-
+      @include('busqueda/transportadores')
   </div>  
 
   <div class="col-xs-4">
-     
+      @include('busqueda/sias')
   </div> 
   
 </div>
  
 
 </div>
+<?php echo 'AQUITASQL' ?>
+ @foreach($test as $tes)
+{{ $tes->nombre2 }}
+  @endforeach
 
-
+<?php echo 'AQUITA' ?>
+<?php echo $perfil ?>
 
 <!-- Modal Cadena   -->
 <div class="modal fade" id="ModalCadena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -111,6 +116,39 @@
 <script>
 	$(document).ready(function(){
 
+ var valueSelected = <?php echo $perfil ?>;
+if(valueSelected==1)
+    {
+      $('#cambio_vista').attr('data-cambio', 1); // data-chek como true
+      $('#vista_comprador').hide();
+      $('#vista_vendedor').show();
+
+        $(".espacio_transporte").empty();
+        $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">')); 
+        
+        
+      $(".espacio_sias").empty();
+        $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));  
+
+    }
+    if(valueSelected==2)
+    {
+      $('#cambio_vista').attr('data-cambio', 2); // data-chek como true
+      $('#vista_comprador').show();
+      $('#vista_vendedor').hide();
+
+        $(".espacio_transporte").empty();
+        $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">')); 
+        
+      $(".espacio_sias").empty();
+        $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));  
+
+    }   
+
+
+
+
+
      $(".mostar_mi_cadena").on('click', ArmaCadena);
 
      $('#btn_continuar_cadena').click(function(event) {
@@ -123,8 +161,10 @@
 
 function ArmaCadena() {
 
-     var vista = $( "#cambio_vista" ).attr('data-cambio');
+   // var vista = $( "#cambio_vista" ).attr('data-cambio');
 
+    var vista = <?php echo $perfil ?>;
+ 
      if(vista=='1'){
       
       CadenaVendedor();

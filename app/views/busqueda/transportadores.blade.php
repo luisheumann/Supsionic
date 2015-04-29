@@ -14,10 +14,10 @@
 </div>
 <div class="lista-empresas"> 
 
-
+<?php  $i = 1 ?>
  @foreach($transportadores as $transportadore)
 
-<div class="row post_empresa anunciantes" id="post_transporte1">
+<div class="row post_empresa anunciantes" id="post_transporte<?php echo $i ?>">
 	<p class="anuncio_producto">
 	  <i class="fa fa-bullhorn"></i> ANUNCIOS
 	</p>
@@ -25,16 +25,21 @@
 		<img src="{{asset('images/transporte/empresa1.png')}}" id="img_trans1">
 	</div>
 	<div class="col-xs-7">
-		<h1 class="titulo_transporte1">{{$transportadore->empresas->nombre}}</h1>
+		<h1 class="titulo_transporte<?php echo $i ?>">{{$transportadore->empresas->nombre}}</h1>
 		<ul class="r_dtalles_producto">
 			<li>Región</li>
-			<li>Ubicación: {{$transportadore->empresas->pais_id}}</li>
+			<li>Ubicación: {{$transportadore->empresas->pais->nombre}}
+
+
+
+
+									</li>
 			<li>Categoría de transporte: </li>
 			<li>Especialidad</li>
 		</ul>
 	</div>	
 	<div class="col-xs-2">
-		<button class="btn-borde btn-borde-ai btn_selec" id="transporte1">
+		<button class="btn-borde btn-borde-ai btn_selec" id="transporte<?php echo $i ?>">
 			Armar
 		</button>	
 		<br>
@@ -51,7 +56,7 @@
 		</div>		
 	</div>
 </div>
-
+	<?php  $i ++ ?>
  @endforeach
 
 </div>
@@ -62,11 +67,11 @@ $( document ).ready(function() {
 <?php
 
 $i = 1;
-while ($i < 12){
+while ($i <= $transportadores->count()){
 
 
 	echo '$("#transporte'.$i.'").click(function(event) {'."\n";
-
+echo '$(\'.espacio_transporte\').attr(\'data-ckeck\', true);'."\n";
 
 	echo ' $(\'.lista-empresas\').height(517);'."\n";
 	echo '$("#post_transporte'.$i.'").addClass(\'activo_check\').siblings().removeClass(\'activo_check\');'."\n";
@@ -77,18 +82,7 @@ while ($i < 12){
 
 	echo '$(\'.boton_conectar\').show(\'last\');'."\n";
 
-	echo 'var data_t = $( ".espacio_transporte" ).attr(\'data-ckeck\');'."\n";
-	echo 'var data_s = $( ".espacio_sias" ).attr(\'data-ckeck\');'."\n";
-
-
-	echo '  if ( data_t == \'false\' ) {'."\n";
-	echo '  $(".espacio_transporte").empty();'."\n";
-	echo '$(\'.espacio_transporte\').append((\'<img src="images/cadena/recomendado_transportador.png">\'));'."\n";	
-	echo '}'."\n";
-	echo 'if ( data_s == \'false\' ) {'."\n";
-	echo '$(".espacio_sias").empty();'."\n";
-	echo  '$(\'.espacio_sias\').append((\'<img src="images/cadena/recomendado_sias.png">\'));'."\n";
-	echo  '}'."\n";
+	
 
 		echo '});'."\n";
 

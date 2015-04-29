@@ -5,7 +5,7 @@
 <div class="salto_linea"></div>
 
 
-<form class="form-horizontal form_home_buscar" id="busqueda">
+<form class="form-horizontal form_home_buscar" id="busqueda" action="/api/buscar_cadena"  method="post">
 	<div class="campos_busq">
 
 	  <div class="form-group">
@@ -141,7 +141,7 @@ $( document ).ready(function() {
         var countryId = $(this).val();
 
         $ciudaditems = $('.cityItems').remove();
-        $.get('../public/api/filtropais/'+countryId, function(data){
+        $.get('../api/filtropais/'+countryId, function(data){
 
             $.each(data[0], function(index, element){
             		console.log(index);

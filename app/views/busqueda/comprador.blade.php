@@ -69,14 +69,17 @@
 </div> <!-- / lista-empresa  -->
 
 
-<input type="text" id="producto-item" value="<?php echo $productos->count() ?>" />
 
 <script>
 $( document ).ready(function() {
 <?php
 
+
+
+
+
 $i = 1;
-while ($i < 12){
+while ($i <= $productos->count() ){
 
 
 	echo '$("#comprador'.$i.'").click(function(event) {'."\n";
