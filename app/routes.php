@@ -54,9 +54,9 @@ Route::group(array('before' => 'AuthSentryInv'), function()
 	Route::post('{post}/producto_exportador','ProductosController@postRegistroProductoExportador');
 
 	// Post cambia el perfil 
-	Route::post('{post}/cambio_perfil','PerfilEmpresaController@postCambioPerfil');
+	Route::post('{post}/cambio_perfil','PerfilEmpresaController@getCambioPerfil');
 
-	Route::post('api/buscar_cadena','BusquedaController@postBuscarCadena');
+	Route::get('api/buscar_cadena','BusquedaController@getBuscarCadena');
 
 	// Obtiene todos los productos
 	Route::get('{post}/productos','ProductosController@ProductosbyEmpresa');

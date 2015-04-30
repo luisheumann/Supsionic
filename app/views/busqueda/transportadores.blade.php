@@ -15,26 +15,21 @@
 <div class="lista-empresas"> 
 
 <?php  $i = 1 ?>
- @foreach($transportadores as $transportadore)
+ @foreach($lista_transportadores as $lista_transportadore)
 
-<div class="row post_empresa anunciantes" id="post_transporte<?php echo $i ?>">
-	<p class="anuncio_producto">
+<div class="row post_empresa" id="post_transporte<?php echo $i ?>">
+<!--	<p class="anuncio_producto">
 	  <i class="fa fa-bullhorn"></i> ANUNCIOS
-	</p>
+	</p>-->
 	<div class="col-xs-3">
 		<img src="{{asset('images/transporte/empresa1.png')}}" id="img_trans1">
 	</div>
 	<div class="col-xs-7">
-		<h1 class="titulo_transporte<?php echo $i ?>">{{$transportadore->empresas->nombre}}</h1>
+		<h1 class="titulo_transporte<?php echo $i ?>">{{$lista_transportadore->nombreemp}}</h1>
 		<ul class="r_dtalles_producto">
-			<li>Región</li>
-			<li>Ubicación: {{$transportadore->empresas->pais->nombre}}
-
-
-
-
-									</li>
-			<li>Categoría de transporte: </li>
+			<li>{{$lista_transportadore->continente}}</li>
+			<li> {{$lista_transportadore->pais}}</li>
+			<li>{{$lista_transportadore->categoria}} </li>
 			<li>Especialidad</li>
 		</ul>
 	</div>	
@@ -66,8 +61,8 @@
 $( document ).ready(function() {
 <?php
 
-$i = 1;
-while ($i <= $transportadores->count()){
+$j = 1;
+while ($j <= $i){
 
 
 	echo '$("#transporte'.$i.'").click(function(event) {'."\n";
@@ -86,7 +81,7 @@ echo '$(\'.espacio_transporte\').attr(\'data-ckeck\', true);'."\n";
 
 		echo '});'."\n";
 
-$i++;
+$j++;
 
 }
 

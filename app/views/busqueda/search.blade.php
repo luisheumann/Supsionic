@@ -37,8 +37,8 @@
 
 </div>
 <?php echo 'AQUITASQL' ?>
- @foreach($test as $tes)
-{{ $tes->nombre2 }}
+ @foreach($lista_importadores as $lista_importadore)
+{{ $lista_importadore->NombrePoducto }}
   @endforeach
 
 <?php echo 'AQUITA' ?>
@@ -124,11 +124,11 @@ if(valueSelected==1)
       $('#vista_vendedor').show();
 
         $(".espacio_transporte").empty();
-        $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">')); 
+        $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
         
         
       $(".espacio_sias").empty();
-        $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));  
+        $('.espacio_sias').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_sias.png">'));  
 
     }
     if(valueSelected==2)
@@ -138,10 +138,10 @@ if(valueSelected==1)
       $('#vista_vendedor').hide();
 
         $(".espacio_transporte").empty();
-        $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">')); 
+        $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
         
       $(".espacio_sias").empty();
-        $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));  
+        $('.espacio_sias').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_sias.png">'));  
 
     }   
 

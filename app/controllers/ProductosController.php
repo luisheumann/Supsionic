@@ -73,6 +73,8 @@ class ProductosController extends BaseController {
         $producto->stock          = Input::get('cantidad_disponible');
         $producto->save();
 
+        
+
         // GUARDA LOS DESTINOS
 		foreach (Input::get('destinos') as $destino)
 		{

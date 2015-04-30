@@ -5,7 +5,7 @@
 <div class="salto_linea"></div>
 
 
-<form class="form-horizontal form_home_buscar" id="busqueda" action="/api/buscar_cadena"  method="post">
+<form class="form-horizontal form_home_buscar" id="busqueda" action="/public/api/buscar_cadena"  method="get">
 	<div class="campos_busq">
 
 	  <div class="form-group">
@@ -51,7 +51,7 @@
 	       <div id="prefetch">
 
 
-		      <input type="text" class="form-control typeahead" id="producto" placeholder="PRODUCTO">
+		      <input type="text" class="form-control typeahead" id="producto" name="producto" placeholder="PRODUCTO">
 		    </div>
 
 
@@ -69,7 +69,7 @@
 	    
 	      
 <select name="country" class="country" id="country" class="form-control">
-<option selected="selected">REGION</option>
+<option selected="selected" value="">REGION</option>
 
 	      	 	<option value="África">Africa</option>
 	      	 	<option value="América">América</option>
@@ -90,8 +90,8 @@
 	    </label>
 	    <div class="col-xs-10">
 	      
-   <select name="city" class="city" id="city" class="form-control">
-<option selected="selected">PAÍS DE ORIGEN</option>
+   <select name="origen" class="city" id="origen" class="form-control">
+<option selected="selected" value ="">PAÍS DE ORIGEN</option>
 </select>
 	     
 	    </div>
@@ -145,7 +145,7 @@ $( document ).ready(function() {
 
             $.each(data[0], function(index, element){
             		console.log(index);
-                $('select#city').append('<option value="'+index+'" class="cityItems">'+element+'</option>')
+                $('select#origen').append('<option value="'+index+'" class="cityItems">'+element+'</option>')
             });
         }, 'json');
     });

@@ -13,7 +13,7 @@
 <div class="lista-empresas"> 
 
 <?php  $i = 1 ?>
- @foreach($sias as $sia)
+ @foreach($lista_sias as $lista_sia)
 
 
 <div class="row post_empresa anunciantes" id="post_sias<?php echo $i ?>">
@@ -24,10 +24,10 @@
 		<img src="{{asset('images/sias/empresa1.png')}}" id="img_sias<?php echo $i ?>">
 	</div>
 	<div class="col-xs-7">
-		<h1 class="titulo_sias<?php echo $i ?>">{{$sia->empresas->nombre}}</h1>
+		<h1 class="titulo_sias<?php echo $i ?>">{{$lista_sia->nombre}}</h1>
 		<ul class="r_dtalles_producto">
-			<li>Región</li>
-			<li>Ubicación</li>
+			<li>{{$lista_sia->continente}}</li>
+			<li>{{$lista_sia->pais}}</li>
 			<li>Especialidad</li>
 		</ul>
 	</div>	
@@ -59,8 +59,8 @@
 $( document ).ready(function() {
 <?php
 
-$i = 1;
-while ($i <= $sias->count()){
+$j = 1;
+while ($j <= $i){
 
 
 	echo '$("#sias'.$i.'").click(function(event) {'."\n";
@@ -80,7 +80,7 @@ while ($i <= $sias->count()){
 
 		echo '});'."\n";
 
-$i++;
+$j++;
 
 }
 

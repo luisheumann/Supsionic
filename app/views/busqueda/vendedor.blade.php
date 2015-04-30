@@ -13,20 +13,31 @@
 	
 	<?php  $i = 1 ?>
  @foreach($lista_importadores as $lista_importadore)
-
-<div class="row post_empresa anunciantes" id="post_empresa<?php echo $i ?>">
-	<p class="anuncio_producto">
+<!--<div class="row post_empresa anunciantes" id="post_empresa">-->
+<div class="row post_empresa" id="post_empresa<?php echo $i ?>">
+	<!--<p class="anuncio_producto">
 	  <i class="fa fa-bullhorn"></i> ANUNCIOS
-	</p>
+	</p>-->
 	<div class="col-xs-3">
-		<img src="{{asset('images/productos/zapato1.png')}}" id="product_img<?php echo $i ?>">
+			 <img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadore->imagen}}"/>
+
 	</div>
+
+
+	
+
+
+
 	<div class="col-xs-7">
 		<h1 class="titulo_product<?php echo $i ?>">{{$lista_importadore->nombre}}</h1>
 		<ul class="r_dtalles_producto">
-			<li>Región22 - Ubicación</li>
-			<li>Cantidad disponible</li>
-			<li>XX mín XX máx</li>
+			<li>@if($lista_importadore->continente == Null) 
+				@else	
+				{{$lista_importadore->continente}} -{{$lista_importadore->pais}}							
+				@endif</li>
+				
+			<li>Cantidad: {{$lista_importadore->stock}}</li>
+			<li>{{$lista_importadore->venta_minima}} mín  - {{$lista_importadore->produccion_mes}} max</li>
 			<li>Términos de pago</li>
 		</ul>
 	</div>	
@@ -54,7 +65,7 @@
 
 </div> <!-- / lista-empresa  -->
 
-<?php echo $lista_importadores->count() ?>
+
 
 <script>
 $( document ).ready(function() {
@@ -65,7 +76,7 @@ $( document ).ready(function() {
 
 
 $i = 1;
-while ($i <= $lista_importadores->count() ){
+while ($i <= 10 ){
 
 
 	echo '$("#empresa'.$i.'").click(function(event) {'."\n";
@@ -73,7 +84,7 @@ while ($i <= $lista_importadores->count() ){
 	echo '$(\'.espacio_empresa\').attr(\'data-ckeck\', true);'."\n";
 	echo ' $(\'.lista-empresas\').height(517);'."\n";
 	echo '$("#post_empresa'.$i.'").addClass(\'activo_check\').siblings().removeClass(\'activo_check\');'."\n";
- 	echo 'var imagen = $(\'#img_img'.$i.'\').attr(\'src\');'."\n";
+ 	echo 'var imagen = $(\'#product_img'.$i.'\').attr(\'src\');'."\n";
 	echo 'var titulo = $(".titulo_product'.$i.'").text();'."\n";
 	echo '$(".espacio_empresa").empty();'."\n";
 	echo '$(\'.espacio_empresa\').append((\'<img src=" \'+imagen+\' "> <div class="contenido_producto"><span class="tpc"> \'+titulo+\' </span><br><span>Vendedor</span></div>\'));'."\n";
