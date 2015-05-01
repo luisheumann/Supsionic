@@ -10,6 +10,13 @@
 <div class="head_empresa">
 	<h1>SIAS</h1>
 </div>
+
+@if($lista_sias == Null)
+
+nada
+				@else
+
+
 <div class="lista-empresas"> 
 
 <?php  $i = 1 ?>
@@ -21,8 +28,9 @@
 	  <i class="fa fa-bullhorn"></i> ANUNCIOS
 	</p>
 	<div class="col-xs-3">
-		<img src="{{asset('images/sias/empresa1.png')}}" id="img_sias<?php echo $i ?>">
-	</div>
+
+				 <img id="img_sias<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_sia->imagen}}"/>
+</div>
 	<div class="col-xs-7">
 		<h1 class="titulo_sias<?php echo $i ?>">{{$lista_sia->nombre}}</h1>
 		<ul class="r_dtalles_producto">
@@ -54,7 +62,12 @@
  @endforeach
 
 </div>
+@endif
 
+
+@if($lista_sias == Null) 
+nada
+				@else
 <script>
 $( document ).ready(function() {
 <?php
@@ -63,13 +76,13 @@ $j = 1;
 while ($j <= $i){
 
 
-	echo '$("#sias'.$i.'").click(function(event) {'."\n";
+	echo '$("#sias'.$j.'").click(function(event) {'."\n";
 
 
 	echo ' $(\'.lista-empresas\').height(517);'."\n";
-	echo '$("#post_sias'.$i.'").addClass(\'activo_check\').siblings().removeClass(\'activo_check\');'."\n";
- 	echo 'var imagen = $(\'#img_sias'.$i.'\').attr(\'src\');'."\n";
-	echo 'var titulo = $(".titulo_transporte'.$i.'").text();'."\n";
+	echo '$("#post_sias'.$j.'").addClass(\'activo_check\').siblings().removeClass(\'activo_check\');'."\n";
+ 	echo 'var imagen = $(\'#img_sias'.$j.'\').attr(\'src\');'."\n";
+	echo 'var titulo = $(".titulo_transporte'.$j.'").text();'."\n";
 	echo '$(".espacio_sias").empty();'."\n";
 	echo '$(\'.espacio_sias\').attr(\'data-ckeck\', true);';
 	echo '$(\'.espacio_sias\').append((\'<img src=" \'+imagen+\' "> <div class="contenido_producto"><span class="tpc"> \'+titulo+\' </span><br><span>SIAS</span></div>\'));'."\n";
@@ -89,3 +102,5 @@ $j++;
 ?>
 });
 </script>
+
+@endif

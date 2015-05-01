@@ -60,61 +60,83 @@ class BusquedaController extends BaseController {
 	perfil_empresa.empresa_id, 
 	perfil_empresa.perfil_id, 
 	empresas.nombre, 
-	paises.continente
+	paises.continente,
+	empresas.imagen
 FROM sias_categoria_interes LEFT JOIN empresas ON sias_categoria_interes.empresa_id = empresas.id
 	 LEFT JOIN categorias ON categorias.id = sias_categoria_interes.categoria_id
 	 LEFT JOIN sias_paises_operacion ON sias_paises_operacion.empresa_id = empresas.id
 	 LEFT JOIN paises ON paises.id = empresas.pais_id
 	 LEFT JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
-WHERE perfil_empresa.perfil_id = 4") );
+WHERE perfil_empresa.perfil_id = 4 and paises.continente= 'ninguno' and empresas.nombre = 'demo'") );
 
 ///////////////////////////////////////////////////////
 
 
 
 ///////////////////////LISTA DE SIAS/////////////////////////////////
-if ($categoria != Null  ) {
-	    $lista_sias = DB::select( DB::raw("SELECT sias_paises_operacion.empresa_id, 
-	empresas.id, 
-	sias_categoria_interes.empresa_id, 
-	paises.nombre as pais, 
-	paises.id, 
-	categorias.id as categoria, 
-	categorias.nombre as categoria, 
+if ($destino != Null) {
+	    $lista_sias = DB::select( DB::raw("SELECT empresas.id, 
+	empresas.nombre, 
+	empresas.pais_id, 
+	sias_paises_operacion.empresa_id, 
 	perfil_empresa.empresa_id, 
 	perfil_empresa.perfil_id, 
-	empresas.nombre, 
-	paises.continente
-FROM sias_categoria_interes LEFT JOIN empresas ON sias_categoria_interes.empresa_id = empresas.id
-	 LEFT JOIN categorias ON categorias.id = sias_categoria_interes.categoria_id
-	 LEFT JOIN sias_paises_operacion ON sias_paises_operacion.empresa_id = empresas.id
-	 LEFT JOIN paises ON paises.id = empresas.pais_id
-	 LEFT JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
-WHERE perfil_empresa.perfil_id = 4 and categorias.id = '$categoria' ") );
+	paises.id, 
+	paises.continente,
+		paises.nombre as pais,
+			empresas.imagen 
+FROM sias_paises_operacion INNER JOIN empresas ON sias_paises_operacion.empresa_id = empresas.id
+	 INNER JOIN paises ON paises.id = empresas.pais_id
+	 INNER JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
+WHERE perfil_empresa.perfil_id = 4 and sias_paises_operacion.pais_id =  '$destino'") );
 	}
+
+
+	if ($origen != Null) {
+	    $lista_sias = DB::select( DB::raw("SELECT empresas.id, 
+	empresas.nombre, 
+	empresas.pais_id, 
+	sias_paises_operacion.empresa_id, 
+	perfil_empresa.empresa_id, 
+	perfil_empresa.perfil_id, 
+	paises.id, 
+	paises.continente,
+		paises.nombre as pais,
+		empresas.imagen 
+FROM sias_paises_operacion INNER JOIN empresas ON sias_paises_operacion.empresa_id = empresas.id
+	 INNER JOIN paises ON paises.id = empresas.pais_id
+	 INNER JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
+WHERE perfil_empresa.perfil_id = 4 and sias_paises_operacion.pais_id =  '$origen'") );
+	}
+
+
 
 ///////////////////////////////////////////////////////
 
 
 	///////////////////////LISTA DE SIAS/////////////////////////////////
-if ($continente != Null  ) {
-	    $lista_sias = DB::select( DB::raw("SELECT sias_paises_operacion.empresa_id, 
-	empresas.id, 
-	sias_categoria_interes.empresa_id, 
-	paises.nombre as pais, 
-	paises.id, 
-	categorias.id as categoria, 
-	categorias.nombre as categoria, 
+if ($categoria != Null and $origen != Null) {
+	    $lista_sias = DB::select( DB::raw("SELECT empresas.id, 
+	empresas.nombre, 
+	empresas.pais_id, 
+	sias_paises_operacion.empresa_id, 
 	perfil_empresa.empresa_id, 
 	perfil_empresa.perfil_id, 
-	empresas.nombre, 
-	paises.continente
-FROM sias_categoria_interes LEFT JOIN empresas ON sias_categoria_interes.empresa_id = empresas.id
-	 LEFT JOIN categorias ON categorias.id = sias_categoria_interes.categoria_id
-	 LEFT JOIN sias_paises_operacion ON sias_paises_operacion.empresa_id = empresas.id
-	 LEFT JOIN paises ON paises.id = empresas.pais_id
-	 LEFT JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
-WHERE perfil_empresa.perfil_id = 4 and paises.continente = '$continente' ") );
+	sias_categoria_interes.categoria_id, 
+	categorias.id, 
+	sias_categoria_interes.empresa_id, 
+	categorias.nombre, 
+	empresas.imagen, 
+	paises.id, 
+	paises.continente, 
+	paises.nombre as pais,
+	empresas.imagen 
+FROM sias_categoria_interes INNER JOIN categorias ON sias_categoria_interes.categoria_id = categorias.id
+	 INNER JOIN empresas ON sias_categoria_interes.empresa_id = empresas.id
+	 INNER JOIN paises ON empresas.pais_id = paises.id
+	 INNER JOIN sias_paises_operacion ON sias_paises_operacion.empresa_id = empresas.id
+	 INNER JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
+WHERE perfil_empresa.perfil_id = 4 and sias_paises_operacion.pais_id = '$origen' and sias_paises_operacion.pais_id ='$destino'  and sias_categoria_interes.categoria_id = '$categoria'") );
 	}
 
 ///////////////////////////////////////////////////////
@@ -146,14 +168,18 @@ FROM ruta_transporte LEFT JOIN intereses_transporte ON ruta_transporte.intereses
 	 LEFT JOIN categorias ON categorias.id = intereses_transporte.categoria_id
 	 LEFT JOIN paises ON paises.id = empresas.pais_id
 	 LEFT JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
-WHERE perfil_empresa.perfil_id = 3") );
+WHERE perfil_empresa.perfil_id = 3 and paises.continente= 'ninguno' and empresas.nombre = 'demo'") );
+
+
 
 
 
 //////////////////////////////////////////////////////
-///////////////////////LISTA DE TRANSPORTADORES-  continente/////////////////////////////////
 
-if ($continente != Null) {
+
+
+///////////////////////LISTA DE TRANSPORTADORES-  Pais/////////////////////////////////
+if ($origen != Null and $destino != Null and $categoria != Null) {
 $lista_transportadores = DB::select( DB::raw("SELECT intereses_transporte.id, 
 	ruta_transporte.intereses_transporte_id, 
 	ruta_transporte.pais_destino, 
@@ -175,40 +201,9 @@ FROM ruta_transporte LEFT JOIN intereses_transporte ON ruta_transporte.intereses
 	 LEFT JOIN categorias ON categorias.id = intereses_transporte.categoria_id
 	 LEFT JOIN paises ON paises.id = empresas.pais_id
 	 LEFT JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
-WHERE perfil_empresa.perfil_id = 3 and paises.continente= '$continente'") );
-
+WHERE perfil_empresa.perfil_id = 3 and ruta_transporte.pais_origen = '$origen' and  ruta_transporte.pais_destino = '$destino' and categorias.id = '$categoria'") );
 }
 
-//////////////////////////////////////////////////////
-
-
-///////////////////////LISTA DE TRANSPORTADORES-  Pais/////////////////////////////////
-
-if ($origen != Null and $destino==Null and $origen==Null ) {
-$lista_transportadores = DB::select( DB::raw("SELECT intereses_transporte.id, 
-	ruta_transporte.intereses_transporte_id, 
-	ruta_transporte.pais_destino, 
-	ruta_transporte.pais_origen, 
-	intereses_transporte.empresa_id, 
-	empresas.id, 
-	paises.nombre AS pais, 
-	paises.id, 
-	paises.continente, 
-	intereses_transporte.categoria_id, 
-	categorias.id, 
-	categorias.nombre AS categoria, 
-	perfil_empresa.empresa_id, 
-	perfil_empresa.perfil_id, 
-	empresas.nombre AS nombreemp, 
-	empresas.imagen
-FROM ruta_transporte LEFT JOIN intereses_transporte ON ruta_transporte.intereses_transporte_id = intereses_transporte.id
-	 LEFT JOIN empresas ON intereses_transporte.empresa_id = empresas.id
-	 LEFT JOIN categorias ON categorias.id = intereses_transporte.categoria_id
-	 LEFT JOIN paises ON paises.id = empresas.pais_id
-	 LEFT JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
-WHERE perfil_empresa.perfil_id = 3 and ruta_transporte.pais_origen= '$origen'") );
-
-}
 
 //////////////////////////////////////////////////////
 
@@ -216,7 +211,7 @@ WHERE perfil_empresa.perfil_id = 3 and ruta_transporte.pais_origen= '$origen'") 
 
 ///////////////////////LISTA DE TRANSPORTADORES-  Pais/////////////////////////////////
 
-if ($origen != Null and $destino != Null and $origen==Null ) {
+if ($origen != Null and $destino != Null) {
 $lista_transportadores = DB::select( DB::raw("SELECT intereses_transporte.id, 
 	ruta_transporte.intereses_transporte_id, 
 	ruta_transporte.pais_destino, 
@@ -245,35 +240,6 @@ WHERE perfil_empresa.perfil_id = 3 and ruta_transporte.pais_origen = '$origen' a
 //////////////////////////////////////////////////////
 
 
-///////////////////////LISTA DE TRANSPORTADORES-  Pais/////////////////////////////////
-
-if ($categoria != Null  and $origen==Null ) {
-$lista_transportadores = DB::select( DB::raw("SELECT intereses_transporte.id, 
-	ruta_transporte.intereses_transporte_id, 
-	ruta_transporte.pais_destino, 
-	ruta_transporte.pais_origen, 
-	intereses_transporte.empresa_id, 
-	empresas.id, 
-	paises.nombre AS pais, 
-	paises.id, 
-	paises.continente, 
-	intereses_transporte.categoria_id, 
-	categorias.id, 
-	categorias.nombre AS categoria, 
-	perfil_empresa.empresa_id, 
-	perfil_empresa.perfil_id, 
-	empresas.nombre AS nombreemp, 
-	empresas.imagen
-FROM ruta_transporte LEFT JOIN intereses_transporte ON ruta_transporte.intereses_transporte_id = intereses_transporte.id
-	 LEFT JOIN empresas ON intereses_transporte.empresa_id = empresas.id
-	 LEFT JOIN categorias ON categorias.id = intereses_transporte.categoria_id
-	 LEFT JOIN paises ON paises.id = empresas.pais_id
-	 LEFT JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
-WHERE perfil_empresa.perfil_id = 3 and categorias.id = '$categoria'") );
-}
-
-
-//////////////////////////////////////////////////////
 
 
 

@@ -5,7 +5,7 @@
 <div class="salto_linea"></div>
 
 
-<form class="form-horizontal form_home_buscar" id="busqueda" action="/public/api/buscar_cadena"  method="get">
+<form class="form-horizontal form_home_buscar" id="busqueda" action="/api/buscar_cadena"  method="get">
 	<div class="campos_busq">
 
 	  <div class="form-group">

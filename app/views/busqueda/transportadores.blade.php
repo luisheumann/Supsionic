@@ -12,23 +12,39 @@
 <div class="head_empresa">
 	<h1>Transportadores</h1>
 </div>
+
+@if($lista_transportadores == Null)
+
+nada
+				@else
 <div class="lista-empresas"> 
 
 <?php  $i = 1 ?>
+
+	
+										
+			
+
+
  @foreach($lista_transportadores as $lista_transportadore)
+ 
 
 <div class="row post_empresa" id="post_transporte<?php echo $i ?>">
 <!--	<p class="anuncio_producto">
 	  <i class="fa fa-bullhorn"></i> ANUNCIOS
 	</p>-->
 	<div class="col-xs-3">
-		<img src="{{asset('images/transporte/empresa1.png')}}" id="img_trans1">
+
+		 <img id="img_trans<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_transportadore->imagen}}"/>
+
+
+	
 	</div>
 	<div class="col-xs-7">
 		<h1 class="titulo_transporte<?php echo $i ?>">{{$lista_transportadore->nombreemp}}</h1>
 		<ul class="r_dtalles_producto">
 			<li>{{$lista_transportadore->continente}}</li>
-			<li> {{$lista_transportadore->pais}}</li>
+			<li> {{$lista_transportadore->pais}} </li>
 			<li>{{$lista_transportadore->categoria}} </li>
 			<li>Especialidad</li>
 		</ul>
@@ -52,10 +68,17 @@
 	</div>
 </div>
 	<?php  $i ++ ?>
+
+
  @endforeach
-
+	
 </div>
+@endif
 
+
+@if($lista_transportadores == Null) 
+nada
+				@else
 
 <script>
 $( document ).ready(function() {
@@ -65,13 +88,13 @@ $j = 1;
 while ($j <= $i){
 
 
-	echo '$("#transporte'.$i.'").click(function(event) {'."\n";
+	echo '$("#transporte'.$j.'").click(function(event) {'."\n";
 echo '$(\'.espacio_transporte\').attr(\'data-ckeck\', true);'."\n";
 
 	echo ' $(\'.lista-empresas\').height(517);'."\n";
-	echo '$("#post_transporte'.$i.'").addClass(\'activo_check\').siblings().removeClass(\'activo_check\');'."\n";
- 	echo 'var imagen = $(\'#img_trans'.$i.'\').attr(\'src\');'."\n";
-	echo 'var titulo = $(".titulo_transporte'.$i.'").text();'."\n";
+	echo '$("#post_transporte'.$j.'").addClass(\'activo_check\').siblings().removeClass(\'activo_check\');'."\n";
+ 	echo 'var imagen = $(\'#img_trans'.$j.'\').attr(\'src\');'."\n";
+	echo 'var titulo = $(".titulo_transporte'.$j.'").text();'."\n";
 	echo '$(".espacio_transporte").empty();'."\n";
 	echo '$(\'.espacio_transporte\').append((\'<img src=" \'+imagen+\' "> <div class="contenido_producto"><span class="tpc"> \'+titulo+\' </span><br><span>Transportador</span></div>\'));'."\n";
 
@@ -90,3 +113,5 @@ $j++;
 ?>
 });
 </script>
+
+@endif
