@@ -44,13 +44,7 @@
  
 
 </div>
-<?php echo 'AQUITASQL' ?>
- @foreach($lista_importadores as $lista_importadore)
 
-  @endforeach
-
-<?php echo 'AQUITA' ?>
-<?php echo $perfil ?>
 
 <!-- Modal Cadena   -->
 <div class="modal fade" id="ModalCadena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
