@@ -14,10 +14,6 @@
 	
 	<?php  $i = 1;
 
-$varperfil = $_GET['perfil'];
-
-if ($varperfil == 3) {
-	
 
 
 
@@ -35,6 +31,11 @@ if ($varperfil == 3) {
 
 	</div>
 
+
+	
+
+
+
 	<div class="col-xs-7">
 		<h1 class="titulo_product<?php echo $i ?>">{{$lista_exportadore->nombre}}</h1>
 		<ul class="r_dtalles_producto">
@@ -44,7 +45,6 @@ if ($varperfil == 3) {
 				@endif</li>
 				<li> Interesado en : {{$lista_exportadore->productos}}</li>
 				
-	
 		</ul>
 	</div>	
 	<div class="col-xs-2">
@@ -68,7 +68,7 @@ if ($varperfil == 3) {
 
 	<?php  $i ++ ?>
  @endforeach
- <?php } ?>
+
 </div> <!-- / lista-empresa  -->
 
 
@@ -76,13 +76,6 @@ if ($varperfil == 3) {
 <script>
 $( document ).ready(function() {
 <?php
-
-
-
-$varperfil = $_GET['perfil'];
-
-if ($varperfil == 3) {
-
 
 
 $j = 1;
@@ -130,7 +123,7 @@ $j++;
 
 }
 
-	}
+	
 
 ?>
 });

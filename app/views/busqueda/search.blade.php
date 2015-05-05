@@ -252,32 +252,35 @@ function CadenaComprador(){
   $('#ModalCadena').modal('show');
 
   // chekea si ya se agrego una empresa de Transporte o SIAS
-  var data_c = $( ".espacio_comprador" ).attr('data-ckeck');
+  var data_c = $( ".espacio_empresa" ).attr('data-ckeck');
   var data_t = $( ".espacio_transporte" ).attr('data-ckeck');
   var data_s = $( ".espacio_sias" ).attr('data-ckeck');
 
   // chekea si se ha seleccionado una empresa
 
-  if ( data_c == 'true' ) {
 
-    // Producto de Demo
-    $("#su_producto").empty();
-    var get_img = 'http://supplysmark.com/demo/public/images/cadena/icono-producto.png';
-    var get_nombre = 'Demo';
-    $('#su_producto').append(('<img src=" '+get_img+' " width="87" height="83" > <span class="tec">'+get_nombre+'</span>  ')); 
 
-    // muestra la empresa seleccionada
-    $("#su_empresa").empty();
-    var get_img = $( ".espacio_comprador img" ).attr('src');
-    var get_nombre = $( ".espacio_comprador .contenido_producto .tpc" ).text();
-    $('#su_empresa').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span> <img src="../images/fc.png" width="25px"> ')); 
-  }
+// chekea si se ha seleccionado una empresa
+    if ( data_c == 'true' ) {
+      $("#su_producto").empty();
 
-  else{
-    $("#su_producto, #su_empresa").empty();
-    $("#su_producto").append('<h2>No se ha seleccionado !</h2>');
-    $("#su_empresa").append('<h2>No se ha seleccionado !</h2>');
-  }
+      var get_img = $( ".espacio_empresa img" ).attr('src');// img Prodcuto
+       var get_nombre = $( ".espacio_empresa .contenido_producto .tpc" ).text();
+      $('#su_producto').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span> ')); 
+
+      // Empresa de Seleccionada
+      $("#su_empresa").empty();
+       
+   var get_img =  $( ".espacio_empresa .contenido_producto2 .tpc2" ).text(); ///imagen del Empresa
+
+      $('#su_empresa').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span> <img src="../images/fc.png" width="25px"> ')); 
+    }
+    else{
+      $("#su_producto, #su_empresa").empty();
+      $("#su_producto").append('<h2>No se ha seleccionado !</h2>');
+      $("#su_empresa").append('<h2>No se ha seleccionado !</h2>');
+    }
+
 
 
   // chekea si se ha seleccionado una transportadora

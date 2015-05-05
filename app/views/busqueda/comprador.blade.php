@@ -1,3 +1,5 @@
+
+
 <div class="espacio_empresa" data-ckeck="false">
 	<img src="{{asset('images/cadena/comprador.png')}}">
 </div>
@@ -11,7 +13,10 @@
 </div>
 <div class="lista-empresas"> 
 
-	<?php  $i = 1; 
+	
+	<?php  $i = 1;
+
+
 
 
 	?>
@@ -23,15 +28,20 @@
 	</p>-->
 	<div class="col-xs-3">
 			 <img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->imagen}}"/>
-			 <img style="display:none" id="imagen<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->imagen}}"/>
+			 <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->imagen}}"/>
 
 
 	</div>
 
+
+	
+
+
+
 	<div class="col-xs-7">
-		<h1 class="titulo_product<?php echo $i ?>">{{$lista_importadoresall->nombre}}2</h1>
+		<h1 class="titulo_product<?php echo $i ?>">{{$lista_importadoresall->nombre}}</h1>
 		<ul class="r_dtalles_producto">
-			<li>@if($lista_importadoresall->continente == Null) 
+			@if($lista_importadoresall->continente == Null) 
 				@else	
 				{{$lista_importadoresall->continente}} -{{$lista_importadoresall->pais}}							
 				@endif</li>
@@ -42,10 +52,7 @@
 				@else	
 						<li>Producto: {{$lista_importadoresall->NombrePoducto}}</li>	
 				@endif
-		
-
-		
-		</ul>
+	
 	</div>	
 	<div class="col-xs-2">
 		<button class="btn-borde btn-borde-ai btn_selec" id="empresa<?php echo $i ?>">
@@ -69,16 +76,13 @@
 	<?php  $i ++ ?>
  @endforeach
 
-
-
 </div> <!-- / lista-empresa  -->
+
 
 
 <script>
 $( document ).ready(function() {
 <?php
-
- 
 
 
 $j = 1;
@@ -126,13 +130,11 @@ $j++;
 
 }
 
-
+	
 
 ?>
 });
 </script>
-
-
 
 @section('estilos')
 @parent

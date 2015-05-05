@@ -28,7 +28,7 @@ class HomeController extends BaseController {
 	{
 
 		$producto = Productos::orderBy('nombre', 'ASC')->lists('nombre');
-
+		$producto = InteresesImportador::orderBy('productos', 'ASC')->lists('productos');
 
 	
 		return Response::json($producto, 200);
