@@ -10,7 +10,7 @@
 	<h1>Vendedor</h1>
 </div>
 <div class="lista-empresas"> 
-	
+
 	<?php  $i = 1 ?>
  @foreach($lista_importadores as $lista_importadore)
 <!--<div class="row post_empresa anunciantes" id="post_empresa">-->
@@ -19,7 +19,9 @@
 	  <i class="fa fa-bullhorn"></i> ANUNCIOS
 	</p>-->
 	<div class="col-xs-3">
-			 <img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadore->imagen}}"/>
+			 <img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/productos/{{$lista_importadore->imagenproducto}}"/>
+			 <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadore->imagen}}"/>
+
 
 	</div>
 
@@ -75,24 +77,34 @@ $( document ).ready(function() {
 
 
 
-$i = 1;
-while ($i <= 10 ){
+$j = 1;
+while ($j <= $i ){
 
 
-	echo '$("#empresa'.$i.'").click(function(event) {'."\n";
+	echo '$("#empresa'.$j.'").click(function(event) {'."\n";
 
 	echo '$(\'.espacio_empresa\').attr(\'data-ckeck\', true);'."\n";
 	echo ' $(\'.lista-empresas\').height(517);'."\n";
 	echo '$("#post_empresa'.$i.'").addClass(\'activo_check\').siblings().removeClass(\'activo_check\');'."\n";
- 	echo 'var imagen = $(\'#product_img'.$i.'\').attr(\'src\');'."\n";
-	echo 'var titulo = $(".titulo_product'.$i.'").text();'."\n";
+ 	echo 'var imagen = $(\'#product_img'.$j.'\').attr(\'src\');'."\n";
+	//echo 'var imagen2 = $(\'#imagenproducto'.$i.'\').attr(\'src\');'."\n";
+	echo 'var titulo2 = $(\'#imagenproducto'.$j.'\').attr(\'src\');'."\n";
+	echo 'var titulo = $(".titulo_product'.$j.'").text();'."\n";
+	
 	echo '$(".espacio_empresa").empty();'."\n";
-	echo '$(\'.espacio_empresa\').append((\'<img src=" \'+imagen+\' "> <div class="contenido_producto"><span class="tpc"> \'+titulo+\' </span><br><span>Vendedor</span></div>\'));'."\n";
+
+	echo '$(\'.espacio_empresa\').append((\'<div style="display:none" class="contenido_producto2"><span class="tpc2"> \'+titulo2+\' </span></div>\'));'."\n";
+
+	echo '$(\'.espacio_empresa\').append((\'<img  src=" \'+imagen+\' "> <div class="contenido_producto"><span class="tpc"> \'+titulo+\' </span><br><span>Vendedor</span></div>\'));'."\n";
 
 	echo '$(\'.boton_conectar\').show(\'last\');'."\n";
 
 	echo 'var data_t = $( ".espacio_transporte" ).attr(\'data-ckeck\');'."\n";
 	echo 'var data_s = $( ".espacio_sias" ).attr(\'data-ckeck\');'."\n";
+
+
+
+
 
 
 	echo '  if ( data_t == \'false\' ) {'."\n";
@@ -106,7 +118,7 @@ while ($i <= 10 ){
 
 		echo '});'."\n";
 
-$i++;
+$j++;
 
 }
 

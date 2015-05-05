@@ -21,7 +21,15 @@
       </div>
       <div id="vista_comprador" style="display:none">
              @include('busqueda/comprador')
-      </div>       
+      </div>    
+
+       <div id="vista_transporte">
+             @include('busqueda/listatransportador')
+      </div> 
+       <div id="vista_sias">
+             @include('busqueda/listatransportador')
+      </div> 
+
   </div>  
 
   <div class="col-xs-4">
@@ -38,7 +46,7 @@
 </div>
 <?php echo 'AQUITASQL' ?>
  @foreach($lista_importadores as $lista_importadore)
-{{ $lista_importadore->NombrePoducto }}
+
   @endforeach
 
 <?php echo 'AQUITA' ?>
@@ -50,7 +58,7 @@
     <div class="modal-content mdc">
 
       <div class="modal-body cadena_seleccionada">
-        <h1>ESTA ES LA CADENA DE ABASTECIMIENTO QUE HA ELEGIDO PARA SU NEGOCIO.</h1>
+        <h1>ESTA ES LA CADENA DE ABASTECIMIENTO QUE HA ELEGIDO PARA SU NEGOCIO.xx</h1>
         
         <div class="row contenedor_su_cadena">
 
@@ -145,6 +153,39 @@ if(valueSelected==1)
 
     }   
 
+        if(valueSelected==3)
+    {
+      $('#cambio_vista').attr('data-cambio', 3); // data-chek como true
+      $('#vista_transporte').show();
+      $('#vista_vendedor').hide();
+       $('#vista_comprador').hide();
+
+        $(".espacio_transporte").empty();
+        $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
+        
+      $(".espacio_sias").empty();
+        $('.espacio_sias').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_sias.png">'));  
+
+    } 
+
+         if(valueSelected==4)
+    {
+      $('#cambio_vista').attr('data-cambio', 4); // data-chek como true
+      $('#vista_transporte').show();
+      $('#vista_vendedor').hide();
+       $('#vista_comprador').hide();
+
+        $(".espacio_transporte").empty();
+        $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
+        
+      $(".espacio_sias").empty();
+        $('.espacio_sias').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_sias.png">'));  
+
+    }   
+
+
+
+
 
 
 
@@ -196,13 +237,13 @@ function CadenaComprador(){
     $("#su_producto").empty();
     var get_img = 'http://supplysmark.com/demo/public/images/cadena/icono-producto.png';
     var get_nombre = 'Demo';
-    $('#su_producto').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span>  ')); 
+    $('#su_producto').append(('<img src=" '+get_img+' " width="87" height="83" > <span class="tec">'+get_nombre+'</span>  ')); 
 
     // muestra la empresa seleccionada
     $("#su_empresa").empty();
     var get_img = $( ".espacio_comprador img" ).attr('src');
     var get_nombre = $( ".espacio_comprador .contenido_producto .tpc" ).text();
-    $('#su_empresa').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span> <img src="../public/images/fc.png" width="25px"> ')); 
+    $('#su_empresa').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span> <img src="../images/fc.png" width="25px"> ')); 
   }
 
   else{
@@ -217,7 +258,7 @@ function CadenaComprador(){
     $("#su_transporte").empty();
     var get_img = $( ".espacio_transporte img" ).attr('src');
     var get_nombre = $( ".espacio_transporte .contenido_producto .tpc" ).text();
-    $('#su_transporte').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span>  <img src="../public/images/fc.png" width="25px">')); 
+    $('#su_transporte').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span>  <img src="../images/fc.png" width="25px">')); 
   }
   else{
     $("#su_transporte").empty();
@@ -229,7 +270,7 @@ function CadenaComprador(){
     $("#su_sia").empty();
     var get_img = $( ".espacio_sias img" ).attr('src');
     var get_nombre = $( ".espacio_sias .contenido_producto .tpc" ).text();
-    $('#su_sia').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span>  <img src="../public/images/fc.png" width="25px"> ' )); 
+    $('#su_sia').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span>  <img src="../images/fc.png" width="25px"> ' )); 
   } 
   else{
     $("#su_sia").empty();
@@ -247,19 +288,24 @@ function CadenaVendedor(){
     var data_e = $( ".espacio_empresa" ).attr('data-ckeck');
     var data_t = $( ".espacio_transporte" ).attr('data-ckeck');
     var data_s = $( ".espacio_sias" ).attr('data-ckeck');
+    //var imagenproducto = document.getElementById("imagenproducto").src
+
  
     // chekea si se ha seleccionado una empresa
     if ( data_e == 'true' ) {
       $("#su_producto").empty();
-      var get_img = $( ".espacio_empresa img" ).attr('src');
-      var get_nombre = $( ".espacio_empresa .contenido_producto .tpc" ).text();
-      $('#su_producto').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span> ')); 
 
-      // Empresa de Demo
+      var get_img = $( ".espacio_empresa img" ).attr('src');// img Prodcuto
+      
+      var get_nombre = $( ".espacio_empresa .contenido_producto .tpc" ).text();
+      $('#su_producto').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span> ')); 
+
+      // Empresa de Seleccionada
       $("#su_empresa").empty();
-      var get_img = 'http://supplysmark.com/demo/public/images/transporte/empresa4.png';
-      var get_nombre = 'Platinun';
-      $('#su_empresa').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span> <img src="../public/images/fc.png" width="25px"> ')); 
+       
+   var get_img =  $( ".espacio_empresa .contenido_producto2 .tpc2" ).text(); ///imagen del Empresa
+
+      $('#su_empresa').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span> <img src="../images/fc.png" width="25px"> ')); 
     }
     else{
       $("#su_producto, #su_empresa").empty();
@@ -273,7 +319,7 @@ function CadenaVendedor(){
       $("#su_transporte").empty();
       var get_img = $( ".espacio_transporte img" ).attr('src');
       var get_nombre = $( ".espacio_transporte .contenido_producto .tpc" ).text();
-      $('#su_transporte').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span>  <img src="../public/images/fc.png" width="25px">')); 
+      $('#su_transporte').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span>  <img src="../images/fc.png" width="25px">')); 
     }
     else{
       $("#su_transporte").empty();
@@ -285,7 +331,7 @@ function CadenaVendedor(){
       $("#su_sia").empty();
       var get_img = $( ".espacio_sias img" ).attr('src');
       var get_nombre = $( ".espacio_sias .contenido_producto .tpc" ).text();
-      $('#su_sia').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span>  <img src="../public/images/fc.png" width="25px"> ' )); 
+      $('#su_sia').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span>  <img src="../images/fc.png" width="25px"> ' )); 
     } 
     else{
       $("#su_sia").empty();

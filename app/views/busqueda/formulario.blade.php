@@ -186,6 +186,40 @@ $( document ).ready(function() {
 
 		}		
 
+				if(valueSelected==3)
+		{
+			$('#cambio_vista').attr('data-cambio', 3); // data-chek como true
+		  $('#vista_transporte').show();
+      $('#vista_vendedor').hide();
+       $('#vista_comprador').hide();
+
+		    $(".espacio_transporte").empty();
+		    $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">'));	
+		    
+			$(".espacio_sias").empty();
+		    $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));	
+
+		}	
+
+				if(valueSelected==4)
+		{
+			$('#cambio_vista').attr('data-cambio', 4); // data-chek como true
+		  $('#vista_sias').show();
+      $('#vista_vendedor').hide();
+       $('#vista_comprador').hide();
+         $('#vista_transporte').hide();
+
+		    $(".espacio_transporte").empty();
+		    $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">'));	
+		    
+			$(".espacio_sias").empty();
+		    $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));	
+
+		}	
+
+
+
+
 	});
 });	
 </script>

@@ -45,7 +45,7 @@
     <div class="modal-content mdc">
 
       <div class="modal-body cadena_seleccionada">
-        <h1>ESTA ES LA CADENA DE ABASTECIMIENTO QUE HA ELEGIDO PARA SU NEGOCIO.</h1>
+        <h1>ESTA ES LA CADENA DE ABASTECIMIENTO QUE HA ELEGIDO PARA SU NEGOCIO.2</h1>
         
         <div class="row contenedor_su_cadena">
 
@@ -162,7 +162,7 @@ function CadenaComprador(){
     $("#su_empresa").empty();
     var get_img = $( ".espacio_comprador img" ).attr('src');
     var get_nombre = $( ".espacio_comprador .contenido_producto .tpc" ).text();
-    $('#su_empresa').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span> <img src="../public/images/fc.png" width="25px"> ')); 
+    $('#su_empresa').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span> <img src="/images/fc.png" width="25px"> ')); 
   }
 
   else{
@@ -177,7 +177,7 @@ function CadenaComprador(){
     $("#su_transporte").empty();
     var get_img = $( ".espacio_transporte img" ).attr('src');
     var get_nombre = $( ".espacio_transporte .contenido_producto .tpc" ).text();
-    $('#su_transporte').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span>  <img src="../public/images/fc.png" width="25px">')); 
+    $('#su_transporte').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span>  <img src="/images/fc.png" width="25px">')); 
   }
   else{
     $("#su_transporte").empty();
@@ -189,7 +189,7 @@ function CadenaComprador(){
     $("#su_sia").empty();
     var get_img = $( ".espacio_sias img" ).attr('src');
     var get_nombre = $( ".espacio_sias .contenido_producto .tpc" ).text();
-    $('#su_sia').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span>  <img src="../public/images/fc.png" width="25px"> ' )); 
+    $('#su_sia').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span>  <img src="/public/images/fc.png" width="25px"> ' )); 
   } 
   else{
     $("#su_sia").empty();
@@ -219,7 +219,7 @@ function CadenaVendedor(){
       $("#su_empresa").empty();
       var get_img = 'http://supplysmark.com/demo/public/images/transporte/empresa4.png';
       var get_nombre = 'Platinun';
-      $('#su_empresa').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span> <img src="../public/images/fc.png" width="25px"> ')); 
+      $('#su_empresa').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span> <img src="/images/fc.png" width="25px"> ')); 
     }
     else{
       $("#su_producto, #su_empresa").empty();
@@ -233,7 +233,7 @@ function CadenaVendedor(){
       $("#su_transporte").empty();
       var get_img = $( ".espacio_transporte img" ).attr('src');
       var get_nombre = $( ".espacio_transporte .contenido_producto .tpc" ).text();
-      $('#su_transporte').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span>  <img src="../public/images/fc.png" width="25px">')); 
+      $('#su_transporte').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span>  <img src="/images/fc.png" width="25px">')); 
     }
     else{
       $("#su_transporte").empty();
@@ -245,7 +245,7 @@ function CadenaVendedor(){
       $("#su_sia").empty();
       var get_img = $( ".espacio_sias img" ).attr('src');
       var get_nombre = $( ".espacio_sias .contenido_producto .tpc" ).text();
-      $('#su_sia').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span>  <img src="../public/images/fc.png" width="25px"> ' )); 
+      $('#su_sia').append(('<img src=" '+get_img+' "> <span class="tec">'+get_nombre+'</span>  <img src="/images/fc.png" width="25px"> ' )); 
     } 
     else{
       $("#su_sia").empty();

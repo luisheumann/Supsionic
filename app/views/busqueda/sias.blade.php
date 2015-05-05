@@ -23,10 +23,8 @@ nada
  @foreach($lista_sias as $lista_sia)
 
 
-<div class="row post_empresa anunciantes" id="post_sias<?php echo $i ?>">
-	<p class="anuncio_producto">
-	  <i class="fa fa-bullhorn"></i> ANUNCIOS
-	</p>
+<div class="row post_empresa" id="post_sias<?php echo $i ?>">
+
 	<div class="col-xs-3">
 
 				 <img id="img_sias<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_sia->imagen}}"/>
@@ -82,7 +80,7 @@ while ($j <= $i){
 	echo ' $(\'.lista-empresas\').height(517);'."\n";
 	echo '$("#post_sias'.$j.'").addClass(\'activo_check\').siblings().removeClass(\'activo_check\');'."\n";
  	echo 'var imagen = $(\'#img_sias'.$j.'\').attr(\'src\');'."\n";
-	echo 'var titulo = $(".titulo_transporte'.$j.'").text();'."\n";
+	echo 'var titulo = $(".titulo_sias'.$j.'").text();'."\n";
 	echo '$(".espacio_sias").empty();'."\n";
 	echo '$(\'.espacio_sias\').attr(\'data-ckeck\', true);';
 	echo '$(\'.espacio_sias\').append((\'<img src=" \'+imagen+\' "> <div class="contenido_producto"><span class="tpc"> \'+titulo+\' </span><br><span>SIAS</span></div>\'));'."\n";
