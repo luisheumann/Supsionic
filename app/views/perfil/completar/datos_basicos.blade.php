@@ -57,10 +57,23 @@
 
 	<div class="col-md-6">
 	  <div class="form-group">
+	    <label for="ciudad">Ciudad</label>
+	    <input type="text" class="form-control" name="ciudad" id="ciudad" placeholder="Ciudad" value="{{$empresa->ciudad}}">
+	  </div>			
+	</div>
+	<div class="col-md-6">
+	  <div class="form-group">
+	    <label for="personacontacto">Persona Contacto</label>
+	    <input type="text" class="form-control" name="personacontacto" id="personacontacto" placeholder="Persona Contacto" value="{{$empresa->personacontacto}}">
+	  </div>			
+	</div>
+	<div class="col-md-6">
+	  <div class="form-group">
 	    <label for="postal">Zip/Código Postal</label>
 	    <input type="text" class="form-control" name="postal" id="postal" placeholder="Código Postal" value="{{$empresa->postal}}">
 	  </div>			
 	</div>
+
 </div>
 
 <div class="row">
@@ -81,7 +94,8 @@
 	$imagen = JitImage::source($path)->resize(200, 0);
 	$texto = 'Cambiar imagen';
   ?>
-    <img src="{{asset(''.$imagen.' ')}}">
+    <!--<img src="{{asset(''.$imagen.' ')}}">-->
+    <img id="imagen" height="80" width="80" alt="Image" src="/uploads/{{$empresa->imagen}}"/>
   @else
   	<img src="{{asset('images/perfil/foto_up.jpg')}}">
   	<?php

@@ -9,6 +9,7 @@
     $perfil = User::find($user_id)->empresas->first();
 
     $avatar = Recursos::ImgAvatar($perfil);
+      
 
   }
 
@@ -118,7 +119,18 @@
 
           <a href="{{URL::to($perfil->slug)}}">
 
-          <img src="{{asset($avatar)}}" class="img-circle">
+     <!--     <img src="{{asset($avatar)}}" >-->
+
+     @if($perfil->imagen == Null) 
+
+        @else 
+    <img id="imagen" height="40" width="40" class="img-circle" alt="Image" src="/uploads/{{$perfil->imagen}}"/>              
+        @endif
+
+
+
+  
+
 
           </a>
 

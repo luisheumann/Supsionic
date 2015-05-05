@@ -97,6 +97,8 @@
    </div>
   <hr>
 
+ 
+
 <!-- Capacidad de producción al mes -->
   <div class="row">
 	<div class="col-md-6">

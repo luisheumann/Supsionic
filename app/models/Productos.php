@@ -5,7 +5,7 @@ use Cviebrock\EloquentSluggable\SluggableTrait;
 
 class Productos extends Eloquent implements SluggableInterface
 {
-	protected $table = 'productos';
+    protected $table = 'productos';
 
     use SluggableTrait;
 
@@ -29,12 +29,7 @@ class Productos extends Eloquent implements SluggableInterface
         return $this->hasMany('ImgProductos', 'producto_id');
     } 
 
-        public function idpais(){
-        return $this->belongsTo('RutaExportador', 'empresa_id');
-    }
-
-
-
 }
+
 
 

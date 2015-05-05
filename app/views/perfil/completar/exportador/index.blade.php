@@ -85,8 +85,8 @@
 
 </table>
 <div align="right">
-<a href="#detalles-comercio" aria-controls="detalles-comercio" role="tab" data-toggle="tab">
-	  	DETALLES DE COMERCIO</a>
+<!--<a href="#detalles-comercio" aria-controls="detalles-comercio" role="tab" data-toggle="tab">
+	  	DETALLES DE COMERCIO</a>-->
 
 
 <a href="#detalles-comercio">

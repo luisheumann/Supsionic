@@ -161,15 +161,11 @@ $( document ).ready(function() {
 		if(valueSelected==1)
 		{
 			$('#cambio_vista').attr('data-cambio', 1); // data-chek como true
-			$('#vista_comprador').hide();
 			$('#vista_vendedor').show();
-			$('#vista_sias').hide();
-			$('#vista_transporte').hide();
-
-				$(".espacio_sias").empty();
-         	 $(".espacio_trasporte").empty(); 
-         	 $(".espacio_comprador").empty(); 
-
+			$('#vista_comprador').hide();
+      		$('#vista_transporte').hide();
+       		 $('#vista_sias').hide();
+  
 		    $(".espacio_transporte").empty();
 		    $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">'));	
 		    
@@ -181,14 +177,11 @@ $( document ).ready(function() {
 		if(valueSelected==2)
 		{
 			$('#cambio_vista').attr('data-cambio', 2); // data-chek como true
-			$('#vista_comprador').show();
-			$('#vista_vendedor').hide();
-			$('#vista_sias').hide();
-			$('#vista_transporte').hide();
-
-				$(".espacio_sias").empty();
-         	 $(".espacio_trasporte").empty(); 
-         	 $(".espacio_comprador").empty(); 
+			$('#vista_comprador').hide();
+     		$('#vista_vendedor').show();
+      		$('#vista_transporte').hide();
+      		$('#vista_sias').hide();
+     
 
 		    $(".espacio_transporte").empty();
 		    $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">'));	
@@ -201,14 +194,12 @@ $( document ).ready(function() {
 				if(valueSelected==3)
 		{
 			$('#cambio_vista').attr('data-cambio', 3); // data-chek como true
-		  $('#vista_transporte').show();
-      $('#vista_vendedor').hide();
-       $('#vista_comprador').hide();
-         $('#vista_sias').hide();
+		  	$('#vista_transporte').show();
+     		$('#vista_vendedor').hide();
+      	    $('#vista_comprador').hide();
+       		  $('#vista_sias').hide();
 
-         	$(".espacio_sias").empty();
-         	 $(".espacio_trasporte").empty(); 
-         	 $(".espacio_comprador").empty(); 
+  
 
 		    $(".espacio_transporte").empty();
 		    $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">'));	
@@ -226,9 +217,7 @@ $( document ).ready(function() {
        $('#vista_comprador').hide();
          $('#vista_transporte').hide();
 
- 			$(".espacio_sias").empty();
-         	 $(".espacio_trasporte").empty(); 
-         	 $(".espacio_comprador").empty(); 
+ 		
 
 		    $(".espacio_transporte").empty();
 		    $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">'));	

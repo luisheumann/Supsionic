@@ -94,6 +94,9 @@ class PerfilEmpresaController extends BaseController {
 		if(Input::get('nombre')!=$empresa->nombre)
 		{
 			$empresa_update->nombre  = Input::get('nombre');
+			$empresa_update->email  = Input::get('email');
+			$empresa_update->personacontacto  = Input::get('personacontacto');
+			$empresa_update->pais  = Input::get('pais');
 			$empresa_update->resluggify(); // para actualizar el slug;
 		}
 
@@ -113,6 +116,8 @@ class PerfilEmpresaController extends BaseController {
 		$empresa_update->telefono    = Input::get('telefono');
 		$empresa_update->direccion   = Input::get('direccion');
 		$empresa_update->pais_id     = Input::get('pais');
+		$empresa_update->ciudad     = Input::get('ciudad');
+		$empresa_update->personacontacto     = Input::get('personacontacto');
 		$empresa_update->postal      = Input::get('postal');
 		$empresa_update->descripcion = Input::get('descripcion');
 		$empresa_update->imagen      = $fileName;
