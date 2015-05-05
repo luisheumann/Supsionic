@@ -11,7 +11,17 @@
 </div>
 <div class="lista-empresas"> 
 
-	<?php  $i = 1 ?>
+	
+	<?php  $i = 1;
+
+$varperfil = $_GET['perfil'];
+
+if ($varperfil == 3) {
+	
+
+
+
+	?>
  @foreach($lista_exportadores as $lista_exportadore)
 <!--<div class="row post_empresa anunciantes" id="post_empresa">-->
 <div class="row post_empresa" id="post_empresa<?php echo $i ?>">
@@ -58,7 +68,7 @@
 
 	<?php  $i ++ ?>
  @endforeach
-
+ <?php } ?>
 </div> <!-- / lista-empresa  -->
 
 
@@ -68,6 +78,10 @@ $( document ).ready(function() {
 <?php
 
 
+
+$varperfil = $_GET['perfil'];
+
+if ($varperfil == 3) {
 
 
 
@@ -116,7 +130,7 @@ $j++;
 
 }
 
-	
+	}
 
 ?>
 });

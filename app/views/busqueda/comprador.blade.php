@@ -11,7 +11,10 @@
 </div>
 <div class="lista-empresas"> 
 
-	<?php  $i = 1 ?>
+	<?php  $i = 1; 
+
+
+	?>
  @foreach($lista_importadoresalls as $lista_importadoresall)
 <!--<div class="row post_empresa anunciantes" id="post_empresa">-->
 <div class="row post_empresa" id="post_empresa<?php echo $i ?>">
@@ -26,7 +29,7 @@
 	</div>
 
 	<div class="col-xs-7">
-		<h1 class="titulo_product<?php echo $i ?>">{{$lista_importadoresall->nombre}}</h1>
+		<h1 class="titulo_product<?php echo $i ?>">{{$lista_importadoresall->nombre}}2</h1>
 		<ul class="r_dtalles_producto">
 			<li>@if($lista_importadoresall->continente == Null) 
 				@else	
@@ -66,16 +69,16 @@
 	<?php  $i ++ ?>
  @endforeach
 
-</div> <!-- / lista-empresa  -->
 
+
+</div> <!-- / lista-empresa  -->
 
 
 <script>
 $( document ).ready(function() {
 <?php
 
-
-
+ 
 
 
 $j = 1;
@@ -123,11 +126,13 @@ $j++;
 
 }
 
-	
+
 
 ?>
 });
 </script>
+
+
 
 @section('estilos')
 @parent

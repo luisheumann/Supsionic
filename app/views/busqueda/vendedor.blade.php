@@ -11,7 +11,13 @@
 </div>
 <div class="lista-empresas"> 
 
-	<?php  $i = 1 ?>
+	
+	<?php  $i = 1;
+
+
+
+
+	?>
  @foreach($lista_importadores as $lista_importadore)
 <!--<div class="row post_empresa anunciantes" id="post_empresa">-->
 <div class="row post_empresa" id="post_empresa<?php echo $i ?>">
@@ -74,9 +80,6 @@ $( document ).ready(function() {
 <?php
 
 
-
-
-
 $j = 1;
 while ($j <= $i ){
 
@@ -85,7 +88,7 @@ while ($j <= $i ){
 
 	echo '$(\'.espacio_empresa\').attr(\'data-ckeck\', true);'."\n";
 	echo ' $(\'.lista-empresas\').height(517);'."\n";
-	echo '$("#post_empresa'.$i.'").addClass(\'activo_check\').siblings().removeClass(\'activo_check\');'."\n";
+	echo '$("#post_empresa'.$j.'").addClass(\'activo_check\').siblings().removeClass(\'activo_check\');'."\n";
  	echo 'var imagen = $(\'#product_img'.$j.'\').attr(\'src\');'."\n";
 	//echo 'var imagen2 = $(\'#imagenproducto'.$i.'\').attr(\'src\');'."\n";
 	echo 'var titulo2 = $(\'#imagenproducto'.$j.'\').attr(\'src\');'."\n";

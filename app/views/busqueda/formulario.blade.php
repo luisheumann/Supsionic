@@ -166,6 +166,10 @@ $( document ).ready(function() {
 			$('#vista_sias').hide();
 			$('#vista_transporte').hide();
 
+				$(".espacio_sias").empty();
+         	 $(".espacio_trasporte").empty(); 
+         	 $(".espacio_comprador").empty(); 
+
 		    $(".espacio_transporte").empty();
 		    $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">'));	
 		    
@@ -181,6 +185,10 @@ $( document ).ready(function() {
 			$('#vista_vendedor').hide();
 			$('#vista_sias').hide();
 			$('#vista_transporte').hide();
+
+				$(".espacio_sias").empty();
+         	 $(".espacio_trasporte").empty(); 
+         	 $(".espacio_comprador").empty(); 
 
 		    $(".espacio_transporte").empty();
 		    $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">'));	
@@ -198,6 +206,10 @@ $( document ).ready(function() {
        $('#vista_comprador').hide();
          $('#vista_sias').hide();
 
+         	$(".espacio_sias").empty();
+         	 $(".espacio_trasporte").empty(); 
+         	 $(".espacio_comprador").empty(); 
+
 		    $(".espacio_transporte").empty();
 		    $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">'));	
 		    
@@ -213,6 +225,10 @@ $( document ).ready(function() {
       $('#vista_vendedor').hide();
        $('#vista_comprador').hide();
          $('#vista_transporte').hide();
+
+ 			$(".espacio_sias").empty();
+         	 $(".espacio_trasporte").empty(); 
+         	 $(".espacio_comprador").empty(); 
 
 		    $(".espacio_transporte").empty();
 		    $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">'));	

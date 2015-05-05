@@ -16,18 +16,27 @@
 
   <div class="col-xs-4" id="cambio_vista" data-cambio="<?php echo $perfil ?>">
       <div id="vista_vendedor">
+          <?php  $varperfil = $_GET['perfil']; if ($varperfil == 1) { ?>
  @include('busqueda/vendedor')
+             <?php  } ?>
           
       </div>
       <div id="vista_comprador" style="display:none">
+        <?php  $varperfil = $_GET['perfil']; if ($varperfil == 2) { ?>
              @include('busqueda/comprador')
+                 <?php  } ?>
       </div>    
 
        <div id="vista_transporte">
+       <?php  $varperfil = $_GET['perfil']; if ($varperfil == 3) { ?>
+
              @include('busqueda/listatransportador')
+                <?php  } ?>
       </div> 
        <div id="vista_sias">
+        <?php  $varperfil = $_GET['perfil']; if ($varperfil == 4) { ?>
              @include('busqueda/listatransportador')
+         <?php  } ?>
       </div> 
 
   </div>  
@@ -126,6 +135,9 @@ if(valueSelected==1)
       $('#vista_vendedor').show();
       $('#vista_transporte').hide();
           $('#vista_sias').hide();
+            $(".espacio_sias").empty();
+           $(".espacio_trasporte").empty(); 
+           $(".espacio_comprador").empty(); 
 
         $(".espacio_transporte").empty();
         $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
@@ -142,6 +154,9 @@ if(valueSelected==1)
       $('#vista_vendedor').hide();
       $('#vista_transporte').hide();
       $('#vista_sias').hide();
+        $(".espacio_sias").empty();
+           $(".espacio_trasporte").empty(); 
+           $(".espacio_comprador").empty(); 
      
 
 
@@ -161,6 +176,10 @@ if(valueSelected==1)
       $('#vista_vendedor').hide();
       $('#vista_comprador').hide();
       $('#vista_sias').hide();
+        $(".espacio_sias").empty();
+           $(".espacio_trasporte").empty(); 
+           $(".espacio_comprador").empty(); 
+
 
         $(".espacio_transporte").empty();
         $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
@@ -176,6 +195,12 @@ if(valueSelected==1)
       $('#vista_transporte').show();
       $('#vista_vendedor').hide();
        $('#vista_comprador').hide();
+
+        $(".espacio_sias").empty();
+           $(".espacio_trasporte").empty(); 
+           $(".espacio_comprador").empty(); 
+
+
 
         $(".espacio_transporte").empty();
         $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
@@ -298,8 +323,7 @@ function CadenaVendedor(){
       $("#su_producto").empty();
 
       var get_img = $( ".espacio_empresa img" ).attr('src');// img Prodcuto
-      
-      var get_nombre = $( ".espacio_empresa .contenido_producto .tpc" ).text();
+       var get_nombre = $( ".espacio_empresa .contenido_producto .tpc" ).text();
       $('#su_producto').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span> ')); 
 
       // Empresa de Seleccionada
