@@ -25,11 +25,6 @@
 
 	</div>
 
-
-	
-
-
-
 	<div class="col-xs-7">
 		<h1 class="titulo_product<?php echo $i ?>">{{$lista_exportadore->nombre}}</h1>
 		<ul class="r_dtalles_producto">
@@ -84,7 +79,7 @@ while ($j <= $i ){
 
 	echo '$(\'.espacio_empresa\').attr(\'data-ckeck\', true);'."\n";
 	echo ' $(\'.lista-empresas\').height(517);'."\n";
-	echo '$("#post_empresa'.$i.'").addClass(\'activo_check\').siblings().removeClass(\'activo_check\');'."\n";
+	echo '$("#post_empresa'.$j.'").addClass(\'activo_check\').siblings().removeClass(\'activo_check\');'."\n";
  	echo 'var imagen = $(\'#product_img'.$j.'\').attr(\'src\');'."\n";
 	//echo 'var imagen2 = $(\'#imagenproducto'.$i.'\').attr(\'src\');'."\n";
 	echo 'var titulo2 = $(\'#imagenproducto'.$j.'\').attr(\'src\');'."\n";

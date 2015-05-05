@@ -362,6 +362,49 @@ WHERE intereses_importador.productos = '$producto' and perfil_empresa.perfil_id 
 }
 
 
+if ($producto != Null and $destino!=Null and $origen!=Null  and $categoria !=Null) {
+$lista_importadoresalls = DB::select( DB::raw("SELECT empresas.id, 
+productos.empresa_id AS empresa_id_producto, 
+productos.nombre AS NombrePoducto, 
+empresas.nombre as nombre, 
+productos.stock, 
+productos.venta_minima, 
+productos.produccion_mes, 
+productos.descripcion, 
+empresas.imagen, 
+productos.id, 
+img_productos.producto_id, 
+img_productos.imagen AS imagenproducto, 
+productos.unidad_id, 
+ruta_exportador.perfil_empresa_id AS empresa_id_rutaex, 
+ruta_exportador.pais_origen, 
+ruta_exportador.pais_destino, 
+ruta_exportador.producto_id, 
+paises.id, 
+empresas.pais_id, 
+paises.nombre AS pais, 
+paises.continente, 
+intereses_importador.empresa_id, 
+intereses_importador.productos, 
+intereses_importador.id, 
+intereses_importador.categoria_id, 
+ruta_importador.pais_destino, 
+ruta_importador.pais_origen, 
+ruta_importador.intereses_importador_id, 
+productos.categoria_id, 
+categorias.nombre as categoria, 
+categorias.id
+FROM perfil_empresa RIGHT OUTER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
+LEFT OUTER JOIN intereses_importador ON intereses_importador.empresa_id = empresas.id
+LEFT OUTER JOIN categorias ON intereses_importador.categoria_id = categorias.id
+LEFT OUTER JOIN ruta_importador ON intereses_importador.id = ruta_importador.intereses_importador_id
+LEFT OUTER JOIN paises ON paises.id = empresas.pais_id
+LEFT OUTER JOIN ruta_exportador ON ruta_exportador.perfil_empresa_id = empresas.id
+LEFT OUTER JOIN productos ON productos.empresa_id = empresas.id
+LEFT OUTER JOIN img_productos ON img_productos.producto_id = productos.id AND ruta_exportador.producto_id = productos.id AND categorias.id = productos.categoria_id
+WHERE ruta_exportador.pais_origen  = '$origen' AND  productos.nombre  = '$producto' AND ruta_exportador.pais_destino = '$destino' and perfil_empresa.perfil_id = 1 or perfil_empresa.perfil_id = 2 and ruta_importador.pais_destino = '$origen' and ruta_importador.pais_origen = '$destino' GROUP BY empresas.nombre") );
+
+}
 
 
 
@@ -374,7 +417,7 @@ WHERE intereses_importador.productos = '$producto' and perfil_empresa.perfil_id 
 
 	
 
-	    return View::make('busqueda.search', array('lista_exportadores'=>$lista_exportadores,'lista_sias'=>$lista_sias,'lista_transportadores' => $lista_transportadores, 'lista_importadores'=> $lista_importadores, 'slug' => $slug_empresa, 'paises' => $paises, 'categorias' =>$categorias, 'productos' =>$productos, 'rutas'=>$rutas, 'transportadores'=>$transportadores, 'intereses'=>$intereses, 'sias'=>$sias, 'vendedors'=>$vendedors, 'perfil'=>$perfil));
+	    return View::make('busqueda.search', array('lista_importadoresalls'=>$lista_importadoresalls, 'lista_exportadores'=>$lista_exportadores,'lista_sias'=>$lista_sias,'lista_transportadores' => $lista_transportadores, 'lista_importadores'=> $lista_importadores, 'slug' => $slug_empresa, 'paises' => $paises, 'categorias' =>$categorias, 'productos' =>$productos, 'rutas'=>$rutas, 'transportadores'=>$transportadores, 'intereses'=>$intereses, 'sias'=>$sias, 'vendedors'=>$vendedors, 'perfil'=>$perfil));
 	}
 
 

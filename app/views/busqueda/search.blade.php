@@ -122,7 +122,7 @@
 </div>
 
 <script>
-	$(document).ready(function(){
+  $(document).ready(function(){
 
  var valueSelected = <?php echo $perfil ?>;
 if(valueSelected==1)
@@ -130,6 +130,8 @@ if(valueSelected==1)
       $('#cambio_vista').attr('data-cambio', 1); // data-chek como true
       $('#vista_comprador').hide();
       $('#vista_vendedor').show();
+      $('#vista_transporte').hide();
+          $('#vista_sias').hide();
 
         $(".espacio_transporte").empty();
         $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
@@ -144,6 +146,11 @@ if(valueSelected==1)
       $('#cambio_vista').attr('data-cambio', 2); // data-chek como true
       $('#vista_comprador').show();
       $('#vista_vendedor').hide();
+      $('#vista_transporte').hide();
+      $('#vista_sias').hide();
+     
+
+
 
         $(".espacio_transporte").empty();
         $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
@@ -158,7 +165,8 @@ if(valueSelected==1)
       $('#cambio_vista').attr('data-cambio', 3); // data-chek como true
       $('#vista_transporte').show();
       $('#vista_vendedor').hide();
-       $('#vista_comprador').hide();
+      $('#vista_comprador').hide();
+      $('#vista_sias').hide();
 
         $(".espacio_transporte").empty();
         $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
@@ -193,9 +201,9 @@ if(valueSelected==1)
      $(".mostar_mi_cadena").on('click', ArmaCadena);
 
      $('#btn_continuar_cadena').click(function(event) {
-		alert('Se ha enviado el mensaje a cada uno de los involucrados en la cadena!');
-		$('#ModalCadena').modal('hide');
-		window.location.href = 'http://supplysmark.com/demo/public/busqueda';
+    alert('Se ha enviado el mensaje a cada uno de los involucrados en la cadena!');
+    $('#ModalCadena').modal('hide');
+    window.location.href = 'http://supplysmark.com/demo/public/busqueda';
      });
 
   });
@@ -218,8 +226,8 @@ function ArmaCadena() {
 
    
 }
-		
-	
+    
+  
 function CadenaComprador(){
 
   $('#ModalCadena').modal('show');
@@ -340,7 +348,7 @@ function CadenaVendedor(){
 
 
 }
-		
+    
 
 </script>
 @section('estilos')

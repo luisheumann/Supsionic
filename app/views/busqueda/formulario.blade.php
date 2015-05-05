@@ -163,6 +163,8 @@ $( document ).ready(function() {
 			$('#cambio_vista').attr('data-cambio', 1); // data-chek como true
 			$('#vista_comprador').hide();
 			$('#vista_vendedor').show();
+			$('#vista_sias').hide();
+			$('#vista_transporte').hide();
 
 		    $(".espacio_transporte").empty();
 		    $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">'));	
@@ -177,6 +179,8 @@ $( document ).ready(function() {
 			$('#cambio_vista').attr('data-cambio', 2); // data-chek como true
 			$('#vista_comprador').show();
 			$('#vista_vendedor').hide();
+			$('#vista_sias').hide();
+			$('#vista_transporte').hide();
 
 		    $(".espacio_transporte").empty();
 		    $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">'));	
@@ -192,6 +196,7 @@ $( document ).ready(function() {
 		  $('#vista_transporte').show();
       $('#vista_vendedor').hide();
        $('#vista_comprador').hide();
+         $('#vista_sias').hide();
 
 		    $(".espacio_transporte").empty();
 		    $('.espacio_transporte').append(('<img src="images/cadena/recomendado_transportador.png">'));	

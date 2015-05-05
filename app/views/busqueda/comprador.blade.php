@@ -12,35 +12,36 @@
 <div class="lista-empresas"> 
 
 	<?php  $i = 1 ?>
- @foreach($lista_importadores as $lista_importadore)
+ @foreach($lista_importadoresalls as $lista_importadoresall)
 <!--<div class="row post_empresa anunciantes" id="post_empresa">-->
 <div class="row post_empresa" id="post_empresa<?php echo $i ?>">
 	<!--<p class="anuncio_producto">
 	  <i class="fa fa-bullhorn"></i> ANUNCIOS
 	</p>-->
 	<div class="col-xs-3">
-			 <img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/productos/{{$lista_importadore->imagenproducto}}"/>
-			 <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadore->imagen}}"/>
+			 <img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->imagen}}"/>
+			 <img style="display:none" id="imagen<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->imagen}}"/>
 
 
 	</div>
 
-
-	
-
-
-
 	<div class="col-xs-7">
-		<h1 class="titulo_product<?php echo $i ?>">{{$lista_importadore->nombre}}xxxx</h1>
+		<h1 class="titulo_product<?php echo $i ?>">{{$lista_importadoresall->nombre}}</h1>
 		<ul class="r_dtalles_producto">
-			<li>@if($lista_importadore->continente == Null) 
+			<li>@if($lista_importadoresall->continente == Null) 
 				@else	
-				{{$lista_importadore->continente}} -{{$lista_importadore->pais}}							
+				{{$lista_importadoresall->continente}} -{{$lista_importadoresall->pais}}							
 				@endif</li>
 				
-			<li>Cantidad: {{$lista_importadore->stock}}</li>
-			<li>{{$lista_importadore->venta_minima}} mín  - {{$lista_importadore->produccion_mes}} max</li>
-			<li>Términos de pago</li>
+
+@if($lista_importadoresall->NombrePoducto == Null) 
+						<li>Producto:{{$lista_importadoresall->productos}} 	</li>		
+				@else	
+						<li>Producto: {{$lista_importadoresall->NombrePoducto}}</li>	
+				@endif
+		
+
+		
 		</ul>
 	</div>	
 	<div class="col-xs-2">
@@ -64,63 +65,6 @@
 
 	<?php  $i ++ ?>
  @endforeach
-
-
-
-
- @foreach($lista_exportadores as $lista_exportadore)
-<!--<div class="row post_empresa anunciantes" id="post_empresa">-->
-<div class="row post_empresa" id="post_empresa<?php echo $i ?>">
-	<!--<p class="anuncio_producto">
-	  <i class="fa fa-bullhorn"></i> ANUNCIOS
-	</p>-->
-	<div class="col-xs-3">
-			 <img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_exportadore->imagen}}"/>
-			 <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_exportadore->imagen}}"/>
-
-
-	</div>
-
-
-	
-
-
-
-	<div class="col-xs-7">
-		<h1 class="titulo_product<?php echo $i ?>">{{$lista_exportadore->nombre}}</h1>
-		<ul class="r_dtalles_producto">
-			<li>@if($lista_exportadore->continente == Null) 
-				@else	
-				{{$lista_exportadore->continente}} -{{$lista_importadore->pais}}							
-				@endif</li>
-				<li> Interesado en : {{$lista_exportadore->productos}}</li>
-				
-	
-		</ul>
-	</div>	
-	<div class="col-xs-2">
-		<button class="btn-borde btn-borde-ai btn_selec" id="empresa<?php echo $i ?>">
-			Seleccionar
-		</button>	
-		<br>
-		<img src="{{asset('images/productos/start.png')}}">
-
-		<div class="dropdown">
-		  <a class="link" id="dLabel" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		    <span class="caret"></span>
-		  </a>
-			<ul class="dropdown-menu menu_acciones_producto" role="menu" aria-labelledby="drop3">
-				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Esconder</a></li>
-				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-			</ul>
-		</div>		
-	</div>
-</div>
-
-	<?php  $i ++ ?>
- @endforeach
-
-
 
 </div> <!-- / lista-empresa  -->
 
@@ -142,7 +86,7 @@ while ($j <= $i ){
 
 	echo '$(\'.espacio_empresa\').attr(\'data-ckeck\', true);'."\n";
 	echo ' $(\'.lista-empresas\').height(517);'."\n";
-	echo '$("#post_empresa'.$i.'").addClass(\'activo_check\').siblings().removeClass(\'activo_check\');'."\n";
+	echo '$("#post_empresa'.$j.'").addClass(\'activo_check\').siblings().removeClass(\'activo_check\');'."\n";
  	echo 'var imagen = $(\'#product_img'.$j.'\').attr(\'src\');'."\n";
 	//echo 'var imagen2 = $(\'#imagenproducto'.$i.'\').attr(\'src\');'."\n";
 	echo 'var titulo2 = $(\'#imagenproducto'.$j.'\').attr(\'src\');'."\n";
