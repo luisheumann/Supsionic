@@ -11,15 +11,22 @@
 	<h1>SIAS</h1>
 </div>
 
-@if($lista_sias == Null)
-
-nada
-				@else
 
 
 <div class="lista-empresas"> 
 
 <?php  $i = 1 ?>
+
+	@if($lista_importadores == Null)
+	<style>
+	.lista-empresas {
+  background-color: #EDEDED;
+}
+	</style>
+<br>
+<center><b>No Existen Coincidencias</b></center>
+				@else
+
  @foreach($lista_sias as $lista_sia)
 
 
@@ -58,9 +65,9 @@ nada
 
 <?php  $i ++ ?>
  @endforeach
-
-</div>
 @endif
+</div>
+
 
 
 @if($lista_sias == Null) 

@@ -9,7 +9,7 @@
 </div>
 
 <div class="head_empresa">
-	<h1>Vendedor</h1>
+	<h1>Productos/Intereses</h1>
 </div>
 <div class="lista-empresas"> 
 
@@ -20,6 +20,18 @@
 
 
 	?>
+
+	@if($lista_importadoresalls == Null)
+	<style>
+	.lista-empresas {
+  background-color: #EDEDED;
+}
+	</style>
+<br>
+<center><b>No Existen Coincidencias</b></center>
+				@else
+
+
  @foreach($lista_importadoresalls as $lista_importadoresall)
 <!--<div class="row post_empresa anunciantes" id="post_empresa">-->
 <div class="row post_empresa" id="post_empresa<?php echo $i ?>">
@@ -75,6 +87,8 @@
 
 	<?php  $i ++ ?>
  @endforeach
+ 
+ @endif
 
 </div> <!-- / lista-empresa  -->
 

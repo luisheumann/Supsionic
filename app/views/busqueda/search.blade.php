@@ -132,11 +132,10 @@ if(valueSelected==1)
     {
       $('#cambio_vista').attr('data-cambio', 1); // data-chek como true
       $('#vista_comprador').hide();
-      $('#vista_vendedor').show();
-      $('#vista_transporte').hide();
-          $('#vista_sias').hide();
+      $('#vista_vendedor').show();  
          
 
+  
         $(".espacio_transporte").empty();
         $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
         
@@ -148,15 +147,8 @@ if(valueSelected==1)
     if(valueSelected==2)
     {
       $('#cambio_vista').attr('data-cambio', 2); // data-chek como true
-      $('#vista_comprador').show();
       $('#vista_vendedor').hide();
-      $('#vista_transporte').hide();
-      $('#vista_sias').hide();
-        $(".espacio_sias").empty();
-           $(".espacio_trasporte").empty(); 
-           $(".espacio_comprador").empty(); 
-     
-
+      $('#vista_comprador').show();
 
 
         $(".espacio_transporte").empty();
@@ -171,9 +163,9 @@ if(valueSelected==1)
     {
       $('#cambio_vista').attr('data-cambio', 3); // data-chek como true
       $('#vista_transporte').show();
-      $('#vista_vendedor').hide();
-      $('#vista_comprador').hide();
-      $('#vista_sias').hide();
+      $('#vista_vendedor').show();
+      $('#vista_comprador').show();
+      $('#vista_sias').show();
         $(".espacio_sias").empty();
            $(".espacio_trasporte").empty(); 
            $(".espacio_comprador").empty(); 
@@ -191,8 +183,8 @@ if(valueSelected==1)
     {
       $('#cambio_vista').attr('data-cambio', 4); // data-chek como true
       $('#vista_transporte').show();
-      $('#vista_vendedor').hide();
-       $('#vista_comprador').hide();
+      $('#vista_vendedor').show();
+       $('#vista_comprador').show();
 
         $(".espacio_sias").empty();
            $(".espacio_trasporte").empty(); 

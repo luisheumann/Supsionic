@@ -13,16 +13,22 @@
 	<h1>Transportadores</h1>
 </div>
 
-@if($lista_transportadores == Null)
 
-nada
-				@else
 <div class="lista-empresas"> 
 
 <?php  $i = 1 ?>
 
 	
-										
+				@if($lista_transportadores == Null)
+	<style>
+	.lista-empresas {
+  background-color: #EDEDED;
+}
+	</style>
+<br>
+<center><b>No Existen Coincidencias</b></center>
+				@else
+							
 			
 
 
@@ -71,9 +77,9 @@ nada
 
 
  @endforeach
-	
+	@endif
 </div>
-@endif
+
 
 
 @if($lista_transportadores == Null) 
