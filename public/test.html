@@ -1,0 +1,97 @@
+
+<html>
+<head>
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div id="multiple-datasets">
+  <input class="typeahead" type="text" placeholder="NBA and NHL teams">
+</div>
+
+<div id="prefetch">
+
+
+<input type="text" class="form-control typeahead" id="producto" name="producto" value="" placeholder="PRODUCTO">
+</div>
+
+
+
+</body>
+
+   <script  type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+
+    <script type="text/javascript" src="js/1/typeahead.bundle.js"></script>
+ 
+
+<script>
+
+var nbaTeams = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('nombre'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: '../api/producto.json'
+});
+ 
+var nhlTeams = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('productos'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: '../api/interes.json'
+});
+ 
+$('#multiple-datasets .typeahead').typeahead({
+  highlight: true
+},
+{
+  name: 'nba-teams',
+  display: 'nombre',
+  source: nbaTeams,
+  templates: {
+    header: '<h3 class="league-name">NBA Teams</h3>'
+  }
+},
+{
+  name: 'nhl-teams',
+  display: 'productos',
+  source: nhlTeams,
+  templates: {
+    header: '<h3 class="league-name">NHL Teams</h3>'
+  }
+});
+///////////////////////////////////////////////
+
+
+var countries = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  limit: 10,
+  prefetch: {
+    // url points to a json file that contains an array of country names, see
+    // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
+    url: '../api/producto2.json',
+
+    filter: function(list) {
+      return $.map(list, function(country) { return { name: country }; });
+    }
+  }
+});
+ 
+
+countries.initialize();
+ 
+
+$('#prefetch .typeahead').typeahead(null, {
+  name: 'countries',
+  displayKey: 'name',
+
+  source: countries.ttAdapter()
+});
+</script>
+
+
+</html>

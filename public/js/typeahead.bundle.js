@@ -1784,29 +1784,3 @@
 })(window.jQuery);
 
 
-
-var countries = new Bloodhound({
-  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-  queryTokenizer: Bloodhound.tokenizers.whitespace,
-  limit: 10,
-  prefetch: {
-    // url points to a json file that contains an array of country names, see
-    // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
-    url: '../api/producto.json',
-
-    filter: function(list) {
-      return $.map(list, function(country) { return { name: country }; });
-    }
-  }
-});
- 
-
-countries.initialize();
- 
-
-$('#prefetch .typeahead').typeahead(null, {
-  name: 'countries',
-  displayKey: 'name',
-
-  source: countries.ttAdapter()
-});

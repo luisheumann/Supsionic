@@ -132,3 +132,50 @@ span.twitter-typeahead {
   /* width: 288px; */
   width: 100%;
 }
+
+
+.ui-state-default, .ui-widget-content .ui-state-default {
+  border: 1px solid #2A4A58/*{borderColorDefault}*/;
+  /* background: #2A4A58/*{bgColorDefault}; */
+  color: #555555/*{fcDefault}*/;
+  background-color: rgb(42, 74, 88) !important;
+    height: 45px !important;
+}
+
+input.ui-state-default.ui-combobox-input.ui-autocomplete-input.ui-widget.ui-widget-content.ui-corner-left {
+  background: #2A4A58 !important;
+  color: #D66F3F !important;
+  border: none !important;
+  border-radius: 0px !important;
+  font-size: 16px !important;
+  height: 52px !important;
+  width: 82% !important;
+    padding-left: 6px;
+}
+
+
+a.ui-button.ui-widget.ui-state-default.ui-button-icon-only.ui-corner-right.ui-combobox-toggle {
+  background: #2A4A58 !important;
+  color: #D66F3F !important;
+  border: none !important;
+  border-radius: 0px !important;
+  font-size: 16px !important;
+  height: 52px !important;
+    float: right;
+  /* width: 84% !important; */
+}
+
+
+.ui-widget {
+
+overflow: auto;
+height: 300px;
+}
+
+.ui-widget select{
+   border: none;
+ }
+
+
+
+

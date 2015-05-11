@@ -23,16 +23,34 @@ class HomeController extends BaseController {
 		return Redirect::to('/');
 	}
 
+		public function productojson2()
+	{
+
+		$producto = Productos::orderBy('nombre', 'ASC')->lists('nombre');
+
+		return Response::json( $producto, 200);
+	}
+
+
 
 		public function productojson()
 	{
 
-		$producto = Productos::orderBy('nombre', 'ASC')->lists('nombre');
-		$producto = InteresesImportador::orderBy('productos', 'ASC')->lists('productos');
+		//$producto = Productos::orderBy('nombre', 'ASC')->select('category as category2', 'nombre')->get();
+		$producto = DB::select( DB::raw("(SELECT 'Seleccione un Producto' as category, nombre as name FROM productos) UNION (SELECT 'Seleccione un Intereses' as category, productos  as name FROM intereses_importador)"));
 
-	
-		return Response::json($producto, 200);
+
+		return Response::json( $producto, 200);
 	}
+
+		public function interesesjson()
+	{
+
+		$interes = InteresesImportador::orderBy('productos', 'ASC')->select('productos')->get();
+
+		return Response::json( $interes, 200);
+	}
+
 
 
 
