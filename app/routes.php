@@ -92,6 +92,10 @@ Route::get('api/interes.json', 'HomeController@interesesjson');
 Route::get('api/filtropais/{id}', 'BusquedaController@filtropais', array('only' => 'show'));
 
 
+Route::get('api/filtroregion/{producto}', 'BusquedaController@filtroregion', array('only' => 'show'));
+Route::get('api/filtroregioninteres/{producto}', 'BusquedaController@filtroregioninteres', array('only' => 'show'));
+
+
 
 
 

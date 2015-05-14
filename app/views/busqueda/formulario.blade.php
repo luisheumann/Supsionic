@@ -104,7 +104,7 @@
 </label>
 <div class="col-xs-10">
 
-
+<!--
 <select name="country" class="country" id="country" class="form-control">
 <option selected="selected" value="">REGION</option>
 
@@ -114,9 +114,14 @@
 <option value="4">Europa</option>
 <option value="5">Oceanía</option>
 
-
-
 </select>
+-->
+
+<select name="country" class="country" id="country" class="form-control">
+<option selected="selected" value ="">REGION</option>
+</select>
+
+
 </div>
 </div>
 
@@ -171,7 +176,7 @@ document.getElementById("categoria").value = '<?php echo $_GET['categoria']?>';
 document.getElementById("country").value = '<?php echo $_GET['country']?>';
 
 
-
+/*
 var idcountry ='<?php echo $_GET['country']?>';
 
 if (idcountry !='') {
@@ -204,10 +209,70 @@ $('select#origen').append('<option value="'+index+'" class="cityItems">'+element
     });
 
 }
+*/
 
 
 
 
+
+
+function myFunction(x) {
+ //var producto = document.getElementById(x);
+       // var producto = $(this).val();
+f = x.split(" ");
+palabra = f[0];
+z = palabra.substring(0,1);
+
+
+
+      x = x.substring(10);
+
+
+
+
+
+  $ciudaditems = $('.cityItems').remove();
+
+
+      if (z == "P") {
+     rutajson = '../api/filtroregion/';
+     
+
+      }else{
+ 
+         rutajson = '../api/filtroregioninteres/';  
+      }
+
+ //rutajson = '../api/filtroregion/';
+  
+        $ciudaditems = $('.cityItems').remove();
+
+        $.get(rutajson+x, function(data){
+
+          //  $.each(data[0], function(index, element){
+            //console.log(index);
+
+
+for(var i=0;i<data.length;i++){
+        var obj = data[i];
+        for(var key in obj){
+            var attrName = key;
+            var attrValue = obj[key];
+        }
+   // }
+
+
+
+ console.log('index:'+attrName);
+ console.log('element:'+attrValue);
+
+
+
+                $('select#country').append('<option value="'+attrValue+'" class="cityItems">'+attrValue+'</option>')
+            };// funcion
+        }, 'json');
+   
+}
 
 
 
@@ -356,13 +421,17 @@ $.each(data, function (key, cat) {
 (function($) {
     $.widget("ui.combobox", {
         _create: function() {
+
+
             var input, self = this,
                 select = this.element.hide(),
                 selected = select.children(":selected"),
                 value = selected.val() ? selected.text() : "",
+         
+     
                 wrapper = this.wrapper = $("<span>").addClass("ui-combobox").insertAfter(select);
 
-            input = $("<input>").appendTo(wrapper).val(value).addClass("ui-state-default ui-combobox-input").autocomplete({
+            input = $("<input>").appendTo(wrapper).val(value).attr('id', 'newID').attr('onfocus', 'myFunction(value)').addClass("ui-state-default ui-combobox-input").autocomplete({
                 delay: 0,
                 minLength: 0,
                 source: function(request, response) {
