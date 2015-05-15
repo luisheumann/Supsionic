@@ -11,9 +11,10 @@ class BusquedaController extends BaseController {
 		$paises = Paises::orderBy('nombre', 'ASC')->get();
 	    $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
 	    $productos = Productos::orderBy('nombre', 'ASC')->get();
+	    	$empresapais = DB::table('empresas')->whereUser_id($user_id)->first();
 
 
-	    return View::make('busqueda.index', array('slug' => $slug_empresa, 'paises' => $paises, 'categorias' =>$categorias, 'productos' =>$productos));
+	    return View::make('busqueda.index', array('slug' => $slug_empresa, 'paises' => $paises, 'categorias' =>$categorias, 'productos' =>$productos, 'empresa3' =>$slug, 'empresapais' =>$empresapais));
 	}
 
 	public function getBuscarCadena()
@@ -37,6 +38,7 @@ class BusquedaController extends BaseController {
 
 		$user_id = Sentry::getuser()->id;
 		$slug = DB::table('empresas')->whereUser_id($user_id)->first();
+		$empresapais = DB::table('empresas')->whereUser_id($user_id)->first();
 		$slug_empresa = $slug->slug;
 		$paises = Paises::orderBy('nombre', 'ASC')->get();
 	    $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
@@ -130,7 +132,7 @@ FROM ruta_transporte LEFT JOIN intereses_transporte ON ruta_transporte.intereses
 	 LEFT JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
 WHERE perfil_empresa.perfil_id = 3 and paises.continente= 'ninguno' and empresas.nombre = 'demo'") );
 
-
+		
 
 
 
@@ -462,7 +464,7 @@ WHERE ruta_exportador.pais_origen  = '$origen' AND  productos.nombre  = '$produc
 
 	
 
-	    return View::make('busqueda.search', array('lista_importadoresalls'=>$lista_importadoresalls, 'lista_exportadores'=>$lista_exportadores,'lista_sias'=>$lista_sias,'lista_transportadores' => $lista_transportadores, 'lista_importadores'=> $lista_importadores, 'slug' => $slug_empresa, 'paises' => $paises, 'categorias' =>$categorias, 'productos' =>$productos, 'rutas'=>$rutas, 'transportadores'=>$transportadores, 'intereses'=>$intereses, 'sias'=>$sias, 'vendedors'=>$vendedors, 'perfil'=>$perfil));
+	    return View::make('busqueda.search', array('lista_importadoresalls'=>$lista_importadoresalls, 'lista_exportadores'=>$lista_exportadores,'lista_sias'=>$lista_sias,'lista_transportadores' => $lista_transportadores, 'lista_importadores'=> $lista_importadores, 'slug' => $slug_empresa, 'paises' => $paises, 'categorias' =>$categorias, 'productos' =>$productos, 'rutas'=>$rutas, 'transportadores'=>$transportadores, 'intereses'=>$intereses, 'sias'=>$sias, 'vendedors'=>$vendedors, 'perfil'=>$perfil, 'empresapais' =>$empresapais));
 	}
 
 

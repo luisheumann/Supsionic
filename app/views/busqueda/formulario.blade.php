@@ -27,6 +27,7 @@
      {{HTML::style('css/jquery-ui.css')}}
 
 
+ 
 <?php $aleatorio = rand(5, 1000); ?>
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
@@ -82,8 +83,8 @@
 <div class="col-xs-10">
 
 
-
-<select name="producto" class="form-control" id="combobox">
+<input type="hidden" id="producto2" name="producto"/>
+<select name="selectProducto" class="form-control" id="combobox">
 <optgroup label="Seleccione un Producto">
 </optgroup>
 <optgroup label="Seleccione un Intereses">
@@ -132,9 +133,7 @@
 </label>
 <div class="col-xs-10">
 
-<select name="origen" class="city" id="origen" class="form-control">
-<option selected="selected" value ="">PAÍS DE ORIGEN</option>
-</select>
+<input type="hidden" id="origen" name="origen"/>
 
 </div>
 </div>
@@ -166,11 +165,12 @@
 
 <script>
 
+ var pais_id_user = <?php echo $empresapais->pais_id ?>; 
 
 
 
 
-
+document.getElementById("origen").value =pais_id_user;
 document.getElementById("perfil").value = '<?php echo $_GET['perfil']?>';
 document.getElementById("categoria").value = '<?php echo $_GET['categoria']?>';
 document.getElementById("country").value = '<?php echo $_GET['country']?>';
@@ -214,57 +214,45 @@ $('select#origen').append('<option value="'+index+'" class="cityItems">'+element
 
 
 
-
-
 function myFunction(x) {
+
  //var producto = document.getElementById(x);
        // var producto = $(this).val();
-f = x.split(" ");
-palabra = f[0];
-z = palabra.substring(0,1);
+       f = x.split(" ");
+       palabra = f[0];
+       z = palabra.substring(0,1);
+       x = x.substring(10);
+
+document.getElementById("producto2").value = x;
 
 
 
-      x = x.substring(10);
+       $ciudaditems = $('.cityItems').remove();
+       if (z == "P") {
+         rutajson = '../api/filtroregion/';
 
+       }else{
 
-
-
-
-  $ciudaditems = $('.cityItems').remove();
-
-
-      if (z == "P") {
-     rutajson = '../api/filtroregion/';
-     
-
-      }else{
- 
          rutajson = '../api/filtroregioninteres/';  
-      }
+       }
 
- //rutajson = '../api/filtroregion/';
-  
-        $ciudaditems = $('.cityItems').remove();
+       $ciudaditems = $('.cityItems').remove();
 
-        $.get(rutajson+x, function(data){
+       $.get(rutajson+x, function(data){
 
           //  $.each(data[0], function(index, element){
             //console.log(index);
 
-
-for(var i=0;i<data.length;i++){
-        var obj = data[i];
-        for(var key in obj){
-            var attrName = key;
-            var attrValue = obj[key];
-        }
+            for(var i=0;i<data.length;i++){
+              var obj = data[i];
+              for(var key in obj){
+                var attrName = key;
+                var attrValue = obj[key];
+              }
    // }
 
-
-
- console.log('index:'+attrName);
- console.log('element:'+attrValue);
+ //console.log('index:'+attrName);
+// console.log('element:'+attrValue);
 
 
 
@@ -284,23 +272,14 @@ $(this).addClass('selected').siblings().removeClass('selected');
 
 $( document ).ready(function() {
 
-
+/*
 var delay=2500; //1 seconds
 
 setTimeout(function(){
-
 document.getElementById("origen").value = '<?php echo $_GET['origen']?>';
 }, delay);
-
-
- 
+*/
 document.getElementById("destino").value = '<?php echo $_GET['destino']?>';
-
-
-
-
-
-
 
 $('#perfil').change(function(event) {
 /* Act on the event */
@@ -386,6 +365,7 @@ $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));
 
 
 });
+
 
 });
 </script>
@@ -526,6 +506,7 @@ $.each(data, function (key, cat) {
 })(jQuery);
 
 $(function() {
+
     $("#combobox").combobox();
     $("#toggle").click(function() {
         $("#combobox").toggle();
