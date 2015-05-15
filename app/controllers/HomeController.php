@@ -37,7 +37,7 @@ class HomeController extends BaseController {
 	{
 
 		//$producto = Productos::orderBy('nombre', 'ASC')->select('category as category2', 'nombre')->get();
-		$producto = DB::select( DB::raw("(SELECT 'Seleccione un Producto' as category,  CONCAT('Producto: ', nombre) as name FROM productos) UNION (SELECT 'Seleccione un Intereses' as category,  CONCAT('Interes:  ', productos)  as name FROM intereses_importador)"));
+		$producto = DB::select( DB::raw("(SELECT 'producto' as category,  nombre as name FROM productos) UNION (SELECT 'intereses' as category, productos  as name FROM intereses_importador)"));
 
 
 		return Response::json( $producto, 200);
