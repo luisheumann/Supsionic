@@ -132,7 +132,7 @@
 
 </form>
  <div class="salto_linea"></div>	  	  	
-<a target="top" href="/busqueda?categoria=&region=&destino=&origen=&country=&perfil=">
+<a target="top" href="/busqueda?categoria=&region=&destino=&origen=&country=&perfil=&selectProducto=&producto=">
 	  <button  class="btn-borde btn-borde-n">BUSCAR NEGOCIO</button>
 </a>
 </div>

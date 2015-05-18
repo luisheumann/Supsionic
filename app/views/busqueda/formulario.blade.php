@@ -1,22 +1,22 @@
 <style>
-    #multiple-datasets .league-name {
-      margin: 0 20px 5px 20px;
-      padding: 3px 0;
-      border-bottom: 1px solid #ccc;
+  #multiple-datasets .league-name {
+    margin: 0 20px 5px 20px;
+    padding: 3px 0;
+    border-bottom: 1px solid #ccc;
 
   }
 
   .tt-menu {
-      background-color: azure;
+    background-color: azure;
   }
   .scrollable{
-     overflow: auto;
-     width: 70px; /* adjust this width depending to amount of text to display */
-     height: 80px; /* adjust height depending on number of options to display */
-     border: 1px silver solid;
+   overflow: auto;
+   width: 70px; /* adjust this width depending to amount of text to display */
+   height: 80px; /* adjust height depending on number of options to display */
+   border: 1px silver solid;
  }
  .scrollable select{
-     border: none;
+   border: none;
  }
 
 
@@ -36,77 +36,77 @@
 
 <div class="busqueda">
 
-    <img src="{{asset('images/home/arme_su_cadena_small.png')}}" class="titulo_busqueda">
-    <div class="salto_linea"></div>
+  <img src="{{asset('images/home/arme_su_cadena_small.png')}}" class="titulo_busqueda">
+  <div class="salto_linea"></div>
 
 
-    <form class="form-horizontal form_home_buscar" id="busqueda" action="/api/buscar_cadena"  method="get">
-        <div class="campos_busq">
+  <form class="form-horizontal form_home_buscar" id="busqueda" action="/api/buscar_cadena"  method="get">
+    <div class="campos_busq">
 
-            <div class="form-group">
-                <label for="perfil" class="col-xs-2 control-label">
-                    <img src="{{asset('images/home/uno.png')}}" alt="">
-                </label>
-                <div class="col-xs-10">
-
-
-                    <select name="perfil" id="perfil"  class="form-control validate[required]">
-                        <option value="">Seleccione...</option>
-                        <option value="1">Importar</option>
-                        <option value="2">Exportar</option>
-                        <option value="3">Transportar</option>
-                        <option value="4">SIAS</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="salto_linea"></div>
-
-            <div class="form-group">
-                <label for="categoria" class="col-xs-2 control-label">
-                    <img src="{{asset('images/home/dos.png')}}" alt="">
-                </label>
-                <div class="col-xs-10">
-                    <select name="categoria" id="categoria"  class="form-control validate[required]">
-                        <option value="">Categoría</option>
-                        @foreach($categorias as $categoria)
-                        <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
+      <div class="form-group">
+        <label for="perfil" class="col-xs-2 control-label">
+          <img src="{{asset('images/home/uno.png')}}" alt="">
+        </label>
+        <div class="col-xs-10">
 
 
-            <div class="form-group">
-                <label for="producto" class="col-xs-2 control-label num_form">
-                    <img src="{{asset('images/home/tres.png')}}" alt="">
-                </label>
-                <div class="col-xs-10">
+          <select name="perfil" id="perfil"  class="form-control validate[required]">
+            <option value="">Seleccione...</option>
+            <option value="1">Importar</option>
+            <option value="2">Exportar</option>
+            <option value="3">Transportar</option>
+            <option value="4">SIAS</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="salto_linea"></div>
+
+      <div class="form-group">
+        <label for="categoria" class="col-xs-2 control-label">
+          <img src="{{asset('images/home/dos.png')}}" alt="">
+        </label>
+        <div class="col-xs-10">
+          <select name="categoria" id="categoria"  class="form-control validate[required]">
+            <option value="">Categoría</option>
+            @foreach($categorias as $categoria)
+            <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+            @endforeach
+          </select>
+        </div>
+      </div>
 
 
-                    <input type="hidden" id="producto2" name="producto"/>
-
-                  
-                    <select name="selectProducto" class="form-control validate[required]" id="combobox" >
-                        <optgroup label="Seleccione un Producto">
-                        </optgroup>
-                        <optgroup label="Seleccione un Intereses">
-                        </optgroup>
-
-                    </select>
+      <div class="form-group">
+        <label for="producto" class="col-xs-2 control-label num_form">
+          <img src="{{asset('images/home/tres.png')}}" alt="">
+        </label>
+        <div class="col-xs-10">
 
 
+          <input type="hidden" id="producto2" name="productohidden"/>
 
-                </div>
-            </div>
+          
+          <select name="selectProducto" class="form-control validate[required]" id="combobox" >
+            <optgroup label="Seleccione un Producto">
+            </optgroup>
+            <optgroup label="Seleccione un Intereses">
+            </optgroup>
 
-            <div class="salto_linea"></div>
+          </select>
 
-            <div class="form-group">
-                <label for="region" class="col-xs-2 control-label">
-                    <img src="{{asset('images/home/cuatro.png')}}" alt="">
-                </label>
-                <div class="col-xs-10">
+
+
+        </div>
+      </div>
+
+      <div class="salto_linea"></div>
+
+      <div class="form-group">
+        <label for="region" class="col-xs-2 control-label">
+          <img src="{{asset('images/home/cuatro.png')}}" alt="">
+        </label>
+        <div class="col-xs-10">
 
 <!--
 <select name="country" class="country" id="country" class="form-control">
@@ -125,7 +125,7 @@
 
 <select name="country" class="country" id="country" class="form-control validate[required]" >
 
-    <option selected="selected" value ="">REGION</option>
+  <option selected="selected" value ="">REGION</option>
 </select>
 
 
@@ -136,18 +136,18 @@
 
 <input type="hidden" id="origen" name="origen"/>
 <div class="form-group">
-    <label for="origen" class="col-xs-2 control-label num_form">
-        <img src="{{asset('images/home/cinco.png')}}" alt="">
-    </label>
-    <div class="col-xs-10">
-        <select name="destino" id="destino"  class="form-control validate[required]">
-            <option value="">PAÍS DE DESTINO</option>
-            @foreach($paises as $pais)
-            <option value="{{$pais->id}}">{{$pais->nombre}}</option>
-            @endforeach
-        </select>
+  <label for="origen" class="col-xs-2 control-label num_form">
+    <img src="{{asset('images/home/cinco.png')}}" alt="">
+  </label>
+  <div class="col-xs-10">
+    <select name="destino" id="destino"  class="form-control validate[required]">
+      <option value="">PAÍS DE DESTINO</option>
+      @foreach($paises as $pais)
+      <option value="{{$pais->id}}">{{$pais->nombre}}</option>
+      @endforeach
+    </select>
 
-    </div>
+  </div>
 </div>
 
 <div class="salto_linea"></div>	 	 
@@ -160,12 +160,12 @@
 
 <?php
 if (isset($_GET["producto"]) && !empty($_GET["producto"])) {
-    $producto = $_GET['producto'];
+  $producto = $_GET['producto'];
 }
 
 if (isset($_GET["selectProducto"]) && !empty($_GET["selectProducto"])) {
 
-     $categoria = $_GET['selectProducto'];
+ $categoria = $_GET['selectProducto'];
 }
 ?>
 
@@ -173,156 +173,96 @@ if (isset($_GET["selectProducto"]) && !empty($_GET["selectProducto"])) {
 <script>
 
 
-function QuitarFoco(){
-  elemento = document.getElementById("newID");
-  elemento.blur();
-}
+  function QuitarFoco(){
+    elemento = document.getElementById("newID");
+    elemento.blur();
+  }
 
 
-   var pais_id_user = <?php echo $empresapais->pais_id ?>; 
+  var pais_id_user = <?php echo $empresapais->pais_id ?>; 
 
 
-   document.getElementById("origen").value =pais_id_user;
-   document.getElementById("perfil").value = '<?php echo $_GET['perfil']?>';
-   document.getElementById("categoria").value = '<?php echo $_GET['categoria']?>';
-   document.getElementById("country").value = '<?php echo $_GET['country']?>';
+  document.getElementById("origen").value =pais_id_user;
+  document.getElementById("perfil").value = '<?php echo $_GET['perfil']?>';
+  document.getElementById("categoria").value = '<?php echo $_GET['categoria']?>';
+  document.getElementById("country").value = '<?php echo $_GET['country']?>';
 
 
-$('#country').on('click', function (e) {
-$('country').on('refresh', true);
-});
-
-
-
-
-function myFunction(x) {
-
-    document.getElementById("producto2").value = x;
-    producto = document.getElementById("producto2").value;
-    console.log('producto' + x);
-    categoria = document.getElementById("combobox").value;
-    $ciudaditems = $('.cityItems').remove();
-    if (categoria == "producto") {
-       rutajson = '../api/filtroregion/';
-
-   }else{
-
-       rutajson = '../api/filtroregioninteres/';  
-   }
-
-   $ciudaditems = $('.cityItems').remove();
-
-   $.get(rutajson+producto, function(data){
-
-          //  $.each(data[0], function(index, element){
-            //console.log(index);
-
-            for(var i=0;i<data.length;i++){
-              var obj = data[i];
-              for(var key in obj){
-                var attrName = key;
-                var attrValue = obj[key];
-            }
-   // }
+  $('#country').on('click', function (e) {
+    $('country').on('refresh', true);
+  });
 
 
 
-   $('select#country').append('<option value="'+attrValue+'" class="cityItems">'+attrValue+'</option>')
-            };// funcion
-        }, 'json');
-   
-}
 
+  $('#sites input:radio').addClass('input_hidden');
 
-
-$('#sites input:radio').addClass('input_hidden');
-
-$('#sites label').click(function() {
+  $('#sites label').click(function() {
     $(this).addClass('selected').siblings().removeClass('selected');
-});
+  });
 
-$( document ).ready(function() {
+  $( document ).ready(function() {
 
 
 
 //$('#newID').change(function(event) {
-    /* Act on the event */
+  /* Act on the event */
  //   var optionSelected = $(this).find("option:selected");
  //   var valueSelected  = optionSelected.val();
  //   var textSelected   = optionSelected.text();
   //}
 
-jQuery("#busqueda").validationEngine();
+  jQuery("#busqueda").validationEngine();
 
 
 //////////////////////////////////////////////////
 if (producto != null){
   url = window.location.href;
 
-    var producto = urlParams["producto"];
+  var producto = urlParams["producto"];
+  var categoria = urlParams["selectProducto"];
+  $ciudaditems = $('.cityItems').remove();
 
+  if (categoria == "producto") {
+   rutajson = '../api/filtroregion/';
 
-      var categoria = urlParams["selectProducto"];
+ }else{
 
+   rutajson = '../api/filtroregioninteres/';  
+ }
 
+ $ciudaditems = $('.cityItems').remove();
 
-    $ciudaditems = $('.cityItems').remove();
-
-
-    if (categoria == "producto") {
-       rutajson = '../api/filtroregion/';
-
-   }else{
-
-       rutajson = '../api/filtroregioninteres/';  
-   }
-
-   $ciudaditems = $('.cityItems').remove();
-
-   $.get(rutajson+producto, function(data,index){
+ $.get(rutajson+producto, function(data,index){
   for(var i=0;i<data.length;i++){
-              var obj = data[i];
+    var obj = data[i];
 
-              for(var key in obj){
+    for(var key in obj){
 
-                var attrName = key;
-                var attrValue = obj[key];
-       
-            }
+      var attrName = key;
+      var attrValue = obj[key];
+      
+    }
 
 
-   $('select#country').append('<option value="'+attrValue+'" class="cityItems">'+attrValue+'</option>')
+    $('select#country').append('<option value="'+attrValue+'" class="cityItems">'+attrValue+'</option>')
             };// funcion
-        }, 'json');
+          }, 'json');
 
 }
- document.getElementById("country").value = '<?php echo $_GET['country']?>';
+document.getElementById("country").value = '<?php echo $_GET['country']?>';
 
-
-
-
-////////////////////////////////////////////////////
-/*
-var delay=5500; //1 seconds
-
-setTimeout(function(){
-
-           $('#categoria').trigger('click');
-
-}, delay);
-
-*/
 
 $('#perfil').change(function(event) {
-    /* Act on the event */
-    var optionSelected = $(this).find("option:selected");
-    var valueSelected  = optionSelected.val();
-    var textSelected   = optionSelected.text();
-    if(valueSelected==1)
-    {
+  /* Act on the event */
+  var optionSelected = $(this).find("option:selected");
+  var valueSelected  = optionSelected.val();
+  var textSelected   = optionSelected.text();
+  if(valueSelected==1)
+  {
 
-        var pach = "/api/buscar_cadena?perfil=1&categoria=&producto=&country=&origen=&destino=";
-        window.location =  pach;
+    var pach = "/api/buscar_cadena?perfil=1&categoria=&producto=&country=&origen=&destino=&selectProducto=";
+    window.location =  pach;
 
 $('#cambio_vista').attr('data-cambio', 1); // data-chek como true
 $('#vista_vendedor').show(); 
@@ -338,8 +278,8 @@ $('.espacio_sias').append(('<img src="http://dev.supplysmark.com/images/cadena/r
 if(valueSelected==2)
 {
 
-    var pach = "/api/buscar_cadena?perfil=2&categoria=&producto=&country=&origen=&destino=";
-    window.location =  pach;
+  var pach = "/api/buscar_cadena?perfil=2&categoria=&producto=&country=&origen=&destino=&selectProducto=";
+  window.location =  pach;
              $('#cambio_vista').attr('data-cambio', 2); // data-chek como true
              $('#vista_vendedor').hide();
              $('#vista_comprador').show();
@@ -351,13 +291,13 @@ if(valueSelected==2)
              $(".espacio_sias").empty();
              $('.espacio_sias').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_sias.png">'));  
 
-         }
+           }
 
-         if(valueSelected==3)
-         {
+           if(valueSelected==3)
+           {
 
-         	var pach = "/api/buscar_cadena?perfil=3&categoria=&producto=&country=&origen=&destino=";
-         	window.location =  pach;
+            var pach = "/api/buscar_cadena?perfil=3&categoria=&producto=&country=&origen=&destino=&selectProducto=";
+            window.location =  pach;
 
 
 $('#cambio_vista').attr('data-cambio', 3); // data-chek como true
@@ -375,8 +315,8 @@ $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));
 if(valueSelected==4)
 {
 
-    var pach = "/api/buscar_cadena?perfil=4&categoria=&producto=&country=&origen=&destino=";
-    window.location =  pach;
+  var pach = "/api/buscar_cadena?perfil=4&categoria=&producto=&country=&origen=&destino=&selectProducto=";
+  window.location =  pach;
 
 
 $('#cambio_vista').attr('data-cambio', 4); // data-chek como true
@@ -409,132 +349,200 @@ $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));
 
 
   var idperfil = '<?php echo $_GET['perfil']?>';
-if (idperfil == 2){
-var jsonselect = "../api/productoex.json";
+  if (idperfil == 2){
+    var jsonselect = "../api/productoex.json";
+  }else{
+    var jsonselect = "../api/producto.json";
+  }
+
+  var select = $('#combobox');
+  $.get(jsonselect, function(data){
+    $.each(data, function (key, cat) {
+      var option = "<option  value='"+cat.category+"'>"+cat.name+"</option>";
+
+      if (cat.hasOwnProperty("category")) {
+        var group = cat.category;
+
+        if (select.find("optgroup[label='" + group + "']").length === 0) {
+          select.append("<optgroup label='" + group + "' />");
+        }
+
+        select.find("optgroup[label='" + group + "']").append(option);
+      } else {
+        select.append(option);
+      }        
+    });
+  }, 'json');
+
+
+
+  (function($) {
+    $.widget("ui.combobox", {
+      _create: function() {
+
+
+        var input, self = this,
+        select = this.element.hide(),
+        selected = select.children(":selected"),
+        value = selected.val() ? selected.text() : "",
+
+
+        wrapper = this.wrapper = $("<span>").addClass("ui-combobox").insertAfter(select);
+
+
+        var productonow = '<?php echo $_GET['producto']?>';
+        if (productonow == ""){
+          
+         value2 = value;
+       }else{
+        value2 = '<?php echo $_GET['producto']?>';
+
+
+
+/////////////////////////////////////////////
+
+producto = '<?php echo $_GET['producto']?>';
+
+categoria = '<?php echo $_GET['selectProducto']?>';
+$ciudaditems = $('.cityItems').remove();
+if (categoria == "producto") {
+ rutajson = '../api/filtroregion/';
+
 }else{
-  var jsonselect = "../api/producto.json";
+
+ rutajson = '../api/filtroregioninteres/';  
 }
 
-    var select = $('#combobox');
-    $.get(jsonselect, function(data){
-        $.each(data, function (key, cat) {
-            var option = "<option  value='"+cat.category+"'>"+cat.name+"</option>";
+$ciudaditems = $('.cityItems').remove();
 
-            if (cat.hasOwnProperty("category")) {
-                var group = cat.category;
+$.get(rutajson+producto, function(data){
 
-                if (select.find("optgroup[label='" + group + "']").length === 0) {
-                    select.append("<optgroup label='" + group + "' />");
-                }
+          //  $.each(data[0], function(index, element){
+            //console.log(index);
 
-                select.find("optgroup[label='" + group + "']").append(option);
-            } else {
-                select.append(option);
-            }        
-        });
-    }, 'json');
+            for(var i=0;i<data.length;i++){
+              var obj = data[i];
 
 
 
-    (function($) {
-        $.widget("ui.combobox", {
-            _create: function() {
+
+              for(var key in obj){
+                var attrName = key;
+                var attrValue = obj[key];
+              }
 
 
-                var input, self = this,
-                select = this.element.hide(),
-                selected = select.children(":selected"),
-                value = selected.val() ? selected.text() : "",
+              $('select#country').append('<option value="'+attrValue+'" class="cityItems">'+attrValue+'</option>')
+            };// funcion
+          }, 'json');
 
 
-                wrapper = this.wrapper = $("<span>").addClass("ui-combobox").insertAfter(select);
+////////////////////////////////////////
+
+} 
 
 
- var productonow = '<?php echo $_GET['producto']?>';
-                if (productonow == ""){
-                    
-                     value2 = value;
-                }else{
-                      value2 = '<?php echo $_GET['producto']?>';
-                
-                } 
+input = $("<input>").appendTo(wrapper).val(value2).attr('style', 'visible').attr('id', 'newID').attr('name', 'producto').addClass("ui-state-default ui-combobox-input").autocomplete({
+
+  delay: 0,
+  minLength: 0,
+  source: function(request, response) { 
+
+    var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+
+    response(select.find("option").map(function() {
 
 
-     input = $("<input>").appendTo(wrapper).val(value2).attr('style', 'visible').attr('id', 'newID').attr('name', 'newID').attr('onBlur', 'myFunction(value)').addClass("ui-state-default ui-combobox-input").autocomplete({
+      var text = $(this).text();
+      
+      if (this.value && (!request.term || matcher.test(text))) 
 
-                    delay: 0,
-                    minLength: 0,
-                    source: function(request, response) { 
-
-                        var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
-
-                        response(select.find("option").map(function() {
-
-
-                            var text = $(this).text();
-                          
-                            if (this.value && (!request.term || matcher.test(text))) 
-
-                              return {
-                                label: text.replace(
-                                    new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(request.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>"),
-                                value: text,
-                                option: this,
-
-                            };
+        return {
+          label: text.replace(
+            new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(request.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>"),
+          value: text,
+          option: this,
+          category: $(this).closest("optgroup").attr("label")
+        };
 
                         //MK 
                         $('#test').attr('style', 'display: none;');
 
-                    }).get());
+                      }).get());
 
-                    },
-                    select: function(event, ui) {
+  },
+  select: function(event, ui) {
 
+    ui.item.option.selected = true;
+    
+    self._trigger("selected", event, {
 
+      item: ui.item.option
 
-                        ui.item.option.selected = true;
-             
-                        self._trigger("selected", event, {
-
-                            item: ui.item.option
-
-                        });
-
-  //  var select2 = $('#combobox');
+    });
+//////////////////////////////////////COMBO REGION
 
 
+var item = ui.item;
+var itemValue = item.value;
+producto = itemValue;
 
-   // console.log('valor2:'+select2.val());
-     
+categoria = select.val();
+$ciudaditems = $('.cityItems').remove();
+if (categoria == "producto") {
+ rutajson = '../api/filtroregion/';
 
-       //var valor = $(this).val();
+}else{
 
+ rutajson = '../api/filtroregioninteres/';  
+}
 
-//producto = document.getElementById("producto2").value;
+$ciudaditems = $('.cityItems').remove();
 
+$.get(rutajson+producto, function(data){
 
-  
-                    },
-                    change: function(event, ui) {
-                        if (!ui.item) {
-                            var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex($(this).val()) + "$", "i"),
-                            valid = false;
-                            select.children("option").each(function() {
+          //  $.each(data[0], function(index, element){
+            //console.log(index);
 
-                                if ($(this).text().match(matcher)) {
-
-                                    this.selected = valid = true;
-
-                                    return false;
-
-                                }
+            for(var i=0;i<data.length;i++){
+              var obj = data[i];
 
 
-                            });
 
-                            if (!valid) {
-                                $('#test').attr('style', 'display: block;');
+
+              for(var key in obj){
+                var attrName = key;
+                var attrValue = obj[key];
+              }
+
+              
+              $('select#country').append('<option value="'+attrValue+'" class="cityItems">'+attrValue+'</option>')
+            };// funcion
+          }, 'json');
+
+
+////////////////////////////////////
+
+},
+change: function(event, ui) {
+  if (!ui.item) {
+    var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex($(this).val()) + "$", "i"),
+    valid = false;
+    select.children("option").each(function() {
+
+      if ($(this).text().match(matcher)) {
+
+        this.selected = valid = true;
+
+        return false;
+
+      }
+
+
+    });
+
+    if (!valid) {
+      $('#test').attr('style', 'display: block;');
                             // remove invalid value, as it didn't match anything
                             //$( this ).val( "" );
                             //select.val( "" );
@@ -542,48 +550,48 @@ var jsonselect = "../api/productoex.json";
                             //return false;   
 
 
+                          }
                         }
-                    }
-                }
-            }).addClass("ui-widget ui-widget-content ui-corner-left");
+                      }
+                    }).addClass("ui-widget ui-widget-content ui-corner-left");
 
 input.data("autocomplete")._renderItem = function(ul, item) {
 
-    return $("<li></li>").data("item.autocomplete", item).append("<a>" + item.label + "</a>").appendTo(ul);
+  return $("<li></li>").data("item.autocomplete", item).append("<a>" + item.label + "</a>").appendTo(ul);
 
 };
 
 input.data("autocomplete")._renderMenu = function(ul, items) {
-    var self = this,
-    currentCategory = "";
-    $.each(items, function(index, item) {
+  var self = this,
+  currentCategory = "";
+  $.each(items, function(index, item) {
 
-        if (item.category != currentCategory) {
-            if (item.category) {
+    if (item.category != currentCategory) {
+      if (item.category) {
 
-                ul.append("<li class='ui-autocomplete-category'>" + item.category + "</li>");
-            }
-            currentCategory = item.category;
+        ul.append("<li class='ui-autocomplete-category'>" + item.category + "</li>");
+      }
+      currentCategory = item.category;
 
-        }
+    }
 
-        self._renderItem(ul, item); 
+    self._renderItem(ul, item); 
 
-    });
+  });
 };
 
 $("<a>").attr("tabIndex", -1).attr("title", "Show All Items").appendTo(wrapper).button({
-    icons: {
-        primary: "ui-icon-triangle-1-s"
+  icons: {
+    primary: "ui-icon-triangle-1-s"
 
-    },
-    text: false
+  },
+  text: false
 }).removeClass("ui-corner-all").addClass("ui-corner-right ui-combobox-toggle").click(function() {
 
                 // close if already visible
                 if (input.autocomplete("widget").is(":visible")) {
-                    input.autocomplete("close");
-                    return;
+                  input.autocomplete("close");
+                  return;
                 }
 
                 // work around a bug (likely same cause as #5265)
@@ -593,32 +601,31 @@ $("<a>").attr("tabIndex", -1).attr("title", "Show All Items").appendTo(wrapper).
                 // pass empty string as value to search for, displaying all results
                 input.autocomplete("search", "");
 
-               input.focus();
+                input.focus();
 
 
 
-            });
+              });
 
-       
 },
 
 destroy: function() {
-    this.wrapper.remove();
-    this.element.show();
-    $.Widget.prototype.destroy.call(this);
+  this.wrapper.remove();
+  this.element.show();
+  $.Widget.prototype.destroy.call(this);
 }
 });
 })(jQuery);
 
 $(function() {
 
-    $("#combobox").combobox();
-    
-    $("#toggle").click(function() {
-        $("#combobox").toggle();
+  $("#combobox").combobox();
+  
+  $("#toggle").click(function() {
+    $("#combobox").toggle();
 
 
-    });
+  });
 
 });
 
