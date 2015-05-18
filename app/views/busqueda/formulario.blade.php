@@ -29,9 +29,10 @@
 
 
 <?php $aleatorio = rand(5, 1000); ?>
+
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+{{HTML::script('js/jquery-ui.min.js')}}
+
 
 <div class="busqueda">
 
@@ -49,7 +50,7 @@
                 <div class="col-xs-10">
 
 
-                    <select name="perfil" id="perfil"  class="form-control">
+                    <select name="perfil" id="perfil"  class="form-control validate[required]">
                         <option value="">Seleccione...</option>
                         <option value="1">Importar</option>
                         <option value="2">Exportar</option>
@@ -66,7 +67,7 @@
                     <img src="{{asset('images/home/dos.png')}}" alt="">
                 </label>
                 <div class="col-xs-10">
-                    <select name="categoria" id="categoria"  class="form-control">
+                    <select name="categoria" id="categoria"  class="form-control validate[required]">
                         <option value="">Categoría</option>
                         @foreach($categorias as $categoria)
                         <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
@@ -84,7 +85,9 @@
 
 
                     <input type="hidden" id="producto2" name="producto"/>
-                    <select name="selectProducto" class="form-control" id="combobox">
+
+                  
+                    <select name="selectProducto" class="form-control validate[required]" id="combobox" >
                         <optgroup label="Seleccione un Producto">
                         </optgroup>
                         <optgroup label="Seleccione un Intereses">
@@ -118,7 +121,10 @@
 </select>
 -->
 
-<select name="country" class="country" id="country" class="form-control">
+
+
+<select name="country" class="country" id="country" class="form-control validate[required]" >
+
     <option selected="selected" value ="">REGION</option>
 </select>
 
@@ -127,23 +133,14 @@
 </div>
 
 <div class="salto_linea"></div>
+
+<input type="hidden" id="origen" name="origen"/>
 <div class="form-group">
-    <label for="destino" class="col-xs-2 control-label num_form">
+    <label for="origen" class="col-xs-2 control-label num_form">
         <img src="{{asset('images/home/cinco.png')}}" alt="">
     </label>
     <div class="col-xs-10">
-
-        <input type="hidden" id="origen" name="origen"/>
-
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="origen" class="col-xs-2 control-label num_form">
-        <img src="{{asset('images/home/seix.png')}}" alt="">
-    </label>
-    <div class="col-xs-10">
-        <select name="destino" id="destino"  class="form-control">
+        <select name="destino" id="destino"  class="form-control validate[required]">
             <option value="">PAÍS DE DESTINO</option>
             @foreach($paises as $pais)
             <option value="{{$pais->id}}">{{$pais->nombre}}</option>
@@ -161,13 +158,28 @@
 
 
 
+<?php
+if (isset($_GET["producto"]) && !empty($_GET["producto"])) {
+    $producto = $_GET['producto'];
+}
+
+if (isset($_GET["selectProducto"]) && !empty($_GET["selectProducto"])) {
+
+     $categoria = $_GET['selectProducto'];
+}
+?>
 
 
 <script>
 
+
+function QuitarFoco(){
+  elemento = document.getElementById("newID");
+  elemento.blur();
+}
+
+
    var pais_id_user = <?php echo $empresapais->pais_id ?>; 
-
-
 
 
    document.getElementById("origen").value =pais_id_user;
@@ -176,47 +188,10 @@
    document.getElementById("country").value = '<?php echo $_GET['country']?>';
 
 
-/*
-var idcountry ='<?php echo $_GET['country']?>';
-
-if (idcountry !='') {
-
-
-var countryId = '<?php echo $_GET['country']?>';
-
-$ciudaditems = $('.cityItems').remove();
-$.get('../api/filtropais/'+countryId, function(data){
-
-$.each(data[0], function(index, element){
-console.log(index);
-$('select#origen').append('<option value="'+index+'" class="cityItems">'+element+'</option>')
+$('#country').on('click', function (e) {
+$('country').on('refresh', true);
 });
-}, 'json');
 
-}else{
-
-	 $('select#country').change(function(){
-        var countryId = $(this).val();
-
-        $ciudaditems = $('.cityItems').remove();
-        $.get('../api/filtropais/'+countryId, function(data){
-
-            $.each(data[0], function(index, element){
-            console.log(index);
-                $('select#origen').append('<option value="'+index+'" class="cityItems">'+element+'</option>')
-            });
-        }, 'json');
-    });
-
-}
-*/
-
-$('#combobox').on('change', function (e) {
-    var opcionSeleccionada = $("option:selected", this);
-    var atributo = opcionSeleccionada.attr('value');
-    console.log('atributo' + atributo);
-    $('#pruebaInpt').attr('tipo',atributo);
-});
 
 
 
@@ -268,14 +243,75 @@ $('#sites label').click(function() {
 
 $( document ).ready(function() {
 
+
+
+//$('#newID').change(function(event) {
+    /* Act on the event */
+ //   var optionSelected = $(this).find("option:selected");
+ //   var valueSelected  = optionSelected.val();
+ //   var textSelected   = optionSelected.text();
+  //}
+
+jQuery("#busqueda").validationEngine();
+
+
+//////////////////////////////////////////////////
+if (producto != null){
+  url = window.location.href;
+
+    var producto = urlParams["producto"];
+
+
+      var categoria = urlParams["selectProducto"];
+
+
+
+    $ciudaditems = $('.cityItems').remove();
+
+
+    if (categoria == "producto") {
+       rutajson = '../api/filtroregion/';
+
+   }else{
+
+       rutajson = '../api/filtroregioninteres/';  
+   }
+
+   $ciudaditems = $('.cityItems').remove();
+
+   $.get(rutajson+producto, function(data,index){
+  for(var i=0;i<data.length;i++){
+              var obj = data[i];
+
+              for(var key in obj){
+
+                var attrName = key;
+                var attrValue = obj[key];
+       
+            }
+
+
+   $('select#country').append('<option value="'+attrValue+'" class="cityItems">'+attrValue+'</option>')
+            };// funcion
+        }, 'json');
+
+}
+ document.getElementById("country").value = '<?php echo $_GET['country']?>';
+
+
+
+
+////////////////////////////////////////////////////
 /*
-var delay=2500; //1 seconds
+var delay=5500; //1 seconds
 
 setTimeout(function(){
-document.getElementById("origen").value = '<?php echo $_GET['origen']?>';
+
+           $('#categoria').trigger('click');
+
 }, delay);
+
 */
-document.getElementById("destino").value = '<?php echo $_GET['destino']?>';
 
 $('#perfil').change(function(event) {
     /* Act on the event */
@@ -365,15 +401,24 @@ $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));
 
 {{HTML::style('css/busqueda_small.css')}}
 {{HTML::script('js/jquery.ddslick.min.js')}}
-<!-- {{HTML::script('js/1/typeahead.bundle.js')}}-->
+
 
 <script>
 
 
+
+
+  var idperfil = '<?php echo $_GET['perfil']?>';
+if (idperfil == 2){
+var jsonselect = "../api/productoex.json";
+}else{
+  var jsonselect = "../api/producto.json";
+}
+
     var select = $('#combobox');
-    $.get('../api/producto.json', function(data){
+    $.get(jsonselect, function(data){
         $.each(data, function (key, cat) {
-            var option = "<option value='"+cat.category+"'>"+cat.name+"</option>";
+            var option = "<option  value='"+cat.category+"'>"+cat.name+"</option>";
 
             if (cat.hasOwnProperty("category")) {
                 var group = cat.category;
@@ -412,80 +457,129 @@ $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));
                 }else{
                       value2 = '<?php echo $_GET['producto']?>';
                 
-                }
-     input = $("<input>").appendTo(wrapper).val(value2).attr('style', 'visible').attr('id', 'newID').attr('onfocus', 'myFunction(value)').
+                } 
 
-              attr('valorid', value).addClass("ui-state-default ui-combobox-input").autocomplete({
+
+     input = $("<input>").appendTo(wrapper).val(value2).attr('style', 'visible').attr('id', 'newID').attr('name', 'newID').attr('onBlur', 'myFunction(value)').addClass("ui-state-default ui-combobox-input").autocomplete({
+
                     delay: 0,
                     minLength: 0,
-                    source: function(request, response) {
+                    source: function(request, response) { 
+
                         var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
 
                         response(select.find("option").map(function() {
+
+
                             var text = $(this).text();
-                            if (this.value && (!request.term || matcher.test(text))) return {
+                          
+                            if (this.value && (!request.term || matcher.test(text))) 
+
+                              return {
                                 label: text.replace(
                                     new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(request.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>"),
                                 value: text,
                                 option: this,
-                                category: $(this).closest("optgroup").attr("label")
+
                             };
+
                         //MK 
                         $('#test').attr('style', 'display: none;');
+
                     }).get());
+
                     },
                     select: function(event, ui) {
+
+
+
                         ui.item.option.selected = true;
+             
                         self._trigger("selected", event, {
+
                             item: ui.item.option
+
                         });
+
+  //  var select2 = $('#combobox');
+
+
+
+   // console.log('valor2:'+select2.val());
+     
+
+       //var valor = $(this).val();
+
+
+//producto = document.getElementById("producto2").value;
+
+
+  
                     },
                     change: function(event, ui) {
                         if (!ui.item) {
                             var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex($(this).val()) + "$", "i"),
                             valid = false;
                             select.children("option").each(function() {
+
                                 if ($(this).text().match(matcher)) {
+
                                     this.selected = valid = true;
+
                                     return false;
+
                                 }
+
+
                             });
+
                             if (!valid) {
                                 $('#test').attr('style', 'display: block;');
                             // remove invalid value, as it didn't match anything
                             //$( this ).val( "" );
                             //select.val( "" );
                             //input.data( "autocomplete" ).term = "";
-                            //return false;                    
+                            //return false;   
+
+
                         }
                     }
                 }
             }).addClass("ui-widget ui-widget-content ui-corner-left");
 
 input.data("autocomplete")._renderItem = function(ul, item) {
+
     return $("<li></li>").data("item.autocomplete", item).append("<a>" + item.label + "</a>").appendTo(ul);
+
 };
 
 input.data("autocomplete")._renderMenu = function(ul, items) {
     var self = this,
     currentCategory = "";
     $.each(items, function(index, item) {
+
         if (item.category != currentCategory) {
             if (item.category) {
+
                 ul.append("<li class='ui-autocomplete-category'>" + item.category + "</li>");
             }
             currentCategory = item.category;
+
         }
-        self._renderItem(ul, item);
+
+        self._renderItem(ul, item); 
+
     });
 };
 
 $("<a>").attr("tabIndex", -1).attr("title", "Show All Items").appendTo(wrapper).button({
     icons: {
         primary: "ui-icon-triangle-1-s"
+
     },
     text: false
 }).removeClass("ui-corner-all").addClass("ui-corner-right ui-combobox-toggle").click(function() {
+
                 // close if already visible
                 if (input.autocomplete("widget").is(":visible")) {
                     input.autocomplete("close");
@@ -495,10 +589,17 @@ $("<a>").attr("tabIndex", -1).attr("title", "Show All Items").appendTo(wrapper).
                 // work around a bug (likely same cause as #5265)
                 $(this).blur();
 
+
                 // pass empty string as value to search for, displaying all results
                 input.autocomplete("search", "");
-                input.focus();
+
+               input.focus();
+
+
+
             });
+
+       
 },
 
 destroy: function() {
@@ -512,10 +613,15 @@ destroy: function() {
 $(function() {
 
     $("#combobox").combobox();
+    
     $("#toggle").click(function() {
         $("#combobox").toggle();
+
+
     });
+
 });
 
 
 </script>
+

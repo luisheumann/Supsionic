@@ -85,7 +85,7 @@ Route::group(array('before' => 'AuthSentryInv'), function()
 Route::get('api/producto2.json', 'HomeController@productojson2');
 Route::get('api/producto.json', 'HomeController@productojson');
 Route::get('api/interes.json', 'HomeController@interesesjson');
-
+Route::get('api/productoex.json', 'HomeController@productoexjson');
 
 
 

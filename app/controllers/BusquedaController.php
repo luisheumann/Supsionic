@@ -488,7 +488,7 @@ WHERE ruta_exportador.pais_origen  = '$origen' AND  productos.nombre  = '$produc
 public function filtroregioninteres($producto=null)
 {
 	
-		$region = DB::select( DB::raw("SELECT paises.id,	paises.ncontinente 
+		$region = DB::select( DB::raw("SELECT paises.continente,	paises.ncontinente 
 FROM empresas INNER JOIN ruta_importador ON empresas.pais_id = ruta_importador.pais_destino
 	 INNER JOIN paises ON ruta_importador.pais_origen = paises.id
 	 INNER JOIN intereses_importador ON intereses_importador.empresa_id = empresas.id
@@ -503,7 +503,7 @@ GROUP BY paises.ncontinente"));
 	{
 		
 
-		$region = DB::select( DB::raw("SELECT paises.id, paises.ncontinente 
+		$region = DB::select( DB::raw("SELECT paises.continente, paises.ncontinente 
 FROM ruta_exportador inner JOIN productos ON ruta_exportador.perfil_empresa_id = productos.empresa_id AND productos.id = ruta_exportador.producto_id
 	 INNER JOIN paises ON ruta_exportador.pais_destino = paises.id
 	 INNER JOIN empresas ON empresas.pais_id = ruta_exportador.pais_origen

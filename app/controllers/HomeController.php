@@ -43,6 +43,23 @@ class HomeController extends BaseController {
 		return Response::json( $producto, 200);
 	}
 
+		public function productoexjson()
+	{
+
+		$user_id = Sentry::getuser()->id;
+
+		$empresa = User::find($user_id)->empresas->first();
+    	$productosid = Empresa::find($empresa->id)->id;
+	
+	
+		$producto = DB::select( DB::raw("(SELECT 'producto' as category,  nombre as name FROM productos where empresa_id ='$productosid') UNION (SELECT 'intereses' as category, productos  as name FROM intereses_importador)"));
+
+
+		return Response::json( $producto, 200);
+	}
+
+
+
 		public function interesesjson()
 	{
 

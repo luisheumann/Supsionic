@@ -5,7 +5,9 @@
 
 	 {{HTML::script('js/bootstrap.min.js')}}
 	 {{HTML::script('js/modernizr-2.6.2-respond-1.1.0.min.js')}}
-	 {{HTML::script('js/main.js')}}	 
+	 {{HTML::script('js/main.js')}}	
+	 	 {{HTML::script('js/jquery.validationEngine.js')}}	 
+	 	 	 {{HTML::script('js/jquery.validationEngine-es.js')}}	  
 	
 @show
 <!-- Fin Inclue JS  -->
@@ -18,6 +20,8 @@
 	 {{--HTML::style('css/flat-ui.css')--}}
 	 {{HTML::style('css/font-awesome.min.css')}}
 	 {{HTML::style('css/main.css')}}
+	 	 {{HTML::style('css/validationEngine.jquery.css')}}
+	 	 	 {{HTML::style('css/customMessages.css')}}
 	 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 @show 
 <!-- FIn Inclue CSS  -->
