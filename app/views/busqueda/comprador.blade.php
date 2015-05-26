@@ -71,6 +71,8 @@
 			@endif
 	
 	</div>	
+
+
 	<div class="col-xs-2">
 		<button class="btn-borde btn-borde-ai btn_selec" id="empresa<?php echo $i ?>">
 			Seleccionar
@@ -127,22 +129,7 @@ while ($j <= $i ){
 
 	echo '$(\'.boton_conectar\').show(\'last\');'."\n";
 
-	echo 'var data_t = $( ".espacio_transporte" ).attr(\'data-ckeck\');'."\n";
-	echo 'var data_s = $( ".espacio_sias" ).attr(\'data-ckeck\');'."\n";
-
-
-
-
-
-
-	echo '  if ( data_t == \'false\' ) {'."\n";
-	echo '  $(".espacio_transporte").empty();'."\n";
-	echo '$(\'.espacio_transporte\').append((\'<img src="images/cadena/recomendado_transportador.png">\'));'."\n";	
-	echo '}'."\n";
-	echo 'if ( data_s == \'false\' ) {'."\n";
-	echo '$(".espacio_sias").empty();'."\n";
-	echo  '$(\'.espacio_sias\').append((\'<img src="images/cadena/recomendado_sias.png">\'));'."\n";
-	echo  '}'."\n";
+	
 
 		echo '});'."\n";
 

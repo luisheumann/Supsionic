@@ -127,6 +127,10 @@
 <script>
   $(document).ready(function(){
 
+  
+
+
+
  var valueSelected = <?php echo $perfil ?>;
 if(valueSelected==1)
     {
@@ -206,6 +210,20 @@ if(valueSelected==1)
     $('#ModalCadena').modal('hide');
     window.location.href = 'http://supplysmark.com/demo/public/busqueda';
      });
+
+
+
+      $('#sias1').trigger('click');
+
+      var l = document.getElementById('empresa1');
+
+   l.click();
+
+
+      var d = document.getElementById('transporte1');
+
+   d.click();
+
 
   });
 

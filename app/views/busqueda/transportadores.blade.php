@@ -53,12 +53,13 @@
 			<li> {{$lista_transportadore->pais}} </li>
 			<li>{{$lista_transportadore->categoria}} </li>
 			<li>Especialidad</li>
-		</ul>
+		
 	</div>	
 	<div class="col-xs-2">
 		<button class="btn-borde btn-borde-ai btn_selec" id="transporte<?php echo $i ?>">
-			Armar
-		</button>	
+			Seleccionar
+		</button>		
+
 		<br>
 		<img src="{{asset('images/productos/start.png')}}">
 
@@ -88,10 +89,12 @@ nada
 
 <script>
 $( document ).ready(function() {
+
 <?php
 
 $j = 1;
 while ($j <= $i){
+
 
 
 	echo '$("#transporte'.$j.'").click(function(event) {'."\n";

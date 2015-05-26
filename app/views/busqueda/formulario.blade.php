@@ -203,7 +203,7 @@ if (isset($_GET["selectProducto"]) && !empty($_GET["selectProducto"])) {
 
   $( document ).ready(function() {
 
-
+ 
 
 //$('#newID').change(function(event) {
   /* Act on the event */
