@@ -28,6 +28,7 @@ class BusquedaController extends BaseController {
 		$destino = Input::get('destino');
 		$categoria = Input::get('categoria');
 		$continente = Input::get('country');
+		$selectProducto = Input::get('selectProducto');
 
 
 
@@ -196,18 +197,7 @@ FROM ruta_transporte LEFT JOIN intereses_transporte ON ruta_transporte.intereses
 	 LEFT JOIN paises ON paises.id = empresas.pais_id
 	 LEFT JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
 WHERE perfil_empresa.perfil_id = 3 and ruta_transporte.pais_origen = '$origen' and  ruta_transporte.pais_destino = '$destino'") );
-}*/
-
-
-//////////////////////////////////////////////////////
-
-
-
-
-
-
-
-	    //////////LISTA IMPORTADORES///////////////////
+}
 
 $lista_importadores = DB::select( DB::raw("SELECT perfil_empresa.empresa_id AS empresa_id_perfil, 
 		empresas.id, 
@@ -338,30 +328,9 @@ INNER JOIN paises ON paises.id = empresas.pais_id
 WHERE intereses_importador.productos = 'demo' and perfil_empresa.perfil_id = 0   and ruta_importador.pais_destino = 0 and ruta_importador.pais_origen = 0");
 
 
+*/
 
 
-if ($producto != Null and $destino!=Null and $origen!=Null  and $categoria !=Null) {
-$lista_exportadores= DB::select("SELECT perfil_empresa.empresa_id AS empresa_id_perfil, 
-empresas.id, 
-empresas.nombre, 
-empresas.imagen, 
-paises.id, 
-empresas.pais_id, 
-paises.nombre AS pais, 
-paises.continente, 
-perfil_empresa.perfil_id, 
-intereses_importador.empresa_id, 
-intereses_importador.productos, 
-ruta_importador.intereses_importador_id, 
-intereses_importador.id, 
-ruta_importador.pais_destino, 
-ruta_importador.pais_origen
-FROM perfil_empresa INNER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
-LEFT OUTER JOIN intereses_importador ON intereses_importador.empresa_id = empresas.id
-LEFT OUTER JOIN ruta_importador ON intereses_importador.id = ruta_importador.intereses_importador_id
-INNER JOIN paises ON paises.id = empresas.pais_id
-WHERE intereses_importador.productos = '$producto' and perfil_empresa.perfil_id = 2   and ruta_importador.pais_destino = '$origen' and ruta_importador.pais_origen = '$destino'");
-}
 
 
 $lista_importadoresalls = DB::select( DB::raw("SELECT empresas.id, 
@@ -406,57 +375,889 @@ LEFT OUTER JOIN img_productos ON img_productos.producto_id = productos.id AND ru
 WHERE ruta_exportador.pais_origen  = 0 AND  productos.nombre  = 0 AND ruta_exportador.pais_destino = 0 and perfil_empresa.perfil_id = 0 or perfil_empresa.perfil_id = 0 and ruta_importador.pais_destino = 0 and ruta_importador.pais_origen = 0 GROUP BY empresas.nombre") );
 
 
+/*
+if ($categoria != null or $continente != null or $producto != null){
+
+
+if ($categoria != null){
+	$stringcategoria = ' categorias.id = ';
+	$categoria = $stringcategoria.$categoria;
+}
+
+if ($producto != null){
+	$stringproducto = ' and  productos.nombre = ';
+	$stringproductointeres = ' and intereses_importador.productos = ';
+	$producto = " '$producto' ";
+	$producto1 = $stringproducto.$producto;
+	$producto2 = $stringproductointeres.$producto;
+
+}else{
+$producto1 = '';
+	$producto2 = '';
+		$producto = '';
+}
+
+
+$lista_importadoresalls = DB::select( DB::raw("(SELECT empresas.nombre, 
+	productos.nombre AS NombrePoducto, 
+	img_productos.imagen, 
+	categorias.id AS categoria_id, 
+	paises.continente, 
+	paises.ncontinente, 
+	paises.nombre AS pais
+FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id
+	 INNER JOIN empresas ON productos.empresa_id = empresas.id
+	 INNER JOIN img_productos ON img_productos.producto_id = productos.id
+	 INNER JOIN ruta_exportador ON ruta_exportador.producto_id = productos.id
+	 INNER JOIN paises ON ruta_exportador.pais_origen = paises.id where $categoria $producto1  GROUP BY productos.nombre)UNION (SELECT intereses_importador.productos as NombrePoducto, 
+	empresas.nombre, 
+	empresas.imagen, 
+	categorias.id AS categoria_id, 
+	paises.continente, 
+	paises.nombre AS pais, 
+	paises.ncontinente
+FROM ruta_importador INNER JOIN intereses_importador ON ruta_importador.intereses_importador_id = intereses_importador.id
+	 INNER JOIN empresas ON intereses_importador.empresa_id = empresas.id
+	 INNER JOIN categorias ON intereses_importador.categoria_id = categorias.id
+	 INNER JOIN paises ON ruta_importador.pais_origen = paises.id where $categoria $producto2  GROUP BY intereses_importador.productos)"));
+
+
+}
+*/
+
+
+if ($categoria != null and $producto != null ){
+
+
+if ($categoria != null){
+	$stringcategoria = ' categorias.id = ';
+	$categoria = $stringcategoria.$categoria;
+}
 
 
 
-if ($producto != Null and $destino!=Null and $origen!=Null  and $categoria !=Null) {
-$lista_importadoresalls = DB::select( DB::raw("SELECT empresas.id, 
-productos.empresa_id AS empresa_id_producto, 
-productos.nombre AS NombrePoducto, 
-empresas.nombre as nombre, 
-productos.stock, 
-productos.venta_minima, 
-productos.produccion_mes, 
-productos.descripcion, 
-empresas.imagen, 
-productos.id, 
-img_productos.producto_id, 
-img_productos.imagen AS imagenproducto, 
-productos.unidad_id, 
-ruta_exportador.perfil_empresa_id AS empresa_id_rutaex, 
-ruta_exportador.pais_origen, 
-ruta_exportador.pais_destino, 
-ruta_exportador.producto_id, 
-paises.id, 
-empresas.pais_id, 
-paises.nombre AS pais, 
-paises.continente, 
-intereses_importador.empresa_id, 
-intereses_importador.productos, 
-intereses_importador.id, 
-intereses_importador.categoria_id, 
-ruta_importador.pais_destino, 
-ruta_importador.pais_origen, 
-ruta_importador.intereses_importador_id, 
-productos.categoria_id, 
-categorias.nombre as categoria, 
-categorias.id
-FROM perfil_empresa RIGHT OUTER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
-LEFT OUTER JOIN intereses_importador ON intereses_importador.empresa_id = empresas.id
-LEFT OUTER JOIN categorias ON intereses_importador.categoria_id = categorias.id
-LEFT OUTER JOIN ruta_importador ON intereses_importador.id = ruta_importador.intereses_importador_id
-LEFT OUTER JOIN paises ON paises.id = empresas.pais_id
-LEFT OUTER JOIN ruta_exportador ON ruta_exportador.perfil_empresa_id = empresas.id
-LEFT OUTER JOIN productos ON productos.empresa_id = empresas.id
-LEFT OUTER JOIN img_productos ON img_productos.producto_id = productos.id AND ruta_exportador.producto_id = productos.id AND categorias.id = productos.categoria_id
-WHERE ruta_exportador.pais_origen  = '$origen' AND  productos.nombre  = '$producto' AND ruta_exportador.pais_destino = '$destino' and perfil_empresa.perfil_id = 1 or perfil_empresa.perfil_id = 2 and ruta_importador.pais_destino = '$origen' and ruta_importador.pais_origen = '$destino' GROUP BY empresas.nombre") );
+$lista_importadoresalls = DB::select( DB::raw("(SELECT empresas.nombre, 
+	productos.nombre AS NombrePoducto, 
+	img_productos.imagen, 
+	categorias.id AS categoria_id, 
+	paises.continente, 
+	paises.ncontinente, 
+	paises.nombre AS pais, 
+	perfil_empresa.perfil_id, 
+	productos.stock, 
+	productos.venta_minima, 
+	productos.condiciones_pago, 
+	productos.produccion_mes,
+	empresas.imagen as eimagen
+FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id
+	 INNER JOIN empresas ON productos.empresa_id = empresas.id
+	 INNER JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
+	 INNER JOIN img_productos ON img_productos.producto_id = productos.id
+	 INNER JOIN ruta_exportador ON ruta_exportador.producto_id = productos.id
+	 INNER JOIN paises ON ruta_exportador.pais_origen = paises.id where $categoria and productos.nombre = '$producto' GROUP BY productos.nombre)UNION (SELECT intereses_importador.productos AS NombrePoducto, 
+	empresas.nombre, 
+	empresas.imagen, 
+	categorias.id AS categoria_id, 
+	paises.continente, 
+	paises.nombre AS pais, 
+	paises.ncontinente, 
+	perfil_empresa.perfil_id,
+	perfil_empresa.null as stok,
+	perfil_empresa.null as venta_minima,
+	perfil_empresa.null as condiciones_pago,
+	perfil_empresa.null as produccion_mes,
+	empresas.imagen as eimagen
+FROM ruta_importador INNER JOIN intereses_importador ON ruta_importador.intereses_importador_id = intereses_importador.id
+	 INNER JOIN empresas ON intereses_importador.empresa_id = empresas.id
+	 INNER JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
+	 INNER JOIN categorias ON intereses_importador.categoria_id = categorias.id
+	 INNER JOIN paises ON ruta_importador.pais_origen = paises.id where $categoria and intereses_importador.productos = '$producto'  GROUP BY intereses_importador.productos)"));
+
 
 }
 
 
 
-//////////////////////////////////////////////////
+if ($categoria != null and $producto == null ){
 
+
+if ($categoria != null){
+	$stringcategoria = ' categorias.id = ';
+	$categoria = $stringcategoria.$categoria;
+}
+
+
+
+$lista_importadoresalls = DB::select( DB::raw("(SELECT empresas.nombre, 
+	productos.nombre AS NombrePoducto, 
+	img_productos.imagen, 
+	categorias.id AS categoria_id, 
+	paises.continente, 
+	paises.ncontinente, 
+	paises.nombre AS pais, 
+	perfil_empresa.perfil_id, 
+	productos.stock, 
+	productos.venta_minima, 
+	productos.condiciones_pago, 
+	productos.produccion_mes,
+	empresas.imagen as eimagen
+FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id
+	 INNER JOIN empresas ON productos.empresa_id = empresas.id
+	 INNER JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
+	 INNER JOIN img_productos ON img_productos.producto_id = productos.id
+	 INNER JOIN ruta_exportador ON ruta_exportador.producto_id = productos.id
+	 INNER JOIN paises ON ruta_exportador.pais_origen = paises.id where $categoria GROUP BY productos.nombre)UNION (SELECT intereses_importador.productos AS NombrePoducto, 
+	empresas.nombre, 
+	empresas.imagen, 
+	categorias.id AS categoria_id, 
+	paises.continente, 
+	paises.nombre AS pais, 
+	paises.ncontinente, 
+	perfil_empresa.perfil_id,
+	perfil_empresa.null as stok,
+	perfil_empresa.null as venta_minima,
+	perfil_empresa.null as condiciones_pago,
+	perfil_empresa.null as produccion_mes,
+	empresas.imagen as eimagen
+FROM ruta_importador INNER JOIN intereses_importador ON ruta_importador.intereses_importador_id = intereses_importador.id
+	 INNER JOIN empresas ON intereses_importador.empresa_id = empresas.id
+	 INNER JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
+	 INNER JOIN categorias ON intereses_importador.categoria_id = categorias.id
+	 INNER JOIN paises ON ruta_importador.pais_origen = paises.id where $categoria   GROUP BY intereses_importador.productos)"));
+
+
+}
+
+if ($categoria == null and $producto != null and $continente == null ){
+
+
+$lista_importadoresalls = DB::select( DB::raw("(SELECT empresas.nombre, 
+	productos.nombre AS NombrePoducto, 
+	img_productos.imagen, 
+	categorias.id AS categoria_id, 
+	paises.continente, 
+	paises.ncontinente, 
+	paises.nombre AS pais, 
+	perfil_empresa.perfil_id, 
+	productos.stock, 
+	productos.venta_minima, 
+	productos.condiciones_pago, 
+	productos.produccion_mes,
+	empresas.imagen as eimagen
+FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id
+	 INNER JOIN empresas ON productos.empresa_id = empresas.id
+	 INNER JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
+	 INNER JOIN img_productos ON img_productos.producto_id = productos.id
+	 INNER JOIN ruta_exportador ON ruta_exportador.producto_id = productos.id
+	 INNER JOIN paises ON ruta_exportador.pais_origen = paises.id where productos.nombre = '$producto' GROUP BY productos.nombre)UNION (SELECT intereses_importador.productos AS NombrePoducto, 
+	empresas.nombre, 
+	empresas.imagen, 
+	categorias.id AS categoria_id, 
+	paises.continente, 
+	paises.nombre AS pais, 
+	paises.ncontinente, 
+	perfil_empresa.perfil_id,
+	perfil_empresa.null as stok,
+	perfil_empresa.null as venta_minima,
+	perfil_empresa.null as condiciones_pago,
+	perfil_empresa.null as produccion_mes,
+	empresas.imagen as eimagen
+FROM ruta_importador INNER JOIN intereses_importador ON ruta_importador.intereses_importador_id = intereses_importador.id
+	 INNER JOIN empresas ON intereses_importador.empresa_id = empresas.id
+	 INNER JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
+	 INNER JOIN categorias ON intereses_importador.categoria_id = categorias.id
+	 INNER JOIN paises ON ruta_importador.pais_origen = paises.id where intereses_importador.productos = '$producto' GROUP BY intereses_importador.productos)"));
+
+
+}
+
+
+
+
+if ($categoria != null and $continente != null ){
+
+
+if ($categoria != null){
+	$stringcategoria = ' categorias.id = ';
+	$categoria = $stringcategoria.$categoria;
+}
+
+switch ($continente) {
+    case 'América':
+            $continente = 2;
+        break;
+    case 'Africa':
+             $continente = 1;
+        break;
+    case 'Asia':
+        $continente = 3;
+        break;
+     case 'Europa':
+           $continente = 4;
+        break;
+     case 'Oceanía':
+        $continente = 5;
+        break;
+}
+
+
+$lista_importadoresalls = DB::select( DB::raw("(SELECT empresas.nombre, 
+	productos.nombre AS NombrePoducto, 
+	img_productos.imagen, 
+	categorias.id AS categoria_id, 
+	paises.continente, 
+	paises.ncontinente, 
+	paises.nombre AS pais, 
+	perfil_empresa.perfil_id, 
+	productos.stock, 
+	productos.venta_minima, 
+	productos.condiciones_pago, 
+	productos.produccion_mes,
+	empresas.imagen as eimagen
+FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id
+	 INNER JOIN empresas ON productos.empresa_id = empresas.id
+	 INNER JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
+	 INNER JOIN img_productos ON img_productos.producto_id = productos.id
+	 INNER JOIN ruta_exportador ON ruta_exportador.producto_id = productos.id
+	 INNER JOIN paises ON ruta_exportador.pais_origen = paises.id where $categoria and paises.continente = '$continente' GROUP BY productos.nombre)UNION (SELECT intereses_importador.productos AS NombrePoducto, 
+	empresas.nombre, 
+	empresas.imagen, 
+	categorias.id AS categoria_id, 
+	paises.continente, 
+	paises.nombre AS pais, 
+	paises.ncontinente, 
+	perfil_empresa.perfil_id,
+	perfil_empresa.null as stok,
+	perfil_empresa.null as venta_minima,
+	perfil_empresa.null as condiciones_pago,
+	perfil_empresa.null as produccion_mes,
+	empresas.imagen as eimagen
+FROM ruta_importador INNER JOIN intereses_importador ON ruta_importador.intereses_importador_id = intereses_importador.id
+	 INNER JOIN empresas ON intereses_importador.empresa_id = empresas.id
+	 INNER JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
+	 INNER JOIN categorias ON intereses_importador.categoria_id = categorias.id
+	 INNER JOIN paises ON ruta_importador.pais_origen = paises.id where $categoria and paises.continente = '$continente'  GROUP BY intereses_importador.productos)"));
+
+
+}
+
+
+
+
+if ($categoria != null and $continente != null and $producto !=null ){
+
+
+if ($categoria != null){
+	$stringcategoria = ' categorias.id = ';
+	$categoria = $stringcategoria.$categoria;
+}
+
+
+switch ($continente) {
+    case 'América':
+            $continente = 2;
+        break;
+    case 'Africa':
+             $continente = 1;
+        break;
+    case 'Asia':
+        $continente = 3;
+        break;
+     case 'Europa':
+           $continente = 4;
+        break;
+     case 'Oceanía':
+        $continente = 5;
+        break;
+}
+
+
+
+$lista_importadoresalls = DB::select( DB::raw("(SELECT empresas.nombre, 
+	productos.nombre AS NombrePoducto, 
+	img_productos.imagen, 
+	categorias.id AS categoria_id, 
+	paises.continente, 
+	paises.ncontinente, 
+	paises.nombre AS pais, 
+	perfil_empresa.perfil_id, 
+	productos.stock, 
+	productos.venta_minima, 
+	productos.condiciones_pago, 
+	productos.produccion_mes,
+	empresas.imagen as eimagen
+FROM productos INNER JOIN categorias ON productos.categoria_id = categorias.id
+	 INNER JOIN empresas ON productos.empresa_id = empresas.id
+	 INNER JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
+	 INNER JOIN img_productos ON img_productos.producto_id = productos.id
+	 INNER JOIN ruta_exportador ON ruta_exportador.producto_id = productos.id
+	 INNER JOIN paises ON ruta_exportador.pais_origen = paises.id where $categoria and paises.continente = '$continente' and productos.nombre = '$producto' GROUP BY productos.nombre)UNION (SELECT intereses_importador.productos AS NombrePoducto, 
+	empresas.nombre, 
+	empresas.imagen, 
+	categorias.id AS categoria_id, 
+	paises.continente, 
+	paises.nombre AS pais, 
+	paises.ncontinente, 
+	perfil_empresa.perfil_id,
+	perfil_empresa.null as stok,
+	perfil_empresa.null as venta_minima,
+	perfil_empresa.null as condiciones_pago,
+	perfil_empresa.null as produccion_mes,
+	empresas.imagen as eimagen
+FROM ruta_importador INNER JOIN intereses_importador ON ruta_importador.intereses_importador_id = intereses_importador.id
+	 INNER JOIN empresas ON intereses_importador.empresa_id = empresas.id
+	 INNER JOIN perfil_empresa ON perfil_empresa.empresa_id = empresas.id
+	 INNER JOIN categorias ON intereses_importador.categoria_id = categorias.id
+	 INNER JOIN paises ON ruta_importador.pais_origen = paises.id where $categoria and paises.continente = '$continente' and intereses_importador.productos= '$producto'  GROUP BY intereses_importador.productos)"));
+
+
+}
+
+
+///////// LISTA IMPORTAR ///////
+
+
+
+
+$lista_importadores = DB::select( DB::raw("SELECT empresas.id, 
+	productos.nombre AS NombrePoducto, 
+	empresas.nombre, 
+	productos.stock, 
+	productos.venta_minima, 
+	productos.produccion_mes, 
+	productos.descripcion, 
+	empresas.imagen, 
+	productos.id, 
+	img_productos.producto_id, 
+	img_productos.imagen AS imagenproducto, 
+	productos.unidad_id, 
+	ruta_exportador.perfil_empresa_id AS empresa_id_rutaex, 
+	ruta_exportador.pais_origen, 
+	ruta_exportador.pais_destino, 
+	ruta_exportador.producto_id, 
+	paises.id, 
+	paises.nombre AS pais, 
+	paises.continente, 
+	categorias.id
+FROM perfil_empresa RIGHT OUTER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
+	 LEFT OUTER JOIN paises ON paises.id = empresas.pais_id
+	 RIGHT OUTER JOIN ruta_exportador ON ruta_exportador.perfil_empresa_id = empresas.id
+	 RIGHT OUTER JOIN productos ON productos.empresa_id = empresas.id
+	 INNER JOIN categorias ON categorias.id = productos.categoria_id
+	 RIGHT OUTER JOIN img_productos ON img_productos.producto_id = productos.id AND ruta_exportador.producto_id = productos.id
+WHERE paises.continente = 0 GROUP BY productos.nombre") );
+
+
+
+///////// LISTA IMPORTAR ///////
+if ($categoria != null and $continente != null and $producto !=null ){
+
+
+if ($categoria != null){
+	$stringcategoria = ' categorias.id = ';
+	$categoria = $stringcategoria.$categoria;
+}
+
+
+switch ($continente) {
+    case 'América':
+            $continente = 2;
+        break;
+    case 'Africa':
+             $continente = 1;
+        break;
+    case 'Asia':
+        $continente = 3;
+        break;
+     case 'Europa':
+           $continente = 4;
+        break;
+     case 'Oceanía':
+        $continente = 5;
+        break;
+}
+
+$lista_importadores = DB::select( DB::raw("SELECT empresas.id, 
+	productos.nombre AS NombrePoducto, 
+	empresas.nombre, 
+	productos.stock, 
+	productos.venta_minima, 
+	productos.produccion_mes, 
+	productos.descripcion, 
+	empresas.imagen, 
+	productos.id, 
+	img_productos.producto_id, 
+	img_productos.imagen AS imagenproducto, 
+	productos.unidad_id, 
+	ruta_exportador.perfil_empresa_id AS empresa_id_rutaex, 
+	ruta_exportador.pais_origen, 
+	ruta_exportador.pais_destino, 
+	ruta_exportador.producto_id, 
+	paises.id, 
+	paises.nombre AS pais, 
+	paises.continente, 
+	categorias.id
+FROM perfil_empresa RIGHT OUTER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
+	 LEFT OUTER JOIN paises ON paises.id = empresas.pais_id
+	 RIGHT OUTER JOIN ruta_exportador ON ruta_exportador.perfil_empresa_id = empresas.id
+	 RIGHT OUTER JOIN productos ON productos.empresa_id = empresas.id
+	 INNER JOIN categorias ON categorias.id = productos.categoria_id
+	 RIGHT OUTER JOIN img_productos ON img_productos.producto_id = productos.id AND ruta_exportador.producto_id = productos.id
+WHERE productos.nombre  = '$producto' and paises.continente = $continente and categorias.id = $categoria
+GROUP BY productos.nombre") );
+
+}
+///////// LISTA IMPORTAR ///////
+if ($categoria != null and $continente == null and $producto ==null ){
+
+
+if ($categoria != null){
+	$stringcategoria = ' categorias.id = ';
+	$categoria = $stringcategoria.$categoria;
+}
+
+
+switch ($continente) {
+    case 'América':
+            $continente = 2;
+        break;
+    case 'Africa':
+             $continente = 1;
+        break;
+    case 'Asia':
+        $continente = 3;
+        break;
+     case 'Europa':
+           $continente = 4;
+        break;
+     case 'Oceanía':
+        $continente = 5;
+        break;
+}
+
+$lista_importadores = DB::select( DB::raw("SELECT empresas.id, 
+	productos.nombre AS NombrePoducto, 
+	empresas.nombre, 
+	productos.stock, 
+	productos.venta_minima, 
+	productos.produccion_mes, 
+	productos.descripcion, 
+	empresas.imagen, 
+	productos.id, 
+	img_productos.producto_id, 
+	img_productos.imagen AS imagenproducto, 
+	productos.unidad_id, 
+	ruta_exportador.perfil_empresa_id AS empresa_id_rutaex, 
+	ruta_exportador.pais_origen, 
+	ruta_exportador.pais_destino, 
+	ruta_exportador.producto_id, 
+	paises.id, 
+	paises.nombre AS pais, 
+	paises.continente, 
+	categorias.id
+FROM perfil_empresa RIGHT OUTER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
+	 LEFT OUTER JOIN paises ON paises.id = empresas.pais_id
+	 RIGHT OUTER JOIN ruta_exportador ON ruta_exportador.perfil_empresa_id = empresas.id
+	 RIGHT OUTER JOIN productos ON productos.empresa_id = empresas.id
+	 INNER JOIN categorias ON categorias.id = productos.categoria_id
+	 RIGHT OUTER JOIN img_productos ON img_productos.producto_id = productos.id AND ruta_exportador.producto_id = productos.id
+WHERE categorias.id = $categoria
+GROUP BY productos.nombre") );
+
+}
+
+
+///////// LISTA IMPORTAR ///////
+if ($categoria == null and $continente != null and $producto ==null ){
+
+
+if ($categoria != null){
+	$stringcategoria = ' categorias.id = ';
+	$categoria = $stringcategoria.$categoria;
+}
+
+
+switch ($continente) {
+    case 'América':
+            $continente = 2;
+        break;
+    case 'Africa':
+             $continente = 1;
+        break;
+    case 'Asia':
+        $continente = 3;
+        break;
+     case 'Europa':
+           $continente = 4;
+        break;
+     case 'Oceanía':
+        $continente = 5;
+        break;
+}
+
+$lista_importadores = DB::select( DB::raw("SELECT empresas.id, 
+	productos.nombre AS NombrePoducto, 
+	empresas.nombre, 
+	productos.stock, 
+	productos.venta_minima, 
+	productos.produccion_mes, 
+	productos.descripcion, 
+	empresas.imagen, 
+	productos.id, 
+	img_productos.producto_id, 
+	img_productos.imagen AS imagenproducto, 
+	productos.unidad_id, 
+	ruta_exportador.perfil_empresa_id AS empresa_id_rutaex, 
+	ruta_exportador.pais_origen, 
+	ruta_exportador.pais_destino, 
+	ruta_exportador.producto_id, 
+	paises.id, 
+	paises.nombre AS pais, 
+	paises.continente, 
+	categorias.id
+FROM perfil_empresa RIGHT OUTER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
+	 LEFT OUTER JOIN paises ON paises.id = empresas.pais_id
+	 RIGHT OUTER JOIN ruta_exportador ON ruta_exportador.perfil_empresa_id = empresas.id
+	 RIGHT OUTER JOIN productos ON productos.empresa_id = empresas.id
+	 INNER JOIN categorias ON categorias.id = productos.categoria_id
+	 RIGHT OUTER JOIN img_productos ON img_productos.producto_id = productos.id AND ruta_exportador.producto_id = productos.id
+WHERE paises.continente = $continente GROUP BY productos.nombre") );
+
+}
+
+
+if ($categoria != null and $continente != null and $producto ==null ){
+
+
+if ($categoria != null){
+	$stringcategoria = ' categorias.id = ';
+	$categoria = $stringcategoria.$categoria;
+}
+
+
+switch ($continente) {
+    case 'América':
+            $continente = 2;
+        break;
+    case 'Africa':
+             $continente = 1;
+        break;
+    case 'Asia':
+        $continente = 3;
+        break;
+     case 'Europa':
+           $continente = 4;
+        break;
+     case 'Oceanía':
+        $continente = 5;
+        break;
+}
+
+$lista_importadores = DB::select( DB::raw("SELECT empresas.id, 
+	productos.nombre AS NombrePoducto, 
+	empresas.nombre, 
+	productos.stock, 
+	productos.venta_minima, 
+	productos.produccion_mes, 
+	productos.descripcion, 
+	empresas.imagen, 
+	productos.id, 
+	img_productos.producto_id, 
+	img_productos.imagen AS imagenproducto, 
+	productos.unidad_id, 
+	ruta_exportador.perfil_empresa_id AS empresa_id_rutaex, 
+	ruta_exportador.pais_origen, 
+	ruta_exportador.pais_destino, 
+	ruta_exportador.producto_id, 
+	paises.id, 
+	paises.nombre AS pais, 
+	paises.continente, 
+	categorias.id
+FROM perfil_empresa RIGHT OUTER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
+	 LEFT OUTER JOIN paises ON paises.id = empresas.pais_id
+	 RIGHT OUTER JOIN ruta_exportador ON ruta_exportador.perfil_empresa_id = empresas.id
+	 RIGHT OUTER JOIN productos ON productos.empresa_id = empresas.id
+	 INNER JOIN categorias ON categorias.id = productos.categoria_id
+	 RIGHT OUTER JOIN img_productos ON img_productos.producto_id = productos.id AND ruta_exportador.producto_id = productos.id
+WHERE paises.continente = $continente and categorias.id = $categoria GROUP BY productos.nombre") );
+
+}
+
+
+if ($categoria != null and $continente == null and $producto !=null ){
+
+
+if ($categoria != null){
+	$stringcategoria = ' categorias.id = ';
+	$categoria = $stringcategoria.$categoria;
+}
+
+
+switch ($continente) {
+    case 'América':
+            $continente = 2;
+        break;
+    case 'Africa':
+             $continente = 1;
+        break;
+    case 'Asia':
+        $continente = 3;
+        break;
+     case 'Europa':
+           $continente = 4;
+        break;
+     case 'Oceanía':
+        $continente = 5;
+        break;
+}
+
+$lista_importadores = DB::select( DB::raw("SELECT empresas.id, 
+	productos.nombre AS NombrePoducto, 
+	empresas.nombre, 
+	productos.stock, 
+	productos.venta_minima, 
+	productos.produccion_mes, 
+	productos.descripcion, 
+	empresas.imagen, 
+	productos.id, 
+	img_productos.producto_id, 
+	img_productos.imagen AS imagenproducto, 
+	productos.unidad_id, 
+	ruta_exportador.perfil_empresa_id AS empresa_id_rutaex, 
+	ruta_exportador.pais_origen, 
+	ruta_exportador.pais_destino, 
+	ruta_exportador.producto_id, 
+	paises.id, 
+	paises.nombre AS pais, 
+	paises.continente, 
+	categorias.id
+FROM perfil_empresa RIGHT OUTER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
+	 LEFT OUTER JOIN paises ON paises.id = empresas.pais_id
+	 RIGHT OUTER JOIN ruta_exportador ON ruta_exportador.perfil_empresa_id = empresas.id
+	 RIGHT OUTER JOIN productos ON productos.empresa_id = empresas.id
+	 INNER JOIN categorias ON categorias.id = productos.categoria_id
+	 RIGHT OUTER JOIN img_productos ON img_productos.producto_id = productos.id AND ruta_exportador.producto_id = productos.id
+WHERE productos.nombre = '$producto' and  $categoria GROUP BY productos.nombre") );
+
+}
+/////////////////////////////////////////
+
+
+
+
+	
+$lista_exportadores= DB::select("SELECT empresas.id, 
+	empresas.nombre, 
+	empresas.imagen, 
+	paises.id, 
+	paises.nombre AS pais, 
+	paises.continente, 
+	categorias.id AS categoria_id, 
+	intereses_importador.productos, 
+	paises.ncontinente
+FROM perfil_empresa INNER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
+	 LEFT OUTER JOIN intereses_importador ON intereses_importador.empresa_id = empresas.id
+	 INNER JOIN categorias ON categorias.id = intereses_importador.categoria_id
+	 LEFT OUTER JOIN ruta_importador ON intereses_importador.id = ruta_importador.intereses_importador_id
+	 INNER JOIN paises ON paises.id = empresas.pais_id
+	 where paises.id = 00 and paises.continente = 000 GROUP BY intereses_importador.productos");
+
+
+
+
+
+
+if ($producto != Null  and $continente != null  and $categoria != Null) {
+
+	switch ($continente) {
+    case 'América':
+            $continente = 2;
+        break;
+    case 'Africa':
+             $continente = 1;
+        break;
+    case 'Asia':
+        $continente = 3;
+        break;
+     case 'Europa':
+           $continente = 4;
+        break;
+     case 'Oceanía':
+        $continente = 5;
+        break;
+}
+
+
+$lista_exportadores= DB::select("SELECT empresas.id, 
+	empresas.nombre, 
+	empresas.imagen, 
+	paises.id, 
+	paises.nombre AS pais, 
+	paises.continente, 
+	categorias.id AS categoria_id, 
+	intereses_importador.productos, 
+	paises.ncontinente
+FROM perfil_empresa INNER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
+	 LEFT OUTER JOIN intereses_importador ON intereses_importador.empresa_id = empresas.id
+	 INNER JOIN categorias ON categorias.id = intereses_importador.categoria_id
+	 LEFT OUTER JOIN ruta_importador ON intereses_importador.id = ruta_importador.intereses_importador_id
+	 INNER JOIN paises ON paises.id = empresas.pais_id
+	 where intereses_importador.productos = '$producto' and paises.continente = $continente and categorias.id = $categoria
+GROUP BY intereses_importador.productos");
+}
+
+
+
+
+if ($producto != Null  and $continente == null  and $categoria == Null) {
+
+
+
+
+$lista_exportadores= DB::select("SELECT empresas.id, 
+	empresas.nombre, 
+	empresas.imagen, 
+	paises.id, 
+	paises.nombre AS pais, 
+	paises.continente, 
+	categorias.id AS categoria_id, 
+	intereses_importador.productos, 
+	paises.ncontinente
+FROM perfil_empresa INNER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
+	 LEFT OUTER JOIN intereses_importador ON intereses_importador.empresa_id = empresas.id
+	 INNER JOIN categorias ON categorias.id = intereses_importador.categoria_id
+	 LEFT OUTER JOIN ruta_importador ON intereses_importador.id = ruta_importador.intereses_importador_id
+	 INNER JOIN paises ON paises.id = empresas.pais_id
+	 where intereses_importador.productos = '$producto' GROUP BY intereses_importador.productos");
+}
+
+
+
+
+if ($producto == Null  and $continente == null  and $categoria != Null) {
+
+
+
+
+$lista_exportadores= DB::select("SELECT empresas.id, 
+	empresas.nombre, 
+	empresas.imagen, 
+	paises.id, 
+	paises.nombre AS pais, 
+	paises.continente, 
+	categorias.id AS categoria_id, 
+	intereses_importador.productos, 
+	paises.ncontinente
+FROM perfil_empresa INNER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
+	 LEFT OUTER JOIN intereses_importador ON intereses_importador.empresa_id = empresas.id
+	 INNER JOIN categorias ON categorias.id = intereses_importador.categoria_id
+	 LEFT OUTER JOIN ruta_importador ON intereses_importador.id = ruta_importador.intereses_importador_id
+	 INNER JOIN paises ON paises.id = empresas.pais_id
+	 where $categoria GROUP BY intereses_importador.productos");
+}
+
+
+
+if ($producto != Null  and $continente == null  and $categoria != Null) {
+
+
+
+
+$lista_exportadores= DB::select("SELECT empresas.id, 
+	empresas.nombre, 
+	empresas.imagen, 
+	paises.id, 
+	paises.nombre AS pais, 
+	paises.continente, 
+	categorias.id AS categoria_id, 
+	intereses_importador.productos, 
+	paises.ncontinente
+FROM perfil_empresa INNER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
+	 LEFT OUTER JOIN intereses_importador ON intereses_importador.empresa_id = empresas.id
+	 INNER JOIN categorias ON categorias.id = intereses_importador.categoria_id
+	 LEFT OUTER JOIN ruta_importador ON intereses_importador.id = ruta_importador.intereses_importador_id
+	 INNER JOIN paises ON paises.id = empresas.pais_id
+	 where $categoria  and intereses_importador.productos = '$producto' GROUP BY intereses_importador.productos");
+}
+
+if ($producto == Null  and $continente != null  and $categoria == Null) {
+
+
+switch ($continente) {
+    case 'América':
+            $continente = 2;
+        break;
+    case 'Africa':
+             $continente = 1;
+        break;
+    case 'Asia':
+        $continente = 3;
+        break;
+     case 'Europa':
+           $continente = 4;
+        break;
+     case 'Oceanía':
+        $continente = 5;
+        break;
+}
+
+
+$lista_exportadores= DB::select("SELECT empresas.id, 
+	empresas.nombre, 
+	empresas.imagen, 
+	paises.id, 
+	paises.nombre AS pais, 
+	paises.continente, 
+	categorias.id AS categoria_id, 
+	intereses_importador.productos, 
+	paises.ncontinente
+FROM perfil_empresa INNER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
+	 LEFT OUTER JOIN intereses_importador ON intereses_importador.empresa_id = empresas.id
+	 INNER JOIN categorias ON categorias.id = intereses_importador.categoria_id
+	 LEFT OUTER JOIN ruta_importador ON intereses_importador.id = ruta_importador.intereses_importador_id
+	 INNER JOIN paises ON paises.id = empresas.pais_id
+	 where paises.continente = $continente GROUP BY intereses_importador.productos");
+}
+
+
+if ($producto == Null  and $continente != null  and $categoria != Null) {
+
+
+switch ($continente) {
+    case 'América':
+            $continente = 2;
+        break;
+    case 'Africa':
+             $continente = 1;
+        break;
+    case 'Asia':
+        $continente = 3;
+        break;
+     case 'Europa':
+           $continente = 4;
+        break;
+     case 'Oceanía':
+        $continente = 5;
+        break;
+}
+
+
+$lista_exportadores= DB::select("SELECT empresas.id, 
+	empresas.nombre, 
+	empresas.imagen, 
+	paises.id, 
+	paises.nombre AS pais, 
+	paises.continente, 
+	categorias.id AS categoria_id, 
+	intereses_importador.productos, 
+	paises.ncontinente
+FROM perfil_empresa INNER JOIN empresas ON perfil_empresa.empresa_id = empresas.id
+	 LEFT OUTER JOIN intereses_importador ON intereses_importador.empresa_id = empresas.id
+	 INNER JOIN categorias ON categorias.id = intereses_importador.categoria_id
+	 LEFT OUTER JOIN ruta_importador ON intereses_importador.id = ruta_importador.intereses_importador_id
+	 INNER JOIN paises ON paises.id = empresas.pais_id
+	 where $categoria and paises.continente = $continente GROUP BY intereses_importador.productos");
+}
 
 
 
@@ -502,7 +1303,16 @@ GROUP BY paises.ncontinente"));
 	public function filtroregion($producto=null)
 	{
 		
+		if ($producto == 000){
+	$region = DB::select( DB::raw("SELECT paises.continente, paises.ncontinente 
+FROM ruta_exportador inner JOIN productos ON ruta_exportador.perfil_empresa_id = productos.empresa_id AND productos.id = ruta_exportador.producto_id
+	 INNER JOIN paises ON ruta_exportador.pais_destino = paises.id
+	 INNER JOIN empresas ON empresas.pais_id = ruta_exportador.pais_origen
+WHERE paises.id = pais_destino and ruta_exportador.pais_origen =empresas.pais_id and paises.ncontinente <> ''
 
+GROUP BY paises.continente"));
+
+		}else{
 		$region = DB::select( DB::raw("SELECT paises.continente, paises.ncontinente 
 FROM ruta_exportador inner JOIN productos ON ruta_exportador.perfil_empresa_id = productos.empresa_id AND productos.id = ruta_exportador.producto_id
 	 INNER JOIN paises ON ruta_exportador.pais_destino = paises.id
@@ -511,7 +1321,7 @@ WHERE productos.nombre = '$producto' and paises.id = pais_destino and ruta_expor
 
 GROUP BY paises.continente"));
 
-
+}
 
 		return Response::json(($region));
 		

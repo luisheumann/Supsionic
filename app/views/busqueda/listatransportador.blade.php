@@ -15,7 +15,7 @@
 	<?php  $i = 1;
 
 	?>
-		@if($lista_importadoresalls == Null)
+		@if($lista_exportadores == Null)
 	<style>
 	.lista-empresas {
   background-color: #EDEDED;
@@ -33,9 +33,20 @@
 	  <i class="fa fa-bullhorn"></i> ANUNCIOS
 	</p>-->
 	<div class="col-xs-3">
-			 <img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_exportadore->imagen}}"/>
-			 <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_exportadore->imagen}}"/>
 
+			@if($lista_exportadore->imagen != null)
+			 <img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_exportadore->imagen}}"/>
+
+			  <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_exportadore->imagen}}"/>
+			@else
+ 			<img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/none.jpg"/>
+
+ 			 <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/none.jpg"/>
+			@endif
+			
+			
+			 
+			
 
 	</div>
 

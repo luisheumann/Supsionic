@@ -67,7 +67,7 @@
           <img src="{{asset('images/home/dos.png')}}" alt="">
         </label>
         <div class="col-xs-10">
-          <select name="categoria" id="categoria"  class="form-control validate[required]">
+          <select name="categoria" id="categoria"  class="form-control ">
             <option value="">Categoría</option>
             @foreach($categorias as $categoria)
             <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
@@ -123,7 +123,7 @@
 
 
 
-<select name="country" class="country" id="country" class="form-control validate[required]" >
+<select name="country" class="country" id="country" class="form-control" >
 
   <option selected="selected" value ="">REGION</option>
 </select>
@@ -216,6 +216,8 @@ if (isset($_GET["selectProducto"]) && !empty($_GET["selectProducto"])) {
 
 
 //////////////////////////////////////////////////
+
+
 if (producto != null){
   url = window.location.href;
 
@@ -248,6 +250,33 @@ if (producto != null){
     $('select#country').append('<option value="'+attrValue+'" class="cityItems">'+attrValue+'</option>')
             };// funcion
           }, 'json');
+
+}else{
+
+  $ciudaditems = $('.cityItems').remove();
+
+
+   rutajson = '../api/filtroregion/000';
+
+
+ $ciudaditems = $('.cityItems').remove();
+
+ $.get(rutajson, function(data,index){
+  for(var i=0;i<data.length;i++){
+    var obj = data[i];
+
+    for(var key in obj){
+
+      var attrName = key;
+      var attrValue = obj[key];
+      
+    }
+
+
+    $('select#country').append('<option value="'+attrValue+'" class="cityItems">'+attrValue+'</option>')
+            };// funcion
+          }, 'json');
+
 
 }
 document.getElementById("country").value = '<?php echo $_GET['country']?>';
@@ -401,43 +430,6 @@ $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));
 
 /////////////////////////////////////////////
 
-producto = '<?php echo $_GET['producto']?>';
-
-categoria = '<?php echo $_GET['selectProducto']?>';
-$ciudaditems = $('.cityItems').remove();
-if (categoria == "producto") {
- rutajson = '../api/filtroregion/';
-
-}else{
-
- rutajson = '../api/filtroregioninteres/';  
-}
-
-$ciudaditems = $('.cityItems').remove();
-
-$.get(rutajson+producto, function(data){
-
-          //  $.each(data[0], function(index, element){
-            //console.log(index);
-
-            for(var i=0;i<data.length;i++){
-              var obj = data[i];
-
-
-
-
-              for(var key in obj){
-                var attrName = key;
-                var attrValue = obj[key];
-              }
-
-
-              $('select#country').append('<option value="'+attrValue+'" class="cityItems">'+attrValue+'</option>')
-            };// funcion
-          }, 'json');
-
-
-////////////////////////////////////////
 
 } 
 
@@ -498,6 +490,8 @@ if (categoria == "producto") {
 }
 
 $ciudaditems = $('.cityItems').remove();
+
+
 
 $.get(rutajson+producto, function(data){
 

@@ -36,7 +36,7 @@
 	</p>-->
 	<div class="col-xs-3">
 			 <img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/productos/{{$lista_importadore->imagenproducto}}"/>
-			 <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadore->imagen}}"/>
+ <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadore->imagen}}"/>
 
 
 	</div>

@@ -71,6 +71,17 @@ class ProductosController extends BaseController {
         $producto->produccion_mes = Input::get('capacidad_produccion');
         $producto->venta_minima   = Input::get('cantidad_minima');
         $producto->stock          = Input::get('cantidad_disponible');
+        $producto->marca          = Input::get('marca');
+        $producto->precio          = Input::get('precio');
+        $producto->puerto          = Input::get('puerto');
+        $producto->condiciones_pago  = Input::get('condiciones_pago');
+        $producto->material          = Input::get('material');
+        $producto->peso          = Input::get('peso');
+        $producto->dimenciones     = Input::get('dimenciones');
+        $producto->color          = Input::get('color');
+        $producto->referencia    = Input::get('referencia');
+        $producto->detalle_producto = Input::get('detalle_producto');
+        $producto->condiciones_transporte  = Input::get('condiciones_transporte');
         $producto->save();
 
         

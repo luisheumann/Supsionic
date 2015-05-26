@@ -42,6 +42,25 @@
   </div>
 
   <div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="codigo">Marca</label>
+      <input type="text" class="form-control" name="marca" id="marca" placeholder="Marca" required>
+     </div>
+  </div>    
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="unidad_medida">Precio</label>
+       <input type="text" class="form-control" name="precio" id="precio" placeholder="Precio" required>
+     </div>   
+  </div>  
+  </div>
+
+
+
+
+  <div class="row">
 	<div class="col-md-12">
 	  <div class="form-group">
 	    <label for="detalles_producto">Detalles del producto</label>
@@ -148,6 +167,85 @@
     </div>  
 	</div>	
   </div>
+
+  <div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="codigo">Puerto</label>
+      <input type="text" class="form-control" name="puerto" id="puerto" placeholder="Puerto" required>
+     </div>
+  </div>    
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="condiciones_pago">Condiciones de Pago</label>
+      <select name="condiciones_pago" id="condiciones_pago" class="form-control" required>
+        <option value="1">Seleccione...</option> 
+         <option value="1">Condiciones de Pago</option> 
+      </select>
+     </div>   
+  </div>  
+  </div>
+
+  <div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="codigo">Material</label>
+      <input type="text" class="form-control" name="material" id="material" placeholder="Material" required>
+     </div>
+  </div>    
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="unidad_medida">Peso</label>
+      <input type="text" class="form-control" name="peso" id="peso" placeholder="Peso" required>
+     </div>   
+  </div>  
+  </div>
+
+  <div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="codigo">Dimenciones</label>
+      <input type="text" class="form-control" name="dimenciones" id="dimenciones" placeholder="Dimenciones" required>
+     </div>
+  </div>    
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="unidad_medida">Color</label>
+      <input type="text" class="form-control" name="color" id="color" placeholder="Color" required>
+     </div>   
+  </div>  
+  </div>
+
+    <div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="codigo">Referencia</label>
+      <input type="text" class="form-control" name="referencia" id="referencia" placeholder="Referencia" required>
+     </div>
+  </div>    
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="unidad_medida">Detalle del Producto</label>
+      <input type="text" class="form-control" name="detalle_producto" id="detalle_producto" placeholder="Detalle del Producto" required>
+     </div>   
+  </div>  
+  </div>
+
+
+  <div class="row">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label for="detalles_producto">Condiciones de transporte</label>
+      <textarea name="condiciones_transporte" class="form-control" id="condiciones_transporte" rows="4" placeholder="Condiciones del trasporte" required></textarea>
+    </div>
+  </div>  
+   </div>
+
+
 <hr>
 
   <!-- Loader -->

@@ -13,13 +13,7 @@
 </div>
 <div class="lista-empresas"> 
 
-	
-	<?php  $i = 1;
-
-
-
-
-	?>
+	<?php  $i = 1;?>
 
 	@if($lista_importadoresalls == Null)
 	<style>
@@ -39,31 +33,42 @@
 	  <i class="fa fa-bullhorn"></i> ANUNCIOS
 	</p>-->
 	<div class="col-xs-3">
-			 <img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->imagen}}"/>
-			 <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->imagen}}"/>
 
+@if($lista_importadoresall->imagen != null and $lista_importadoresall->perfil_id ==1 )
+<img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/productos/{{$lista_importadoresall->imagen}}"/>
+ <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->eimagen}}"/>
+@endif
+@if($lista_importadoresall->imagen == null and $lista_importadoresall->perfil_id ==1 )
+<img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->imagen}}"/>
+ <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->eimagen}}"/>
+@endif
+@if($lista_importadoresall->imagen != null and $lista_importadoresall->perfil_id ==2 )
+<img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->imagen}}"/>
+ <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->eimagen}}"/>
+@endif
+@if($lista_importadoresall->imagen == null and $lista_importadoresall->perfil_id ==2 )
+<img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/none.jpg"/>
+ <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/none.jpg"/>
+@endif
 
-	</div>
-
-
-	
-
-
+</div>
 
 	<div class="col-xs-7">
 		<h1 class="titulo_product<?php echo $i ?>">{{$lista_importadoresall->nombre}}</h1>
 		<ul class="r_dtalles_producto">
-			@if($lista_importadoresall->continente == Null) 
-				@else	
-				{{$lista_importadoresall->continente}} -{{$lista_importadoresall->pais}}							
-				@endif</li>
-				
+			<li>{{$lista_importadoresall->NombrePoducto}}</li>
+			<li>{{$lista_importadoresall->ncontinente}} -{{$lista_importadoresall->pais}}</li>							
+			@if($lista_importadoresall->stock != Null)
+			<li>Stock:{{$lista_importadoresall->stock}}</li>
+			@endif
 
-@if($lista_importadoresall->NombrePoducto == Null) 
-						<li>Producto:{{$lista_importadoresall->productos}} 	</li>		
-				@else	
-						<li>Producto: {{$lista_importadoresall->NombrePoducto}}</li>	
-				@endif
+				@if($lista_importadoresall->venta_minima != Null)
+			<li>Min:{{$lista_importadoresall->venta_minima}} Max:{{$lista_importadoresall->produccion_mes}}</li>
+			@endif
+
+			@if($lista_importadoresall->condiciones_pago != Null) 
+			<li>Condiciones de pago:{{$lista_importadoresall->condiciones_pago}}</li>			
+			@endif
 	
 	</div>	
 	<div class="col-xs-2">

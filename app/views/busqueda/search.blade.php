@@ -162,13 +162,10 @@ if(valueSelected==1)
         if(valueSelected==3)
     {
       $('#cambio_vista').attr('data-cambio', 3); // data-chek como true
-      $('#vista_transporte').show();
+ 
       $('#vista_vendedor').show();
-      $('#vista_comprador').show();
-      $('#vista_sias').show();
-        $(".espacio_sias").empty();
-           $(".espacio_trasporte").empty(); 
-           $(".espacio_comprador").empty(); 
+      $('#vista_comprador').hide();
+     
 
 
         $(".espacio_transporte").empty();
@@ -182,13 +179,8 @@ if(valueSelected==1)
          if(valueSelected==4)
     {
       $('#cambio_vista').attr('data-cambio', 4); // data-chek como true
-      $('#vista_transporte').show();
-      $('#vista_vendedor').show();
-       $('#vista_comprador').show();
-
-        $(".espacio_sias").empty();
-           $(".espacio_trasporte").empty(); 
-           $(".espacio_comprador").empty(); 
+   $('#vista_vendedor').show();
+      $('#vista_comprador').hide();
 
 
 
@@ -230,6 +222,10 @@ function ArmaCadena() {
      else if(vista=='2'){
 
       CadenaComprador();
+     }else if(vista=='3'){
+       CadenaComprador();
+     }else if(vista=='4'){
+       CadenaComprador();
      }
 
 
