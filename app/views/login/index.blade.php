@@ -72,9 +72,9 @@
 
 	<form  class="crear_registro" id="form_registro">
 
-		<div class="simform-inner">
+		<div class="simform-inner"><br>
 
-		<div class="select_perfil">
+		<!--div class="select_perfil">
 
 			<select class="cs-select cs-skin-border" name="rol">
 
@@ -90,7 +90,39 @@
 
 			</select>
 
+		</div-->
+		<div class="form-group">
+		<label for="rol">¿Cuál es el rol que desempeña?</label><br>
+
+			<label class="radio-inline">
+				<input type="radio" name="rol" id="radio1" value="1">Exportador
+			</label>
+			<label class="radio-inline">
+				<input type="radio" name="rol" id="radio2" value="2">Importador
+			</label>
+			<label class="radio-inline">
+				<input type="radio" name="rol" id="radio3" value="3">Transportador
+			</label>
+			<label class="radio-inline">
+				<input type="radio" name="rol" id="radio4" value="4">SIA
+			</label>
 		</div>
+
+	  <div class="form-group">
+
+		<label for="nombre">¿Cuál es su nombre?</label>
+
+		<input id="nombre" class="borde-formulario-registro form-control input-lg" name="usuario" type="text" placeholder="Nombre" required/>
+
+	  </div>
+
+	  <div class="form-group">
+
+		<label for="apellido">¿Cuál es su apellido?</label>
+
+		<input id="apellido" class="borde-formulario-registro form-control input-lg" name="apellido" type="text" placeholder="Apellido" required/>
+
+	  </div>
 
 	  <div class="form-group">
 
@@ -98,19 +130,24 @@
 
 	    <input type="text" class="borde-formulario-registro form-control input-lg" name="nombre" id="empresa" placeholder="Empresa" required>
 
-	  </div>		
-
-
+	  </div>	
 
 	  <div class="form-group">
 
-		<label for="nombre">¿Cuál es su nombre y apellido?</label>
+	    <label for="empresa">¿Cuál es su teléfono?</label>
 
-		<input id="nombre" class="borde-formulario-registro form-control input-lg" name="usuario" type="text" placeholder="Nombre" required/>
-
-	  </div>
-
-
+		<div class="row">
+		  <div class="col-xs-4">
+		    <input type="text" class="borde-formulario-registro  form-control input-lg" placeholder="Código País">
+		  </div>
+		  <div class="col-xs-4">
+		    <input type="text" class="borde-formulario-registro  form-control input-lg" placeholder="Código Área">
+		  </div>
+		  <div class="col-xs-4">
+		    <input type="text" class="borde-formulario-registro  form-control input-lg" placeholder="Teléfono">
+		  </div>
+		</div>
+	  </div>	
 
 	  <div class="form-group">
 
@@ -158,7 +195,7 @@
 
 	  </p>
 
-	 	<button class="btn-borde btn-borde-a" type="submit" id="btn_registro">ENVIAR</button>
+	 	<button class="btn-borde btn-borde-a" type="submit" id="btn_registro">REGISTRAR</button>
 
 	  </div>
 

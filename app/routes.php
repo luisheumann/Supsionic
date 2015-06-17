@@ -82,6 +82,8 @@ Route::group(array('before' => 'AuthSentryInv'), function()
 	// post para guardar la información comercial para las SIAS
 	Route::post('{post}/info_sias','SiasController@postInfo');	
 
+
+Route::get('admin/backend', 'AdminController@index');
 Route::get('api/producto2.json', 'HomeController@productojson2');
 Route::get('api/producto.json', 'HomeController@productojson');
 Route::get('api/interes.json', 'HomeController@interesesjson');
@@ -94,6 +96,8 @@ Route::get('api/filtropais/{id}', 'BusquedaController@filtropais', array('only' 
 
 Route::get('api/filtroregion/{producto}', 'BusquedaController@filtroregion', array('only' => 'show'));
 Route::get('api/filtroregioninteres/{producto}', 'BusquedaController@filtroregioninteres', array('only' => 'show'));
+
+
 
 
 

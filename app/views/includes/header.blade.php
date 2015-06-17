@@ -162,7 +162,17 @@
 
                Modificar Perfil</a>
 
-            </li>            
+            </li>   
+
+               <li> 
+
+              <a href="{{URL::to('/admin/backend')}}"><i class="fa fa-cog"></i></i>
+
+               BackEnd</a>
+
+            </li>    
+
+
 
             <li> 
 
@@ -190,11 +200,15 @@
 
   <ul class="menu-top" >
 
-    <li><a href="/demo/public">INICIO</a></li>
+    <li><a href="{{URL::to('/')}}">INICIO</a></li>
 
     <li><a href="{{URL::to($perfil->slug)}}">PERFIL</a></li>
 
-    <!--li><a href="#">PRODUCTOS</a></li-->
+  <!--  <li><a href="{{URL::to($perfil->slug.'/registro#info_comercial')}}">AGREGAR PRODUCTOS</a></li>-->
+      <li><a href="{{URL::to('/productos/add')}}">AGREGAR PRODUCTOS</a></li>
+
+    <li><a href="/busqueda?categoria=&amp;region=&amp;destino=&amp;origen=&amp;perfil=&amp;country=">BUSCAR NEGOCIOS</a></li>
+
 
     @if(Request::segment(1)=='busqueda')
 

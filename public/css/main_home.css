@@ -596,3 +596,39 @@ textarea:focus{
 	color: #037E8C;
 	font-size: 16px;
 }
+
+.home-perfil-form{
+padding-left: 40px;
+  margin: auto;
+  width: 90%;
+}
+
+.separacion-punto {
+  width: 100%;
+  border: 1px;
+  border-style: dashed;
+  border-color: #ccc;
+}
+
+.col-md-6-form-register {
+
+	width: 200px;
+	float: left;
+	margin-right: 10px;
+}
+
+.col-md-6-form-register400 {
+
+	width: 410px;
+	float: left;
+	margin-right: 10px;
+}
+
+.col-md-6-form-register100 {
+
+	width: 100px;
+	float: left;
+	margin-right: 10px;
+}
+
+
