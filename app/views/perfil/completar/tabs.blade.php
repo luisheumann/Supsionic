@@ -6,12 +6,12 @@
 <div class="tab-form">
 	<ul class="nav nav-tabs nav-tabs-form nav-justified" role="tablist" id="myTab">
 	  <li class="active">
-	  	<a href="#datos-basic" aria-controls="datos-basic" role="tab" data-toggle="tab">
-	  	DATOS BÁSICOS DE LA EMPRESA</a>
+	  	<a href="#datos-basicos" aria-controls="datos-basicos" role="tab" data-toggle="tab">
+	  	DATOS BÁSICOS</a>
 	  </li>
 	  <li>
-	  	<a href="#info_comercial" aria-controls="info_comercial" role="tab" data-toggle="tab">
-	  	INFORMACIÓN COMERCIAL</a>
+	  	<a href="#datos-empresa" aria-controls="datos-empresa" role="tab" data-toggle="tab">
+	  	DATOS EMPRESA</a>
 	  </li>
 	  <li><a href="#detalles-comercio" aria-controls="detalles-comercio" role="tab" data-toggle="tab">
 	  	DETALLES DE COMERCIO</a></li>
@@ -19,36 +19,33 @@
 </div>
 
 <div class="tab-content">
-	<div role="tabpanel" class="tab-pane active" id="datos-basic">
+	<div role="tabpanel" class="tab-pane active" id="datos-basicos">
 	    <!-- Incluimos el formulario de datos basicos -->
 		@include('perfil/completar/datos_basicos')
 	</div>
 
-	<div role="tabpanel" class="tab-pane" id="info_comercial">
+	<div role="tabpanel" class="tab-pane" id="datos-empresa">
 	    <!-- Cargamos la vista de acuerdo al perfil de la empresa -->
 		 <?php
 			 switch ($perfil->id) {
 			 	case 1:
 				 	?> 
-					 	<h1>Perfil: Exportador</h1>
-					 	@include('perfil/completar/exportador/index')
+					 	@include('perfil/completar/datos_empresa')
 				 	<?php
 			 		break;
 			 	case 2:
 				 	?> 
-				 	    <h1>Importador</h1>
 					 	@include('perfil/completar/importador/index')
 				 	<?php
 			 		break;
 			 	case 3:
-				 	?>  <h1>Transportador</h1>
+				 	?> 
 				 		@include('perfil/completar/transportador/index')
 				 	<?php
 			 		break;		 		
 			 	default:
 			 	case 4:
 				 	?>
-					 	 <h1>SIAS</h1>
 					 	 @include('perfil/completar/sias/index')
 				 	<?php
 			 		break;		 		
@@ -61,7 +58,35 @@
 	</div> <!-- /tab intro empresa -->
 
 	<div role="tabpanel" class="tab-pane" id="detalles-comercio">
-		<h1>Detalles del comercio</h1>
+	<!-- Cargamos la vista de detalles de comercio deacuerdo al perfil de la empresa -->
+		 <?php
+			 switch ($perfil->id) {
+			 	case 1:
+				 	?>
+					 	@include('perfil/completar/exportador/detalles-comercio/index')
+				 	<?php
+			 		break;
+			 	case 2:
+				 	?> 				 	    
+					 	@include('perfil/completar/importador/detalles-comercio/index')
+				 	<?php
+			 		break;
+			 	case 3:
+				 	?> 
+				 		@include('perfil/completar/transportador/detalles-comercio/index')
+				 	<?php
+			 		break;		 		
+			 	default:
+			 	case 4:
+				 	?>
+					 	@include('perfil/completar/sias/detalles-comercio/index')
+				 	<?php
+			 		break;		 		
+			 	default:		 	
+			 		# code...
+			 		break;
+			 }
+		 ?>
 	</div>
 </div>
 	

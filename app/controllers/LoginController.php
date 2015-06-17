@@ -100,6 +100,7 @@ class LoginController extends \BaseController {
 		    $user = Sentry::register(array(
 		    	'first_name' => Input::get('usuario'),
 		    	'email'      => Input::get('email'),
+		    	'last_name'      => Input::get('apellido'),
 		    	'password'   => Input::get('password'),		    	
 		        'activated'  => true,
 		    ));
