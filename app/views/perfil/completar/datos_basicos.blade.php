@@ -1,17 +1,17 @@
-<form class="form-horizontal" id="datos-basicos"  enctype="multipart/form-data">
+<form class="form-horizontal" id="datos-basico"  enctype="multipart/form-data">
 
 <div class="row">
 	<div class="col-md-6">
 	  <div class="form-group">
 	    <label for="nombre">Datos Usuario</label>
-	    <input type="text" class="form-control" id="nombre" name="nombre" value="{{$usuario->first_name}}">
+	    <input type="text" class="form-control" id="first_name" name="first_name" value="{{$usuario->first_name}}">
 	  </div>		
 	</div>
 
 	<div class="col-md-6">
 	  <div class="form-group">
 	    <label for="apellido">Apellido</label>
-	    <input type="text" class="form-control" id="apellido" name="apellido" value="{{$usuario->last_name}}">
+	    <input type="text" class="form-control" id="last_name" name="last_name" value="{{$usuario->last_name}}">
 	  </div>			
 	</div>
 </div>
@@ -21,7 +21,7 @@
 	<div class="col-md-6">
 	  <div class="form-group">
 	     <label for="correo">Correo</label>
-		<input type="email" class="form-control" id="correo" name="correo" value="{{$usuario->email}}">
+		<input type="email" class="form-control" id="email" name="email" value="{{$usuario->email}}">
       </div>		
 	</div>
 
@@ -35,15 +35,19 @@
 	    <input type="cargo" class="form-control" id="cargo" name="cargo" value="{{$usuario->cargo}}">
 	  </div>			
 	</div>
-
+</div>
+<div class="row color">
 
 <div class="col-md-6">
 	  <div class="form-group">
 	    <label for="dir">Contraseña</label>
-	    <input type="password" class="form-control" id="password" name="password" value="{{$usuario->password}}">
+	    <input type="password" class="form-control" id="password" name="password" value="">
 	  </div>			
 	</div>
+
 </div>
+
+
 
 	<!-- Loader -->
 	<div align="center">
@@ -62,6 +66,18 @@
     </div>
 
 <div align="right">
-	<input type="submit" id="btn_basico" class="btn-borde btn-borde-n-i" value="Guardar">
+	<input type="submit" id="btn_basico" class="btn-borde btn-borde-n-i" value="SIGUIENTE">
 </div>
+
+
+<script>
+ $( document ).ready(function() {
+
+ 
+
+ }
+</script>
+
+
+
 </form>

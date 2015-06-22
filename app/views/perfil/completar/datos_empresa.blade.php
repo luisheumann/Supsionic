@@ -1,4 +1,4 @@
-<form class="form-horizontal" id="datos-empresa"  enctype="multipart/form-data">
+<form class="form-horizontal" id="basico"  enctype="multipart/form-data">
   <div class="form-group">
     <label for="nombre_empresa">Nombre de la Empresa</label>
     <input type="text" class="form-control" name="nombre" id="nombre_empresa" placeholder="Nombre" value="{{$empresa->nombre}}">
@@ -8,14 +8,14 @@
 	<div class="col-md-6">
 	  <div class="form-group">
 	    <label for="email">Email de la empresa</label>
-	    <input type="text" class="form-control" id="apellido" name="apellido" value="{{$empresa->email}}">
+	    <input type="email" class="form-control" id="email" name="email" value="{{$empresa->email}}">
 	  </div>		
 	</div>
 
 	<div class="col-md-6">
 	  <div class="form-group">
 	    <label for="web">Sitio Web de la empresa</label>
-	    <input type="url" class="form-control" id="web" name="web" placeholder="URL" value="{{$empresa->web}}">
+	    <input type="text" class="form-control" id="web" name="web" placeholder="URL" value="{{$empresa->web}}">
 	  </div>			
 	</div>
 </div>
@@ -42,7 +42,7 @@
 	<div class="col-md-6">
 	  <div class="form-group">
 	     <label for="pais">Ubicación del Negocio</label>
-	      <select name="pais" id="pais" class="form-control">
+	      <select name="pais_id" id="pais_id" class="form-control">
 	      <option value="">Seleccione...</option>
 	      @foreach($paises as $pais)
 	         @if($empresa->pais_id == $pais->id)

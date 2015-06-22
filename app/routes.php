@@ -49,6 +49,7 @@ Route::group(array('before' => 'AuthSentryInv'), function()
 	// Completar registro empresa, get y post
 	Route::get('{post}/registro','PerfilEmpresaController@Registro');
 	Route::post('{post}/registro_basico','PerfilEmpresaController@postRegistroBasico');
+	Route::post('{post}/datos_basicos','PerfilEmpresaController@postRegistroDatosBasicos');
 
 	// Post guarda el producto
 	Route::post('{post}/producto_exportador','ProductosController@postRegistroProductoExportador');

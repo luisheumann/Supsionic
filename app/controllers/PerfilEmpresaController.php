@@ -30,7 +30,7 @@ class PerfilEmpresaController extends BaseController {
 
 	public function Registro()
 	{
-
+		$usuario = User::find($this->user_id)->first();
 		$empresa = User::find($this->user_id)->empresas->first();
 		$perfil  = Empresa::find($empresa->id)->perfil->first();
 
@@ -50,10 +50,64 @@ class PerfilEmpresaController extends BaseController {
 				  'perfil'=>$perfil,
 				  'productos'=>$productos,
 				  'intersesImportador'=>$intersesImportador,
-				  'intersesTransportador'=>$intersesTransportador
+				  'intersesTransportador'=>$intersesTransportador,
+				  'usuario'=>$usuario
 				)
 			);
 	}
+
+
+	public function postRegistroDatosBasicos()
+	{
+
+    $usuario = User::find($this->user_id);
+
+		$input = Input::all();
+		$reglas =  array(
+			'password' 	=> 'required',
+			'email'     => 'required|email'
+		
+			);
+
+	   $validation = Validator::make($input, $reglas);
+
+       if ($validation->fails())
+        {
+            return Response::json([
+            	'success'=>false, 
+            	'errors'=>$validation->errors()->toArray()
+            ]);
+        }
+
+
+	$input = Input::all();
+
+    $usuario = User::find($this->user_id);
+	
+      
+			$usuario->first_name  =  Input::get('first_name');
+			$usuario->last_name  =  Input::get('last_name');
+			$usuario->email  = Input::get('email');
+			$usuario->cargo  = Input::get('cargo');
+			
+			$pass = Input::get('password');
+
+				$usuario->save();
+			//if ($usuario->password === md5($pass)) {
+			//	$usuario->save();
+
+			//}
+
+
+		//$pass2 = md5($pass);
+			
+		return Response::json(['success'=>true, $usuario, $usuario->password, $pass2]);
+
+	}
+
+
+
+
 
 	public function postRegistroBasico()
 	{
@@ -71,11 +125,11 @@ class PerfilEmpresaController extends BaseController {
 		$reglas =  array(
 			'nombre' 	=> $regla_nombre,
 			'email'     => 'required|email',
-			'web'       => 'url',
+			//'web'       => 'url',
 			'direccion' => 'required',
 			'telefono'	=> 'required|numeric',
 			'direccion'	=> 'required',
-			'pais'	    => 'required',
+
 			'imagen'    => 'image'
 			);
 
@@ -96,7 +150,7 @@ class PerfilEmpresaController extends BaseController {
 			$empresa_update->nombre  = Input::get('nombre');
 			$empresa_update->email  = Input::get('email');
 			$empresa_update->personacontacto  = Input::get('personacontacto');
-			$empresa_update->pais  = Input::get('pais');
+			$empresa_update->pais_id  = Input::get('pais_id');
 			$empresa_update->resluggify(); // para actualizar el slug;
 		}
 
@@ -115,7 +169,7 @@ class PerfilEmpresaController extends BaseController {
 		$empresa_update->web         = Input::get('web');
 		$empresa_update->telefono    = Input::get('telefono');
 		$empresa_update->direccion   = Input::get('direccion');
-		$empresa_update->pais_id     = Input::get('pais');
+		$empresa_update->pais_id     = Input::get('pais_id');
 		$empresa_update->ciudad     = Input::get('ciudad');
 		$empresa_update->personacontacto     = Input::get('personacontacto');
 		$empresa_update->postal      = Input::get('postal');
