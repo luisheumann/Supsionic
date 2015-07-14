@@ -6,9 +6,9 @@ html,body {
 }
 
 .home-red{
-	margin: 120px auto;
+	/*margin: 120px auto;
 	margin-bottom: 10px;
-	max-width: 1286px;
+	max-width: 1286px;*/
 }
 
 .modal-content-registro{
@@ -415,7 +415,7 @@ ul.menu-top  .last{
 	border-right: 1px solid #A7A9AC;
 	border-bottom: 1px solid #A7A9AC;
 	/*margin-top: 15px;*/
-	width: 70%;
+	width: 100%;
 }
 
 ul.datos-empresa li{

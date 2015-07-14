@@ -1,10 +1,14 @@
-<form class="form-horizontal" id="basico"  enctype="multipart/form-data">
+<div class="box-body">
+
+<br>
+<form class="form-horizontal" id="datos-basico2"  enctype="multipart/form-data">
+<div class="col-md-6">
   <div class="form-group">
     <label for="nombre_empresa">Nombre de la Empresa</label>
     <input type="text" class="form-control" name="nombre" id="nombre_empresa" placeholder="Nombre" value="{{$empresa->nombre}}">
   </div>
+</div>
 
-<div class="row">
 	<div class="col-md-6">
 	  <div class="form-group">
 	    <label for="email">Email de la empresa</label>
@@ -18,10 +22,10 @@
 	    <input type="text" class="form-control" id="web" name="web" placeholder="URL" value="{{$empresa->web}}">
 	  </div>			
 	</div>
-</div>
 
 
-<div class="row">
+
+
 	<div class="col-md-6">
 	  <div class="form-group">
 	     <label for="telefono">Teléfono</label>
@@ -35,10 +39,10 @@
 	    <input type="text" class="form-control" id="dir" name="direccion" placeholder="Dirección de operación" value="{{$empresa->direccion}}">
 	  </div>			
 	</div>
-</div>
 
 
-<div class="row">
+
+
 	<div class="col-md-6">
 	  <div class="form-group">
 	     <label for="pais">Ubicación del Negocio</label>
@@ -73,19 +77,23 @@
 	    <input type="text" class="form-control" name="postal" id="postal" placeholder="Código Postal" value="{{$empresa->postal}}">
 	  </div>			
 	</div>
-
-</div>
-
-<div class="row">
-	<div class="col-md-12">
+	<div class="col-md-6">
 	  <div class="form-group">
-	    <label for="descripcion">Descripción de la empresa</label>
-	    <textarea name="descripcion" class="form-control" id="descripcion" rows="5" placeholder="Descripción">{{$empresa->descripcion}}</textarea>
-	  </div>
+	    <label for="postal">Twitter</label>
+	    <input type="text" class="form-control" name="twitter" id="twitter" placeholder="Twitter" value="{{$empresa->tw}}">
+	  </div>			
 	</div>
-</div>
+
+		<div class="col-md-6">
+	  <div class="form-group">
+	    <label for="postal">Facebook</label>
+	    <input type="text" class="form-control" name="facebook" id="facebook" placeholder="Facebook" value="{{$empresa->fb}}">
+	  </div>			
+	</div>
 
 
+		<div class="col-md-6">
+	  <div class="form-group">
 <div class="fileinput fileinput-new" data-provides="fileinput">
   <div class="fileinput-new thumbnail">
   @if($empresa->imagen)
@@ -112,10 +120,24 @@
     <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
   </div>
 </div>
+ </div>			
+	</div>
+
+
+	<div class="col-md-12">
+	  <div class="form-group">
+	    <label for="descripcion">Descripción de la empresa</label>
+	    <textarea name="descripcion" class="form-control" id="descripcion" rows="5" placeholder="Descripción">{{$empresa->descripcion}}</textarea>
+	  </div>
+	</div>
+
+
+
+
 
 	<!-- Loader -->
 	<div align="center">
-		<img src="{{asset('images/load.gif')}}" id="load_basico" style="display:none">	
+	<!--	<img src="{{asset('images/load.gif')}}" id="load_basico" style="display:none">	-->
 	</div>
 
     <!-- Mensaje de errores -->
@@ -130,6 +152,37 @@
     </div>
 
 <div align="right">
-	<input type="submit" id="btn_basico" class="btn-borde btn-borde-n-i" value="GUARDAR">
+	
+		<button type="button"  class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal2">Actualizar</button>
 </div>
+
+
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Escriba el Password de su cuenta</p>
+        <input type="password" class="form-control" id="pass" name="pass" value="">
+      </div>
+      <div class="modal-footer">
+
+                   
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        	<input type="submit" class="btn btn-info btn-md" value="Actualizar">
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
 </form>
+</div>

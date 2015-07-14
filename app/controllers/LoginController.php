@@ -176,10 +176,108 @@ class LoginController extends \BaseController {
 	    }
    }
 
-   public function NuevoPassword($code, $email)
+   public function NuevoPassword()
    {
-   	 return View::make('login.nuevo_password')->with('code', $code)->with('email', $email);
+
+   	 return View::make('login.nuevo_password');
    }
+
+
+
+
+   public function postNuevoPassword2() 
+   {
+
+
+$input = Input::all();
+		try
+{
+    // Find the user using the user id
+    $user = Sentry::findUserById($this->user_id);
+
+$pass = Input::get('pass');
+    if($user->checkPassword($pass))
+    {
+
+    	
+		$input = Input::all();
+		$reglas =  array(
+			'password'  		    => 'required|min:3|confirmed',
+        	'password_confirmation' => 'required|min:3'
+			);
+
+	   $validation = Validator::make($input, $reglas);
+
+       if ($validation->fails())
+        {
+            return Response::json([
+            	'success'=>false, 
+            	'errors'=>$validation->errors()->toArray()
+            ]);
+        }	
+	
+ try
+{
+    // Find the user using the user id
+$input = Input::all();
+   $iduser = Input::get('id');
+
+    $user = Sentry::findUserById($iduser);
+
+    // Update the user details
+    $user->password = Input::get('password');
+   
+
+
+    // Update the user
+    if ($user->save())
+    {
+        // User information was updated
+    }
+    else
+    {
+        // User information was not updated
+    }
+}
+catch (Cartalyst\Sentry\Users\UserExistsException $e)
+{
+    echo 'User with this login already exists.';
+}
+catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+{
+    echo 'User was not found.';
+}
+
+
+      
+
+		return Response::json(['success'=>true]);
+
+   }
+    else
+    {
+
+
+return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+    }
+
+
+}
+catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+{
+	
+return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+}
+
+}
+
+
+
+
+
+
+
+
 
    public function postNuevoPassword() 
    {

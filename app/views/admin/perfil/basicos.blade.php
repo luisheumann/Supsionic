@@ -1,39 +1,56 @@
-
 <?php
 
-  if (Sentry::check())
-
-  {
-
+  if (Sentry::check()){
     $user_id = Sentry::getuser()->id;
-
-    
-  
-
-    $empresa = User::find($user_id)->empresas->first();
-      $productos = Empresa::find($empresa->id)->productos;
-
-
-
-    $perfil2  = Empresa::find($empresa->id)->perfil->first();
-
-        $PerfilEmpresa  = PerfilEmpresa::find($perfil2->pivot->id);
-
-
+    $empresas = User::find($user_id)->empresas->first();
+    $usuarios = User::find($user_id)->first();
+    $productos = Empresa::find($empresas->id)->productos;
   }
-
   else{
-
     $avatar = Recursos::ImgAvatar($perfil);
+      }
 
-  }
-
-   
-
+      
 ?>
 @extends('layouts/backend')
 
+<script>
+  $(document).ready(function(){
+    $('#form_pw').submit(function(e){
+      
+      e.preventDefault()
+      var alerta  = $('#alerta_pw');
+      var formData = $(this).serializeArray();
 
+      $.ajax({
+          url:"<?php echo URL::to($empresa->slug.'/login/nuevo_password2/')?>",
+          method:'post',
+          datatype: 'json',
+          data: formData,
+
+          success:function(data){
+
+            alerta.hide().find('ul').empty();
+            if(!data.success){
+
+               $.each(data.errors, function(index, error){
+                  alerta.find('ul').append('<li>'+error+'</li>');
+                });
+
+               alerta.slideDown('slow');
+            }
+            else{
+              $('#form_pw').slideUp('slow');
+              $("#ok_cambio").slideDown('slow');
+            }
+          }, // fin success
+          error:function(){}
+
+        }); // fin ajax
+
+    })
+  });
+</script>
 
 @section('content-header')
  <h1>
@@ -49,7 +66,6 @@
 
 
 @section('content')
-
 
 <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -95,40 +111,41 @@
             </div><!-- /.col -->
           </div>
 
-    @if($PerfilEmpresa->perfil_id == 1)
+
 <div class="row">
 
 <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Productos Agregados</h3>
+                  <h3 class="box-title">Perfil</h3>
                   <div class="box-tools">
                     <div class="input-group" style="width: 150px;">
-                      <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
+                     <!-- <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
                       <div class="input-group-btn">
                         <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tbody><tr>
-                      <th>ID</th>
-                      <th>Producto</th>
-                      <th>color</th>
-                      <th>Produccion Mes</th>
-                      <th>Stock</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Email</th>
+                      <th>Cargo</th>
+                      <th>Accion</th>
                     </tr>
-                    @foreach($productos as $producto)
+               
                     <tr>
-                      <td>{{$producto->codigo}}</td>
-                      <td>{{$producto->nombre}}</td>
-                      <td>{{$producto->color}}</td>
-                      <td>{{$producto->produccion_mes}}</td>
-                      <td><span class="label label-success">{{$producto->stock}}</span></td>
+                      <td>{{$usuarios->first_name}}</td>
+                      <td>{{$usuarios->last_name}}</td>
+                      <td>{{$usuarios->email}}</td>
+                      <td>{{$usuarios->cargo}}</td>
+                      <td><a href="{{URL::to('/articulo/edicion/'.$usuarios->id)}}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+             </td>
                     </tr>
-                   @endforeach
+             
                     
                    
                   </tbody></table>
@@ -136,11 +153,6 @@
               </div><!-- /.box -->
             </div>
             </div>
-
-            @else
-PAGINA PRINCIPAL INTERESES
-
-            @endif
 @stop
 
 

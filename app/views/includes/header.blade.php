@@ -9,6 +9,7 @@
     $perfil = User::find($user_id)->empresas->first();
 
     $avatar = Recursos::ImgAvatar($perfil);
+     $empresa = User::find($user_id)->empresas->first();
       
 
   }
@@ -166,7 +167,7 @@
 
                <li> 
 
-              <a href="{{URL::to('/admin/backend')}}"><i class="fa fa-cog"></i></i>
+              <a href="{{URL::to($empresa->slug.'/admin/backend')}}"><i class="fa fa-cog"></i></i>
 
                BackEnd</a>
 

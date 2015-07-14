@@ -19,7 +19,15 @@
         cache: false,             
         processData:false,
         success:function(data){
+          toastr.options.timeOut = 80;
+          toastr.success('Producto', 'Agregado Correctamente');
+          toastr.options.timeOut = 80;
+
+          
+
           console.dir(data);
+          
+             window.location.href = 'lista';
           $alerta.hide().find('ul').empty();
 
           if(!data.success){
@@ -32,6 +40,8 @@
           }
           else{
             resetForm()
+            window.location.href = 'lista';
+             
           }
         } // fin success
       }); // fin ajax

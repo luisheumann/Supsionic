@@ -1,10 +1,14 @@
+
+<div class="box-body">
+ 
 <form class="form-horizontal" id="datos-basico"  enctype="multipart/form-data">
 
-<div class="row">
+
 	<div class="col-md-6">
 	  <div class="form-group">
 	    <label for="nombre">Datos Usuario</label>
 	    <input type="text" class="form-control" id="first_name" name="first_name" value="{{$usuario->first_name}}">
+
 	  </div>		
 	</div>
 
@@ -14,17 +18,17 @@
 	    <input type="text" class="form-control" id="last_name" name="last_name" value="{{$usuario->last_name}}">
 	  </div>			
 	</div>
-</div>
 
 
-<div class="row">
+
+
 	<div class="col-md-6">
 	  <div class="form-group">
 	     <label for="correo">Correo</label>
 		<input type="email" class="form-control" id="email" name="email" value="{{$usuario->email}}">
       </div>		
-	</div>
 
+</div>
 
 
 
@@ -35,49 +39,111 @@
 	    <input type="cargo" class="form-control" id="cargo" name="cargo" value="{{$usuario->cargo}}">
 	  </div>			
 	</div>
-</div>
-<div class="row color">
+
+
 
 <div class="col-md-6">
 	  <div class="form-group">
-	    <label for="dir">Contraseña</label>
-	    <input type="password" class="form-control" id="password" name="password" value="">
-	  </div>			
+<!--
+<a href="<?php echo URL::to($empresa->slug.'/login/pass/')?>">
+	  <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal3">Cambiar Contraseña</button></a>
+	  </div>			-->
+</div>
+    <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal4">Cambiar Contraseña</button>
 	</div>
 
-</div>
 
 
+  
 
 	<!-- Loader -->
 	<div align="center">
-		<img src="{{asset('images/load.gif')}}" id="load_basico" style="display:none">	
+		<!--<img src="{{asset('images/load.gif')}}" id="load_basico" style="display:none">-->
+
+
 	</div>
 
     <!-- Mensaje de errores -->
-    <div class="alert alert-danger danger" id="alerta_basico" style="display:none">
-      <ul></ul>
+ <div class="alert alert-danger danger" id="alerta_basico" style="display:none">
+
+
+   
+ 
+	 <div id="alerta_basico" class="alert alert-danger danger" > <strong></strong> Los datos no guardaron correctamente
+    </div>
+
+
+      
     </div> 
 
  	<!-- Mensaje de exito -->
-    <div class="alert alert-success alert-dismissible fade in" role="alert" id="alerta_ok" style="display:none">
+    <div class=" alert-dismissible fade in" role="alert" id="alerta_ok" style="display:none">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-      <strong><i class="fa fa-check"></i></strong> Los datos se guardaron correctamente
+      
     </div>
 
 <div align="right">
-	<input type="submit" id="btn_basico" class="btn-borde btn-borde-n-i" value="SIGUIENTE">
+
+
+	<button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Actualizar</button>
 </div>
 
 
-<script>
- $( document ).ready(function() {
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
- 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Confirmar Password</h4>
+      </div>
+      <div class="modal-body">
+        <p>Escriba el Password de su cuenta</p>
+        <input type="password" class="form-control" id="pass2" name="pass2" value="">
+      </div>
+      <div class="modal-footer">
 
- }
-</script>
+                   
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        	<input type="submit"  class="btn btn-info btn-md" value="Actualizar">
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="myModal4" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Confirmar Password</h4>
+      </div>
+      <div class="modal-body">
+        <p>Escriba el Password de su cuenta</p>
+        <input type="password" class="form-control" id="pass" name="pass" value="">
+      </div>
+      <div class="modal-footer">
+
+                   <a href="<?php echo URL::to($empresa->slug.'/login/pass/')?>">
+    <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal3">Cambiar Contraseña</button></a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <!--<input type="submit"  class="btn btn-info btn-md" value="Actualizar">-->
+
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
 
 </form>
+            </div>
+
+

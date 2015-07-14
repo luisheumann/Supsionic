@@ -14,17 +14,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     $perfil = User::find($user_id)->empresas->first();
     $usuario = User::find($user_id)->first();
+    $empresa = User::find($user_id)->empresas->first();
 
     $avatar = Recursos::ImgAvatar($perfil);
       
-
-
-      $empresa = User::find($user_id)->empresas->first();
-    $perfil2  = Empresa::find($empresa->id)->perfil->first();
-
-        $PerfilEmpresa  = PerfilEmpresa::find($perfil2->pivot->id);
-
-
 
   }
 
@@ -39,19 +32,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 ?>
 <html>
   <head>
-  <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  
-
-<title> @section('title') @show </title>  
-
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-<meta name="description" content="">
-<meta name="keywords" content="" />
-<meta name="author" content="" />
-<link rel="shortcut icon" href="../favicon.ico">
-
-
    @include('includes.head-backend')
   </head>
   <!--
@@ -74,7 +54,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   |               | sidebar-mini                            |
   |---------------------------------------------------------|
   -->
-  <body class="skin-blue sidebar-mini">
+  <body class="skin-blue sidebar-collapse">
+
     <div class="wrapper">
 
       <!-- Main Header -->
@@ -90,7 +71,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Sidebar toggle button-->
+          <!-- Sidebar toggle button
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>-->  
+
 
 <a href="/"> 
 <div style="float:left; margin-right:20px; color:#fff; margin-top: 14px; padding-left: 5px;" > <i class="fa fa-home"></i> Inicio   </div></a>
@@ -101,10 +86,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div style="float:left; margin-right:20px; color:#fff; margin-top: 14px; padding-left: 5px;">   <i class="fa fa-plus-circle"></i> Agregar Productos   </div> </a>
 <div style="float:left; margin-right:20px; color:#fff; margin-top: 14px; padding-left: 5px;">  <i class="fa fa-search"></i>Buscar Productos  </div> 
 
-
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
-          </a>
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
@@ -255,81 +236,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
 
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-
-          <!-- Sidebar user panel (optional) -->
-          <div class="user-panel">
-            <div class="pull-left image">
-           
-     @if($perfil->imagen == Null) 
-        @else 
-    <img id="imagen" height="40" width="40" class="img-circle" alt="Image" src="/uploads/{{$perfil->imagen}}"/>              
-        @endif
-
-            </div>
-            <div class="pull-left info">
-              <p>{{$perfil->nombre}}</p>
-              <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-          </div>
-
-          <!-- search form (Optional) -->
-          <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-          </form>
-          <!-- /.search form -->
-
-          <!-- Sidebar Menu -->
-          <ul class="sidebar-menu">
-            <li class="header">MENU</li>
-            <!-- Optionally, you can add icons to the links -->
-     
-
-
-            @if($PerfilEmpresa->perfil_id == 1)
-            <li class="treeview">
-              <a href="#"><i class='fa fa-link'></i> <span>Productos </span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="/{{$empresa->slug}}/admin/producto/lista">Lista</a></li>
-                <li><a href="/{{$empresa->slug}}/admin/producto/add">Agregar Producto</a></li>
-              </ul>
-            </li>
-
-
-            @else
-
-        
-            <li class="treeview">
-              <a href="#"><i class='fa fa-link'></i> <span>Intereses </span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
-                <li><a href="/{{$empresa->slug}}/interes_importador">Lista</a></li>
-           
-              </ul>
-            </li>
-
-
-            @endif
-
-
-              <li >
-              <a href="/{{$empresa->slug}}/admin/perfil/empresa#datos-basicos"><i class='fa fa-link'></i> <span>Perfil</span> <i class="fa fa-user-left pull-right"></i></a>
-             
-            </li>
-
-
-          </ul><!-- /.sidebar-menu -->
-        </section>
-        <!-- /.sidebar -->
-      </aside>
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -420,14 +327,57 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class='control-sidebar-bg'></div>
     </div><!-- ./wrapper -->
 
+
+
+
    @section('scripts') 
 
-	 {{HTML::script('js/jquery-1.11.0.min.js')}}	
+	 {{HTML::script('js/jquery-1.11.0.min.js')}}
+	 <!--	 {{HTML::script('js/infinitycarrusel.js')}}	-->
 
+{{HTML::script('js/jquery.fancybox.js')}}
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.teco').click(function(){
+      var largeImage = $(this).attr('data-full');
+      $('.selected').removeClass();
+      $(this).addClass('selected');
+      $('.full img').hide();
+      $('.full img').attr('src', largeImage);
+      $('.full img').fadeIn();
+
+
+    }); // closing the listening on a click
+    $('.full img').on('click', function(){
+      var modalImage = $(this).attr('src');
+      $.fancybox.open(modalImage);
+    });
+  }); //closing our doc ready
+  </script>
+
+
+
+   {{HTML::script('js/lory.min.js')}}
 	 {{HTML::script('js/bootstrap.min.js')}}
 	 	 {{HTML::script('js/app.min.js')}}
-      {{HTML::script('js/toastr.js')}}
+
+<script type="text/javascript">
+   $(document).ready(function() {      
   
+ $('.carousel').carousel('pause');
+
+
+  
+});
+
+
+</script>
+
+
+  
+
+
 
 @show
   </body>

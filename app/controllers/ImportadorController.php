@@ -63,6 +63,37 @@ class ImportadorController extends BaseController {
 
     }
 
+ public function Interes()
+    {
+        $empresa = User::find($this->user_id)->empresas->first();
+                $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
+
+      $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
+
+      $intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
+
+
+        return View::make('perfil.completar.importador.index', array( 'categorias' => $categorias, 'paises'=>$paises,'empresa'=>$empresa,'intersesImportador'=>$intersesImportador));
+    }
+
+
+     public function InteresAdd()
+    {
+        $empresa = User::find($this->user_id)->empresas->first();
+                $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
+
+      $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
+
+      $intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
+
+
+        return View::make('perfil.completar.importador.intereses.add', array( 'categorias' => $categorias, 'paises'=>$paises,'empresa'=>$empresa,'intersesImportador'=>$intersesImportador));
+    }
+
+
+
+
+
 	// obtengo el producto por ID
     public function interesById($id)
     {

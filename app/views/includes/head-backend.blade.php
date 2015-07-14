@@ -18,9 +18,16 @@
 	 {{HTML::style('css/validationEngine.jquery.css')}}
 	 {{HTML::style('css/validationEngine.jquery.css')}}
 	 {{HTML::style('css/font-awesome.css')}}
+	  {{HTML::style('css/infinitycarrusel.css')}}
+	   {{HTML::style('css/toastr.css')}}
+	 
 
 	 
 	 	
 	 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+
+
+
 @show 
 <!-- FIn Inclue CSS  -->

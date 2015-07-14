@@ -13,13 +13,6 @@
     $empresa = User::find($user_id)->empresas->first();
       $productos = Empresa::find($empresa->id)->productos;
 
-
-
-    $perfil2  = Empresa::find($empresa->id)->perfil->first();
-
-        $PerfilEmpresa  = PerfilEmpresa::find($perfil2->pivot->id);
-
-
   }
 
   else{
@@ -49,7 +42,6 @@
 
 
 @section('content')
-
 
 <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -95,7 +87,7 @@
             </div><!-- /.col -->
           </div>
 
-    @if($PerfilEmpresa->perfil_id == 1)
+
 <div class="row">
 
 <div class="col-xs-12">
@@ -119,6 +111,7 @@
                       <th>color</th>
                       <th>Produccion Mes</th>
                       <th>Stock</th>
+                      <th>Accion</th>
                     </tr>
                     @foreach($productos as $producto)
                     <tr>
@@ -127,6 +120,10 @@
                       <td>{{$producto->color}}</td>
                       <td>{{$producto->produccion_mes}}</td>
                       <td><span class="label label-success">{{$producto->stock}}</span></td>
+                      <td><a href="{{URL::to($empresa->slug.'/admin/producto/'.$producto->id.'/delete')}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a> <a href="{{URL::to($empresa->slug.'/admin/producto/edit?id='.$producto->id)}}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> <a href="{{URL::to($empresa->slug.'/producto/'.$producto->id)}}" class="btn btn-default btn-xs"><span class="glyphicon  glyphicon-eye-open"></span></a></td>
+
+
+                        
                     </tr>
                    @endforeach
                     
@@ -136,11 +133,6 @@
               </div><!-- /.box -->
             </div>
             </div>
-
-            @else
-PAGINA PRINCIPAL INTERESES
-
-            @endif
 @stop
 
 
@@ -150,5 +142,3 @@ PAGINA PRINCIPAL INTERESES
 <!-- Finaliza el render de la pagina -->
 
 @stop
-
-

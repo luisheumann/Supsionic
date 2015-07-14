@@ -37,12 +37,13 @@ class ProductosController extends BaseController {
 			'categoria_producto'   => 'required',
 			'producto'			   => 'required',
 			'codigo'      	       => 'required',
-			'unidad_medida' 	   => 'required',
+			//'unidad_medida' 	   => 'required',
 			'detalles_producto'    => 'required',
 			'capacidad_produccion' => 'required|numeric',
 			'cantidad_minima'      => 'required|numeric',
 			'cantidad_disponible'  => 'required|numeric',
 			'pais_origen' 		   => 'required',
+          //  'pais_destino'          => 'required',
 			'destinos' 			   => 'required'
 		);
 
@@ -61,7 +62,8 @@ class ProductosController extends BaseController {
 		$empresa_id =  $perfil->pivot->empresa_id;
 
 
-        $producto = new Productos();
+      //  $producto = new Productos();
+        $producto = Productos::findOrNew(Input::get('id'));
         $producto->categoria_id   = Input::get('categoria_producto');
         $producto->empresa_id     = $empresa_id;
         $producto->nombre 	      = Input::get('producto');
@@ -73,15 +75,31 @@ class ProductosController extends BaseController {
         $producto->stock          = Input::get('cantidad_disponible');
         $producto->marca          = Input::get('marca');
         $producto->precio          = Input::get('precio');
+        $producto->moneda          = Input::get('moneda');
         $producto->puerto          = Input::get('puerto');
         $producto->condiciones_pago  = Input::get('condiciones_pago');
         $producto->material          = Input::get('material');
         $producto->peso          = Input::get('peso');
+        $producto->medida     = Input::get('medida');
         $producto->dimenciones     = Input::get('dimenciones');
         $producto->color          = Input::get('color');
         $producto->referencia    = Input::get('referencia');
         $producto->detalle_producto = Input::get('detalle_producto');
+        $producto->partida = Input::get('partida');
+        $producto->LC = Input::get('LC');
+        $producto->DA = Input::get('DA');
+        $producto->DP = Input::get('DP');
+        $producto->TT = Input::get('TT');
         $producto->condiciones_transporte  = Input::get('condiciones_transporte');
+        $producto->peso_caja = Input::get('peso_caja');
+        $producto->peso_caja_unidad = Input::get('peso_caja_unidad');
+        $producto->peso_unidad = Input::get('peso_unidad');
+        $producto->alto = Input::get('alto');
+        $producto->ancho = Input::get('ancho');
+        $producto->profundo = Input::get('profundo');
+        $producto->dimencion_unidad = Input::get('dimencion_unidad');
+
+        
         $producto->save();
 
         
@@ -89,7 +107,8 @@ class ProductosController extends BaseController {
         // GUARDA LOS DESTINOS
 		foreach (Input::get('destinos') as $destino)
 		{
-	        $RutaExportador = new RutaExportador();
+	       $RutaExportador = new RutaExportador();
+         //   $RutaExportador = RutaExportador::findOrNew(Input::get($destino));
 	        $RutaExportador->perfil_empresa_id = Input::get('perfil_empresa');
 	        $RutaExportador->producto_id  = $producto->id;
 	        $RutaExportador->pais_origen  = Input::get('pais_origen');
@@ -137,6 +156,7 @@ class ProductosController extends BaseController {
 		$productos =  Productos::find($producto->id);
 
 		return Response::json(['success'=>true, 'productos' =>$productos]);
+            
 	}
 
 	// obtengo el producto por ID
@@ -145,7 +165,16 @@ class ProductosController extends BaseController {
     	$segment  = Request::segment(3);
     	$producto = Productos::find($segment);
     	$rutas = $producto->RutaExportador;
-    	return View::make('perfil.completar.exportador.productos.detalles', array('producto' =>$producto, 'rutas' => $rutas));
+         $imagenes = $producto->imagen;
+
+              $monedas = Monedas::where('id', $producto->moneda)->first();
+
+
+
+               $empresa  = Empresa::find($producto->empresa_id)->perfil->first();
+
+
+    	return View::make('perfil.completar.exportador.productos.detalles', array('producto' =>$producto, 'rutas' => $rutas,'imagenes'=>$imagenes,'monedas'=>$monedas, '$empresa'=>$empresa));
     }
 
 
@@ -169,7 +198,9 @@ class ProductosController extends BaseController {
         $producto = Productos::find($id);
         $imagenes = $producto->imagen;
         $perfil = Empresa::findBySlug($slug);
-        return View::make('perfil.productos.detalle', array('producto' => $producto, 'imagenes'=>$imagenes, 'perfil'=>$perfil));
+        $idproducto = $id;
+
+        return View::make('perfil.productos.detalle', array('producto' => $producto, 'imagenes'=>$imagenes, 'perfil'=>$perfil,'idproducto'=>$idproducto));
     }
 
 

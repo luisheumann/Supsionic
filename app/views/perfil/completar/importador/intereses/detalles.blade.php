@@ -34,10 +34,10 @@
 		    </div>
 		    <div role="tabpanel" class="tab-pane" id="rutas">
 		    	<h4>
-		    		<strong>Destino: </strong>
+		    		<strong>Origen: </strong>
 		    		{{Paises::find($rutas->first()->pais_destino)->nombre}}
 		    	</h4>
-		    	<h4><strong>Paises de Origen</strong></h4>
+		    	<h4><strong>Paises de Destino</strong></h4>
 		    	<ul>
 			    	@foreach($rutas as $ruta)
 						<li>{{Paises::find($ruta->pais_origen)->nombre}}</li>

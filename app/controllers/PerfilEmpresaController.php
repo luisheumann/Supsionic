@@ -19,7 +19,9 @@ class PerfilEmpresaController extends BaseController {
 	{
 	    $empresa = Empresa::findBySlug($slug);
 	    $perfil  = Empresa::find($empresa->id)->perfil->first();
-	    return View::make('perfil.index', array('empresa'=> $empresa, 'perfil'=>$perfil));
+    	$productos = Empresa::find($empresa->id)->productos;
+    	//$imagenes = $productos->imagen;
+	    return View::make('perfil.index', array('empresa'=> $empresa, 'perfil'=>$perfil,'productos'=>$productos));
 
 		View::composer(array('includes.header'), function($view)
 		{
@@ -60,27 +62,20 @@ class PerfilEmpresaController extends BaseController {
 	public function postRegistroDatosBasicos()
 	{
 
-    $usuario = User::find($this->user_id);
+$input = Input::all();
+try
+{
+    // Find the user using the user id
+    $user = Sentry::findUserById($this->user_id);
 
-		$input = Input::all();
-		$reglas =  array(
-			'password' 	=> 'required',
-			'email'     => 'required|email'
-		
-			);
-
-	   $validation = Validator::make($input, $reglas);
-
-       if ($validation->fails())
-        {
-            return Response::json([
-            	'success'=>false, 
-            	'errors'=>$validation->errors()->toArray()
-            ]);
-        }
+$pass = Input::get('pass2');
+    if($user->checkPassword($pass))
+    {
 
 
-	$input = Input::all();
+
+
+
 
     $usuario = User::find($this->user_id);
 	
@@ -90,7 +85,7 @@ class PerfilEmpresaController extends BaseController {
 			$usuario->email  = Input::get('email');
 			$usuario->cargo  = Input::get('cargo');
 			
-			$pass = Input::get('password');
+			//$pass = Input::get('password');
 
 				$usuario->save();
 			//if ($usuario->password === md5($pass)) {
@@ -100,11 +95,27 @@ class PerfilEmpresaController extends BaseController {
 
 
 		//$pass2 = md5($pass);
-			
-		return Response::json(['success'=>true, $usuario, $usuario->password, $pass2]);
+	
+		return Response::json(['success'=>true]);
 
-	}
 
+	 }
+    else
+    {
+
+
+return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+    }
+
+
+}
+catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+{
+	
+return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+}
+
+}
 
 
 
@@ -112,6 +123,15 @@ class PerfilEmpresaController extends BaseController {
 	public function postRegistroBasico()
 	{
 
+$input = Input::all();
+try
+{
+    // Find the user using the user id
+    $user = Sentry::findUserById($this->user_id);
+
+$pass = Input::get('pass');
+    if($user->checkPassword($pass))
+    {
 		$empresa = User::find($this->user_id)->empresas->first();
 
 		if(Input::get('nombre')!=$empresa->nombre)
@@ -174,13 +194,124 @@ class PerfilEmpresaController extends BaseController {
 		$empresa_update->personacontacto     = Input::get('personacontacto');
 		$empresa_update->postal      = Input::get('postal');
 		$empresa_update->descripcion = Input::get('descripcion');
+		$empresa_update->tw = Input::get('twitter');
+		$empresa_update->fb = Input::get('facebook');
+	
 		$empresa_update->imagen      = $fileName;
 		$empresa_update->save();
 
 
 		return Response::json(['success'=>true]);
 
-	}
+	 }
+    else
+    {
+
+
+return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+    }
+
+
+}
+catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+{
+	
+return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+}
+
+}
+
+
+	public function postRegistroBasico2()
+
+	{
+
+		
+$input = Input::all();
+try
+{
+    // Find the user using the user id
+    $user = Sentry::findUserById($this->user_id);
+
+$pass = Input::get('pass');
+    if($user->checkPassword($pass))
+    {
+
+		$input = Input::all();
+
+		$empresa = User::find($this->user_id)->empresas->first();
+
+        $empresa_update = Empresa::find($empresa->id);
+
+		
+		$empresa_update->FOB = Input::get('FOB');
+		$empresa_update->EXW = Input::get('EXW');
+		$empresa_update->FCA = Input::get('FCA');
+		$empresa_update->DDP = Input::get('DDP');
+		$empresa_update->DES = Input::get('DES');
+		$empresa_update->CFR = Input::get('CFR');
+		$empresa_update->FAS = Input::get('FAS');
+		$empresa_update->CPT = Input::get('CPT');
+		$empresa_update->DDU = Input::get('DDU');
+		$empresa_update->Expres = Input::get('Expres');
+		$empresa_update->CIF = Input::get('CIF');
+		$empresa_update->CIP = Input::get('CIP');
+		$empresa_update->DEQ = Input::get('DEQ');
+		$empresa_update->DAF = Input::get('DAF');
+
+		$empresa_update->COP = Input::get('COP');
+		$empresa_update->CAD = Input::get('CAD');
+		$empresa_update->GBP = Input::get('GBP');
+		$empresa_update->USD = Input::get('USD');
+		$empresa_update->AUD = Input::get('AUD');
+		$empresa_update->CNY = Input::get('CNY');
+		$empresa_update->EUR = Input::get('EUR');
+		$empresa_update->HKD = Input::get('HKD');
+		$empresa_update->CHF = Input::get('CHF');
+
+		$empresa_update->TT = Input::get('TT');
+		$empresa_update->LC = Input::get('LC');
+		$empresa_update->DP = Input::get('DP');
+
+		$empresa_update->ingles = Input::get('ingles');
+		$empresa_update->espanol = Input::get('espanol');
+		$empresa_update->chino = Input::get('chino');
+		$empresa_update->japones = Input::get('japones');
+		$empresa_update->portugues = Input::get('portugues');
+		$empresa_update->aleman = Input::get('aleman');
+		$empresa_update->arabe = Input::get('arabe');
+		$empresa_update->frances = Input::get('frances');
+		$empresa_update->ruso = Input::get('ruso');
+		$empresa_update->koreano = Input::get('koreano');
+		$empresa_update->hindu = Input::get('hindu');
+		$empresa_update->italiano = Input::get('italiano');
+	
+
+	
+		$empresa_update->save();
+
+
+		return Response::json(['success'=>true, $empresa_update]);
+
+
+	 }
+    else
+    {
+
+
+return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+    }
+
+
+}
+catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+{
+	
+return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+}
+
+}
+
 
 
 	public function postCambioPerfil()
