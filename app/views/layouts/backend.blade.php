@@ -424,10 +424,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 	 {{HTML::script('js/jquery-1.11.0.min.js')}}	
 
+
+
+
 	 {{HTML::script('js/bootstrap.min.js')}}
+
+
 	 	 {{HTML::script('js/app.min.js')}}
       {{HTML::script('js/toastr.js')}}
+
+
   
+
 
 @show
   </body>

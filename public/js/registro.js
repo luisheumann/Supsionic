@@ -1,5 +1,15 @@
  $(document).ready(function(){
 
+
+
+
+
+
+
+
+
+
+
 // para que quede en el mismo tab cuando haya un reload del browser
   var hash = window.location.hash;
   hash && $('ul.nav a[href="' + hash + '"]').tab('show');

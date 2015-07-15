@@ -16,7 +16,7 @@
       $productos = Empresa::find($empresa->id)->productos;
 
 
-   
+
  
 
   }
@@ -576,6 +576,13 @@ font-size: 16px;
   max-width: none;
   margin: 0 -16px;
 }
+
+
+.carousel-control {
+ 
+  width: 8% !important;
+
+  }
 </style>
 
 
@@ -654,7 +661,7 @@ font-size: 16px;
 
       <div class="productImage">
      <div class="full"> 
-        <img id="imagen2" height="300" width="300" style="float:right;"  alt="Image" src="/uploads/productos/{{$imagenes[0]->imagen}}"/> 
+        <img id="imagen2" title="@if ($producto->imagen->count()>0){{$img= $imagenes[0]->imagen}} @else {{$img= 'producto.png'}} @endif" height="300" width="300" style="float:right;"  alt="Image" src="/uploads/productos/{{$img}}"/> 
 </div>
           </div>  
       </div>
@@ -1100,14 +1107,14 @@ font-size: 16px;
                 <?php $j=0 ?>
 
  <?php $c=0 ?>
- @foreach($productos as $producto)
-
-
- @foreach($producto->imagen as $carrusele)
 
 
 
-<!--@if($carrusele->producto_id == $carrusele->producto_id + $c)-->
+   
+
+ @foreach($productos as $galeria)
+
+
 
 
 
@@ -1123,16 +1130,24 @@ font-size: 16px;
                         @endif
 
                         <div class="col-lg-2 col-xs-2 col-md-2">
-                          <div class="thumb"> <a href="/{{$empresa->slug}}/producto/{{$producto->id}}" class="img-responsive">
-                            @if(!$carrusele->imagen == null)
-                            <img alt="Image" width="150" height="150" src="/uploads/productos/{{$carrusele->imagen}}" alt="Image">
+                          <div class="thumb"> <a href="/{{$empresa->slug}}/producto/{{$galeria->id}}" class="img-responsive">
+                            @if(!$galeria->imagen == null)
+  
+
+
+
+
+                                                   <img alt="Image" width="150" height="150" title="@if ($galeria->imagen->count()>0){{$img= $galeria->imagen->first()->imagen}} @else {{$img= 'producto.png'}} @endif" src="/uploads/productos/{{$img}}" alt="Image">
+
+
+
                             @endif
                           
                           </a></div>
                           <p>
-                            <div class="text-blog thumb"> <a href="{{URL::to('/uploads/productos/'.$carrusele->imagen)}}">{{$producto->nombre}}</a> </div> 
+                            <div class="text-blog thumb"> <a href="{{URL::to('/uploads/productos/'.$galeria->imagen)}}">{{$galeria->nombre}}</a> </div> 
                      
-                            <div class="a-color-price">{{$producto->precio}} {{$monedas->codigo}}</div>
+                            <div class="a-color-price">{{$galeria->precio}} {{$monedas->codigo}}</div>
                              <div><span class="rating ">
           <img src="http://www.jimmybeanswool.com/secure-html/onlineec/images/stars/4_5StarBlue09.gif">
         </span></div>
@@ -1147,8 +1162,8 @@ font-size: 16px;
                       <?php $i++ ?>
                       <?php $j++ ?>
 
-                   <!--   @endif-->
-                   @endforeach
+                
+           
          @endforeach
 
                       @if(fmod($i - 1,6)>0)

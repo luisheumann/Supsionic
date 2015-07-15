@@ -1,3 +1,5 @@
+
+
 <div class="box-body">
 
 <br>
@@ -24,14 +26,17 @@
 	</div>
 
 
-
-
-	<div class="col-md-6">
-	  <div class="form-group">
-	     <label for="telefono">Teléfono</label>
-		<input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" value="{{$empresa->telefono}}">
-      </div>		
-	</div>
+ <div class="col-md-6">
+ <div class="form-group">
+                    <label>Teléfono</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-phone"></i>
+                      </div>
+                    <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" value="{{$empresa->telefono}}">
+                    </div><!-- /.input group -->
+                  </div><!-- /.form group -->
+                  </div>
 
 	<div class="col-md-6">
 	  <div class="form-group">
@@ -186,3 +191,5 @@
 
 </form>
 </div>
+
+

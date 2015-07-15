@@ -200,7 +200,8 @@ class ProductosController extends BaseController {
         $perfil = Empresa::findBySlug($slug);
         $idproducto = $id;
 
-        return View::make('perfil.productos.detalle', array('producto' => $producto, 'imagenes'=>$imagenes, 'perfil'=>$perfil,'idproducto'=>$idproducto));
+
+        return View::make('perfil.productos.detalle', array('producto' => $producto, 'imagenes'=>$imagenes, 'perfil'=>$perfil,'idproducto'=>$idproducto, 'fotos'=>$fotos));
     }
 
 
