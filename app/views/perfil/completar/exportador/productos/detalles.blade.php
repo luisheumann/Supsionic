@@ -16,7 +16,6 @@
       $productos = Empresa::find($empresa->id)->productos;
 
 
-
  
 
   }
@@ -661,7 +660,7 @@ font-size: 16px;
 
       <div class="productImage">
      <div class="full"> 
-        <img id="imagen2" title="@if ($producto->imagen->count()>0){{$img= $imagenes[0]->imagen}} @else {{$img= 'producto.png'}} @endif" height="300" width="300" style="float:right;"  alt="Image" src="/uploads/productos/{{$img}}"/> 
+        <img id="imagen2" title="@if ($producto->imagen->count()>0){{$img= $imagenes[0]->imagen}} @else {{$img= 'producto.png'}} @endif" height="620" width="428" style="float:right;"  alt="Image" src="/uploads/productos/{{$img}}"/> 
 </div>
           </div>  
       </div>
@@ -782,17 +781,17 @@ font-size: 16px;
                       <th>{{$producto->nombre}}</th>
     
                     </tr>
-                    @if ($producto->categoria_id == null)
-                    @else
+                   
+                <!--
                     <tr>
 
                       <td class="title-item-producto">Categoria</td>
                       <td>
-                       {{$producto->categoria_id}}
+                    
                      </td>
 
-                   </tr>
-                   @endif
+                   </tr>-->
+               
                    @if ($producto->codigo == null)
                     @else
                    <tr>
@@ -827,17 +826,7 @@ font-size: 16px;
                     </tr>
                     @endif
 
-                     @if ($producto->peso == null)
-                    @else
-                    <tr>
-        
-                      <td class="title-item-producto">Peso</td>
-                      <td>
-                      {{$producto->peso}}
-                      </td>
                      
-                    </tr>
-                    @endif
 
                      @if ($producto->marca == null)
                     @else
@@ -929,10 +918,12 @@ font-size: 16px;
 
 
                   <div><span class="list-item-descripcion">Terminos de pago</span></div>
-<input type="checkbox" name="LC" disabled="1" id="LC" "@if($producto->LC==1) checked @else @endif" ><label class="ancho-checkbox" for="check1">L/C</label>
-  <input type="checkbox" name="DA" disabled="1" id="DA" "@if($producto->DA==1) checked @else @endif" ><label class="ancho-checkbox" for="check1">D/A</label>
-       <input type="checkbox" name="DP" disabled="1" id="DP" "@if($producto->DP==1) checked @else @endif" ><label class="ancho-checkbox" for="check1">D/P</label>
-    <input type="checkbox" name="TT" disabled="1"  id="TT" "@if($producto->TT==1) checked @else @endif"><label class="ancho-checkbox" for="check1">T/T</label>
+<input title="Letter  of Credit  / Credito Documentario" type="checkbox" name="LC" disabled="1" id="LC" "@if($producto->LC==1) checked @else @endif" ><label class="ancho-checkbox" for="check1" title="Letter  of Credit  / Credito Documentario">L/C</label>
+  <input title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido" type="checkbox" name="DA" disabled="1" id="DA" "@if($producto->DA==1) checked @else @endif" ><label title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido"  class="ancho-checkbox" for="check1">D/A</label>
+       <input title="Documents Against Payment / Pago por anticipado
+" type="checkbox" name="DP" disabled="1" id="DP" "@if($producto->DP==1) checked @else @endif" ><label title="Documents Against Payment / Pago por anticipado
+" class="ancho-checkbox" for="check1">D/P</label>
+    <input title="Telegraphic Transfer / Transferencia Bancaria" type="checkbox" name="TT" disabled="1"  id="TT" "@if($producto->TT==1) checked @else @endif"><label class="ancho-checkbox" for="check1" title="Telegraphic Transfer / Transferencia Bancaria">T/T</label>
 
 
 </div>

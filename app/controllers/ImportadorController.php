@@ -48,6 +48,13 @@ class ImportadorController extends BaseController {
 		$InteresesImportador->empresa_id   = $empresa_id;
 		$InteresesImportador->categoria_id = input::get('categoria_producto');
 		$InteresesImportador->productos    = input::get('productos');
+        $InteresesImportador->min    = input::get('min');
+        $InteresesImportador->max    = input::get('max');
+        $InteresesImportador->min_medida    = input::get('min_cantidad');
+        $InteresesImportador->max_medida   = input::get('max_cantidad');
+        $InteresesImportador->frecuencia   = input::get('frecuencia');
+        $InteresesImportador->partida   = input::get('partida');
+
 		$InteresesImportador->save();
 
         // GUARDA LOS DESTINOS
@@ -71,20 +78,19 @@ class ImportadorController extends BaseController {
       $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
 
       $intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
+         $unidades = Unidades::Get();
 
-
-        return View::make('perfil.completar.importador.index', array( 'categorias' => $categorias, 'paises'=>$paises,'empresa'=>$empresa,'intersesImportador'=>$intersesImportador));
+        return View::make('perfil.completar.importador.index', array( 'categorias' => $categorias, 'paises'=>$paises,'empresa'=>$empresa,'intersesImportador'=>$intersesImportador,'unidades'=>$unidades));
     }
 
 
      public function InteresAdd()
     {
         $empresa = User::find($this->user_id)->empresas->first();
-                $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
-
-      $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
-
-      $intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
+        $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
+        $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
+        $intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
+        $unidades = Unidades::Get();
 
 
         return View::make('perfil.completar.importador.intereses.add', array( 'categorias' => $categorias, 'paises'=>$paises,'empresa'=>$empresa,'intersesImportador'=>$intersesImportador));
@@ -100,8 +106,13 @@ class ImportadorController extends BaseController {
     	$segment  = Request::segment(4);
     	$interes = InteresesImportador::find($segment);
     	$rutas = $interes->RutaImportador;
+
+        $unidades = Unidades::Get();
+
+        $medidamax = Unidades::where('id', $interes->max_medida)->first();
+        $medidamin = Unidades::where('id', $interes->min_medida)->first();
     	
-    	return View::make('perfil.completar.importador.intereses.detalles', array('interes' =>$interes, 'rutas' => $rutas));
+    	return View::make('perfil.completar.importador.intereses.detalles', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin));
     }
 
 

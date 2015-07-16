@@ -166,15 +166,12 @@ class ProductosController extends BaseController {
     	$producto = Productos::find($segment);
     	$rutas = $producto->RutaExportador;
          $imagenes = $producto->imagen;
-
-              $monedas = Monedas::where('id', $producto->moneda)->first();
-
-
-
-               $empresa  = Empresa::find($producto->empresa_id)->perfil->first();
+         $categoria = Categorias::where('id', 1)->first(); // todas las categorias
+         $monedas = Monedas::where('id', $producto->moneda)->first();
+        $empresa  = Empresa::find($producto->empresa_id)->perfil->first();
 
 
-    	return View::make('perfil.completar.exportador.productos.detalles', array('producto' =>$producto, 'rutas' => $rutas,'imagenes'=>$imagenes,'monedas'=>$monedas, '$empresa'=>$empresa));
+    	return View::make('perfil.completar.exportador.productos.detalles', array('producto' =>$producto, 'rutas' => $rutas,'imagenes'=>$imagenes,'monedas'=>$monedas, '$empresa'=>$empresa,'$categoria'=>$categoria ));
     }
 
 
@@ -200,8 +197,10 @@ class ProductosController extends BaseController {
         $perfil = Empresa::findBySlug($slug);
         $idproducto = $id;
 
+             $categoria = Categorias::where('id', $producto->categoria_id)->first(); // todas las categorias
 
-        return View::make('perfil.productos.detalle', array('producto' => $producto, 'imagenes'=>$imagenes, 'perfil'=>$perfil,'idproducto'=>$idproducto, 'fotos'=>$fotos));
+
+        return View::make('perfil.productos.detalle', array('producto' => $producto, 'imagenes'=>$imagenes, 'perfil'=>$perfil,'idproducto'=>$idproducto, 'fotos'=>$fotos, '$categoria'=>$categoria));
     }
 
 

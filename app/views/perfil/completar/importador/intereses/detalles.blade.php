@@ -1,3 +1,21 @@
+
+<style type="text/css">
+	
+	.origen_detalle {
+  padding: 20px;
+}
+
+
+.destino_detalle {
+  padding: 20px;
+}
+
+.ruta_destino {
+  margin-left: 20px;
+}
+
+
+</style>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
      <h4 class="modal-title">Detalles</h4>
@@ -29,20 +47,74 @@
 				  <li class="list-group-item"><strong>Producto: </strong> 
 				  	{{$interes->productos}}
 				  </li>
+
+				   <li class="list-group-item"><strong>Cantidad Minima: </strong> 
+				  	{{$interes->min}} {{$medidamax->nombre}}
+				 
+
+				  </li>
+
+				    <li class="list-group-item"><strong>Cantidad Maxima: </strong> 
+				  	{{$interes->max}} {{$medidamin->nombre}}
+				  </li>
+				
+				  <li class="list-group-item"><strong>Partida arancelaria: </strong> 
+				  	{{$interes->partida}} 
+				  </li>
+				  <li class="list-group-item"><strong>Frecuencia de Compra: </strong> 
+			
+
+<?php
+
+
+switch ($interes->frecuencia) {
+    case "1":
+        echo "Semanal";
+        break;
+    case "2":
+        echo "Mensual";
+        break;
+    case "3":
+        echo "Trimestral";
+        break;
+          case "4":
+        echo "Semestral";
+        break;
+         case "5":
+        echo "Anual";
+        break;
+    default:
+        echo "Anual";
+}
+?>
+
+
+ 
+
+				  </li>
+
+
 				</ul>
 
 		    </div>
+
 		    <div role="tabpanel" class="tab-pane" id="rutas">
-		    	<h4>
+		    	<div class="origen_detalle"><h4>
 		    		<strong>Origen: </strong>
 		    		{{Paises::find($rutas->first()->pais_destino)->nombre}}
-		    	</h4>
-		    	<h4><strong>Paises de Destino</strong></h4>
+		    	</h4></div>
+
+		    	  <hr>
+		    	  
+		    	<div class="destino_detalle"><h4><strong>Paises de Destino</strong></h4></div>
+		  
+<div class="ruta_destino">
 		    	<ul>
 			    	@foreach($rutas as $ruta)
 						<li>{{Paises::find($ruta->pais_origen)->nombre}}</li>
 			    	@endforeach
 		    	</ul>
+		    	</div>
 		    </div>
 
 		  </div> <!-- / tab tabpanel-->

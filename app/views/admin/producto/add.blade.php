@@ -232,7 +232,7 @@ input#cantidad_disp {
           </div>
 
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Peso con Caja</label>
+            <label class="col-md-6 control-label"  for="nombre_producto">Peso de Envio</label>
             <div class="col-md-6">
               <input type="text" class="form-control" name="peso_caja" id="peso_caja" placeholder="" >
                 <select name="peso_caja_unidad" id="peso_caja_unidad" class="form-control">
@@ -377,14 +377,20 @@ input#cantidad_disp {
           <div class="form-group">
             <label class="col-md-6 control-label"  for="nombre_producto">Términos de Pago</label>
             <div class="col-md-6">
-                <input type="checkbox" name="LC" id="LC"  onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1">L/C</label>
-  				<input type="checkbox" name="DA" id="DA"   onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1">D/A</label>
-   			    <input type="checkbox" name="DP" id="DP"   onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1">D/P</label>
-   				<input type="checkbox" name="TT"  id="TT"   onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1">T/T</label>
+                <input title="Letter  of Credit  / Credito Documentario" type="checkbox" name="LC" id="LC"  onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" title="Letter  of Credit  / Credito Documentario">L/C</label>
+  				<input title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido" type="checkbox" name="DA" id="DA"   onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido">D/A</label>
+   			    <input  title="Documents Against Payment / Pago por anticipado
+" type="checkbox" name="DP" id="DP"   onclick="changeValueCheckbox(this)"><label title="Documents Against Payment / Pago por anticipado
+" class="ancho-checkbox" for="check1">D/P</label>
+   				<input title="Telegraphic Transfer / Transferencia Bancaria" type="checkbox" name="TT"  id="TT"   onclick="changeValueCheckbox(this)"><label title="Telegraphic Transfer / Transferencia Bancaria" class="ancho-checkbox" for="check1">T/T</label>
             </div>
           </div>
 
         </fieldset>
+
+
+       
+
 
          <!-- Loader -->
   <div align="center">

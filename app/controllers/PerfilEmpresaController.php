@@ -20,6 +20,12 @@ class PerfilEmpresaController extends BaseController {
 	    $empresa = Empresa::findBySlug($slug);
 	    $perfil  = Empresa::find($empresa->id)->perfil->first();
     	$productos = Empresa::find($empresa->id)->productos;
+
+
+    	 
+
+    	 
+
     	//$imagenes = $productos->imagen;
 	    return View::make('perfil.index', array('empresa'=> $empresa, 'perfil'=>$perfil,'productos'=>$productos));
 
@@ -35,7 +41,7 @@ class PerfilEmpresaController extends BaseController {
 		$usuario = User::find($this->user_id)->first();
 		$empresa = User::find($this->user_id)->empresas->first();
 		$perfil  = Empresa::find($empresa->id)->perfil->first();
-
+      
 	    $paises     = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
 	    $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
 	    $unidades   = Unidades::orderBy('nombre', 'ASC')->get(); // todas las unidaddes de productos
