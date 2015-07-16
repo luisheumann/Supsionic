@@ -150,13 +150,13 @@ $pass = Input::get('pass');
 		$input = Input::all();
 		$reglas =  array(
 			'nombre' 	=> $regla_nombre,
-			'email'     => 'required|email',
+		//	'email'     => 'required|email',
 			//'web'       => 'url',
-			'direccion' => 'required',
-			'telefono'	=> 'required|numeric',
-			'direccion'	=> 'required',
+		//	'direccion' => 'required',
+		///	'telefono'	=> 'required|numeric',
+		//	'direccion'	=> 'required',
 
-			'imagen'    => 'image'
+		//	'imagen'    => 'image'
 			);
 
 	   $validation = Validator::make($input, $reglas);

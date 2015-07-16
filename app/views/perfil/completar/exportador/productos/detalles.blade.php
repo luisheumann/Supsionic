@@ -582,6 +582,14 @@ font-size: 16px;
   width: 8% !important;
 
   }
+
+
+
+
+  li.floatleft {
+  float: left;
+  width: 200px;
+}
 </style>
 
 
@@ -955,9 +963,11 @@ font-size: 16px;
                   </div><!-- /.box-tools -->
                 </div><!-- /.box-header -->
                 <div class="box-body">
+                <div class="box-destino-limite">
                  @foreach($rutas as $ruta)
-<li>{{Paises::find($ruta->pais_destino)->nombre}}</li>
+<li class="floatleft">{{Paises::find($ruta->pais_destino)->nombre}}</li>
 @endforeach
+</div>
                 </div><!-- /.box-body -->
               </div>
 
