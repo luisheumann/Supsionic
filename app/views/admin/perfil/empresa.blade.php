@@ -624,21 +624,21 @@ b{
 			 		break;
 			 	case 2:
 				 	?> 	
-				 		@include('perfil/completar/exportador/detalles-comercio/index')
+				 		@include('perfil/completar/importador/detalles-comercio/index')
 
 					 	<!--'perfil/completar/importador/detalles-comercio/index'-->
 				 	<?php
 			 		break;
 			 	case 3:
 				 	?> 
-				 	@include('perfil/completar/exportador/detalles-comercio/index')
+				 	@include('perfil/completar/transportador/detalles-comercio/index')
 				 		<!--perfil/completar/transportador/detalles-comercio/index-->
 				 	<?php
 			 		break;		 		
 			 	default:
 			 	case 4:
 				 	?>
-				 	@include('perfil/completar/exportador/detalles-comercio/index')
+				 	@include('perfil/completar/sias/detalles-comercio/index')
 					 	<!--perfil/completar/sias/detalles-comercio/index'-->
 				 	<?php
 			 		break;		 		

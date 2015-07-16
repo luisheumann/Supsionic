@@ -278,6 +278,7 @@ $pass = Input::get('pass');
 		$empresa_update->TT = Input::get('TT');
 		$empresa_update->LC = Input::get('LC');
 		$empresa_update->DP = Input::get('DP');
+		$empresa_update->DA = Input::get('DA');
 
 		$empresa_update->ingles = Input::get('ingles');
 		$empresa_update->espanol = Input::get('espanol');
@@ -291,7 +292,37 @@ $pass = Input::get('pass');
 		$empresa_update->koreano = Input::get('koreano');
 		$empresa_update->hindu = Input::get('hindu');
 		$empresa_update->italiano = Input::get('italiano');
+
+
+		$empresa_update->RIM = Input::get('RIM');
+		$empresa_update->CA = Input::get('CA');
+		$empresa_update->AT = Input::get('AT');
+		$empresa_update->AJA = Input::get('AJA');
+		$empresa_update->BPZF = Input::get('BPZF');
+		$empresa_update->DTCO = Input::get('DTCO');
+
+		$empresa_update->SOL = Input::get('SOL');
+		$empresa_update->SA = Input::get('SA');
+		$empresa_update->SSIA = Input::get('SSIA');
+		$empresa_update->SACCE = Input::get('SACCE');
+
+
+		$empresa_update->SAMP = Input::get('SAMP');
+		$empresa_update->STAC = Input::get('STAC');
+		$empresa_update->STTC = Input::get('STTC');
+		$empresa_update->STMC = Input::get('STMC');
+		$empresa_update->STAI = Input::get('STAI');
+		$empresa_update->SSTAN = Input::get('SSTAN');
+
+		$empresa_update->SAE = Input::get('SAE');
+		$empresa_update->STE = Input::get('STE');
+		$empresa_update->SMA = Input::get('SMA');
+		$empresa_update->SFL = Input::get('SFL');
+		$empresa_update->SMU = Input::get('SMU');
+
+
 	
+
 
 	
 		$empresa_update->save();

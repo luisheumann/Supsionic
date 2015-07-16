@@ -134,6 +134,12 @@ font-size: 16px;
 
 
 
+.tituloproductogaleria {
+  /* margin: 34px; */
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
 
 </style>
 <div class="box">
@@ -244,6 +250,10 @@ font-size: 16px;
 </div>
 
 
+
+@if ($perfil->id == 1)
+
+
 <div style="padding-left:20px; padding-right:20px"><!--DEtalle comercio-->
    <div class="form-group row"><hr>
         <label class="col-md-4 control-label" for="nombre_producto"><strong>Términos de Entrega Aceptados</strong></label>
@@ -288,6 +298,7 @@ font-size: 16px;
         </div>
       </div><hr>
       <div class="form-group row">
+
         <label class="col-md-4 control-label" for="nombre_producto"><strong>Moneda de Pago Aceptada</strong></label>
         <div class="col-md-5">
           <input title="Pesos Colombianos
@@ -327,7 +338,314 @@ font-size: 16px;
         </div>
 
 
+      </div>
+
+@endif
+
+
+@if ($perfil->id == 2)
+
+
+<div style="padding-left:20px; padding-right:20px"><!--DEtalle comercio-->
+   <div class="form-group row"><hr>
+        <label class="col-md-4 control-label" for="nombre_producto"><strong>Términos de Recogida</strong></label>
+ <div class="col-md-5">
+          <input title="Free on board / Libre o franco a bordo
+" disabled="1"  type="checkbox"  "@if($empresa->FOB==1) checked @else @endif"  name="FOB"  value="{{$empresa->FOB}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" title="Free on board / Libre o franco a bordo
+">FOB</label>
+
+          <input title="Cost and freight /  Costo y flete" disabled="1" type="checkbox" "@if($empresa->CFR==1) checked @else @endif"  name="CFR"  value="{{$empresa->CFR}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" title="Cost and freight /  Costo y flete">CFR</label>
+
+          <input title="Cost insurance and freight / Costo, seguro y flete" disabled="1" type="checkbox" "@if($empresa->CIF==1) checked @else @endif"    name="CIF"  value="{{$empresa->CIF}}" onclick="changeValueCheckbox(this)"><label title="Cost insurance and freight / Costo, seguro y flete" class="ancho-checkbox" for="check1">CIF</label>
+          <br>
+          <input title="Ex work / En fábrica" disabled="1" type="checkbox" "@if($empresa->EXW==1) checked @else @endif"   name="EXW"  value="{{$empresa->EXW}}" onclick="changeValueCheckbox(this)"><label title="Ex work / En fábrica" class="ancho-checkbox" for="check1" name="EXW">EXW</label>
+
+          <input title="Free alongside ship / Libre al costado del buque" disabled="1" type="checkbox" "@if($empresa->FAS==1) checked @else @endif"  name="FAS"  value="{{$empresa->FAS}}" onclick="changeValueCheckbox(this)"><label title="Free alongside ship / Libre al costado del buque" class="ancho-checkbox" for="check1" name="FAS">FAS</label>
+
+          <input disabled="1" title="Carriage and insurance paid to / Transporte y seguro pagado hasta
+" type="checkbox" "@if($empresa->CIP==1) checked @else @endif"  name="CIP"  value="{{$empresa->CIP}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="CIP" title="Carriage and insurance paid to / Transporte y seguro pagado hasta
+">CIP</label>
+          <br>
+          <input title="Free carrier / Libre o franco transportista" disabled="1" type="checkbox" "@if($empresa->FCA==1) checked @else @endif"  name="FCA"  value="{{$empresa->FCA}}" onclick="changeValueCheckbox(this)"><label title="Free carrier / Libre o franco transportista" class="ancho-checkbox" for="check1" name="FCA">FCA</label>
+
+          <input title="Carriage paid to / Transporte pagado hasta" disabled="1" type="checkbox" "@if($empresa->CPT==1) checked @else @endif"  name="CPT"  value="{{$empresa->CPT}}" onclick="changeValueCheckbox(this)"><label title="Carriage paid to / Transporte pagado hasta" class="ancho-checkbox" for="check1" name="CPT">CPT</label>
+
+          <input title="[Delivered ex Quay (Duty Paid) - Entregada en muelle (derechos pagados)] 
+" disabled="1" type="checkbox" "@if($empresa->DEQ==1) checked @else @endif"  name="DEQ"  value="{{$empresa->DEQ}}" onclick="changeValueCheckbox(this)"><label title="[Delivered ex Quay (Duty Paid) - Entregada en muelle (derechos pagados)] 
+" class="ancho-checkbox" for="check1" name="DEQ">DEQ</label>   
+          <br>
+          <input title="Delivered duty paid / Entregada derechos pagado" disabled="1" type="checkbox" "@if($empresa->DDP==1) checked @else @endif"  name="DDP"  value="{{$empresa->DDP}}" onclick="changeValueCheckbox(this)"><label title="Delivered duty paid / Entregada derechos pagado" class="ancho-checkbox" for="check1" name="DDP">DDP</label>
+ 
+          <input title="(Delivered Duty Unpaid - Entregada derechos no pagados)
+" disabled="1" type="checkbox" "@if($empresa->DDU==1) checked @else @endif"  name="DDU"  value="{{$empresa->DDU}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="DDU" title="(Delivered Duty Unpaid - Entregada derechos no pagados)
+">DDU</label>
+          <input title="(Delivered at Frontier - Entregado en frontera)
+" disabled="1" type="checkbox" "@if($empresa->DAF==1) checked @else @endif"  name="DAF"  value="{{$empresa->DAF}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="DAF" title="(Delivered at Frontier - Entregado en frontera)
+">DAF</label>  
+          <br>
+          <input title="(Delivered ex Ship - Entregada sobre buque) 
+" disabled="1" type="checkbox" "@if($empresa->DES==1) checked @else @endif"  name="DES"  value="{{$empresa->DES}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="DES">DES</label>
+          <input disabled="1" type="checkbox" "@if($empresa->Expres==1) checked @else @endif"  name="Expres"  value="{{$empresa->Expres}}" onclick="changeValueCheckbox(this)"><label title="(Delivered ex Ship - Entregada sobre buque) 
+" class="ancho-checkbox" for="check1" name="Expres">Entrega Expres</label>          
+        </div>
       </div><hr>
+      <div class="form-group row">
+
+        <label class="col-md-4 control-label" for="nombre_producto"><strong>Moneda de Pago Solicitado</strong></label>
+        <div class="col-md-5">
+          <input title="Pesos Colombianos
+" disabled="1" type="checkbox" "@if($empresa->COP==1) checked @else @endif"  name="COP"  value="{{$empresa->COP}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="COP" title="Pesos Colombianos
+">COP</label>
+          <input title="Dolares Estadounidenses" disabled="1" type="checkbox" "@if($empresa->USD==1) checked @else @endif"  name="USD"  value="{{$empresa->USD}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="USD" title="Dolares Estadounidenses">USD</label>
+          <input title="Euros" disabled="1" type="checkbox" "@if($empresa->EUR==1) checked @else @endif"  name="EUR"  value="{{$empresa->EUR}}" onclick="changeValueCheckbox(this)"><label title="Euros" class="ancho-checkbox" for="check1" name="EUR">EUR</label>
+          <br>
+          <input title="Dólar Canadiense" disabled="1" type="checkbox" "@if($empresa->CAD==1) checked @else @endif"  name="CAD"  value="{{$empresa->CAD}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="CAD" title="Dólar Canadiense">CAD</label>
+          <input title="Dolare Australianos
+" disabled="1" type="checkbox" "@if($empresa->AUD==1) checked @else @endif"  name="AUD"  value="{{$empresa->AUD}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="AUD" title="Dolare Australianos
+">AUD</label>
+          <input title="DÓLAR DE HONG KONG
+" disabled="1" type="checkbox" "@if($empresa->HKD==1) checked @else @endif"  name="HKD"  value="{{$empresa->HKD}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="HKD" title="DÓLAR DE HONG KONG
+">HKD</label>
+          <br>
+          <input title="Libra Britanica" disabled="1" type="checkbox" "@if($empresa->GBP==1) checked @else @endif"  name="GBP"  value="{{$empresa->GBP}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="GBP" title="Libra Britanica">GBP</label>
+          <input title="Yuan Chino " disabled="1" type="checkbox" "@if($empresa->CNY==1) checked @else @endif"  name="CNY"  value="{{$empresa->CNY}}" onclick="changeValueCheckbox(this)"><label title="Yuan Chino " class="ancho-checkbox" for="check1" name="CNY">CNY</label>
+          <input title="Franco Suizo
+" disabled="1" type="checkbox" "@if($empresa->CHF==1) checked @else @endif"  name="CHF"  value="{{$empresa->CHF}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="CHF" title="Franco Suizo
+">CHF</label>       
+        </div>
+      </div><hr>
+      <div class="form-group row">
+        <label class="col-md-4 control-label" for="nombre_producto"><strong>Tipo de Pago Aceptado</strong></label>
+        <div class="col-md-5">
+          <input title="Telegraphic Transfer / Transferencia Bancaria" disabled="1" type="checkbox" "@if($empresa->TT==1) checked @else @endif"  name="TT"  value="{{$empresa->TT}}" onclick="changeValueCheckbox(this)" ><label title="Telegraphic Transfer / Transferencia Bancaria" class="ancho-checkbox" for="check1" name="TT">T/T</label>
+          <input title="Letter  of Credit  / Credito Documentario
+" disabled="1" type="checkbox" "@if($empresa->LC==1) checked @else @endif"  name="LC"  value="{{$empresa->LC}}" onclick="changeValueCheckbox(this)"><label title="Letter  of Credit  / Credito Documentario
+" class="ancho-checkbox" for="check1" name="LC">L/C</label>
+          <input title="Documents Against Payment / Pago por anticipado" disabled="1" type="checkbox" "@if($empresa->DP==1) checked @else @endif" name="DP"  value="{{$empresa->DP}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="DP">D/P</label>     
+        </div>
+
+                <input title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido.
+" disabled="1" type="checkbox" "@if($empresa->DA==1) checked @else @endif" name="DP"  value="{{$empresa->DA}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="DP" title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido.
+"> D/A</label>     
+        </div>
+
+
+      </div>
+
+@endif
+
+
+
+
+
+@if ($perfil->id == 3)
+
+
+<div style="padding-left:20px; padding-right:20px"><!--DEtalle comercio-->
+ <br><br>
+      <div class="form-group row">
+
+        <label class="col-md-4 control-label" for="nombre_producto"><strong>Moneda de Pago Solicitado</strong></label>
+        <div class="col-md-5">
+          <input title="Pesos Colombianos
+" disabled="1" type="checkbox" "@if($empresa->COP==1) checked @else @endif"  name="COP"  value="{{$empresa->COP}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="COP" title="Pesos Colombianos
+">COP</label>
+          <input title="Dolares Estadounidenses" disabled="1" type="checkbox" "@if($empresa->USD==1) checked @else @endif"  name="USD"  value="{{$empresa->USD}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="USD" title="Dolares Estadounidenses">USD</label>
+          <input title="Euros" disabled="1" type="checkbox" "@if($empresa->EUR==1) checked @else @endif"  name="EUR"  value="{{$empresa->EUR}}" onclick="changeValueCheckbox(this)"><label title="Euros" class="ancho-checkbox" for="check1" name="EUR">EUR</label>
+          <br>
+          <input title="Dólar Canadiense" disabled="1" type="checkbox" "@if($empresa->CAD==1) checked @else @endif"  name="CAD"  value="{{$empresa->CAD}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="CAD" title="Dólar Canadiense">CAD</label>
+          <input title="Dolare Australianos
+" disabled="1" type="checkbox" "@if($empresa->AUD==1) checked @else @endif"  name="AUD"  value="{{$empresa->AUD}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="AUD" title="Dolare Australianos
+">AUD</label>
+          <input title="DÓLAR DE HONG KONG
+" disabled="1" type="checkbox" "@if($empresa->HKD==1) checked @else @endif"  name="HKD"  value="{{$empresa->HKD}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="HKD" title="DÓLAR DE HONG KONG
+">HKD</label>
+          <br>
+          <input title="Libra Britanica" disabled="1" type="checkbox" "@if($empresa->GBP==1) checked @else @endif"  name="GBP"  value="{{$empresa->GBP}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="GBP" title="Libra Britanica">GBP</label>
+          <input title="Yuan Chino " disabled="1" type="checkbox" "@if($empresa->CNY==1) checked @else @endif"  name="CNY"  value="{{$empresa->CNY}}" onclick="changeValueCheckbox(this)"><label title="Yuan Chino " class="ancho-checkbox" for="check1" name="CNY">CNY</label>
+          <input title="Franco Suizo
+" disabled="1" type="checkbox" "@if($empresa->CHF==1) checked @else @endif"  name="CHF"  value="{{$empresa->CHF}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="CHF" title="Franco Suizo
+">CHF</label>       
+        </div>
+      </div>
+
+      <hr>
+      <div class="form-group row">
+        <label class="col-md-4 control-label" for="nombre_producto"><strong>Tipo de Pago Aceptado</strong></label>
+        <div class="col-md-5">
+        <br>
+          <input title="Telegraphic Transfer / Transferencia Bancaria" disabled="1" type="checkbox" "@if($empresa->TT==1) checked @else @endif"  name="TT"  value="{{$empresa->TT}}" onclick="changeValueCheckbox(this)" ><label title="Telegraphic Transfer / Transferencia Bancaria" class="ancho-checkbox" for="check1" name="TT">T/T</label>
+        <br>
+          <input title="Letter  of Credit  / Credito Documentario
+" disabled="1" type="checkbox" "@if($empresa->LC==1) checked @else @endif"  name="LC"  value="{{$empresa->LC}}" onclick="changeValueCheckbox(this)"><label title="Letter  of Credit  / Credito Documentario
+" class="ancho-checkbox" for="check1" name="LC">L/C</label>
+        <br>
+          <input title="Documents Against Payment / Pago por anticipado" disabled="1" type="checkbox" "@if($empresa->DP==1) checked @else @endif" name="DP"  value="{{$empresa->DP}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="DP">D/P</label>     
+       
+        <br>
+                <input title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido.
+" disabled="1" type="checkbox" "@if($empresa->DA==1) checked @else @endif" name="DP"  value="{{$empresa->DA}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="DP" title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido.
+"> D/A</label>     
+        </div>
+       
+
+      </div>
+
+
+
+
+       <div class="form-group row">
+        <label class="col-md-4 control-label" for="nombre_producto"><strong>Tipos de Transporte</strong></label>
+        <div class="col-md-5">
+          <input disabled="1" type="checkbox" "@if($empresa->SAE==1) checked @else @endif"  name="SAE"  value="{{$empresa->SAE}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SAE">Aéreo</label>
+            <br>
+          <input disabled="1" type="checkbox" "@if($empresa->STE==1) checked @else @endif"  name="STE"  value="{{$empresa->STE}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="STE">Terrestre</label>
+            <br>
+          <input disabled="1" type="checkbox" "@if($empresa->SMA==1) checked @else @endif" name="SMA"  value="{{$empresa->SMA}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SMA">Marítimo</label> 
+            <br>   
+         <input  disabled="1" type="checkbox" "@if($empresa->SFL==1) checked @else @endif" name="SFL"  value="{{$empresa->SFL}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SFL"> Fluvial</label>   
+           <br>
+          <input  disabled="1" type="checkbox" "@if($empresa->SMU==1) checked @else @endif" name="SMU"  value="{{$empresa->SMU}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SMU"> Multimodal</label> 
+            <br> 
+        </div>
+      </div><hr>
+
+
+
+        <div class="form-group row">
+        <label class="col-md-4 control-label" for="nombre_producto"><strong>Servicios Adicionales</strong></label>
+        <div class="col-md-5">
+        <br>
+          <input disabled="1" type="checkbox" "@if($empresa->SOL==1) checked @else @endif"  name="SOL"  value="{{$empresa->SOL}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SOL">Operadores Logísticos</label>
+            <br>
+          <input  disabled="1" type="checkbox" "@if($empresa->SA==1) checked @else @endif"  name="SA"  value="{{$empresa->SA}}" onclick="changeValueCheckbox(this)"><label class="ancho-largo-checkbox" for="check1" name="SA">Almacenamiento</label>
+            <br>
+          <input disabled="1" type="checkbox" "@if($empresa->SSIA==1) checked @else @endif" name="SSIA"  value="{{$empresa->SSIA}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SSIA">Servicios de Intermediación Aduanera</label> 
+            <br>   
+         <input disabled="1" type="checkbox" "@if($empresa->SACCE==1) checked @else @endif" name="SACCE"  value="{{$empresa->SACCE}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SACCE"> Asesoría y consulta Comercio Exterior</label>   
+           <br>
+
+        </div>
+      </div><hr>
+
+            <div class="form-group row">
+        <label class="col-md-4 control-label" for="nombre_producto"><strong>Especialidades</strong></label>
+        <div class="col-md-6">
+          <input disabled="1" type="checkbox" "@if($empresa->SAMP==1) checked @else @endif"  name="SAMP"  value="{{$empresa->SAMP}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SAMP">Aislamiento de mercancías peligrosas</label>
+            <br>
+          <input disabled="1" type="checkbox" "@if($empresa->STAC==1) checked @else @endif"  name="STAC"  value="{{$empresa->STAC}}" onclick="changeValueCheckbox(this)"><label class="ancho-largo-checkbox" for="check1" name="STAC">Transporte Aéreo de cargo</label>
+            <br>
+          <input disabled="1" type="checkbox" "@if($empresa->STTC==1) checked @else @endif" name="STTC"  value="{{$empresa->STTC}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="STTC">Transporte Terreste de Carga</label>    <br>
+            
+         <input disabled="1" type="checkbox" "@if($empresa->STMC==1) checked @else @endif" name="STMC"  value="{{$empresa->STMC}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="STMC"> Transporte Marítimo Consolidado</label>   <br>  
+         <input disabled="1" type="checkbox" "@if($empresa->STAI==1) checked @else @endif" name="STAI"  value="{{$empresa->STAI}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="STAI"> Servicio de Transporte Aéreo Internacional</label>   <br>  
+         <input disabled="1" type="checkbox" "@if($empresa->SSTAN==1) checked @else @endif" name="SSTAN"  value="{{$empresa->SSTAN}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SSTAN"> Servicio de Transporte Aéreo Nacional</label>    <br> 
+
+
+        </div>
+      </div><hr>
+
+</div>
+
+@endif
+
+
+
+
+@if ($perfil->id == 4)
+
+
+<div style="padding-left:20px; padding-right:20px"><!--DEtalle comercio-->
+ <br><br>
+      <div class="form-group row">
+
+        <label class="col-md-4 control-label" for="nombre_producto"><strong>Moneda de Pago</strong></label>
+        <div class="col-md-5">
+          <input title="Pesos Colombianos
+" disabled="1" type="checkbox" "@if($empresa->COP==1) checked @else @endif"  name="COP"  value="{{$empresa->COP}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="COP" title="Pesos Colombianos
+">COP</label>
+          <input title="Dolares Estadounidenses" disabled="1" type="checkbox" "@if($empresa->USD==1) checked @else @endif"  name="USD"  value="{{$empresa->USD}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="USD" title="Dolares Estadounidenses">USD</label>
+          <input title="Euros" disabled="1" type="checkbox" "@if($empresa->EUR==1) checked @else @endif"  name="EUR"  value="{{$empresa->EUR}}" onclick="changeValueCheckbox(this)"><label title="Euros" class="ancho-checkbox" for="check1" name="EUR">EUR</label>
+          <br>
+          <input title="Dólar Canadiense" disabled="1" type="checkbox" "@if($empresa->CAD==1) checked @else @endif"  name="CAD"  value="{{$empresa->CAD}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="CAD" title="Dólar Canadiense">CAD</label>
+          <input title="Dolare Australianos
+" disabled="1" type="checkbox" "@if($empresa->AUD==1) checked @else @endif"  name="AUD"  value="{{$empresa->AUD}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="AUD" title="Dolare Australianos
+">AUD</label>
+          <input title="DÓLAR DE HONG KONG
+" disabled="1" type="checkbox" "@if($empresa->HKD==1) checked @else @endif"  name="HKD"  value="{{$empresa->HKD}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="HKD" title="DÓLAR DE HONG KONG
+">HKD</label>
+          <br>
+          <input title="Libra Britanica" disabled="1" type="checkbox" "@if($empresa->GBP==1) checked @else @endif"  name="GBP"  value="{{$empresa->GBP}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="GBP" title="Libra Britanica">GBP</label>
+          <input title="Yuan Chino " disabled="1" type="checkbox" "@if($empresa->CNY==1) checked @else @endif"  name="CNY"  value="{{$empresa->CNY}}" onclick="changeValueCheckbox(this)"><label title="Yuan Chino " class="ancho-checkbox" for="check1" name="CNY">CNY</label>
+          <input title="Franco Suizo
+" disabled="1" type="checkbox" "@if($empresa->CHF==1) checked @else @endif"  name="CHF"  value="{{$empresa->CHF}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="CHF" title="Franco Suizo
+">CHF</label>       
+        </div>
+      </div>
+
+      <hr>
+      <div class="form-group row">
+        <label class="col-md-4 control-label" for="nombre_producto"><strong>Tipo de Pago</strong></label>
+        <div class="col-md-5">
+        <br>
+          <input title="Telegraphic Transfer / Transferencia Bancaria" disabled="1" type="checkbox" "@if($empresa->TT==1) checked @else @endif"  name="TT"  value="{{$empresa->TT}}" onclick="changeValueCheckbox(this)" ><label title="Telegraphic Transfer / Transferencia Bancaria" class="ancho-checkbox" for="check1" name="TT">T/T</label>
+        <br>
+          <input title="Letter  of Credit  / Credito Documentario
+" disabled="1" type="checkbox" "@if($empresa->LC==1) checked @else @endif"  name="LC"  value="{{$empresa->LC}}" onclick="changeValueCheckbox(this)"><label title="Letter  of Credit  / Credito Documentario
+" class="ancho-checkbox" for="check1" name="LC">L/C</label>
+        <br>
+          <input title="Documents Against Payment / Pago por anticipado" disabled="1" type="checkbox" "@if($empresa->DP==1) checked @else @endif" name="DP"  value="{{$empresa->DP}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="DP">D/P</label>     
+       
+        <br>
+                <input title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido.
+" disabled="1" type="checkbox" "@if($empresa->DA==1) checked @else @endif" name="DP"  value="{{$empresa->DA}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="DP" title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido.
+"> D/A</label>     
+        </div>
+       
+
+      </div>
+
+
+
+
+       <div class="form-group row">
+        <label class="col-md-4 control-label" for="nombre_producto"><strong>Servicios</strong></label>
+        <div class="col-md-6">
+  <input disabled="1" type="checkbox" "@if($empresa->RIM==1) checked @else @endif"  name="RIM"  value="{{$empresa->RIM}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="RIM">Reconocimiento e inspección de Mercancía</label>
+    <br>
+          <input disabled="1" type="checkbox" "@if($empresa->CA==1) checked @else @endif"  name="CA"  value="{{$empresa->CA}}" onclick="changeValueCheckbox(this)"><label class="ancho-largo-checkbox" for="check1" name="CA">Clasificación arancelaria</label>
+ <br>
+          <input disabled="1"  type="checkbox" "@if($empresa->AT==1) checked @else @endif" name="AT"  value="{{$empresa->AT}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="AT">Asesoría técnica</label> 
+ <br>
+           <input disabled="1" type="checkbox" "@if($empresa->AJA==1) checked @else @endif" name="AJA"  value="{{$empresa->AJA}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="AJA">Asesoría Jurídica aduanera</label> 
+ <br>
+           <input  disabled="1" type="checkbox" "@if($empresa->BPZF==1) checked @else @endif" name="BPZF"  value="{{$empresa->BPZF}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="BPZF">Bodegas propias zona franca</label> 
+           <br>
+          <input  disabled="1" type="checkbox" "@if($empresa->DTCO==1) checked @else @endif" name="DTCO"  value="{{$empresa->DTCO}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="DTCO">Diligenciamiento y tramite certificado de origen</label> 
+
+ <br>
+            <br> 
+        </div>
+      </div><hr>
+
+
+
+     
+
+</div>
+
+@endif
+
+
+
+
+
+
+
+
+
+
+      <hr>
       <div class="form-group row">
         <label class="col-md-4 control-label" for="nombre_producto"><strong>Lenguaje Hablado</strong></label>
         <div class="col-md-7">
@@ -386,6 +704,9 @@ font-size: 16px;
           <input disabled="1" type="checkbox" "@if($empresa->italiano==1) checked @else @endif" name="italiano"  value="{{$empresa->italiano}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="italiano">Italiano</label>   
         </div>
 </div>
+
+
+
 </div>
 
 
@@ -396,16 +717,18 @@ font-size: 16px;
 
 </div><!--detalle comercionn end-->
 
-
-<!--GALERIA-->
-
 @if ($perfil->id == 1)
-   <div><span class="list-item-descripcion">Productos</span></div>
+
+
+
+
+<div class="galeriaperfilproducto">
+  <div class="row clearfix fondomiddle">
+  <div class="tituloproductogaleria"><span class="list-item-descripcion"><b>Productos</b></span></div>
+  <br>
 
 
 </div>
-
-  <div class="row clearfix fondomiddle">
           <div class="">
             <div id="Carousel" class="carousel slide">
 
@@ -499,9 +822,12 @@ font-size: 16px;
 
 
  </div>
-
+</div>
 
 @endif
+
+<!--GALERIA-->
+
 
 
 
