@@ -718,7 +718,7 @@ font-size: 16px;
 </div><!--detalle comercionn end-->
 
 @if ($perfil->id == 1)
-
+ @if($productos->count())
 
 
 
@@ -778,14 +778,14 @@ font-size: 16px;
                           
                           </a></div>
                           <p>
-                            <div class="text-blog thumb"> <a href="{{URL::to('/uploads/productos/'.$galeria->imagen)}}">{{$galeria->nombre}}</a> </div> 
+                            <div class="text-blog thumb"> <a href="/{{$empresa->slug}}/producto/{{$galeria->id}}">{{$galeria->nombre}}</a></div> 
                      
                      
                              <div><span class="rating ">
           <img src="http://www.jimmybeanswool.com/secure-html/onlineec/images/stars/4_5StarBlue09.gif">
         </span></div>
-                            <div class="blog carrusel footer">  @if($empresa->pais)
-              {{$empresa->pais->nombre}}
+                            <div class="blog carrusel footer">  @if($galeria->pais)
+              {{$galeria->pais->nombre}}
             @endif</div>
                           </p>
 
@@ -823,7 +823,7 @@ font-size: 16px;
 
  </div>
 </div>
-
+@endif
 @endif
 
 <!--GALERIA-->

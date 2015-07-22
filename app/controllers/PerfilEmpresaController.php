@@ -110,7 +110,7 @@ $pass = Input::get('pass2');
     {
 
 
-return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+return Response::json(['success'=>false]);
     }
 
 
@@ -118,7 +118,7 @@ return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Suc
 catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 {
 	
-return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+return Response::json(['success'=>false]);
 }
 
 }
@@ -214,7 +214,7 @@ $pass = Input::get('pass');
     {
 
 
-return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+return Response::json(['success'=>false]);
     }
 
 
@@ -222,7 +222,7 @@ return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Suc
 catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 {
 	
-return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+return Response::json(['success'=>false]);
 }
 
 }
@@ -336,7 +336,7 @@ $pass = Input::get('pass');
     {
 
 
-return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+return Response::json(['success'=>false]);
     }
 
 
@@ -344,7 +344,7 @@ return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Suc
 catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 {
 	
-return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+return Response::json(['success'=>false]);
 }
 
 }

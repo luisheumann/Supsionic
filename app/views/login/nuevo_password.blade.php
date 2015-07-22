@@ -5,14 +5,13 @@
 
   {
 
-    $user_id = Sentry::getuser()->id;
 
-    
-  
+  $usuario2 = User::find($idnose)->first();
+    $empresa2 = User::find($idnose)->empresas->first();
 
-    $empresa = User::find($user_id)->empresas->first();
-      $productos = Empresa::find($empresa->id)->productos;
-       $usuarios = User::find($user_id)->first();
+
+  $user = Sentry::findUserById($idnose);
+
 
   }
 
@@ -62,16 +61,16 @@
       var formData = $(this).serializeArray();
 
       $.ajax({
-          url:"<?php echo URL::to($empresa->slug.'/login/nuevo_password2/')?>",
+          url:"<?php echo URL::to($empresa2->slug.'/login/nuevo_password2/')?>",
           method:'post',
           datatype: 'json',
           data: formData,
 
           success:function(data){
        window.location.href = '../admin/perfil/empresa#datos-basicos';
-            alerta.hide().find('ul').empty();
+           
             if(!data.success){
-             toastr.success('Error', 'Contraseña');
+             toastr.error('Error', 'Contraseña');
                $.each(data.errors, function(index, error){
                   alerta.find('ul').append('<li>'+error+'</li>');
                 
@@ -81,6 +80,8 @@
                
             }
             else{
+toastr.success('Cambiada', 'Contraseña');
+
               $('#form_pw').slideUp('slow');
               $("#ok_cambio").slideDown('slow');
             }
@@ -101,11 +102,20 @@
              <h1>Ingrese su nuevo Password</h1> 
 
             <div class="row">
+
+             <div class="form-group">
+                <input type="password" class="form-control input-lg pw" id="pass" placeholder="Anterior" required name="pass">
+              </div>
+
+
               <div class="form-group">
                 <input type="password" class="form-control input-lg pw" placeholder="Password" required name="password">
               </div>
               <div class="form-group">
                 <input type="password" class="form-control input-lg pw" placeholder="Confirme Password" required name="password_confirmation">
+
+                 
+
               </div>                
             </div>
             <!-- Mensaje de errores -->
@@ -115,8 +125,9 @@
                 <p> 
                     <input type="submit" value="Cambiar" id="rpw" /> 
                 </p>
-                <input type="hidden" name="email" value="{{$usuarios->email}}">
-                <input type="hidden" name="id" value="{{$usuarios->id}}">
+                <input type="hidden" name="email" value="{{$user->email}}">
+                <input type="hidden" name="id" value="{{$user->id}}">
+                  <input type="hidden" name="user_id" value="{{$user->id}}">
           </form>
       </div>
 

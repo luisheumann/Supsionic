@@ -33,7 +33,7 @@
                       <div class="input-group-addon">
                         <i class="fa fa-phone"></i>
                       </div>
-                    <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" value="{{$empresa->telefono}}">
+                    <input type="text" class="form-control" id="telefono" class="telefono" name="telefono" placeholder="Teléfono" value="{{$empresa->telefono}}">
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->
                   </div>
@@ -169,7 +169,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Verificacion</h4>
       </div>
       <div class="modal-body">
         <p>Escriba el Password de su cuenta</p>
@@ -192,4 +192,14 @@
 </form>
 </div>
 
+<script>
+var maskBehavior = function (val) {
+  return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+},
+options = {onKeyPress: function(val, e, field, options) {
+        field.mask(maskBehavior.apply({}, arguments), options);
+    }
+};
 
+$('.telefono').mask(maskBehavior, options);
+</script>

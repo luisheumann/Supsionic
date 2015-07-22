@@ -49,7 +49,9 @@
 	  <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal3">Cambiar Contraseña</button></a>
 	  </div>			-->
 </div>
-    <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal4">Cambiar Contraseña</button>
+ <a href="<?php echo URL::to($empresa->slug.'/login/pass/')?>">
+    <button type="button" class="btn btn-success btn-md" >Cambiar Contraseña</button></a>
+
 	</div>
 
 
@@ -101,6 +103,10 @@
       <div class="modal-body">
         <p>Escriba el Password de su cuenta</p>
         <input type="password" class="form-control" id="pass2" name="pass2" value="">
+
+
+
+
       </div>
       <div class="modal-footer">
 
@@ -115,33 +121,7 @@
 </div>
 
 
-<div id="myModal4" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Confirmar Password</h4>
-      </div>
-      <div class="modal-body">
-        <p>Escriba el Password de su cuenta</p>
-        <input type="password" class="form-control" id="pass" name="pass" value="">
-      </div>
-      <div class="modal-footer">
-
-                   <a href="<?php echo URL::to($empresa->slug.'/login/pass/')?>">
-    <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal3">Cambiar Contraseña</button></a>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <!--<input type="submit"  class="btn btn-info btn-md" value="Actualizar">-->
-
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
+ 
 
 </form>
             </div>

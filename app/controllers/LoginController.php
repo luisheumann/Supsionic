@@ -2,6 +2,10 @@
 
 class LoginController extends \BaseController {
 
+
+
+   
+
 	public function index()
 	{
 		return View::make('login.index');
@@ -179,7 +183,25 @@ class LoginController extends \BaseController {
    public function NuevoPassword()
    {
 
-   	 return View::make('login.nuevo_password');
+   	$slug = Route::current()->parameters();
+        $perfil = Empresa::findBySlug($slug);
+        if (empty($perfil)) {
+            return App::abort(404);
+        }
+        $this->user_id = $perfil->id;
+
+$usuario = User::find($this->user_id)->first();
+$empresa = User::find($this->user_id)->empresas->first();
+$idnose = $this->user_id;
+
+
+
+
+   	 return View::make('login.nuevo_password', array('usuario'=>$usuario, 'empresa'=>$empresa,'idnose'=>$idnose));
+
+
+
+
    }
 
 
@@ -190,16 +212,25 @@ class LoginController extends \BaseController {
 
 
 $input = Input::all();
-		try
+try
 {
     // Find the user using the user id
+
+    $slug = Route::current()->parameters();
+        $perfil = Empresa::findBySlug($slug);
+        if (empty($perfil)) {
+            return App::abort(404);
+        }
+        $this->user_id = $perfil->id;
+
+        
     $user = Sentry::findUserById($this->user_id);
 
 $pass = Input::get('pass');
     if($user->checkPassword($pass))
     {
 
-    	
+
 		$input = Input::all();
 		$reglas =  array(
 			'password'  		    => 'required|min:3|confirmed',
@@ -216,49 +247,55 @@ $pass = Input::get('pass');
             ]);
         }	
 	
- try
-{
-    // Find the user using the user id
-$input = Input::all();
-   $iduser = Input::get('id');
-
-    $user = Sentry::findUserById($iduser);
-
-    // Update the user details
-    $user->password = Input::get('password');
-   
 
 
-    // Update the user
-    if ($user->save())
-    {
-        // User information was updated
-    }
+        try {
+            // Find the user using the user id
+            $email = Input::get('email');
+            $code  = Input::get('code');
+            $user = Sentry::findUserByLogin($email);
+
+            // Check if the reset password code is valid
+            if ($user->checkResetPasswordCode($code)) {
+                // Attempt to reset the user password
+                if ($user->attemptResetPassword($code, Input::get('password'))) {
+                    // Password reset passed
+                    //return http_redirect()::to('login')->with('message', 'Password Change Ok');
+                    return Response::json(['success'=>true]);
+                } else {
+                    // Password reset failed
+                    $error = array('usuario' => 'No se puede cambiar el password' );
+			    	return Response::json([
+			        	'success'=>false, 
+			        	'errors'=>$error
+		        	]);	
+                }
+            }else {
+                
+                  $error = array('usuario' => 'No se puede cambiar el password codigo invalido' );
+			    	return Response::json([
+			        	'success'=>false, 
+			        	'errors'=>$error
+		        	]);	
+            }
+        }
+        catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+          	$error = array('usuario' => 'El Usuario no existe' );
+	    	return Response::json([
+	        	'success'=>false, 
+	        	'errors'=>$error
+        	]);	
+        }
+
+	return Response::json(['success'=>true]);
+
+
+	 }
     else
     {
-        // User information was not updated
-    }
-}
-catch (Cartalyst\Sentry\Users\UserExistsException $e)
-{
-    echo 'User with this login already exists.';
-}
-catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
-{
-    echo 'User was not found.';
-}
 
 
-      
-
-		return Response::json(['success'=>true]);
-
-   }
-    else
-    {
-
-
-return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+return Response::json(['success'=>false]);
     }
 
 
@@ -266,12 +303,10 @@ return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Suc
 catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 {
 	
-return Redirect::to('admin.perfil.basicos')->withFlashMessage('Group Created Successfully.');
+return Response::json(['success'=>false]);
 }
 
 }
-
-
 
 
 
