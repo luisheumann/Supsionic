@@ -123,6 +123,102 @@ input#cantidad_disp {
 }
 
 
+a[title]:hover:after {
+  content: attr(title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 20;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+
+
+input[title]:hover:after {
+  content: attr(title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 20;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+
+input[title]:hover:before {
+  content: attr(title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 20;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+
+
+label[title]:hover:after {
+  content: attr(title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 20;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+
+
+
 
 </style>
  <h1>
@@ -324,7 +420,7 @@ input#cantidad_disp {
           <legend class="legenda"><strong>Información Comercial</strong></legend>
 
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Precio</label>
+            <label class="col-md-6 control-label"  for="nombre_producto">Precio FOB</label>
             <div class="col-md-6">
             <div class="form-inline">
               <select name="moneda" id="moneda" class="form-control">
@@ -371,12 +467,74 @@ input#cantidad_disp {
           <div class="form-group">
             <label class="col-md-6 control-label"  for="nombre_producto">Términos de Pago</label>
             <div class="col-md-6">
-                <input type="checkbox" name="LC" id="LC" "@if($producto->LC==1) checked @else @endif"  onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1">L/C</label>
-  				<input type="checkbox" name="DA" id="DA" "@if($producto->DA==1) checked @else @endif"   onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1">D/A</label>
-   			    <input type="checkbox" name="DP" id="DP" "@if($producto->DP==1) checked @else @endif"  onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1">D/P</label>
-   				<input type="checkbox" name="TT"  id="TT" "@if($producto->TT==1) checked @else @endif"  onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1">T/T</label>
+            <div class="cerrar">
+                <input  type="checkbox" type="checkbox" name="LC" id="LC" "@if($producto->LC==1) checked @else @endif"  onclick="changeValueCheckbox(this)"><label title="Letter  of Credit  / Credito Documentario"  class="ancho-checkbox" for="check1">L/C</label>
+  				<input  type="checkbox" name="DA" id="DA" "@if($producto->DA==1) checked @else @endif"   onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido"  for="check1">D/A</label>
+   			    <input   type="checkbox" name="DP" id="DP" "@if($producto->DP==1) checked @else @endif"  onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" title="Documents Against Payment / Pago por anticipado
+              "  for="check1">D/P</label>
+   				<input  type="checkbox" name="TT"  id="TT" "@if($producto->TT==1) checked @else @endif"  onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" title="Telegraphic Transfer / Transferencia Bancaria"   for="check1">T/T</label>
+            </div>
             </div>
           </div>
+
+
+
+
+
+
+
+
+             <div class="form-group row">
+        <label class="col-md-6 control-label" for="nombre_producto"><strong>Tipos de Transporte</strong></label>
+        <div class="col-md-6">
+          <input type="checkbox" "@if($producto->SAE==1) checked @else @endif"  name="SAE"  value="{{$producto->SAE}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SAE">Aéreo</label>
+            <br>
+          <input type="checkbox" "@if($producto->STE==1) checked @else @endif"  name="STE"  value="{{$producto->STE}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="STE">Terrestre</label>
+            <br>
+          <input type="checkbox" "@if($producto->SMA==1) checked @else @endif" name="SMA"  value="{{$producto->SMA}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SMA">Marítimo</label> 
+            <br>   
+         <input type="checkbox" "@if($producto->SFL==1) checked @else @endif" name="SFL"  value="{{$producto->SFL}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SFL"> Fluvial</label>   
+           <br>
+          <input type="checkbox" "@if($producto->SMU==1) checked @else @endif" name="SMU"  value="{{$producto->SMU}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SMU"> Multimodal</label> 
+            <br> 
+        </div>
+      </div><hr>
+
+
+
+        <div class="form-group row">
+        <label class="col-md-6 control-label" for="nombre_producto"><strong>Servicios Adicionales</strong></label>
+        <div class="col-md-6">
+        <br>
+          <input type="checkbox" "@if($producto->SOL==1) checked @else @endif"  name="SOL"  value="{{$producto->SOL}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SOL">Operadores Logísticos</label>
+            <br>
+          <input type="checkbox" "@if($producto->SA==1) checked @else @endif"  name="SA"  value="{{$producto->SA}}" onclick="changeValueCheckbox(this)"><label class="ancho-largo-checkbox" for="check1" name="SA">Almacenamiento</label>
+            <br>
+          <input type="checkbox" "@if($producto->SSIA==1) checked @else @endif" name="SSIA"  value="{{$producto->SSIA}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SSIA">Servicios de Intermediación Aduanera</label> 
+            <br>   
+         <input type="checkbox" "@if($producto->SACCE==1) checked @else @endif" name="SACCE"  value="{{$producto->SACCE}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SACCE"> Asesoría y consulta Comercio Exterior</label>   
+           <br>
+
+        </div>
+      </div><hr>
+
+            <div class="form-group row">
+        <label class="col-md-6 control-label" for="nombre_producto"><strong>Especialidades</strong></label>
+        <div class="col-md-6">
+          <input type="checkbox" "@if($producto->SAMP==1) checked @else @endif"  name="SAMP"  value="{{$producto->SAMP}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SAMP" title="Aislamiento de mercancías peligrosas">Aislamiento de mercancías peligrosas</label>
+            <br>
+          <input type="checkbox" "@if($producto->STAC==1) checked @else @endif"  name="STAC"  value="{{$producto->STAC}}" onclick="changeValueCheckbox(this)"><label class="ancho-largo-checkbox" for="check1" name="STAC" title="Transporte Aéreo de cargo">Transporte Aéreo de cargo</label>
+            <br>
+          <input type="checkbox" "@if($producto->STTC==1) checked @else @endif" name="STTC"  value="{{$producto->STTC}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="STTC" title="Transporte Terreste de Carga">Transporte Terreste de Carga</label>    <br>
+            
+         <input type="checkbox" "@if($producto->STMC==1) checked @else @endif" name="STMC"  value="{{$producto->STMC}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="STMC" title="Transporte Marítimo Consolidado"> Transporte Marítimo Consolidado</label>   <br>  
+         <input type="checkbox" "@if($producto->STAI==1) checked @else @endif" name="STAI"  value="{{$producto->STAI}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="STAI" title="Servicio de Transporte Aéreo Internacional"> Servicio de Transporte Aéreo Internacional</label>   <br>  
+         <input type="checkbox" "@if($producto->SSTAN==1) checked @else @endif" name="SSTAN"  value="{{$producto->SSTAN}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SSTAN" title="Servicio de Transporte Aéreo Nacional"> Servicio de Transporte Aéreo Nacional</label>    <br> 
+
+
+        </div>
+
+
 
         </fieldset>
 

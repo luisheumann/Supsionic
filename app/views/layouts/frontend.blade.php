@@ -362,6 +362,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	 {{HTML::script('js/bootstrap.min.js')}}
 	 	 {{HTML::script('js/app.min.js')}}
 
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+
 <script type="text/javascript">
    $(document).ready(function() {      
   

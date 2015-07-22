@@ -99,6 +99,24 @@ class ProductosController extends BaseController {
         $producto->profundo = Input::get('profundo');
         $producto->dimencion_unidad = Input::get('dimencion_unidad');
 
+        $producto->SAE = Input::get('SAE');
+        $producto->STE = Input::get('STE');
+        $producto->SMA = Input::get('SMA');
+        $producto->SFL = Input::get('SFL');
+        $producto->SMU = Input::get('SMU');
+        $producto->SOL = Input::get('SOL');
+        $producto->SA = Input::get('SA');
+        $producto->SSIA = Input::get('SSIA');
+        $producto->SACCE = Input::get('SACCE');
+        $producto->SAMP = Input::get('SAMP');
+        $producto->STAC = Input::get('STAC');
+        $producto->STTC = Input::get('STTC');
+        $producto->STMC = Input::get('STMC');
+        $producto->STAI = Input::get('STAI');
+        $producto->SSTAN = Input::get('SSTAN');
+
+
+
         
         $producto->save();
 

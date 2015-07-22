@@ -117,6 +117,107 @@ input#cantidad_disp {
   margin-right: 10px;
 }
 
+input[type="checkbox"] {
+    margin: 4px;
+}
+
+
+
+a[title]:hover:after {
+  content: attr(title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 20;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+
+
+input[title]:hover:after {
+  content: attr(title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 20;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+
+input[title]:hover:before {
+  content: attr(title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 20;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+
+
+label[title]:hover:after {
+  content: attr(title);
+  padding: 4px 8px;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 20;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 4px #222;
+  -webkit-box-shadow: 0px 0px 4px #222;
+  box-shadow: 0px 0px 4px #222;
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #eeeeee),color-stop(1, #cccccc));
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+}
+
+
 
 
 </style>
@@ -322,7 +423,7 @@ input#cantidad_disp {
           <legend class="legenda"><strong>Información Comercial</strong></legend>
 
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Precio</label>
+            <label class="col-md-6 control-label"  for="nombre_producto">Precio FOB</label>
             <div class="col-md-6">
             <div class="form-inline">
               <select name="moneda" id="moneda" class="form-control">
@@ -377,22 +478,80 @@ input#cantidad_disp {
           <div class="form-group">
             <label class="col-md-6 control-label"  for="nombre_producto">Términos de Pago</label>
             <div class="col-md-6">
-                <input title="Letter  of Credit  / Credito Documentario" type="checkbox" name="LC" id="LC"  onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" title="Letter  of Credit  / Credito Documentario">L/C</label>
-  				<input title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido" type="checkbox" name="DA" id="DA"   onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido">D/A</label>
-   			    <input  title="Documents Against Payment / Pago por anticipado
-" type="checkbox" name="DP" id="DP"   onclick="changeValueCheckbox(this)"><label title="Documents Against Payment / Pago por anticipado
-" class="ancho-checkbox" for="check1">D/P</label>
-   				<input title="Telegraphic Transfer / Transferencia Bancaria" type="checkbox" name="TT"  id="TT"   onclick="changeValueCheckbox(this)"><label title="Telegraphic Transfer / Transferencia Bancaria" class="ancho-checkbox" for="check1">T/T</label>
+              <input title="Letter  of Credit  / Credito Documentario" type="checkbox" name="LC" id="LC"  onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" title="Letter  of Credit  / Credito Documentario">L/C</label>
+              <input title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido" type="checkbox" name="DA" id="DA"   onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido">D/A</label>
+              <input  title="Documents Against Payment / Pago por anticipado
+              " type="checkbox" name="DP" id="DP"   onclick="changeValueCheckbox(this)"><label title="Documents Against Payment / Pago por anticipado
+              " class="ancho-checkbox" for="check1">D/P</label>
+              <input title="Telegraphic Transfer / Transferencia Bancaria" type="checkbox" name="TT"  id="TT"   onclick="changeValueCheckbox(this)"><label title="Telegraphic Transfer / Transferencia Bancaria" class="ancho-checkbox" for="check1">T/T</label>
+            </div>
+          </div>
+
+
+
+<hr>
+
+          <div class="form-group row">
+            <label class="col-md-6 control-label" for="nombre_producto"><strong>Tipos de Transporte</strong></label>
+            <div class="col-md-6">
+              <input type="checkbox"   name="SAE"  onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SAE">Aéreo</label>
+              <br>
+              <input type="checkbox"  name="STE"  onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="STE">Terrestre</label>
+              <br>
+              <input type="checkbox"  name="SMA"  onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SMA">Marítimo</label> 
+              <br>   
+              <input type="checkbox"  name="SFL"  onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SFL"> Fluvial</label>   
+              <br>
+              <input type="checkbox"  name="SMU"  onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SMU"> Multimodal</label> 
+              <br> 
+
+
+            </div>
+          </div>
+          <hr>
+
+
+
+          <div class="form-group row">
+            <label class="col-md-6 control-label" for="nombre_producto"><strong>Servicios Adicionales</strong></label>
+            <div class="col-md-6">
+              <br>
+              <input type="checkbox"   name="SOL"  onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SOL">Operadores Logísticos</label>
+              <br>
+              <input type="checkbox"   name="SA"  onclick="changeValueCheckbox(this)"><label class="ancho-largo-checkbox" for="check1" name="SA">Almacenamiento</label>
+              <br>
+              <input type="checkbox"  name="SSIA"  onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SSIA">Servicios de Intermediación Aduanera</label> 
+              <br>   
+              <input type="checkbox"  name="SACCE" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SACCE"> Asesoría y consulta Comercio Exterior</label>   
+              <br>
+
+            </div>
+          </div><hr>
+
+          <div class="form-group row">
+            <label class="col-md-6 control-label" for="nombre_producto"><strong>Especialidades</strong></label>
+            <div class="col-md-6">
+              <input type="checkbox"   name="SAMP"  onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SAMP">Aislamiento de mercancías peligrosas</label>
+              <br>
+              <input type="checkbox"   name="STAC"  onclick="changeValueCheckbox(this)"><label class="ancho-largo-checkbox" for="check1" name="STAC">Transporte Aéreo de cargo</label>
+              <br>
+              <input type="checkbox"  name="STTC"  onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="STTC">Transporte Terreste de Carga</label>    <br>
+
+              <input type="checkbox"  name="STMC"  onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="STMC"> Transporte Marítimo Consolidado</label>   <br>  
+              <input type="checkbox"  name="STAI"  onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="STAI"> Servicio de Transporte Aéreo Internacional</label>   <br>  
+              <input type="checkbox"  name="SSTAN" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SSTAN"> Servicio de Transporte Aéreo Nacional</label>    <br> 
+
+
             </div>
           </div>
 
         </fieldset>
 
 
-       
 
 
-         <!-- Loader -->
+
+        <!-- Loader -->
   <div align="center">
     <img src="{{asset('images/load.gif')}}" id="load_export" style="display:none">  
   </div>
