@@ -110,7 +110,7 @@ $segment  = Request::segment(4);
             }else{
         Session::set('error','Ocurrió un error al intentar eliminar');
         }
-        return Redirect::to('/');
+       return Redirect::to('/'.$empresa->slug.'/interes_transportador');
         
     }
 

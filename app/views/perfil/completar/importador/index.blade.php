@@ -193,9 +193,15 @@ input#cantidad_disp {
 
 			<td>
 
-				<a data-toggle="modal" class="link" href="importador/interes/{{$interes->id}}" data-target="#myModalE">
+		
 
-				<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></a><br>
+
+
+<a href="interes_importador/delete/{{$interes->id}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a> 
+<a href="interes_importador/edit/{{$interes->id}}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> <a data-toggle="modal" class="link" data-target="#myModalE" href="importador/interes/{{$interes->id}}" class="btn btn-default btn-xs"><span class="glyphicon  glyphicon-eye-open"></span></a>
+
+
+
 
 			</td>
 

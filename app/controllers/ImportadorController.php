@@ -217,13 +217,34 @@ class ImportadorController extends BaseController {
         $segment  = Request::segment(4);
         $interes = InteresesImportador::find($segment);
         $rutas = $interes->RutaImportador;
+        $categorias = Categorias::orderBy('nombre', 'ASC')->get(); 
 
         $unidades = Unidades::Get();
+        $paises = Paises::orderBy('nombre', 'ASC')->get();
 
         $medidamax = Unidades::where('id', $interes->max_medida)->first();
         $medidamin = Unidades::where('id', $interes->min_medida)->first();
         
-        return View::make('perfil.completar.importador.intereses.edit', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin));
+        return View::make('perfil.completar.importador.intereses.edit', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin, 'categorias' => $categorias,'unidades' => $unidades,'paises' => $paises));
+    }
+
+
+
+  public function InteresDelete($id)
+    {
+        $empresa = User::find($this->user_id)->empresas->first();
+        $perfil  = Empresa::find($empresa->id)->perfil->first();
+
+
+        $segment  = Request::segment(4);
+        $articulo = InteresesImportador::find($segment);
+        if($articulo->delete()){
+        Session::set('mensaje','Artículo eliminado con éxito');
+            }else{
+        Session::set('error','Ocurrió un error al intentar eliminar');
+        }
+        return Redirect::to('/'.$empresa->slug.'/interes_importador');
+        
     }
 
 

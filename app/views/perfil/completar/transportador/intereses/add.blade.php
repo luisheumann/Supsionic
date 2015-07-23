@@ -49,10 +49,17 @@ input[type="checkbox"] {
           @foreach($categorias as $categoria)
             <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
           @endforeach
+
+      
+
+
         </select>
        </div>
      </div>
   </div>
+
+
+  
 
   <div class="row">
     <div class="col-md-12">

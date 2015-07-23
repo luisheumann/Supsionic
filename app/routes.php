@@ -78,13 +78,20 @@ Route::group(array('before' => 'AuthSentryInv'), function()
 	Route::get('{post}/interes_importador/add','ImportadorController@InteresAdd');
 
 	Route::get('{post}/interes_transportador/edit/{id}','TransportadorController@InteresEdit');
+
+
 	Route::get('{post}/interes_transportador/delete/{id}','TransportadorController@InteresDelete');
 
-
+Route::get('{post}/interes_importador/delete/{id}','ImportadorController@InteresDelete');
 
 
 	Route::post('{post}/interes_transportador/edit/interes_importador','ImportadorController@postIntereses');	
 
+
+
+Route::get('{post}/interes_importador/edit/{id}','ImportadorController@InteresEdit');
+
+	Route::post('{post}/interes_importador/edit/interes_importador','ImportadorController@postIntereses');
 
 	Route::post('{post}/interes_importador','ImportadorController@postIntereses');	
 	Route::post('{post}/interes_importador/interes_importador','ImportadorController@postIntereses');	

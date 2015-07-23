@@ -261,66 +261,7 @@ form#form_importador {
   <hr>
 
 
- <div class="row">
 
-        <div class="form-group ">
-        <label class="col-md-6 control-label" for="nombre_producto"><strong>Tipos de Transporte</strong></label>
-        <div class="col-md-6">
-          <input type="checkbox"   name="SAE" "@if($interes->SAE==1) checked @else @endif"  onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SAE">Aéreo</label>
-            <br>
-          <input type="checkbox"   name="STE"  "@if($interes->STE==1) checked @else @endif" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="STE">Terrestre</label>
-            <br>
-          <input type="checkbox"  name="SMA"  "@if($interes->SMA==1) checked @else @endif" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SMA">Marítimo</label> 
-            <br>   
-         <input type="checkbox"  name="SFL" "@if($interes->SFL==1) checked @else @endif" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SFL"> Fluvial</label>   
-           <br>
-          <input type="checkbox"  name="SMU"  "@if($interes->SMU==1) checked @else @endif" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SMU"> Multimodal</label> 
-            <br> 
-        </div>
-      </div><hr>
-</div>
-
- <div class="row">
-
-        <div class="form-group ">
-        <label class="col-md-6 control-label" for="nombre_producto"><strong>Servicios Adicionales</strong></label>
-        <div class="col-md-6">
-        <br>
-          <input type="checkbox"   name="SOL"  "@if($interes->SOL==1) checked @else @endif" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SOL">Operadores Logísticos</label>
-            <br>
-          <input type="checkbox"   name="SA"  "@if($interes->SA==1) checked @else @endif" onclick="changeValueCheckbox(this)"><label class="ancho-largo-checkbox" for="check1" name="SA">Almacenamiento</label>
-            <br>
-          <input type="checkbox"  name="SSIA"  "@if($interes->SSIA==1) checked @else @endif" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SSIA">Servicios de Intermediación Aduanera</label> 
-            <br>   
-         <input type="checkbox"  name="SACCE"  "@if($interes->SACCE==1) checked @else @endif" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SACCE"> Asesoría y consulta Comercio Exterior</label>   
-           <br>
-
-        </div>
-      </div>
-
-      </div>
-      <hr>
-
-       <div class="row">
-
-            <div class="form-group ">
-        <label class="col-md-6 control-label" for="nombre_producto"><strong>Especialidades</strong></label>
-        <div class="col-md-6">
-          <input type="checkbox"  name="SAMP"  "@if($interes->SAMP==1) checked @else @endif" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SAMP">Aislamiento de mercancías peligrosas</label>
-            <br>
-          <input type="checkbox"   name="STAC"  "@if($interes->STAC==1) checked @else @endif" onclick="changeValueCheckbox(this)"><label class="ancho-largo-checkbox" for="check1" name="STAC">Transporte Aéreo de cargo</label>
-            <br>
-          <input type="checkbox"  name="STTC"  "@if($interes->STTC==1) checked @else @endif" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="STTC">Transporte Terreste de Carga</label>    <br>
-            
-         <input type="checkbox"  name="STMC"  "@if($interes->STMC==1) checked @else @endif" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="STMC"> Transporte Marítimo Consolidado</label>   <br>  
-         <input type="checkbox"  name="STAI"  "@if($interes->STAI==1) checked @else @endif" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="STAI"> Servicio de Transporte Aéreo Internacional</label>   <br>  
-         <input type="checkbox"  name="SSTAN"  "@if($interes->SSTAN==1) checked @else @endif" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SSTAN"> Servicio de Transporte Aéreo Nacional</label>    <br> 
-
-
-        </div>
-      </div>
-</div>
-      <hr>
 
 
 
@@ -341,8 +282,7 @@ form#form_importador {
   <div align="center">
 
     <button class="btn btn-success" id="btn_import"><i class="fa fa-check"></i> ACTUALIZAR</button>
-
-    <a href="/{{$empresa->slug}}/interes_transportador" class="btn btn-info"> <i class="fa fa-close"></i>CERRAR</a>
+    <a href="/{{$empresa->slug}}/interes_importador" class="btn btn-info"> <i class="fa fa-close"></i>CERRAR</a>
 
    
 
@@ -425,7 +365,6 @@ document.getElementById("frecuencia").value = frecuencia;
   {{HTML::style('css/jasny-bootstrap.min.css')}}
   {{HTML::style('css/bootstrap-multiselect.css')}}
 @stop
-
 
 
 

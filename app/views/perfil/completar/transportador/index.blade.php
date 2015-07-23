@@ -128,7 +128,7 @@ input#cantidad_disp {
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> dashboard</a></li>
-            <li class="active">Productos</li>
+            <li class="active">Interes</li>
           </ol>
 @stop
 
@@ -172,7 +172,7 @@ input#cantidad_disp {
 
 		<th>Categoría</th>
 
-		<th>Productos</th>
+		<th>Interes</th>
 
 		<th>Ver Detalles</th>
 

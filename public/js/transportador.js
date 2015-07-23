@@ -11,6 +11,9 @@ $('#selec_paises').multiselect({
    nonSelectedText: 'Seleccione...'
 });
 
+
+
+
 // Cambio categoria 
 $('#categoria_producto').on('change', function() {
   var optionSelected = $("option:selected", this);
