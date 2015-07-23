@@ -75,7 +75,16 @@ Route::group(array('before' => 'AuthSentryInv'), function()
 
 	Route::get('{post}/interes_importador','ImportadorController@Interes');
 
-	Route::get('{post}/interes_importador/add','ImportadorController@InteresAdd');		
+	Route::get('{post}/interes_importador/add','ImportadorController@InteresAdd');
+
+	Route::get('{post}/interes_transportador/edit/{id}','TransportadorController@InteresEdit');
+	Route::get('{post}/interes_transportador/delete/{id}','TransportadorController@InteresDelete');
+
+
+
+
+	Route::post('{post}/interes_transportador/edit/interes_importador','ImportadorController@postIntereses');	
+
 
 	Route::post('{post}/interes_importador','ImportadorController@postIntereses');	
 	Route::post('{post}/interes_importador/interes_importador','ImportadorController@postIntereses');	
@@ -84,10 +93,16 @@ Route::group(array('before' => 'AuthSentryInv'), function()
 	Route::get('{post}/importador/interes/{id}','ImportadorController@interesById');
 	
 	// post para guardar los productos de interes para el transportador
+		Route::get('{post}/interes_transportador/add','TransportadorController@InteresAdd');	
+			Route::get('{post}/interes_transportador','TransportadorController@Interes');
+
+
 	Route::post('{post}/interes_transportador','TransportadorController@postIntereses');	
 
 	// Obtiene el detalle de interes (para importador)  por el id
 	Route::get('{post}/transportador/interes/{id}','TransportadorController@interesById');
+
+		Route::get('{post}/transportador/interesedit/{id}','TransportadorController@interesByIdedit');
 
 	// post para guardar la información comercial para las SIAS
 	Route::post('{post}/info_sias','SiasController@postInfo');	

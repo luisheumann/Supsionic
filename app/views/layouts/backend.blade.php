@@ -305,19 +305,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
 
 
-            @else
-
+            @endif
+  @if($PerfilEmpresa->perfil_id == 2)
         
             <li class="treeview">
-              <a href="#"><i class='fa fa-link'></i> <span>Intereses </span> <i class="fa fa-angle-left pull-right"></i></a>
-              <ul class="treeview-menu">
+              <a href="/{{$empresa->slug}}/interes_importador"><i class='fa fa-link'></i> <span>Intereses </span> <i class="fa fa-angle-left pull-right"></i></a>
+              <!--<ul class="treeview-menu">
                 <li><a href="/{{$empresa->slug}}/interes_importador">Lista</a></li>
            
-              </ul>
+              </ul>-->
             </li>
 
 
             @endif
+
+              @if($PerfilEmpresa->perfil_id == 3)
+        
+            <li class="treeview">
+              <a href="/{{$empresa->slug}}/interes_transportador"><i class='fa fa-link'></i> <span>Intereses </span> <i class="fa fa-angle-left pull-right"></i></a>
+             
+            </li>
+
+
+            @endif
+
+
 
 
               <li >

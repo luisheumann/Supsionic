@@ -154,11 +154,7 @@ font-size: 16px;
 
 </style>
 
- <script>
-  $(function() {
-    $( document ).tooltip();
-  });
-  </script>
+
 
 
 <div class="box">
@@ -251,7 +247,7 @@ font-size: 16px;
           <h1>DESCRIPCIÓN </h1>
           <hr>
          
-            <p>{{$empresa->descripcion}}</p>
+            {{$empresa->descripcion}}
           
            
           </div>
@@ -515,7 +511,7 @@ font-size: 16px;
 
        <div class="form-group row">
         <label class="col-md-4 control-label" for="nombre_producto"><strong>Tipos de Transporte</strong></label>
-        <div class="col-md-5">
+        <div class="col-md-7">
           <input disabled="1" type="checkbox" "@if($empresa->SAE==1) checked @else @endif"  name="SAE"  value="{{$empresa->SAE}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SAE">Aéreo</label>
             <br>
           <input disabled="1" type="checkbox" "@if($empresa->STE==1) checked @else @endif"  name="STE"  value="{{$empresa->STE}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="STE">Terrestre</label>
@@ -533,7 +529,7 @@ font-size: 16px;
 
         <div class="form-group row">
         <label class="col-md-4 control-label" for="nombre_producto"><strong>Servicios Adicionales</strong></label>
-        <div class="col-md-5">
+        <div class="col-md-7">
         <br>
           <input disabled="1" type="checkbox" "@if($empresa->SOL==1) checked @else @endif"  name="SOL"  value="{{$empresa->SOL}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SOL">Operadores Logísticos</label>
             <br>
@@ -549,7 +545,7 @@ font-size: 16px;
 
             <div class="form-group row">
         <label class="col-md-4 control-label" for="nombre_producto"><strong>Especialidades</strong></label>
-        <div class="col-md-6">
+        <div class="col-md-7">
           <input disabled="1" type="checkbox" "@if($empresa->SAMP==1) checked @else @endif"  name="SAMP"  value="{{$empresa->SAMP}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SAMP">Aislamiento de mercancías peligrosas</label>
             <br>
           <input disabled="1" type="checkbox" "@if($empresa->STAC==1) checked @else @endif"  name="STAC"  value="{{$empresa->STAC}}" onclick="changeValueCheckbox(this)"><label class="ancho-largo-checkbox" for="check1" name="STAC">Transporte Aéreo de cargo</label>
@@ -579,7 +575,7 @@ font-size: 16px;
       <div class="form-group row">
 
         <label class="col-md-4 control-label" for="nombre_producto"><strong>Moneda de Pago</strong></label>
-        <div class="col-md-5">
+        <div class="col-md-7">
           <input title="Pesos Colombianos
 " disabled="1" type="checkbox" "@if($empresa->COP==1) checked @else @endif"  name="COP"  value="{{$empresa->COP}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="COP" title="Pesos Colombianos
 ">COP</label>
@@ -605,7 +601,7 @@ font-size: 16px;
       <hr>
       <div class="form-group row">
         <label class="col-md-4 control-label" for="nombre_producto"><strong>Tipo de Pago</strong></label>
-        <div class="col-md-5">
+        <div class="col-md-7">
         <br>
           <input title="Telegraphic Transfer / Transferencia Bancaria" disabled="1" type="checkbox" "@if($empresa->TT==1) checked @else @endif"  name="TT"  value="{{$empresa->TT}}" onclick="changeValueCheckbox(this)" ><label title="Telegraphic Transfer / Transferencia Bancaria" class="ancho-checkbox" for="check1" name="TT">T/T</label>
         <br>
@@ -629,7 +625,7 @@ font-size: 16px;
 
        <div class="form-group row">
         <label class="col-md-4 control-label" for="nombre_producto"><strong>Servicios</strong></label>
-        <div class="col-md-6">
+        <div class="col-md-7">
   <input disabled="1" type="checkbox" "@if($empresa->RIM==1) checked @else @endif"  name="RIM"  value="{{$empresa->RIM}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="RIM">Reconocimiento e inspección de Mercancía</label>
     <br>
           <input disabled="1" type="checkbox" "@if($empresa->CA==1) checked @else @endif"  name="CA"  value="{{$empresa->CA}}" onclick="changeValueCheckbox(this)"><label class="ancho-largo-checkbox" for="check1" name="CA">Clasificación arancelaria</label>

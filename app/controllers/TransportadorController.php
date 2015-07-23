@@ -61,15 +61,128 @@ class TransportadorController  extends BaseController {
 
     }
 
+     public function Interes()
+    {
+        $empresa = User::find($this->user_id)->empresas->first();
+                $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
+
+      $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
+
+      $intersesTransportador  = Empresa::find(4)->intersesTransportador; // intereses del importador en cuenstion
+         $unidades = Unidades::Get();
+
+        return View::make('perfil.completar.transportador.index', array( 'categorias' => $categorias, 'paises'=>$paises,'empresa'=>$empresa,'intersesTransportador'=>$intersesTransportador,'unidades'=>$unidades));
+    }
+
+
+
+
+
+     public function InteresAdd()
+    {
+        $empresa = User::find($this->user_id)->empresas->first();
+        $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
+        $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
+        $intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
+        $unidades = Unidades::Get();
+
+
+        return View::make('perfil.completar.transportador.intereses.add', array( 'categorias' => $categorias, 'paises'=>$paises,'empresa'=>$empresa,'intersesImportador'=>$intersesImportador,'unidades'=>$unidades));
+    }
+
+
+
+
+
+
+
+
+  public function InteresDelete($id)
+    {
+        $empresa = User::find($this->user_id)->empresas->first();
+        $perfil  = Empresa::find($empresa->id)->perfil->first();
+
+
+$segment  = Request::segment(4);
+        $articulo = InteresesTransportador::find($segment);
+        if($articulo->delete()){
+        Session::set('mensaje','Artículo eliminado con éxito');
+            }else{
+        Session::set('error','Ocurrió un error al intentar eliminar');
+        }
+        return Redirect::to('/');
+        
+    }
+
+
+
 	// obtengo el producto por ID
     public function interesById($id)
     {
-    	$segment  = Request::segment(4);
-    	$interes = InteresesTransportador::find($segment);
-    	$rutas = $interes->RutaTransportador;
+
+        $segment  = Request::segment(4);
+        $interes2 = InteresesTransportador::find($segment);
+        $rutas2 = $interes2->RutaTransportador;
+
+        $unidades = Unidades::Get();
+
+        $medidamax2 = Unidades::where('id', $interes2->max_medida)->first();
+        $medidamin2 = Unidades::where('id', $interes2->min_medida)->first();
+        
+        return View::make('perfil.completar.transportador.intereses.detalles', array('interes2' =>$interes2, 'rutas2' => $rutas2,'medidamax2' => $medidamax2 , 'medidamin2' => $medidamin2));
+
+
     	
-    	return View::make('perfil.completar.transportador.intereses.detalles', array('interes' =>$interes, 'rutas' => $rutas));
     }
+
+     public function InteresEdit($id)
+    {
+        $segment  = Request::segment(4);
+        $interes = InteresesTransportador::find($segment);
+
+        $rutas = $interes->RutaTransportador;
+
+        $unidades = Unidades::Get();
+
+        $medidamax = Unidades::where('id', $interes->max_medida)->first();
+        $medidamin = Unidades::where('id', $interes->min_medida)->first();
+        $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
+
+        $medidamax = Unidades::where('id', $interes->max_medida)->first();
+        $medidamin = Unidades::where('id', $interes->min_medida)->first();
+          $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
+             $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
+ $empresa = User::find($this->user_id)->empresas->first();
+
+        
+        return View::make('perfil.completar.transportador.intereses.edit', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin, 'categorias' => $categorias, 'unidades' => $unidades, 'paises' => $paises, 'empresa' => $empresa));
+    }
+
+
+
+
+ public function interesByIdedit($id)
+    {
+
+      $segment  = Request::segment(4);
+        $interes = InteresesImportador::where('id', $segment)->first();
+        $rutas = $interes->RutaImportador;
+
+        $unidades = Unidades::Get();
+
+        $medidamax = Unidades::where('id', $interes->max_medida)->first();
+        $medidamin = Unidades::where('id', $interes->min_medida)->first();
+          $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
+             $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
+ $empresa = User::find($this->user_id)->empresas->first();
+
+        
+        return View::make('perfil.completar.transportador.intereses.edit', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin, 'categorias' => $categorias, 'unidades' => $unidades, 'paises' => $paises, 'empresa' => $empresa));
+
+
+        
+    }
+
 
 
 

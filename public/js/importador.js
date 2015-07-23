@@ -31,6 +31,12 @@ $('#categoria_producto').on('change', function() {
         data: formData, 
         success:function(data){
           console.dir(data);
+
+
+ toastr.success('Producto', 'Agregado Correctamente');
+          
+
+            location.reload(true);
           $alerta.hide().find('ul').empty();
 
           if(!data.success){
@@ -43,6 +49,7 @@ $('#categoria_producto').on('change', function() {
           }
           else{
             resetForm()
+               location.reload(true);
           }
         } // fin success
       }); // fin ajax

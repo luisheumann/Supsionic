@@ -590,6 +590,23 @@ font-size: 16px;
   float: left;
   width: 200px;
 }
+
+.productImage {
+    margin-right: 20px;
+}
+
+a.morelink {
+    text-decoration:none;
+    outline: none;
+}
+.morecontent span {
+    display: none;
+}
+.comment {
+    width: 100%;
+   
+    margin: 10px;
+}
 </style>
 
 
@@ -646,12 +663,12 @@ font-size: 16px;
 
 <div class="">    
 
-  <div class="col-md-6">
+  <div class="tele">
 
 
 
 
- <div class="container clearfix">
+ <div class="container2">
       <div class="gallery">
 <div style="width:380px">
 
@@ -668,7 +685,7 @@ font-size: 16px;
 
       <div class="productImage">
      <div class="full"> 
-        <img id="imagen2" title="@if ($producto->imagen->count()>0){{$img= $imagenes[0]->imagen}} @else {{$img= 'producto.png'}} @endif" height="620" width="428" style="float:right;"  alt="Image" src="/uploads/productos/{{$img}}"/> 
+        <img id="imagen2" title1="@if ($producto->imagen->count()>0){{$img= $imagenes[0]->imagen}} @else {{$img= 'producto.png'}} @endif" height="620" width="428" style="float:right;"  alt="Image" src="/uploads/productos/{{$img}}"/> 
 </div>
           </div>  
       </div>
@@ -680,7 +697,7 @@ font-size: 16px;
 
       </div><!--COL MD6-->
 
-      <div class="col-md-6">
+      <div class="det">
 
 <div><span class="a-list-item-empresa"><a href="/{{$empresa->slug}}">{{$empresa->nombre}}</a></span></div>
 <span id="productTitle" class="a-size-large">{{$producto->nombre}}</span>
@@ -745,10 +762,10 @@ font-size: 16px;
 </div>
         
 
-        <div class="button add">Seleccionar</div>
+    
 
                    
-
+ <button class="btn btn-success" id="btn_import"><i class="fa fa-check"></i> Seleccionar</button>
         
 
        
@@ -772,7 +789,10 @@ font-size: 16px;
 
 
                   <ul class="specs">
-                 {{$producto->descripcion}}</li>
+
+                  <div class="comment more">
+                 {{$producto->descripcion}}
+                 </div></li>
                    
                  </ul>  
                </div>
@@ -1146,13 +1166,13 @@ font-size: 16px;
                           
                           </a></div>
                           <p>
-                            <div class="text-blog thumb"> <a href="{{URL::to('/uploads/productos/'.$galeria->imagen)}}">{{$galeria->nombre}}</a> </div> 
+                            <div class="text-blog thumb"> <a href="/{{$empresa->slug}}/producto/{{$galeria->id}}">{{$galeria->nombre}}</a> </div> 
                      
                             <div class="a-color-price">{{$galeria->precio}} {{$monedas->codigo}}</div>
                              <div><span class="rating ">
           <img src="http://www.jimmybeanswool.com/secure-html/onlineec/images/stars/4_5StarBlue09.gif">
         </span></div>
-                            <div class="blog carrusel footer">  {{Paises::find($rutas->first()->pais_origen)->nombre}}</div>
+                            <div class="blog carrusel footer">  {{Paises::find($galeria->RutaExportador->first()->pais_origen)->nombre}} </div>
                           </p>
 
                         </div>
