@@ -169,9 +169,9 @@ input#cantidad_disp {
 
 	<thead>
 
-		<th>No</th>
+		<th>Cantidad Min</th>
 
-		<th>Categoría</th>
+		<th>Cantidad Max</th>
 
 		<th>Productos</th>
 
@@ -185,9 +185,19 @@ input#cantidad_disp {
 
 		<tr>
 
-			<td>1</td>
+			 <td>@if ($interes->min == 0)
+      Sin Limite
+      @else
+      {{$interes->min}} {{Unidades::find($interes->min_medida)->nombre}}
+      @endif
+      </td>
 
-			<td>{{Categorias::find($interes->categoria_id)->nombre}}</td>			
+      <td>@if ($interes->max == 0)
+       Sin Limite
+      @else
+ {{$interes->max}} {{Unidades::find($interes->min_medida)->nombre}}
+      @endif
+      </td>     
 
 			<td>{{$interes->productos}}</td>
 

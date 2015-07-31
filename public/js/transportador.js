@@ -11,14 +11,18 @@ $('#selec_paises').multiselect({
    nonSelectedText: 'Seleccione...'
 });
 
+  // Renderiza el multiselect de categorias
+  $('#categoria_producto').multiselect({
+     maxHeight: 200,
+     buttonClass: 'btn btn-default btn-lg s_paises2',
+     enableFiltering: true,
+     includeSelectAllOption: true,
+     enableCaseInsensitiveFiltering: true,
+     filterPlaceholder: 'Buscar categoria...',
+     nonSelectedText: 'Seleccione...'
+  });
 
 
-
-// Cambio categoria 
-$('#categoria_producto').on('change', function() {
-  var optionSelected = $("option:selected", this);
-  $('#view_cate').text(optionSelected.text());
-});
 
 //guardar producto exportador
  $("#form_transportador").submit(function(e){

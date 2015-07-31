@@ -60,6 +60,7 @@
 
 
                resetForm()
+           window.location.reload()
             }
             
           } // fin success

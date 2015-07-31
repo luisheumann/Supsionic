@@ -1,5 +1,37 @@
 
+<style type="text/css">
+	.col-md-12.otro {
+    margin: 0px;
+    padding: 0px;
+}
 
+.formularios-registro form {
+    width: 100%;
+    text-align: left;
+    /* padding-left: 12px; */
+    height: 582px;
+}
+
+button.btn.btn-info.btn-md {
+    float: right;
+}
+
+input#filesname {
+    /* margin: 5px; */
+    width: 300px;
+    float: left;
+}
+
+li.itemarchivos {
+    margin: 10px;
+    background-color: #F3E8D0;
+    color: #FFF;
+    font-color: #ccc;
+    padding: 6px;
+}
+
+
+</style>
 <div class="box-body">
 
 <br>
@@ -82,12 +114,16 @@
 	    <input type="text" class="form-control" name="postal" id="postal" placeholder="Código Postal" value="{{$empresa->postal}}">
 	  </div>			
 	</div>
+
+
 	<div class="col-md-6">
 	  <div class="form-group">
 	    <label for="postal">Twitter</label>
 	    <input type="text" class="form-control" name="twitter" id="twitter" placeholder="Twitter" value="{{$empresa->tw}}">
 	  </div>			
 	</div>
+
+
 
 		<div class="col-md-6">
 	  <div class="form-group">
@@ -97,6 +133,38 @@
 	</div>
 
 
+	
+
+
+
+
+
+		<div class="col-md-12 otro">
+<div class="col-md-6">
+	  <div class="form-group">
+	   @foreach ($archivos as $archivo )
+ <ul class="itemfiles">
+<li class="itemarchivos"><a href="/uploads/files/{{$archivo->files}}" target="_blank">{{$archivo->name}} </a> <a href="/{{$empresa->slug}}/interes_importador2/delete/{{$archivo->id}}" class="btn btn-danger btn-xs" ><span class="glyphicon glyphicon-trash"></span></a></li>
+</ul>
+ @endforeach
+ <div>
+	    <label for="postal">Nombre del Archivo Adjunto</label></div>
+<input type="text" class="form-control" name="filesname" id="filesname" placeholder="Nombre Archivo" >
+<div class="fileinput fileinput-new" data-provides="fileinput">
+  
+  <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+  <div>
+    <span class="btn btn-primary btn-file">
+    <span class="fileinput-new">Agregar Nuevo Archivo</span>
+    <span class="fileinput-exists">Cambiar</span>
+
+
+      
+
+    <input type="file" id="files" name="files" accept="application/pdf"></span>
+    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Eliminar</a>
+	  </div>			
+	</div></div></div>
 		<div class="col-md-6">
 	  <div class="form-group">
 <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -120,20 +188,33 @@
   <div>
     <span class="btn btn-primary btn-file">
     <span class="fileinput-new">{{$texto}}</span>
-    <span class="fileinput-exists">Change</span>
+    <span class="fileinput-exists">Cambiar</span>
     <input type="file" id="file_image" name="imagen" accept="image/gif, image/jpeg, image/png"></span>
-    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Eliminar</a>
   </div>
 </div>
  </div>			
 	</div>
 
 
+
+
+
+		
+</div>
+
+
+
+    
+	
+
 	<div class="col-md-12">
 	  <div class="form-group">
 	    <label for="descripcion">Descripción de la empresa</label>
 	    <textarea name="descripcion" class="form-control" id="descripcion" rows="5" placeholder="Descripción">{{$empresa->descripcion}}</textarea>
 	  </div>
+
+	  	<button type="button"  class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal2">Actualizar</button>
 	</div>
 
 
@@ -156,10 +237,10 @@
       <strong><i class="fa fa-check"></i></strong> Los datos se guardaron correctamente
     </div>
 
-<div align="right">
+
 	
-		<button type="button"  class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal2">Actualizar</button>
-</div>
+	
+
 
 
 <div id="myModal2" class="modal fade" role="dialog">

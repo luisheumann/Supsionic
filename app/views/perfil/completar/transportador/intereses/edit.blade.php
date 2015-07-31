@@ -63,11 +63,11 @@ input#min {
 
 
 select#min_cantidad {
-  width: 250px;
+  width: 160px;
 }
 
 select#max_cantidad {
-  width: 250px;
+  width: 160px;
 }
 
 input[type="checkbox"] {
@@ -77,6 +77,15 @@ input[type="checkbox"] {
 form#form_importador {
     margin: 40px;
 }
+
+.col-md-6.a {
+    margin-left: 0px;
+    margin: 0px;
+    /* padding: 0px; */
+    padding-left: 0px;
+    padding-right: 40px;
+}
+
 
 
 </style>
@@ -105,20 +114,20 @@ form#form_importador {
     <legend class="legenda"><strong>Información Básica</strong></legend>
 
 
-  <div class="row">
-   <div class="col-md-6"></div>
-    <div class="col-md-6">
+
+<div class="row">
+          <div class="col-md-6"></div>
+     <div class="col-md-6">
       <div class="form-group">
-        <label for="categoria_producto">Categoría</label>
-        <select name="categoria_producto" id="categoria_producto" class="form-control" required>
-          <option value="">Seleccione...</option> 
-          @foreach($categorias as $categoria)
-            <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
-          @endforeach
-        </select>
+        <label for="categoria_producto">Categorias </label><br>
+           <select id="categoria_producto" required name="categoria[]" multiple="multiple">
+            @foreach($categorias as $categoria)
+              <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+            @endforeach 
+          </select>
        </div>
-     </div>
-     </div>
+    </div>
+ </div>
 
   <div class="row">
    <div class="col-md-6"></div>
@@ -136,45 +145,36 @@ form#form_importador {
  </div>
   <hr>
 
- <div class="row">
-    <div class="col-md-6"></div>
-   <b>Cantidad Minima</b><br>
+
+
+
+   <div class="row">  
       <div class="col-md-6"></div>
-    <div class="col-md-6">
+    <div class="col-md-6 a">
       <div class="form-group">
-        
-        <input type="text" class="form-control" id="min" name="min" value="{{$interes->min}}"> 
+         <div class="col-md-4">
+    <b>Cantidad Minima</b><br>
+        <input title="Valor 0 es ilimitado por defecto" placeholder="0" type="text" class="form-control" id="min" name="min" value="{{$interes->min}}"> 
+    </div>
 
+      <div class="col-md-4">
+        <b> Cantidad Maxima</b><br>
+          <input title="Valor 0 es ilimitado por defecto" placeholder="0" type="text" class="form-control" id="max" name="max" value="{{$interes->max}}">
+         </div>
+<div class="col-md-4">
+ <b> Unidad</b><br>
         <select name="min_cantidad" id="min_cantidad" class="form-control" required>
-          <option value="">Seleccione Unidad de Medida...</option> 
+          <option value="">Seleccione...</option> 
           @foreach($unidades as $unidade)
           <option value="{{$unidade->id}}">{{$unidade->nombre}}</option>
           @endforeach
         </select>
-
-
-      </div>
-    </div>  
 </div>
-
- <div class="row">
-    <div class="col-md-6"></div>
- <b> Cantidad Maxima</b><br>
-  <div class="col-md-6"></div>
-    <div class="col-md-6">
-      <div class="form-group">
-  
-           <input type="text" class="form-control" id="max" name="max" value="{{$interes->max}}">
-            <select name="max_cantidad" id="max_cantidad" class="form-control" required>
-          <option value="">Seleccione Unidad de Medida...</option> 
-          @foreach($unidades as $unidade)
-          <option value="{{$unidade->id}}">{{$unidade->nombre}}</option>
-          @endforeach
-        </select>
 
       </div>
     </div>  
   </div>
+
 
   <hr>
 
@@ -195,30 +195,7 @@ form#form_importador {
 
   <hr>
 
-   <div class="row">
-      <div class="col-md-6"></div>
-
-   <b>Frecuencia de Compra</b><br>
-       <div class="col-md-6"></div>
-    <div class="col-md-6">
-      <div class="form-group">
-        
-       <select id="frecuencia" required name="frecuencia" class="form-control" >
-           
-              <option value="1">Semanal</option>
-              <option value="2">Mensual</option>
-              <option value="3">Trimestral</option>
-              <option value="4">Semestral</option>
-              <option value="5">Anual</option>
-
-         
-          </select>
-
-
-      </div>
-    </div>  
-  </div>
-  <hr>
+   
 
 
 
@@ -260,7 +237,7 @@ form#form_importador {
  </div>
   <hr>
 
-
+<!--
  <div class="row">
 
         <div class="form-group ">
@@ -322,7 +299,7 @@ form#form_importador {
 </div>
       <hr>
 
-
+-->
 
 
 
@@ -367,6 +344,13 @@ form#form_importador {
 
 <script type="text/javascript">
 
+var values3= "<?foreach ($categorias_select as $ruta) {$resultstr[] = $ruta->categoria_id;}$result = implode(",",$resultstr);echo $result;?>"
+console.log("dos");
+console.log(values3);
+$.each(values3.split(","), function(i,e){
+    $("#categoria_producto option[value='" + e + "']").prop("selected", true);
+});
+
 var values= "<?foreach ($rutas as $ruta) {$resultstr[] = $ruta->pais_origen;}$result = implode(",",$resultstr);echo $result;?>"
 $.each(values.split(","), function(i,e){
     $("#selec_paises option[value='" + e + "']").prop("selected", true);
@@ -376,7 +360,7 @@ $.each(values.split(","), function(i,e){
 var pais_destino  = <?php echo $rutas[0]->pais_destino ?>;
 
 
-var categoria_id = <?php echo $interes->categoria_id ?>;
+
 
 var min_cantidad = <?php echo $interes->min_medida ?>;
 var max_cantidad = <?php echo $interes->max_medida ?>;
@@ -386,7 +370,7 @@ var frecuencia = <?php echo $interes->frecuencia ?>;
 
 
 document.getElementById("pais_destino").value = pais_destino;
-document.getElementById("categoria_producto").value = categoria_id;
+
 document.getElementById("min_cantidad").value = min_cantidad;
 document.getElementById("max_cantidad").value = max_cantidad;
 

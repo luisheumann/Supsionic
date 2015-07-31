@@ -46,59 +46,49 @@ label.col-md-6.control-label {
 		    <div role="tabpanel" class="tab-pane active" id="home">
 
 				<ul class="list-group">
-				  <li class="list-group-item"><strong>Categoría:</strong> 
-					{{Categorias::find($interes2->categoria_id)->nombre}}
-				  </li>
-				  <li class="list-group-item"><strong>Producto: </strong> 
-				  	{{$interes2->productos}}
-				  </li>
+				   <li class="list-group-item"><strong>Categorias: </strong> 
+              @foreach($categorias_select as $categoria)
+            <div>{{Categorias::find($categoria->categoria_id)->nombre}}<div>
 
-				   <li class="list-group-item"><strong>Cantidad Minima: </strong> 
-				  	{{$interes2->min}} {{$medidamax2->nombre}}
-				 
+            @endforeach
+          </li>
+				  <li class="list-group-item"><strong>Interes: </strong> 
+            {{$interes2->productos}}
+          </li>
 
-				  </li>
+           <li class="list-group-item"><strong>Cantidad Minima: </strong> 
+            @if ($interes2->min == 0)
+      Ilimitado
+      @else
+  {{$interes2->min}} {{$medidamax2->nombre}}
+      @endif
 
-				    <li class="list-group-item"><strong>Cantidad Maxima: </strong> 
-				  	{{$interes2->max}} {{$medidamin2->nombre}}
-				  </li>
+
+         
+
+          </li>
+
+            <li class="list-group-item"><strong>Cantidad Maxima: </strong> 
+            
+  @if ($interes2->max == 0)
+      Ilimitado
+      @else
+    {{$interes2->max}} {{$medidamin2->nombre}}
+      @endif
+
+
+        
+          </li>
 				
 				  <li class="list-group-item"><strong>Partida arancelaria: </strong> 
 				  	{{$interes2->partida}} 
 				  </li>
-				  <li class="list-group-item"><strong>Frecuencia de Compra: </strong> 
-
-			
-
-<?php
-
-
-switch ($interes2->frecuencia) {
-    case "1":
-        echo "Semanal";
-        break;
-    case "2":
-        echo "Mensual";
-        break;
-    case "3":
-        echo "Trimestral";
-        break;
-          case "4":
-        echo "Semestral";
-        break;
-         case "5":
-        echo "Anual";
-        break;
-    default:
-        echo "Anual";
-}
-?>
+				 
 
 
  
 
-				  </li>
-
+<!--
 <li class="list-group-item">
 				  	  <div class="row">
 
@@ -167,7 +157,7 @@ switch ($interes2->frecuencia) {
 			</div>
 </li>
 
-				</ul>
+				</ul>-->
 
 		    </div>
 

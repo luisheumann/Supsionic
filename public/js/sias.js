@@ -15,7 +15,7 @@
   // Renderiza el multiselect de categorias
   $('#categoria_producto').multiselect({
      maxHeight: 200,
-     buttonClass: 'btn btn-default btn-lg s_paises',
+     buttonClass: 'btn btn-default btn-lg s_paises2',
      enableFiltering: true,
      includeSelectAllOption: true,
      enableCaseInsensitiveFiltering: true,

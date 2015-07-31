@@ -319,6 +319,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             @endif
 
+
+  @if($PerfilEmpresa->perfil_id == 4)
+        
+            <li class="treeview">
+              <a href="/{{$empresa->slug}}/info_sias"><i class='fa fa-link'></i> <span>Intereses </span> <i class="fa fa-angle-left pull-right"></i></a>
+              <!--<ul class="treeview-menu">
+                <li><a href="/{{$empresa->slug}}/interes_importador">Lista</a></li>
+           
+              </ul>-->
+            </li>
+
+
+            @endif
+
+
               @if($PerfilEmpresa->perfil_id == 3)
         
             <li class="treeview">

@@ -122,6 +122,21 @@ class ProductosController extends BaseController {
 
         
 
+
+        // BORRAR LOS categorias PARA EVITAR DUPLICADOS
+       $valorid = RutaExportador::where('producto_id', $producto->id)->get(); 
+             foreach ($valorid as $valorunico){
+
+                if($valorunico->delete()){
+        Session::set('mensaje','Artículo eliminado con éxito');
+            }else{
+        Session::set('error','Ocurrió un error al intentar eliminar');
+        }
+
+             }
+
+
+
         // GUARDA LOS DESTINOS
 		foreach (Input::get('destinos') as $destino)
 		{

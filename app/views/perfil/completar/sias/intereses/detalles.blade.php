@@ -31,7 +31,7 @@
 		    	<a href="#home" aria-controls="home" role="tab" data-toggle="tab">Detalles</a>
 		    </li>
 		    <li role="presentation">
-		    	<a href="#rutas" aria-controls="rutas" role="tab" data-toggle="tab">Rutas</a>
+		    	<a href="#rutas" aria-controls="rutas" role="tab" data-toggle="tab">Pais de Operaciones</a>
 		    </li> 
 
 		  </ul>
@@ -41,7 +41,10 @@
 		    <div role="tabpanel" class="tab-pane active" id="home">
 
 				<ul class="list-group">
-				   <li class="list-group-item"><strong>Categorias: </strong> 
+
+			
+
+			    	  <li class="list-group-item"><strong>Categorias: </strong> 
 				  		@foreach($categorias_select as $categoria)
 						<div>{{Categorias::find($categoria->categoria_id)->nombre}}<div>
 
@@ -79,37 +82,7 @@
 				  <li class="list-group-item"><strong>Partida arancelaria: </strong> 
 				  	{{$interes->partida}} 
 				  </li>
-				  <li class="list-group-item"><strong>Frecuencia de Compra: </strong> 
-			
-
-<?php
-
-
-switch ($interes->frecuencia) {
-    case "1":
-        echo "Semanal";
-        break;
-    case "2":
-        echo "Mensual";
-        break;
-    case "3":
-        echo "Trimestral";
-        break;
-          case "4":
-        echo "Semestral";
-        break;
-         case "5":
-        echo "Anual";
-        break;
-    default:
-        echo "Anual";
-}
-?>
-
-
- 
-
-				  </li>
+	
 
 
 				</ul>
@@ -117,19 +90,12 @@ switch ($interes->frecuencia) {
 		    </div>
 
 		    <div role="tabpanel" class="tab-pane" id="rutas">
-		    	<div class="origen_detalle"><h4>
-		    		<strong>Origen: </strong>
-		    		{{Paises::find($rutas->first()->pais_destino)->nombre}}
-		    	</h4></div>
-
-		    	  <hr>
-		    	  
-		    	<div class="destino_detalle"><h4><strong>Paises de Destino</strong></h4></div>
+				    	<div class="destino_detalle"><h4><strong>Paises</strong></h4></div>
 		  
 <div class="ruta_destino">
 		    	<ul>
-			    	@foreach($rutas as $ruta)
-						<li>{{Paises::find($ruta->pais_origen)->nombre}}</li>
+			    	@foreach($paises_operacion as $ruta)
+						<li>{{Paises::find($ruta->pais_id)->nombre}}</li>
 			    	@endforeach
 		    	</ul>
 		    	</div>

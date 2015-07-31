@@ -44,6 +44,26 @@ class AdminController extends BaseController {
 
 }
 
+public function file_delete($borra)
+{
+
+	
+		$producto = FileEmpresas::find($borra);
+		if($producto->delete()){
+		Session::set('mensaje','Artículo eliminado con éxito');
+			}else{
+		Session::set('error','Ocurrió un error al intentar eliminar');
+		}
+		return Redirect::to('/producto/lista');
+
+
+}
+
+
+
+
+
+
 
 		public function producto_add()
 	{
@@ -105,6 +125,7 @@ class AdminController extends BaseController {
 	    $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
 	    $unidades   = Unidades::orderBy('nombre', 'ASC')->get(); // todas las unidaddes de productos
 	    $productos  = Empresa::find($empresa->id)->productos; //los productos de la empresa en cuestión
+	    $archivos = FileEmpresas::where('empresa_id', 1)->get();
 
 	    $intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
 	    $intersesTransportador  = Empresa::find($empresa->id)->intersesTransportador; // intereses del transportador en cuenstion
@@ -118,7 +139,8 @@ class AdminController extends BaseController {
 				  'productos'=>$productos,
 				  'intersesImportador'=>$intersesImportador,
 				  'intersesTransportador'=>$intersesTransportador,
-				  'usuario'=>$usuario
+				  'usuario'=>$usuario,
+				  'archivos'=>$archivos
 				)
 			);
 

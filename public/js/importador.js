@@ -12,10 +12,17 @@ $('#selec_paises').multiselect({
 });
 
 //Cambio categoria 
-$('#categoria_producto').on('change', function() {
-  var optionSelected = $("option:selected", this);
-  $('#view_cate').text(optionSelected.text());
-});
+  // Renderiza el multiselect de categorias
+  $('#categoria_producto').multiselect({
+     maxHeight: 200,
+     buttonClass: 'btn btn-default btn-lg s_paises2',
+     enableFiltering: true,
+     includeSelectAllOption: true,
+     enableCaseInsensitiveFiltering: true,
+     filterPlaceholder: 'Buscar categoria...',
+     nonSelectedText: 'Seleccione...'
+  });
+
 
 //guardar producto importador
  $("#form_importador").submit(function(e){

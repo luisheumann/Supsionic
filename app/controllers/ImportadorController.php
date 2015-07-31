@@ -48,7 +48,7 @@ class ImportadorController extends BaseController {
 
 		$input = Input::all();
 		$reglas =  array(
-			'categoria_producto' => 'required',
+		
 			'productos'			 => 'required',
 			'pais_destino' 		 => 'required',
 			'origenes' 			 => 'required'
@@ -82,13 +82,13 @@ class ImportadorController extends BaseController {
          $InteresesImportador = InteresesTransportador::findOrNew(Input::get('id'));
 
         $InteresesImportador->empresa_id   = $empresa_id;
-        $InteresesImportador->categoria_id = input::get('categoria_producto');
+        $InteresesImportador->categoria_id = 0;
         $InteresesImportador->productos    = input::get('productos');
         $InteresesImportador->min    = input::get('min');
         $InteresesImportador->max    = input::get('max');
         $InteresesImportador->min_medida    = input::get('min_cantidad');
-        $InteresesImportador->max_medida   = input::get('max_cantidad');
-        $InteresesImportador->frecuencia   = input::get('frecuencia');
+        $InteresesImportador->max_medida   = input::get('min_cantidad');
+        $InteresesImportador->frecuencia   = 0;
         $InteresesImportador->partida   = input::get('partida');
 
         $InteresesImportador->SAE   = input::get('SAE');
@@ -110,6 +110,32 @@ class ImportadorController extends BaseController {
 
         $InteresesImportador->save();
 
+
+// BORRAR LOS categorias PARA EVITAR DUPLICADOS
+       $valorid = SiasCategoriaInteres::where('intereses_transporte_id', $InteresesImportador->id)->get(); 
+             foreach ($valorid as $valorunico){
+
+                if($valorunico->delete()){
+        Session::set('mensaje','Artículo eliminado con éxito');
+            }else{
+        Session::set('error','Ocurrió un error al intentar eliminar');
+        }
+
+             }
+
+// /BORRAR LOS PAISES PARA EVITAR DUPLICADOS
+     foreach (Input::get('categoria') as $categoria)
+        {
+
+            $SiasCategoriaInteres = SiasCategoriaInteres::findOrNew(Input::get('id'));
+
+          
+            $SiasCategoriaInteres->empresa_id = $empresa_id;
+            $SiasCategoriaInteres->intereses_transporte_id = $InteresesImportador->id;
+            $SiasCategoriaInteres->categoria_id = $categoria;
+            $SiasCategoriaInteres->save();
+        }
+
 }
 
 
@@ -119,12 +145,12 @@ class ImportadorController extends BaseController {
          $InteresesImportador = InteresesImportador::findOrNew(Input::get('id'));
 
 		$InteresesImportador->empresa_id   = $empresa_id;
-		$InteresesImportador->categoria_id = input::get('categoria_producto');
+		$InteresesImportador->categoria_id = 0;
 		$InteresesImportador->productos    = input::get('productos');
         $InteresesImportador->min    = input::get('min');
         $InteresesImportador->max    = input::get('max');
         $InteresesImportador->min_medida    = input::get('min_cantidad');
-        $InteresesImportador->max_medida   = input::get('max_cantidad');
+        $InteresesImportador->max_medida   = input::get('min_cantidad');
         $InteresesImportador->frecuencia   = input::get('frecuencia');
         $InteresesImportador->partida   = input::get('partida');
 
@@ -147,9 +173,51 @@ class ImportadorController extends BaseController {
 
 		$InteresesImportador->save();
 
+
+        // BORRAR LOS categorias PARA EVITAR DUPLICADOS
+       $valorid = SiasCategoriaInteres::where('intereses_importador_id', $InteresesImportador->id)->get(); 
+             foreach ($valorid as $valorunico){
+
+                if($valorunico->delete()){
+        Session::set('mensaje','Artículo eliminado con éxito');
+            }else{
+        Session::set('error','Ocurrió un error al intentar eliminar');
+        }
+
+             }
+
+
+         foreach (Input::get('categoria') as $categoria)
+        {
+
+            $SiasCategoriaInteres = SiasCategoriaInteres::findOrNew(Input::get('id'));
+
+          
+            $SiasCategoriaInteres->empresa_id = $empresa_id;
+            $SiasCategoriaInteres->intereses_importador_id = $InteresesImportador->id;
+            $SiasCategoriaInteres->categoria_id = $categoria;
+            $SiasCategoriaInteres->save();
+        }
+
+
 }
         if ($PerfilEmpresa->perfil_id == 3)
         {
+
+
+
+// BORRAR LOS categorias PARA EVITAR DUPLICADOS
+       $valorid = RutaTransportador::where('intereses_transporte_id', $InteresesImportador->id)->get(); 
+             foreach ($valorid as $valorunico){
+
+                if($valorunico->delete()){
+        Session::set('mensaje','Artículo eliminado con éxito');
+            }else{
+        Session::set('error','Ocurrió un error al intentar eliminar');
+        }
+
+             }
+
 
 
 
@@ -168,6 +236,20 @@ class ImportadorController extends BaseController {
       
         if ($PerfilEmpresa->perfil_id == 2)
         {
+
+           
+       $valorid = RutaImportador::where('intereses_importador_id', $InteresesImportador->id)->get(); 
+             foreach ($valorid as $valorunico){
+
+                if($valorunico->delete()){
+        Session::set('mensaje','Artículo eliminado con éxito');
+            }else{
+        Session::set('error','Ocurrió un error al intentar eliminar');
+        }
+
+             }
+
+
         // GUARDA LOS DESTINOS
 		foreach (Input::get('origenes') as $origen)
 		{
@@ -204,9 +286,10 @@ class ImportadorController extends BaseController {
         $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
         $intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
         $unidades = Unidades::Get();
+          $categorias_select = SiasCategoriaInteres::where('intereses_importador_id', $segment)->orderBy('categoria_id', 'ASC')->get(); 
 
 
-        return View::make('perfil.completar.importador.intereses.add', array( 'categorias' => $categorias, 'paises'=>$paises,'empresa'=>$empresa,'intersesImportador'=>$intersesImportador));
+        return View::make('perfil.completar.importador.intereses.add', array( 'categorias' => $categorias, 'paises'=>$paises,'empresa'=>$empresa,'intersesImportador'=>$intersesImportador,'categorias_select'=>$categorias_select));
     }
 
 
@@ -224,8 +307,9 @@ class ImportadorController extends BaseController {
 
         $medidamax = Unidades::where('id', $interes->max_medida)->first();
         $medidamin = Unidades::where('id', $interes->min_medida)->first();
+         $categorias_select = SiasCategoriaInteres::where('intereses_importador_id', $segment)->orderBy('categoria_id', 'ASC')->get(); 
         
-        return View::make('perfil.completar.importador.intereses.edit', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin, 'categorias' => $categorias,'unidades' => $unidades,'paises' => $paises));
+        return View::make('perfil.completar.importador.intereses.edit', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin, 'categorias' => $categorias,'unidades' => $unidades,'paises' => $paises,'categorias_select' => $categorias_select));
     }
 
 
@@ -249,6 +333,26 @@ class ImportadorController extends BaseController {
 
 
 
+public function InteresDelete2($id)
+    {
+        $empresa = User::find($this->user_id)->empresas->first();
+        $perfil  = Empresa::find($empresa->id)->perfil->first();
+
+
+        $segment  = Request::segment(4);
+        $articulo2 = FileEmpresas::where('id', $segment)->first();
+        if($articulo2->delete()){
+        Session::set('mensaje','Artículo eliminado con éxito');
+            }else{
+        Session::set('error','Ocurrió un error al intentar eliminar');
+        }
+return Redirect::to('/'.$empresa->slug.'/admin/perfil/empresa#datos-empresa');
+        
+    }
+
+
+
+
 
 
 	// obtengo el producto por ID
@@ -262,8 +366,9 @@ class ImportadorController extends BaseController {
 
         $medidamax = Unidades::where('id', $interes->max_medida)->first();
         $medidamin = Unidades::where('id', $interes->min_medida)->first();
+           $categorias_select = SiasCategoriaInteres::where('intereses_importador_id', $segment)->orderBy('categoria_id', 'ASC')->get(); 
     	
-    	return View::make('perfil.completar.importador.intereses.detalles', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin));
+    	return View::make('perfil.completar.importador.intereses.detalles', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin,'categorias_select' => $categorias_select));
     }
 
 

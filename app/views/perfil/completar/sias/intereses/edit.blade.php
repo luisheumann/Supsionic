@@ -19,7 +19,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
       $productos = Empresa::find($empresa->id)->productos;
 
     
-     $interes2 = InteresesImportador::find($id);
+     $interes2 = InteresesSias::find($id);
      
 
 
@@ -78,6 +78,10 @@ form#form_importador {
     margin: 40px;
 }
 
+.contenedoredit {
+    margin: 40px;
+}
+
 .col-md-6.a {
     margin-left: 0px;
     margin: 0px;
@@ -85,7 +89,6 @@ form#form_importador {
     padding-left: 0px;
     padding-right: 40px;
 }
-
 
 
 
@@ -115,13 +118,20 @@ form#form_importador {
 
 
 <div class="contenedoredit">
-<form class="form-horizontal" id="form_importador">
+<form class="form-horizontal" id="form_sias">
    <input type="hidden" class="form-control" id="id" name="id" value="{{$interes->id}}"> 
 
 <br>
     <legend class="legenda"><strong>Información Básica</strong></legend>
 
- <div class="row">
+
+
+
+ 
+
+
+
+<div class="row">
           <div class="col-md-6"></div>
      <div class="col-md-6">
       <div class="form-group">
@@ -134,6 +144,8 @@ form#form_importador {
        </div>
     </div>
  </div>
+
+
 
   <div class="row">
    <div class="col-md-6"></div>
@@ -151,22 +163,26 @@ form#form_importador {
  </div>
   <hr>
 
- <div class="row">  
-      <div class="col-md-6"></div>
+ 
+
+
+
+    <div class="row">  
+     <div class="col-md-6"></div>
     <div class="col-md-6 a">
       <div class="form-group">
          <div class="col-md-4">
-    <b>Cantidad Minima</b><br>
-        <input title="Valor 0 es ilimitado por defecto" placeholder="0" type="text" class="form-control" id="min" name="min" value="{{$interes->min}}"> 
-    </div>
+		<b>Cantidad Minima</b><br>
+        <input title="Valor 0 es ilimitado por defecto" type="text" class="form-control" id="min" name="min" value="{{$interes->min}}"> 
+		</div>
 
       <div class="col-md-4">
         <b> Cantidad Maxima</b><br>
-          <input title="Valor 0 es ilimitado por defecto" placeholder="0" type="text" class="form-control" id="max" name="max" value="{{$interes->max}}">
+          <input title="Valor 0  es ilimitado por defecto" type="text" class="form-control" id="max" name="max" value="{{$interes->max}}">
          </div>
 <div class="col-md-4">
  <b> Unidad</b><br>
-        <select name="min_cantidad" id="min_cantidad" class="form-control" required>
+        <select name="min_cantidad" id="min_cantidad" class="form-control" >
           <option value="">Seleccione...</option> 
           @foreach($unidades as $unidade)
           <option value="{{$unidade->id}}">{{$unidade->nombre}}</option>
@@ -177,6 +193,9 @@ form#form_importador {
       </div>
     </div>  
   </div>
+
+
+
 
   <hr>
 
@@ -197,62 +216,16 @@ form#form_importador {
 
   <hr>
 
-   <div class="row">
-      <div class="col-md-6"></div>
 
-   <b>Frecuencia de Compra</b><br>
-       <div class="col-md-6"></div>
-    <div class="col-md-6">
-      <div class="form-group">
-        
-       <select id="frecuencia" required name="frecuencia" class="form-control" >
-           
-              <option value="1">Semanal</option>
-              <option value="2">Mensual</option>
-              <option value="3">Trimestral</option>
-              <option value="4">Semestral</option>
-              <option value="5">Anual</option>
-
-         
-          </select>
-
-
-      </div>
-    </div>  
-  </div>
   <hr>
 
 
-
-
-
-
-
-
- <div class="row">
-    <div class="col-md-6"></div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="pais_origen">País de Destino</label>
-        <select name="pais_destino" id="pais_destino" class="form-control">
-          <option value="" required>Seleccione...</option>
-          @foreach($paises as $pais)
-             @if($empresa->pais_id == $pais->id)
-          <option selected value="{{$pais->id}}">{{$pais->nombre}}</option>
-         @else
-          <option value="{{$pais->id}}">{{$pais->nombre}}</option>
-             @endif
-          @endforeach 
-        </select>
-       </div>
-      </div>
-</div>
-       <div class="row">
+<div class="row">
           <div class="col-md-6"></div>
      <div class="col-md-6">
       <div class="form-group">
-        <label for="selec_paises">Paises de Origen </label><br>
-           <select id="selec_paises" required name="origenes[]" multiple="multiple">
+        <label for="selec_paises">Pais de Operacion </label><br>
+           <select id="selec_paises" required name="operacion[]" multiple="multiple">
             @foreach($paises as $pais)
               <option value="{{$pais->id}}">{{$pais->nombre}}</option>
             @endforeach 
@@ -260,7 +233,13 @@ form#form_importador {
        </div>
     </div>
  </div>
-  <hr>
+
+
+
+
+
+
+
 
 
 
@@ -284,7 +263,7 @@ form#form_importador {
   <div align="center">
 
     <button class="btn btn-success" id="btn_import"><i class="fa fa-check"></i> ACTUALIZAR</button>
-    <a href="/{{$empresa->slug}}/interes_importador" class="btn btn-info"> <i class="fa fa-close"></i>CERRAR</a>
+    <a href="/{{$empresa->slug}}/info_sias" class="btn btn-info"> <i class="fa fa-close"></i>CERRAR</a>
 
    
 
@@ -318,30 +297,27 @@ $.each(values3.split(","), function(i,e){
 });
 
 
-var values= "<?foreach ($rutas as $ruta) {$resultstr[] = $ruta->pais_origen;}$result = implode(",",$resultstr);echo $result;?>"
-$.each(values.split(","), function(i,e){
+
+var values2= "<?foreach ($paises_operacion as $ruta) {$resultstr[] = $ruta->pais_id;}$result = implode(",",$resultstr);echo $result;?>"
+console.log("dos");
+console.log(values2);
+$.each(values2.split(","), function(i,e){
     $("#selec_paises option[value='" + e + "']").prop("selected", true);
 });
 
 
-var pais_destino  = <?php echo $rutas[0]->pais_destino ?>;
 
 
-
+var categoria_id = <?php echo $interes->categoria_id ?>;
 
 var min_cantidad = <?php echo $interes->min_medida ?>;
-var max_cantidad = <?php echo $interes->max_medida ?>;
-
-var frecuencia = <?php echo $interes->frecuencia ?>;
 
 
-
-document.getElementById("pais_destino").value = pais_destino;
 
 document.getElementById("min_cantidad").value = min_cantidad;
-document.getElementById("max_cantidad").value = max_cantidad;
 
-document.getElementById("frecuencia").value = frecuencia;
+
+
 
 
   function changeValueCheckbox(element){
@@ -366,7 +342,7 @@ document.getElementById("frecuencia").value = frecuencia;
 </script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-  {{HTML::script('js/importador.js')}}
+  {{HTML::script('js/sias.js')}}
   {{HTML::script('js/bootstrap-multiselect.js')}}
   {{HTML::script('js/jasny-bootstrap.min.js')}}
 @stop

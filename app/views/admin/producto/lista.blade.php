@@ -29,6 +29,16 @@
 
 
 @section('content-header')
+
+<style type="text/css">
+  button.btn.btn-success.pull-right a {
+    color: #FFF !important;
+  
+}
+
+
+</style>
+
  <h1>
             Dashboard
             <small>Version 1.0</small>
@@ -42,6 +52,11 @@
 
 
 @section('content')
+
+
+
+
+
 
 <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -87,7 +102,11 @@
             </div><!-- /.col -->
           </div>
 
+<button class="btn btn-success pull-right" >
 
+  <i class="fa fa-cube"></i><a href="/{{$empresa->slug}}/admin/producto/add"> Agregar Producto</a>
+
+ </button>
 <div class="row">
 
 <div class="col-xs-12">

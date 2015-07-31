@@ -22,21 +22,7 @@ class TransportadorController  extends BaseController {
     {
 
 		$input = Input::all();
-		$reglas =  array(
-			'categoria_producto' => 'required',
-			'pais_origen' 		 => 'required',
-			'destinos' 			 => 'required'
-		);
-
-	   $validation = Validator::make($input, $reglas);
-
-       if ($validation->fails())
-        {
-            return Response::json([
-            	'success'=>false, 
-            	'errors'=>$validation->errors()->toArray()
-            ]);
-        }
+		
         
 		$empresa = User::find($this->user_id)->empresas->first();
 		$perfil  = Empresa::find($empresa->id)->perfil->first();
@@ -57,6 +43,22 @@ class TransportadorController  extends BaseController {
 	        $RutaTransportador->pais_destino = $destino;
 	        $RutaTransportador->save();
 		}
+
+
+
+           foreach (Input::get('categoria') as $categoria)
+        {
+
+            $SiasCategoriaInteres = SiasCategoriaInteres::findOrNew(Input::get('id'));
+
+          
+            $SiasCategoriaInteres->empresa_id = $empresa_id;
+            $SiasCategoriaInteres->intereses_transporte_id = $InteresesTransportador->id;
+            $SiasCategoriaInteres->categoria_id = $categoria;
+            $SiasCategoriaInteres->save();
+        }
+
+
 		return Response::json(['success'=>true]);
 
     }
@@ -68,7 +70,8 @@ class TransportadorController  extends BaseController {
 
       $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
 
-      $intersesTransportador  = Empresa::find(4)->intersesTransportador; // intereses del importador en cuenstion
+      $intersesTransportador  = Empresa::find($empresa->id)->intersesTransportador; // intereses del importador en cuenstion
+
          $unidades = Unidades::Get();
 
         return View::make('perfil.completar.transportador.index', array( 'categorias' => $categorias, 'paises'=>$paises,'empresa'=>$empresa,'intersesTransportador'=>$intersesTransportador,'unidades'=>$unidades));
@@ -83,7 +86,7 @@ class TransportadorController  extends BaseController {
         $empresa = User::find($this->user_id)->empresas->first();
         $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
         $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
-        $intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
+        $intersesImportador  = Empresa::find($empresa->id)->intersesTransportador; // intereses del importador en cuenstion
         $unidades = Unidades::Get();
 
 
@@ -128,8 +131,9 @@ $segment  = Request::segment(4);
 
         $medidamax2 = Unidades::where('id', $interes2->max_medida)->first();
         $medidamin2 = Unidades::where('id', $interes2->min_medida)->first();
+          $categorias_select = SiasCategoriaInteres::where('intereses_transporte_id', $segment)->orderBy('categoria_id', 'ASC')->get(); 
         
-        return View::make('perfil.completar.transportador.intereses.detalles', array('interes2' =>$interes2, 'rutas2' => $rutas2,'medidamax2' => $medidamax2 , 'medidamin2' => $medidamin2));
+        return View::make('perfil.completar.transportador.intereses.detalles', array('interes2' =>$interes2, 'rutas2' => $rutas2,'medidamax2' => $medidamax2 , 'medidamin2' => $medidamin2, 'categorias_select' => $categorias_select));
 
 
     	
@@ -154,8 +158,10 @@ $segment  = Request::segment(4);
              $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
  $empresa = User::find($this->user_id)->empresas->first();
 
+  $categorias_select = SiasCategoriaInteres::where('intereses_transporte_id', $segment)->orderBy('categoria_id', 'ASC')->get(); 
+
         
-        return View::make('perfil.completar.transportador.intereses.edit', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin, 'categorias' => $categorias, 'unidades' => $unidades, 'paises' => $paises, 'empresa' => $empresa));
+        return View::make('perfil.completar.transportador.intereses.edit', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin, 'categorias' => $categorias, 'unidades' => $unidades, 'paises' => $paises, 'empresa' => $empresa,'categorias_select' => $categorias_select));
     }
 
 

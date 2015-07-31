@@ -31,11 +31,22 @@
    
 
 ?>
+
+
 @extends('layouts/backend')
 
 
 
 @section('content-header')
+
+<style type="text/css">
+  button.btn.btn-success.pull-right a {
+    color: #FFF !important;
+  
+}
+
+
+</style>
  <h1>
             Dashboard
             <small>Version 1.0</small>
@@ -96,6 +107,13 @@
           </div>
 
     @if($PerfilEmpresa->perfil_id == 1)
+
+
+<button class="btn btn-success pull-right" >
+
+  <i class="fa fa-cube"></i><a href="/{{$empresa->slug}}/admin/producto/add"> Agregar Producto</a>
+
+ </button>
 <div class="row">
 
 <div class="col-xs-12">
@@ -121,12 +139,16 @@
                       <th>Stock</th>
                     </tr>
                     @foreach($productos as $producto)
-                    <tr>
+                   <tr>
                       <td>{{$producto->codigo}}</td>
                       <td>{{$producto->nombre}}</td>
                       <td>{{$producto->color}}</td>
                       <td>{{$producto->produccion_mes}}</td>
                       <td><span class="label label-success">{{$producto->stock}}</span></td>
+                      <td><a href="{{URL::to($empresa->slug.'/admin/producto/'.$producto->id.'/delete')}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a> <a href="{{URL::to($empresa->slug.'/admin/producto/edit?id='.$producto->id)}}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> <a href="{{URL::to($empresa->slug.'/producto/'.$producto->id)}}" class="btn btn-default btn-xs"><span class="glyphicon  glyphicon-eye-open"></span></a></td>
+
+
+                        
                     </tr>
                    @endforeach
                     

@@ -32,7 +32,13 @@ class Empresa extends Eloquent implements SluggableInterface
     public function intersesTransportador()
     {
         return $this->hasMany('InteresesTransportador', 'empresa_id');
-    }      
+    }    
+
+        public function intersesSias()
+    {
+        return $this->hasMany('InteresesSias', 'empresa_id');
+    }    
+
 
     public function perfil()
     {

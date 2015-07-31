@@ -20,7 +20,7 @@ class PerfilEmpresaController extends BaseController {
 	    $empresa = Empresa::findBySlug($slug);
 	    $perfil  = Empresa::find($empresa->id)->perfil->first();
     	$productos = Empresa::find($empresa->id)->productos;
-
+	
 
     	 
 
@@ -41,6 +41,8 @@ class PerfilEmpresaController extends BaseController {
 		$usuario = User::find($this->user_id)->first();
 		$empresa = User::find($this->user_id)->empresas->first();
 		$perfil  = Empresa::find($empresa->id)->perfil->first();
+
+
       
 	    $paises     = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
 	    $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
@@ -60,6 +62,7 @@ class PerfilEmpresaController extends BaseController {
 				  'intersesImportador'=>$intersesImportador,
 				  'intersesTransportador'=>$intersesTransportador,
 				  'usuario'=>$usuario
+
 				)
 			);
 	}
@@ -190,6 +193,35 @@ $pass = Input::get('pass');
         else{
         	$fileName =$empresa_update->imagen;
         }
+  $FileEmpresas = FileEmpresas::findOrNew(Input::get($empresa->id));
+        if(Input::file('files'))
+		{
+			
+
+			
+
+
+			$destinationPath = 'uploads/files'; // upload path
+	      	$extension = Input::file('files')->getClientOriginalExtension(); // getting image extension
+	      	$fileNameFiles = rand(11111,99999).'.'.$extension; // renameing image
+	      	Input::file('files')->move($destinationPath, $fileNameFiles); // uploading file to given path
+
+	      		$FileEmpresas->empresa_id = $empresa->id;
+        $FileEmpresas->name = Input::get('filesname');
+		$FileEmpresas->files = $fileNameFiles;
+		$FileEmpresas->save();
+	      	
+        }
+        else{
+
+
+        	$fileNameFiles =$FileEmpresas->files;
+        	$fileNameFilestext =$FileEmpresas->name;
+        }
+
+	
+
+
 		
 		$empresa_update->email       = Input::get('email');
 		$empresa_update->web         = Input::get('web');
@@ -204,6 +236,7 @@ $pass = Input::get('pass');
 		$empresa_update->fb = Input::get('facebook');
 	
 		$empresa_update->imagen      = $fileName;
+
 		$empresa_update->save();
 
 
@@ -348,6 +381,9 @@ return Response::json(['success'=>false]);
 }
 
 }
+
+
+
 
 
 

@@ -113,6 +113,17 @@ Route::get('{post}/interes_importador/edit/{id}','ImportadorController@InteresEd
 
 	// post para guardar la información comercial para las SIAS
 	Route::post('{post}/info_sias','SiasController@postInfo');	
+	Route::get('{post}/info_sias','SiasController@interes');	
+	Route::get('{post}/info_sias/add','SiasController@InteresAdd');	
+	Route::get('{post}/info_sias/edit/{id}','SiasController@InteresEdit');	
+	Route::post('{post}/info_sias/edit/info_sias','SiasController@postInfo');
+Route::get('{post}/info_sias/interes/{id}','SiasController@interesById');
+
+	Route::get('{post}/info_sias/delete/{id}','SiasController@InteresDelete');
+
+	
+
+
 
 Route::get('demo/index', 'FrontendController@index');
 Route::get('demo/busqueda', 'FrontendController@busqueda');
@@ -130,8 +141,7 @@ Route::get('{post}/admin/producto/edit', 'AdminController@producto_edit');
 Route::get('{post}/admin/cambio/pass', 'AdminController@cambiopass');
 
 
-
-
+Route::get('{post}/interes_importador2/delete/{id}','ImportadorController@InteresDelete2');
 
 Route::get('{post}/admin/producto/delete2/{borra}','AdminController@producto_delete');
 
