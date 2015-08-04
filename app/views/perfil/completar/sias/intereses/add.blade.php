@@ -170,7 +170,8 @@ select#max_cantidad {
   </div>
 
   <div align="right">
-    <input type="submit" id="btn_basico" class="btn-borde btn-borde-n-i" value="GUARDAR">
+  
+    <input type="submit" id="btn_basico" class="btn btn-success pull-right" value="GUARDAR">
   </div>
 
 </form>

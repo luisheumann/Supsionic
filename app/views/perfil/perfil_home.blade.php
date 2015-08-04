@@ -174,6 +174,8 @@ font-size: 16px;
    <div class="col-xs-3" >
 <div style="width:90px;">
   @if($perfil->imagen == Null) 
+
+  <img id="imagen" height="90" width="90" style="float:left; padding:10px;" class="img-circle" alt="Image" src="/images/producto.png"/>    
         @else 
       
     <img id="imagen" height="90" width="90" style="float:left; padding:10px;" class="img-circle" alt="Image" src="/uploads/{{$perfil2->imagen}}"/>    

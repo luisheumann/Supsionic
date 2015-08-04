@@ -125,7 +125,7 @@ public function file_delete($borra)
 	    $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
 	    $unidades   = Unidades::orderBy('nombre', 'ASC')->get(); // todas las unidaddes de productos
 	    $productos  = Empresa::find($empresa->id)->productos; //los productos de la empresa en cuestión
-	    $archivos = FileEmpresas::where('empresa_id', 1)->get();
+	    $archivos = FileEmpresas::where('empresa_id', $empresa->id)->get();
 
 	    $intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
 	    $intersesTransportador  = Empresa::find($empresa->id)->intersesTransportador; // intereses del transportador en cuenstion
