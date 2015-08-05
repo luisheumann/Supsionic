@@ -1,5 +1,18 @@
 
+<style type="text/css">
+	
+.detalle_producto {
+    width: 250px;
+  
+}
 
+.dtalles_producto {
+  float: left;
+ font-size: 11px;
+
+}
+
+</style>
 <div class="espacio_empresa" data-ckeck="false">
 	<img src="{{asset('images/cadena/comprador.png')}}">
 </div>
@@ -32,30 +45,35 @@
 	<!--<p class="anuncio_producto">
 	  <i class="fa fa-bullhorn"></i> ANUNCIOS
 	</p>-->
-	<div class="col-xs-3">
+	<div class="imagen_producto">
 
-@if($lista_importadoresall->imagen != null and $lista_importadoresall->perfil_id ==1 )
-<img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/productos/{{$lista_importadoresall->imagen}}"/>
- <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->eimagen}}"/>
-@endif
-@if($lista_importadoresall->imagen == null and $lista_importadoresall->perfil_id ==1 )
-<img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->imagen}}"/>
- <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->eimagen}}"/>
-@endif
-@if($lista_importadoresall->imagen != null and $lista_importadoresall->perfil_id ==2 )
-<img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->imagen}}"/>
- <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/{{$lista_importadoresall->eimagen}}"/>
-@endif
-@if($lista_importadoresall->imagen == null and $lista_importadoresall->perfil_id ==2 )
-<img id="product_img<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/none.jpg"/>
+
+
+@if(!$lista_importadoresall->imagen == null)
+
+<img alt="product_img<?php echo $i ?>" width="80" height="80" title="@if ($lista_importadoresall->imagen->count()>0){{$img= $lista_importadoresall->imagen->first()->imagen}} @else {{$img= 'producto.png'}} @endif" src="/uploads/productos/{{$img}}" alt="Image">
+
+ <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" title="@if ($lista_importadoresall->imagen->count()>0){{$img= $lista_importadoresall->imagen->first()->imagen}} @else {{$img= 'producto.png'}} @endif"  src="/uploads/productos/{{$img}}"/>
+
+
+
+@else
+
  <img style="display:none" id="imagenproducto<?php echo $i ?>" height="80" width="80" alt="Image" src="/uploads/none.jpg"/>
-@endif
+
+
+ @endif
+
+
+
 
 </div>
 
-	<div class="col-xs-7">
+	<div class="detalle_producto">
 		<h1 class="titulo_product<?php echo $i ?>">{{$lista_importadoresall->nombre}}</h1>
-		<ul class="r_dtalles_producto">
+		<ul class="dtalles_producto">
+
+
 			<li>{{$lista_importadoresall->NombrePoducto}}</li>
 			<li>{{$lista_importadoresall->ncontinente}} -{{$lista_importadoresall->pais}}</li>							
 			@if($lista_importadoresall->stock != Null)
@@ -73,12 +91,12 @@
 	</div>	
 
 
-	<div class="col-xs-2">
+	<div class="opcion_producto">
 		<button class="btn-borde btn-borde-ai btn_selec" id="empresa<?php echo $i ?>">
 			Seleccionar
 		</button>	
 		<br>
-		<img src="{{asset('images/productos/start.png')}}">
+		<!--<img src="{{asset('images/productos/start.png')}}">
 
 		<div class="dropdown">
 		  <a class="link" id="dLabel" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -88,7 +106,7 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Esconder</a></li>
 				<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
 			</ul>
-		</div>		
+		</div>		-->
 	</div>
 </div>
 

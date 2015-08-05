@@ -1,11 +1,36 @@
-@extends('layouts/default')
+@extends('layouts/busqueda')
 @section('content')
 
 @section('title')
 @parent
  ¡ Bienvenido a SupplyME !
 @stop
-@include('includes.header')
+
+<?php
+
+  if (Sentry::check())
+
+  {
+
+    $user_id = Sentry::getuser()->id;
+
+    $perfil = User::find($user_id)->empresas->first();
+
+    $avatar = Recursos::ImgAvatar($perfil);
+     $empresa = User::find($user_id)->empresas->first();
+      
+
+  }
+
+  else{
+
+    $avatar = Recursos::ImgAvatar($perfil);
+
+  }
+
+   
+
+?>
 
 <div class="row home-red center-block" style="float:none">
   <div class="col-xs-3">
@@ -21,7 +46,7 @@
              <?php  } ?>
           
       </div>
-      <div id="vista_comprador" style="display:none">
+      <div id="vista_comprador">
         <?php  $varperfil = $_GET['perfil']; if ($varperfil == 2) { ?>
              @include('busqueda/comprador')
                  <?php  } ?>
@@ -128,73 +153,6 @@
   $(document).ready(function(){
 
   
-
-
-
- var valueSelected = <?php echo $perfil ?>;
-if(valueSelected==1)
-    {
-      $('#cambio_vista').attr('data-cambio', 1); // data-chek como true
-      $('#vista_comprador').hide();
-      $('#vista_vendedor').show();  
-         
-
-  
-        $(".espacio_transporte").empty();
-        $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
-        
-        
-      $(".espacio_sias").empty();
-        $('.espacio_sias').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_sias.png">'));  
-
-    }
-    if(valueSelected==2)
-    {
-      $('#cambio_vista').attr('data-cambio', 2); // data-chek como true
-      $('#vista_vendedor').hide();
-      $('#vista_comprador').show();
-
-
-        $(".espacio_transporte").empty();
-        $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
-        
-      $(".espacio_sias").empty();
-        $('.espacio_sias').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_sias.png">'));  
-
-    }   
-
-        if(valueSelected==3)
-    {
-      $('#cambio_vista').attr('data-cambio', 3); // data-chek como true
- 
-      $('#vista_vendedor').show();
-      $('#vista_comprador').hide();
-     
-
-
-        $(".espacio_transporte").empty();
-        $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
-        
-      $(".espacio_sias").empty();
-        $('.espacio_sias').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_sias.png">'));  
-
-    } 
-
-         if(valueSelected==4)
-    {
-      $('#cambio_vista').attr('data-cambio', 4); // data-chek como true
-   $('#vista_vendedor').show();
-      $('#vista_comprador').hide();
-
-
-
-        $(".espacio_transporte").empty();
-        $('.espacio_transporte').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_transportador.png">')); 
-        
-      $(".espacio_sias").empty();
-        $('.espacio_sias').append(('<img src="http://dev.supplysmark.com/images/cadena/recomendado_sias.png">'));  
-
-    }   
 
 
 

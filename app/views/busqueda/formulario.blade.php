@@ -31,7 +31,7 @@
 <?php $aleatorio = rand(5, 1000); ?>
 
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-{{HTML::script('js/jquery-ui.min.js')}}
+
 
 
 <div class="busqueda">
@@ -140,7 +140,7 @@
     <img src="{{asset('images/home/cinco.png')}}" alt="">
   </label>
   <div class="col-xs-10">
-    <select name="destino" id="destino"  class="form-control validate[required]">
+    <select name="destino" id="destino"  class="form-control">
       <option value="">PAÍS DE DESTINO</option>
       @foreach($paises as $pais)
       <option value="{{$pais->id}}">{{$pais->nombre}}</option>
@@ -419,12 +419,15 @@ $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));
         wrapper = this.wrapper = $("<span>").addClass("ui-combobox").insertAfter(select);
 
 
-        var productonow = '<?php echo $_GET['producto']?>';
+var qs = getQueryStrings();
+var myParam = qs["producto"]; 
+
+        var productonow = myParam;
         if (productonow == ""){
           
          value2 = value;
        }else{
-        value2 = '<?php echo $_GET['producto']?>';
+        value2 = myParam;
 
 
 

@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-
+<!doctype html>
 <?php
 
   if (Sentry::check())
@@ -31,30 +26,58 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 ?>
 <html>
-  <head>
-   @include('includes.head-backend')
-  </head>
-  <!--
-  BODY TAG OPTIONS:
-  =================
-  Apply one or more of the following classes to get the
-  desired effect
-  |---------------------------------------------------------|
-  | SKINS         | skin-blue                               |
-  |               | skin-black                              |
-  |               | skin-purple                             |
-  |               | skin-yellow                             |
-  |               | skin-red                                |
-  |               | skin-green                              |
-  |---------------------------------------------------------|
-  |LAYOUT OPTIONS | fixed                                   |
-  |               | layout-boxed                            |
-  |               | layout-top-nav                          |
-  |               | sidebar-collapse                        |
-  |               | sidebar-mini                            |
-  |---------------------------------------------------------|
-  -->
-  <body class="skin-blue sidebar-collapse">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">	
+
+<title> @section('title') @show </title>  
+
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<meta name="description" content="">
+<meta name="keywords" content="" />
+<meta name="author" content="" />
+<link rel="shortcut icon" href="../favicon.ico">
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<head>
+<!--********** HEAD *************-->
+	@include('includes.head')
+
+
+
+ {{HTML::style('css/AdminLTE.min.css')}}
+     {{HTML::style('css/skin-blue.min.css')}}
+
+     {{HTML::style('css/bootstrap.min.css')}}
+	 {{--HTML::style('css/non-responsive.css')--}}
+	 {{--HTML::style('css/flat-ui.css')--}}
+	 {{HTML::style('css/font-awesome.min.css')}}
+	 {{HTML::style('css/validationEngine.jquery.css')}}
+	 {{HTML::style('css/validationEngine.jquery.css')}}
+	 {{HTML::style('css/font-awesome.css')}}
+	  {{HTML::style('css/infinitycarrusel.css')}}
+	   {{HTML::style('css/toastr.css')}}
+	 
+
+	 
+	 	
+	 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+
+
+
+
+</head>
+<body>
+
+<!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+  @if (Sentry::check())
+		<body class="skin-blue sidebar-collapse">
 
     <div class="wrapper">
 
@@ -326,112 +349,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
            immediately after the control sidebar -->
       <div class='control-sidebar-bg'></div>
     </div><!-- ./wrapper -->
-
-
-
-
-   @section('scripts') 
-
-	 {{HTML::script('js/jquery-1.11.0.min.js')}}
-	 <!--	 {{HTML::script('js/infinitycarrusel.js')}}	-->
-
-{{HTML::script('js/jquery.fancybox.js')}}
-
-
-
-
-<script type="text/javascript">
-
-
-
-
-
-
-
-  $(document).ready(function(){
-
-
-     var showChar = 250;
-    var ellipsestext = "...";
-    var moretext = "Ver m&#225;s";
-    var lesstext = "Ver menos";
-    $('.more').each(function() {
-        var content = $(this).html();
  
-        if(content.length > showChar) {
- 
-            var c = content.substr(0, showChar);
-            var h = content.substr(showChar-1, content.length - showChar);
- 
-            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
- 
-            $(this).html(html);
-        }
- 
-    });
- 
-    $(".morelink").click(function(){
-        if($(this).hasClass("less")) {
-            $(this).removeClass("less");
-            $(this).html(moretext);
-        } else {
-            $(this).addClass("less");
-            $(this).html(lesstext);
-        }
-        $(this).parent().prev().toggle();
-        $(this).prev().toggle();
-        return false;
-    });
+  @endif
+
+ {{-- @include('includes.header') --}}
+
+<!--********** Contenido ***************-->
 
 
+<!--********** Fin contenido ***********-->
 
-
-
-    $('.teco').click(function(){
-      var largeImage = $(this).attr('data-full');
-      $('.selected').removeClass();
-      $(this).addClass('selected');
-      $('.full img').hide();
-      $('.full img').attr('src', largeImage);
-      $('.full img').fadeIn();
-
-
-    }); // closing the listening on a click
-    $('.full img').on('click', function(){
-      var modalImage = $(this).attr('src');
-      $.fancybox.open(modalImage);
-    });
-  }); //closing our doc ready
-  </script>
-
-
-
-   {{HTML::script('js/lory.min.js')}}
-	 {{HTML::script('js/bootstrap.min.js')}}
-	 	 {{HTML::script('js/app.min.js')}}
-
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-
-
-<script type="text/javascript">
-   $(document).ready(function() {      
-  
- $('.carousel').carousel('pause');
-
-
-  
-});
-
-
-
-
-</script>
-
-
-  
-
-
-
-@show
-  </body>
+</body>
 </html>

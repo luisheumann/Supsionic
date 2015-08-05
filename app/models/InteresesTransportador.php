@@ -9,6 +9,21 @@ class InteresesTransportador extends Eloquent
         return $this->hasMany('RutaTransportador', 'intereses_transporte_id');
     } 
 
+
+    public function empresas()
+    {
+        return $this->belongsTo('Empresa', 'empresa_id');
+    }
+
+
+     public function categoriastransportador()
+    {
+        return $this->hasMany('SiasCategoriaInteres', 'intereses_transporte_id');
+    }   
+
+
+    
+
 }
 
 

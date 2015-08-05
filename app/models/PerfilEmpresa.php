@@ -14,4 +14,12 @@ class PerfilEmpresa extends Eloquent
         return $this->hasMany('Perfil', 'perfil_id');
     }
 
+
+  public function interes()
+    {
+          return $this->hasMany('InteresesTransportador', 'empresa_id');
+    } 
+
+
+
 }
