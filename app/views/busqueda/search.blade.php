@@ -32,8 +32,26 @@
 
 ?>
 
+<style type="text/css">
+  
+.bloqueBusqueda{
+  float: left;
+}
+.col-xs-9 {
+    width: 62%;
+}
+  .col-xs-4{
+
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+
+  
+</style>
+
 <div class="row home-red center-block" style="float:none">
-  <div class="col-xs-3">
+  <div class="bloqueBusqueda">
       @include('busqueda/formulario')
   </div>
 
@@ -55,12 +73,14 @@
        <div id="vista_transporte">
        <?php  $varperfil = $_GET['perfil']; if ($varperfil == 3) { ?>
 
-             @include('busqueda/listatransportador')
+            <!-- listatransportador-->
+             @include('busqueda/vendedor')
                 <?php  } ?>
       </div> 
        <div id="vista_sias">
         <?php  $varperfil = $_GET['perfil']; if ($varperfil == 4) { ?>
-             @include('busqueda/listatransportador')
+            <!-- listatransportador-->
+             @include('busqueda/vendedor')
          <?php  } ?>
       </div> 
 

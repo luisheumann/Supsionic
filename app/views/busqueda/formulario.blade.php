@@ -1,3 +1,5 @@
+
+
 <style>
   #multiple-datasets .league-name {
     margin: 0 20px 5px 20px;
@@ -31,7 +33,7 @@
 <?php $aleatorio = rand(5, 1000); ?>
 
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-
+{{HTML::script('js/jquery-ui.min.js')}}
 
 
 <div class="busqueda">
@@ -134,10 +136,29 @@
 
 <div class="salto_linea"></div>
 
-<input type="hidden" id="origen" name="origen"/>
+
+
+
 <div class="form-group">
   <label for="origen" class="col-xs-2 control-label num_form">
     <img src="{{asset('images/home/cinco.png')}}" alt="">
+  </label>
+  <div class="col-xs-10">
+    <select name="origen" id="origen"  class="form-control">
+      <option value="">PAÍS DE ORIGEN</option>
+      @foreach($paises as $pais)
+      <option value="{{$pais->id}}">{{$pais->nombre}}</option>
+      @endforeach
+    </select>
+
+  </div>
+</div>
+
+
+<div class="salto_linea"></div>
+<div class="form-group">
+  <label for="origen" class="col-xs-2 control-label num_form">
+    <img src="{{asset('images/home/seis.png')}}" alt="">
   </label>
   <div class="col-xs-10">
     <select name="destino" id="destino"  class="form-control">
@@ -179,10 +200,11 @@ if (isset($_GET["selectProducto"]) && !empty($_GET["selectProducto"])) {
   }
 
 
-  var pais_id_user = <?php echo $empresapais->pais_id ?>; 
+  //var pais_id_user = <?php echo $empresapais->pais_id ?>; 
 
+ document.getElementById("destino").value = '<?php echo $_GET['destino']?>';
+ document.getElementById("origen").value = '<?php echo $_GET['origen']?>';
 
-  document.getElementById("origen").value =pais_id_user;
   document.getElementById("perfil").value = '<?php echo $_GET['perfil']?>';
   document.getElementById("categoria").value = '<?php echo $_GET['categoria']?>';
   document.getElementById("country").value = '<?php echo $_GET['country']?>';
@@ -378,11 +400,11 @@ $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));
 
 
   var idperfil = '<?php echo $_GET['perfil']?>';
-  if (idperfil == 2){
-    var jsonselect = "../api/productoex.json";
-  }else{
+  //if (idperfil == 2){
+  //  var jsonselect = "../api/productoex.json";
+  //}else{
     var jsonselect = "../api/producto.json";
-  }
+  //}
 
   var select = $('#combobox');
   $.get(jsonselect, function(data){
@@ -419,15 +441,24 @@ $('.espacio_sias').append(('<img src="images/cadena/recomendado_sias.png">'));
         wrapper = this.wrapper = $("<span>").addClass("ui-combobox").insertAfter(select);
 
 
-var qs = getQueryStrings();
-var myParam = qs["producto"]; 
 
-        var productonow = myParam;
+
+  var valorproducto = '<?php echo $_GET['producto']?>';
+
+
+
+
+
+
+        var productonow = valorproducto;
+
+    
         if (productonow == ""){
           
          value2 = value;
        }else{
-        value2 = myParam;
+        
+        value2 = valorproducto;
 
 
 

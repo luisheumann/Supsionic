@@ -9,6 +9,13 @@ class InteresesImportador extends Eloquent
         return $this->hasMany('RutaImportador');
     } 
 
+    
+
+
+
+
+
+
 }
 
 

@@ -32,22 +32,44 @@ if (isset($_GET["country"]) && !empty($_GET["country"])) {
 	$country = null;
 }
 
+$lista_transportadores = null;
 
+
+
+///// CATEGORIA
+
+if (!$categoria == Null  && $origen == Null && $producto == Null  && $destino == Null  && $country == Null ) {
+	$lista_transportadores = SiasCategoriaInteres::
+	join('intereses_transporte', 'sias_categoria_interes.intereses_transporte_id', '=', 'intereses_transporte.id')
+	->join('empresas', 'intereses_transporte.empresa_id', '=', 'empresas.id')
+	->Where('sias_categoria_interes.categoria_id',$categoria)
+	->get();
+
+	if (!$lista_transportadores->count()){
+
+		$lista_transportadores = null;
+	}
+} 
 
 
 ///// PRODUCTO
 ////  ORIGEN
 ////  DESTINO
 
-if (!$producto == Null && !$origen == Null && !$destino == Null) {
-		$lista_transportadores = DB::table('intereses_transporte')
-		 ->join('ruta_transporte', 'intereses_transporte.id', '=', 'ruta_transporte.intereses_transporte_id')
+if (!$producto == Null && !$origen == Null && !$destino == Null && $categoria == Null  && $country == Null) {
+		$lista_transportadores = InteresesTransportador::
+		join('ruta_transporte', 'intereses_transporte.id', '=', 'ruta_transporte.intereses_transporte_id')
 		 ->join('empresas', 'intereses_transporte.empresa_id', '=', 'empresas.id')
 		->where('intereses_transporte.productos',$producto)
 		->where('ruta_transporte.pais_destino',$origen)
 		->where('ruta_transporte.pais_origen',$destino)
 		 ->get();
 
+		 if (!$lista_transportadores->count()){
+
+		$lista_transportadores = null;
+	}
+
 
 }
 
@@ -55,40 +77,36 @@ if (!$producto == Null && !$origen == Null && !$destino == Null) {
 ////  ORIGEN
 ////  DESTINO
 
-if (!$origen == Null && !$destino == Null) {
-		$lista_transportadores = DB::table('intereses_transporte')
-		 ->join('ruta_transporte', 'intereses_transporte.id', '=', 'ruta_transporte.intereses_transporte_id')
+if (!$origen == Null && !$destino == Null && $producto == Null  && $categoria == Null  && $country == Null) {
+		$lista_transportadores = InteresesTransportador::
+		join('ruta_transporte', 'intereses_transporte.id', '=', 'ruta_transporte.intereses_transporte_id')
 		 ->join('empresas', 'intereses_transporte.empresa_id', '=', 'empresas.id')
 		->where('ruta_transporte.pais_destino',$origen)
 		->where('ruta_transporte.pais_origen',$destino)
 		 ->get();
 
+		 if (!$lista_transportadores->count()){
 
-}
-///// TODO VACIO
-
-if ($producto == Null && $origen == Null && $destino == Null && $categoria == Null) {
-		$lista_transportadores = DB::table('intereses_transporte')
-		->join('empresas', 'intereses_transporte.empresa_id', '=', 'empresas.id')
-		 ->get();
+		$lista_transportadores = null;
+	}
 
 
 }
-
-///// CATEGORIA
-
-if (!$categoria == Null) {
-	$lista_transportadores = SiasCategoriaInteres::Where('categoria_id',$categoria)->get();
-} 
-
 
 ///// PRODUCTO
 
-if (!$producto == Null && $origen == Null && $destino == Null && $categoria == Null) {
-		$lista_transportadores = DB::table('intereses_transporte')
+if (!$producto == Null && $origen == Null && $destino == Null && $categoria == Null  && $country == Null) {
+		$lista_transportadores = InteresesTransportador::
+		join('ruta_transporte', 'intereses_transporte.id', '=', 'ruta_transporte.intereses_transporte_id')
 		 ->join('empresas', 'intereses_transporte.empresa_id', '=', 'empresas.id')
-     	 ->where('intereses_transporte.productos',$producto)
+	     ->where('intereses_transporte.productos',$producto)
+	     ->groupBy('intereses_transporte.id')
 		 ->get();
+
+		 if (!$lista_transportadores->count()){
+
+		$lista_transportadores = null;
+	}
 
 
 }
@@ -96,42 +114,84 @@ if (!$producto == Null && $origen == Null && $destino == Null && $categoria == N
 ///// REGION
 ///// DESTINO
 
+
+switch ($country) {
+	case 'América':
+	$country = 2;
+	break;
+	case 'Africa':
+	$country = 1;
+	break;
+	case 'Asia':
+	$country = 3;
+	break;
+	case 'Europa':
+	$country = 4;
+	break;
+	case 'Oceanía':
+	$country = 5;
+	break;
+}
+
 if (!$country == Null && $origen == Null && !$destino == Null && $categoria == Null && $producto == Null) {
-		$lista_transportadores = DB::table('intereses_transporte')
-		 ->join('ruta_transporte', 'intereses_transporte.id', '=', 'ruta_transporte.intereses_transporte_id')
-		 ->join('paises', 'ruta_transporte.pais_destino', '=', 'paises.id')
+		$lista_transportadores = InteresesTransportador::
+		join('ruta_transporte', 'intereses_transporte.id', '=', 'ruta_transporte.intereses_transporte_id')
 		 ->join('empresas', 'intereses_transporte.empresa_id', '=', 'empresas.id')
-		->where('paises.continente',$country)
-		->where('ruta_transporte.pais_origen',$destino)
-		
+	     ->join('paises', 'ruta_transporte.pais_destino', '=', 'paises.id')
+	     ->where('paises.continente',$country)
+		 ->where('ruta_transporte.pais_origen',$destino)
+		 ->select('empresas.nombre as nombre', 'intereses_transporte.productos as productos', 'intereses_transporte.min', 'intereses_transporte.max', 'intereses_transporte.min_medida', 'empresas.imagen')
 		 ->get();
 
+		 if (!$lista_transportadores->count()){
 
-}
-///// destino
-
-if ($country == Null && $origen == Null && !$destino == Null && $categoria == Null && $producto == Null) {
-		$lista_transportadores = DB::table('intereses_transporte')
-		->join('empresas', 'intereses_transporte.empresa_id', '=', 'empresas.id')
-		 ->get();
+		$lista_transportadores = null;
+	}
 
 }
 
-///// origen
 
-if ($country == Null && !$origen == Null && $destino == Null && $categoria == Null && $producto == Null) {
-		$lista_transportadores = DB::table('intereses_transporte')
-		->join('empresas', 'intereses_transporte.empresa_id', '=', 'empresas.id')
+
+///// REGION
+
+
+switch ($country) {
+	case 'América':
+	$country = 2;
+	break;
+	case 'Africa':
+	$country = 1;
+	break;
+	case 'Asia':
+	$country = 3;
+	break;
+	case 'Europa':
+	$country = 4;
+	break;
+	case 'Oceanía':
+	$country = 5;
+	break;
+}
+
+if (!$country == Null && $origen == Null && $destino == Null && $categoria == Null && $producto == Null) {
+		$lista_transportadores = InteresesTransportador::
+		join('ruta_transporte', 'intereses_transporte.id', '=', 'ruta_transporte.intereses_transporte_id')
+		 ->join('empresas', 'intereses_transporte.empresa_id', '=', 'empresas.id')
+	     ->join('paises', 'ruta_transporte.pais_destino', '=', 'paises.id')
+	     ->where('paises.continente',$country)
+		 ->select('empresas.nombre as nombre', 'intereses_transporte.productos as productos', 'intereses_transporte.min', 'intereses_transporte.max', 'intereses_transporte.min_medida', 'empresas.imagen')
+		 ->groupBy('intereses_transporte.id')
 		 ->get();
+
+		 if (!$lista_transportadores->count()){
+
+		$lista_transportadores = null;
+	}
 
 }
 
-if (!$country == Null && !$origen == Null && $destino == Null && $categoria == Null && $producto == Null) {
-		$lista_transportadores = DB::table('intereses_transporte')
-		->join('empresas', 'intereses_transporte.empresa_id', '=', 'empresas.id')
-		 ->get();
 
-}
+
 
 
 ?>
@@ -215,12 +275,13 @@ if (!$country == Null && !$origen == Null && $destino == Null && $categoria == N
 		</div>
 		<div class="dtalles_producto">
 			<h1 class="titulo_transporte<?php echo $i ?>">  
-
-				{{$valor->productos}}
+			{{$lista_transportadore->nombre}}
+		
 
 
 			</h1>
 			<ul class="dtalles_producto">
+					<li>Interes:{{$valor->productos}}</li>
 				@if ($valor->min == 0)
 				<li>  Min:  Ilimitado</li>
 				@else
@@ -293,13 +354,14 @@ if (!$country == Null && !$origen == Null && $destino == Null && $categoria == N
 		<div class="dtalles_producto">
 			<h1 class="titulo_transporte<?php echo $i ?>">  
 
-
-				{{$lista_transportadore->productos}}
+			{{$lista_transportadore->nombre}}		
+			
 				
 
 
 			</h1>
 			<ul class="dtalles_producto">
+			<li>Interes: {{$lista_transportadore->productos}}</li>
 				@if ($lista_transportadore->min == 0)
 				<li>  Min:  Ilimitado</li>
 				@else
@@ -360,7 +422,7 @@ if (!$country == Null && !$origen == Null && $destino == Null && $categoria == N
 
 
 @if($lista_transportadores == Null) 
-nada
+
 				@else
 
 <script>

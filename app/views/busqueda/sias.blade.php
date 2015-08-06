@@ -33,46 +33,134 @@ if (isset($_GET["country"]) && !empty($_GET["country"])) {
 }
 
 
+$lista_transportadores = null;
 
 
-if (!$producto == Null && !$origen == Null && $destino == Null && $categoria == Null) {
-		$lista_transportadores = DB::table('intereses_sias')
-		 ->join('sias_paises_operacion', 'intereses_sias.id', '=', 'sias_paises_operacion.intereses_sias_id')
+
+///// CATEGORIA
+
+if (!$categoria == Null && $origen == Null && $producto == Null  && $destino == Null  && $country == Null ) {
+	$lista_transportadores = SiasCategoriaInteres::
+	join('intereses_sias', 'sias_categoria_interes.intereses_sias_id', '=', 'intereses_sias.id')
+			->join('empresas', 'intereses_sias.empresa_id', '=', 'empresas.id')
+	->Where('sias_categoria_interes.categoria_id',$categoria)
+	->get();
+
+	if (!$lista_transportadores->count()) {
+		$lista_transportadores =null;
+	}
+}
+
+
+
+///// PRODUCTO
+////  ORIGEN
+
+
+if (!$producto == Null && !$origen == Null && $destino == Null && $categoria == Null && $country == Null) {
+		$lista_transportadores = InteresesSias::
+		 join('sias_paises_operacion', 'intereses_sias.id', '=', 'sias_paises_operacion.intereses_sias_id')
 		->join('empresas', 'intereses_sias.empresa_id', '=', 'empresas.id')
 		->where('intereses_sias.productos',$producto)
 		->where('sias_paises_operacion.pais_id',$origen)
 		 ->get();
 
-
+if (!$lista_transportadores->count()) {
+		$lista_transportadores =null;
+	}
 }
 
+////  PRODUCTO
 
-
-
-
-
-
-if (!$origen == Null && $producto == Null  && $destino == Null && $categoria == Null && $country == Null ) {
-		$lista_transportadores = DB::table('intereses_sias')
-		 ->join('sias_paises_operacion', 'intereses_sias.id', '=', 'sias_paises_operacion.intereses_sias_id')
-		 ->join('empresas', 'intereses_sias.empresa_id', '=', 'empresas.id')
-	
-		->where('sias_paises_operacion.pais_id',$origen)
-	
-		 ->get();
-
-}
-
-
-///// PRODUCTO 1
-
-if (!$producto == Null) {
-		$lista_transportadores = DB::table('intereses_sias')
+if (!$producto == Null && $origen == Null && $destino == Null && $categoria == Null && $country == Null) {
+		$lista_transportadores = InteresesSias::
+		 join('sias_paises_operacion', 'intereses_sias.id', '=', 'sias_paises_operacion.intereses_sias_id')
 		->join('empresas', 'intereses_sias.empresa_id', '=', 'empresas.id')
 		->where('intereses_sias.productos',$producto)
+		->groupBy('intereses_sias.id')
+	    ->get();
+if (!$lista_transportadores->count()) {
+		$lista_transportadores =null;
+	}
 
-		 ->get();
+}
 
+
+////  REGION
+////  PRODUCTO
+
+
+
+switch ($country) {
+	case 'América':
+	$country = 2;
+	break;
+	case 'Africa':
+	$country = 1;
+	break;
+	case 'Asia':
+	$country = 3;
+	break;
+	case 'Europa':
+	$country = 4;
+	break;
+	case 'Oceanía':
+	$country = 5;
+	break;
+}
+if (!$producto == Null && $origen == Null && $destino == Null && $categoria == Null && !$country == Null) {
+		$lista_transportadores = InteresesSias::
+		 join('sias_paises_operacion', 'intereses_sias.id', '=', 'sias_paises_operacion.intereses_sias_id')
+		->join('empresas', 'intereses_sias.empresa_id', '=', 'empresas.id')
+		 ->join('paises', 'sias_paises_operacion.pais_id', '=', 'paises.id')
+	     ->where('paises.continente',$country)
+		->where('intereses_sias.productos',$producto)
+		->select('empresas.nombre as nombre', 'intereses_sias.productos as productos', 'intereses_sias.min', 'intereses_sias.max', 'intereses_sias.min_medida', 'empresas.imagen')
+		->groupBy('intereses_sias.id')
+	    ->get();
+
+if (!$lista_transportadores->count()) {
+		$lista_transportadores =null;
+	}
+}
+
+
+
+////  REGION
+
+
+
+
+switch ($country) {
+	case 'América':
+	$country = 2;
+	break;
+	case 'Africa':
+	$country = 1;
+	break;
+	case 'Asia':
+	$country = 3;
+	break;
+	case 'Europa':
+	$country = 4;
+	break;
+	case 'Oceanía':
+	$country = 5;
+	break;
+}
+if ($producto == Null && $origen == Null && $destino == Null && $categoria == Null && !$country == Null) {
+		$lista_transportadores = InteresesSias::
+		 join('sias_paises_operacion', 'intereses_sias.id', '=', 'sias_paises_operacion.intereses_sias_id')
+		->join('empresas', 'intereses_sias.empresa_id', '=', 'empresas.id')
+		 ->join('paises', 'sias_paises_operacion.pais_id', '=', 'paises.id')
+	     ->where('paises.continente',$country)
+	
+		->select('empresas.nombre as nombre', 'intereses_sias.productos as productos', 'intereses_sias.min', 'intereses_sias.max', 'intereses_sias.min_medida', 'empresas.imagen')
+		->groupBy('intereses_sias.id')
+	    ->get();
+if (!$lista_transportadores->count()) {
+		$lista_transportadores =null;
+	}
 
 }
 
@@ -80,25 +168,9 @@ if (!$producto == Null) {
 
 
 
-if ($origen == Null && $producto == Null  && $destino == Null && $categoria == Null && $country == Null ) {
-		$lista_transportadores = DB::table('intereses_sias')
-		
-		 ->join('empresas', 'intereses_sias.empresa_id', '=', 'empresas.id')
-	
-	
-		 ->get();
-
-}else{
-
-
-	$lista_transportadores = DB::table('intereses_sias')
-		
-		 ->join('empresas', 'intereses_sias.empresa_id', '=', 'empresas.id')
-	
-	
-		 ->get();
-		}
 ?>
+
+
 
 
 <style type="text/css">
@@ -166,8 +238,9 @@ if ($origen == Null && $producto == Null  && $destino == Null && $categoria == N
 
 </div>
 	<div class="dtalles_producto">
-		<h1 class="titulo_sias<?php echo $i ?>">{{$lista_transportadore->productos}}</h1>
+		<h1 class="titulo_sias<?php echo $i ?>">{{$lista_transportadore->nombre}}</h1>
 		<ul class="dtalles_producto">
+		<li>Interes: {{$lista_transportadore->productos}}</li>
 			@if ($lista_transportadore->min == 0)
 				<li>  Min:  Ilimitado</li>
 				@else
@@ -187,8 +260,8 @@ if ($origen == Null && $producto == Null  && $destino == Null && $categoria == N
 			Armar
 		</button>	
 		<br>
-		<img src="{{asset('images/productos/start.png')}}">
-<!--
+	<!--	<img src="{{asset('images/productos/start.png')}}">
+
 		<div class="dropdown">
 		  <a class="link" id="dLabel" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		    <span class="caret"></span>

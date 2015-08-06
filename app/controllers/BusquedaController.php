@@ -61,14 +61,14 @@ class BusquedaController extends BaseController {
  		//$lista_transportadores = PerfilEmpresa::where('perfil_id','=','3')->get();
 	    $lista_sias = PerfilEmpresa::where('perfil_id','=','4')->get();
 
-		$lista_importadoresalls = Productos::get();
+
 
 		//TRANSPORTADOR
 		
 
 
 
-	    return View::make('busqueda.search', array('lista_importadoresalls'=>$lista_importadoresalls, 'lista_exportadores'=>$lista_exportadores,'lista_sias'=>$lista_sias, 'lista_importadores'=> $lista_importadores, 'slug' => $slug_empresa, 'paises' => $paises, 'categorias' =>$categorias, 'productos' =>$productos, 'rutas'=>$rutas, 'transportadores'=>$transportadores, 'intereses'=>$intereses, 'sias'=>$sias, 'vendedors'=>$vendedors, 'perfil'=>$perfil, 'empresapais' =>$empresapais, 'unidades' =>$unidades));
+	    return View::make('busqueda.search', array('lista_exportadores'=>$lista_exportadores,'lista_sias'=>$lista_sias, 'lista_importadores'=> $lista_importadores, 'slug' => $slug_empresa, 'paises' => $paises, 'categorias' =>$categorias, 'productos' =>$productos, 'rutas'=>$rutas, 'transportadores'=>$transportadores, 'intereses'=>$intereses, 'sias'=>$sias, 'vendedors'=>$vendedors, 'perfil'=>$perfil, 'empresapais' =>$empresapais, 'unidades' =>$unidades));
 	}
 
 
