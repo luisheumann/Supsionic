@@ -483,6 +483,8 @@ $j++;
 });
 </script>
 
+
+
 @section('estilos')
 @parent
 	{{HTML::style('css/lista_empresas.css')}}
