@@ -132,7 +132,7 @@
 
 </form>
  <div class="salto_linea"></div>	  	  	
-<a target="top" href="/busqueda?categoria=&region=&destino=&origen=&country=&perfil=&selectProducto=&producto=">
+<a target="top" href="http://supply.jenimakeup.com/api/buscar_cadena?perfil=2&categoria=&productohidden=&selectProducto=producto&producto=&country=&origen=&destino=">
 	  <button  class="btn-borde btn-borde-n">BUSCAR NEGOCIO</button>
 </a>
 </div>

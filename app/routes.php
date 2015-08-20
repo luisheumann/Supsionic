@@ -123,7 +123,11 @@ Route::get('{post}/info_sias/interes/{id}','SiasController@interesById');
 
 	
 
+Route::get('json/taxonomy', 'ImportadorController@taxonomy');
 
+
+
+Route::get('json/taxonomy/search', 'ImportadorController@search');
 
 Route::get('demo/index', 'FrontendController@index');
 Route::get('demo/busqueda', 'FrontendController@busqueda');

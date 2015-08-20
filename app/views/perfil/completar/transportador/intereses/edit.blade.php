@@ -208,7 +208,7 @@ form#form_importador {
     <div class="col-md-6"></div>
     <div class="col-md-6">
       <div class="form-group">
-        <label for="pais_origen">País de Destino</label>
+        <label for="pais_origen">País de Origen</label>
         <select name="pais_destino" id="pais_destino" class="form-control">
           <option value="" required>Seleccione...</option>
           @foreach($paises as $pais)
@@ -226,7 +226,7 @@ form#form_importador {
           <div class="col-md-6"></div>
      <div class="col-md-6">
       <div class="form-group">
-        <label for="selec_paises">Paises de Origen </label><br>
+        <label for="selec_paises">Paises de Destino </label><br>
            <select id="selec_paises" required name="origenes[]" multiple="multiple">
             @foreach($paises as $pais)
               <option value="{{$pais->id}}">{{$pais->nombre}}</option>

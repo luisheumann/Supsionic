@@ -3,46 +3,46 @@
 class ImportadorController extends BaseController {
 
 
-    protected $user_id;
+	protected $user_id;
 
 
 
 
 
 
-    public function __construct() 
-    {
-        if (Sentry::check())
-        {
-            $this->user_id = Sentry::getuser()->id;
+	public function __construct() 
+	{
+		if (Sentry::check())
+		{
+			$this->user_id = Sentry::getuser()->id;
 
 
 
 
-        }
-        else{
-            $slug = Route::current()->parameters();
-            $slug = $slug['post'];
-            $perfil = Empresa::findBySlug($slug);
-            $this->user_id = $perfil->user_id;
+		}
+		else{
+			$slug = Route::current()->parameters();
+			$slug = $slug['post'];
+			$perfil = Empresa::findBySlug($slug);
+			$this->user_id = $perfil->user_id;
 
 
 
 
-             
+			 
 
 
 
 
-        }
-    }
+		}
+	}
 
-    public function postIntereses()
-    {
+	public function postIntereses()
+	{
 
 
 
-    
+	
 
 
 
@@ -56,299 +56,342 @@ class ImportadorController extends BaseController {
 
 	   $validation = Validator::make($input, $reglas);
 
-       if ($validation->fails())
-        {
-            return Response::json([
-            	'success'=>false, 
-            	'errors'=>$validation->errors()->toArray()
-            ]);
-        }
-        
+	   if ($validation->fails())
+		{
+			return Response::json([
+				'success'=>false, 
+				'errors'=>$validation->errors()->toArray()
+			]);
+		}
+		
 		$empresa = User::find($this->user_id)->empresas->first();
 		$perfil  = Empresa::find($empresa->id)->perfil->first();
 		$empresa_id =  $perfil->pivot->empresa_id;
 
 
-        $perfil2  = Empresa::find($empresa->id)->perfil->first();
+		$perfil2  = Empresa::find($empresa->id)->perfil->first();
 
-        $PerfilEmpresa  = PerfilEmpresa::find($perfil2->pivot->id);
+		$PerfilEmpresa  = PerfilEmpresa::find($perfil2->pivot->id);
 
-        $input = Input::all();
+		$input = Input::all();
 
 		// GUARDA LOS INTERESES
 
-        if ($PerfilEmpresa->perfil_id == 3)
-        {
-         $InteresesImportador = InteresesTransportador::findOrNew(Input::get('id'));
+		if ($PerfilEmpresa->perfil_id == 3)
+		{
+		 $InteresesImportador = InteresesTransportador::findOrNew(Input::get('id'));
 
-        $InteresesImportador->empresa_id   = $empresa_id;
-        $InteresesImportador->categoria_id = 0;
-        $InteresesImportador->productos    = input::get('productos');
-        $InteresesImportador->min    = input::get('min');
-        $InteresesImportador->max    = input::get('max');
-        $InteresesImportador->min_medida    = input::get('min_cantidad');
-        $InteresesImportador->max_medida   = input::get('min_cantidad');
-        $InteresesImportador->frecuencia   = 0;
-        $InteresesImportador->partida   = input::get('partida');
+		$InteresesImportador->empresa_id   = $empresa_id;
+		$InteresesImportador->categoria_id = 0;
+		$InteresesImportador->productos    = input::get('productos');
+		$InteresesImportador->min    = input::get('min');
+		$InteresesImportador->max    = input::get('max');
+		$InteresesImportador->min_medida    = input::get('min_cantidad');
+		$InteresesImportador->max_medida   = input::get('min_cantidad');
+		$InteresesImportador->frecuencia   = 0;
+		$InteresesImportador->partida   = input::get('partida');
 
-        $InteresesImportador->SAE   = input::get('SAE');
-        $InteresesImportador->STE   = input::get('STE');
-        $InteresesImportador->SMA   = input::get('SMA');
-        $InteresesImportador->SFL   = input::get('SFL');
-        $InteresesImportador->SMU   = input::get('SMU');
-        $InteresesImportador->SOL   = input::get('SOL');
-        $InteresesImportador->SA   = input::get('SA');
-        $InteresesImportador->SSIA   = input::get('SSIA');
-        $InteresesImportador->SACCE   = input::get('SACCE');
-        $InteresesImportador->SAMP   = input::get('SAMP');
-        $InteresesImportador->STAC   = input::get('STAC');
-        $InteresesImportador->STTC   = input::get('STTC');
-        $InteresesImportador->STMC   = input::get('STMC');
-        $InteresesImportador->STAI   = input::get('STAI');
-        $InteresesImportador->SSTAN   = input::get('SSTAN');
+		$InteresesImportador->SAE   = input::get('SAE');
+		$InteresesImportador->STE   = input::get('STE');
+		$InteresesImportador->SMA   = input::get('SMA');
+		$InteresesImportador->SFL   = input::get('SFL');
+		$InteresesImportador->SMU   = input::get('SMU');
+		$InteresesImportador->SOL   = input::get('SOL');
+		$InteresesImportador->SA   = input::get('SA');
+		$InteresesImportador->SSIA   = input::get('SSIA');
+		$InteresesImportador->SACCE   = input::get('SACCE');
+		$InteresesImportador->SAMP   = input::get('SAMP');
+		$InteresesImportador->STAC   = input::get('STAC');
+		$InteresesImportador->STTC   = input::get('STTC');
+		$InteresesImportador->STMC   = input::get('STMC');
+		$InteresesImportador->STAI   = input::get('STAI');
+		$InteresesImportador->SSTAN   = input::get('SSTAN');
 
 
-        $InteresesImportador->save();
+		$InteresesImportador->save();
 
 
 // BORRAR LOS categorias PARA EVITAR DUPLICADOS
-       $valorid = SiasCategoriaInteres::where('intereses_transporte_id', $InteresesImportador->id)->get(); 
-             foreach ($valorid as $valorunico){
+	   $valorid = SiasCategoriaInteres::where('intereses_transporte_id', $InteresesImportador->id)->get(); 
+			 foreach ($valorid as $valorunico){
 
-                if($valorunico->delete()){
-        Session::set('mensaje','Artículo eliminado con éxito');
-            }else{
-        Session::set('error','Ocurrió un error al intentar eliminar');
-        }
+				if($valorunico->delete()){
+		Session::set('mensaje','Artículo eliminado con éxito');
+			}else{
+		Session::set('error','Ocurrió un error al intentar eliminar');
+		}
 
-             }
+			 }
 
 // /BORRAR LOS PAISES PARA EVITAR DUPLICADOS
-     foreach (Input::get('categoria') as $categoria)
-        {
+	 foreach (Input::get('categoria') as $categoria)
+		{
 
-            $SiasCategoriaInteres = SiasCategoriaInteres::findOrNew(Input::get('id'));
+			$SiasCategoriaInteres = SiasCategoriaInteres::findOrNew(Input::get('id'));
 
-          
-            $SiasCategoriaInteres->empresa_id = $empresa_id;
-            $SiasCategoriaInteres->intereses_transporte_id = $InteresesImportador->id;
-            $SiasCategoriaInteres->categoria_id = $categoria;
-            $SiasCategoriaInteres->save();
-        }
+		  
+			$SiasCategoriaInteres->empresa_id = $empresa_id;
+			$SiasCategoriaInteres->intereses_transporte_id = $InteresesImportador->id;
+			$SiasCategoriaInteres->categoria_id = $categoria;
+			$SiasCategoriaInteres->save();
+		}
 
 }
 
 
 
  if ($PerfilEmpresa->perfil_id == 2)
-        {
-         $InteresesImportador = InteresesImportador::findOrNew(Input::get('id'));
+		{
+		 $InteresesImportador = InteresesImportador::findOrNew(Input::get('id'));
 
 		$InteresesImportador->empresa_id   = $empresa_id;
 		$InteresesImportador->categoria_id = 0;
 		$InteresesImportador->productos    = input::get('productos');
-        $InteresesImportador->min    = input::get('min');
-        $InteresesImportador->max    = input::get('max');
-        $InteresesImportador->min_medida    = input::get('min_cantidad');
-        $InteresesImportador->max_medida   = input::get('min_cantidad');
-        $InteresesImportador->frecuencia   = input::get('frecuencia');
-        $InteresesImportador->partida   = input::get('partida');
+		$InteresesImportador->min    = input::get('min');
+		$InteresesImportador->max    = input::get('max');
+		$InteresesImportador->min_medida    = input::get('min_cantidad');
+		$InteresesImportador->max_medida   = input::get('min_cantidad');
+		$InteresesImportador->frecuencia   = input::get('frecuencia');
+		$InteresesImportador->partida   = input::get('partida');
 
-        $InteresesImportador->SAE   = input::get('SAE');
-        $InteresesImportador->STE   = input::get('STE');
-        $InteresesImportador->SMA   = input::get('SMA');
-        $InteresesImportador->SFL   = input::get('SFL');
-        $InteresesImportador->SMU   = input::get('SMU');
-        $InteresesImportador->SOL   = input::get('SOL');
-        $InteresesImportador->SA   = input::get('SA');
-        $InteresesImportador->SSIA   = input::get('SSIA');
-        $InteresesImportador->SACCE   = input::get('SACCE');
-        $InteresesImportador->SAMP   = input::get('SAMP');
-        $InteresesImportador->STAC   = input::get('STAC');
-        $InteresesImportador->STTC   = input::get('STTC');
-        $InteresesImportador->STMC   = input::get('STMC');
-        $InteresesImportador->STAI   = input::get('STAI');
-        $InteresesImportador->SSTAN   = input::get('SSTAN');
+		$InteresesImportador->SAE   = input::get('SAE');
+		$InteresesImportador->STE   = input::get('STE');
+		$InteresesImportador->SMA   = input::get('SMA');
+		$InteresesImportador->SFL   = input::get('SFL');
+		$InteresesImportador->SMU   = input::get('SMU');
+		$InteresesImportador->SOL   = input::get('SOL');
+		$InteresesImportador->SA   = input::get('SA');
+		$InteresesImportador->SSIA   = input::get('SSIA');
+		$InteresesImportador->SACCE   = input::get('SACCE');
+		$InteresesImportador->SAMP   = input::get('SAMP');
+		$InteresesImportador->STAC   = input::get('STAC');
+		$InteresesImportador->STTC   = input::get('STTC');
+		$InteresesImportador->STMC   = input::get('STMC');
+		$InteresesImportador->STAI   = input::get('STAI');
+		$InteresesImportador->SSTAN   = input::get('SSTAN');
 
 
 		$InteresesImportador->save();
 
 
-        // BORRAR LOS categorias PARA EVITAR DUPLICADOS
-       $valorid = SiasCategoriaInteres::where('intereses_importador_id', $InteresesImportador->id)->get(); 
-             foreach ($valorid as $valorunico){
+		// BORRAR LOS categorias PARA EVITAR DUPLICADOS
+	   $valorid = SiasCategoriaInteres::where('intereses_importador_id', $InteresesImportador->id)->get(); 
+			 foreach ($valorid as $valorunico){
 
-                if($valorunico->delete()){
-        Session::set('mensaje','Artículo eliminado con éxito');
-            }else{
-        Session::set('error','Ocurrió un error al intentar eliminar');
-        }
+				if($valorunico->delete()){
+		Session::set('mensaje','Artículo eliminado con éxito');
+			}else{
+		Session::set('error','Ocurrió un error al intentar eliminar');
+		}
 
-             }
+			 }
 
 
-         foreach (Input::get('categoria') as $categoria)
-        {
+		 foreach (Input::get('categoria') as $categoria)
+		{
 
-            $SiasCategoriaInteres = SiasCategoriaInteres::findOrNew(Input::get('id'));
+			$SiasCategoriaInteres = SiasCategoriaInteres::findOrNew(Input::get('id'));
 
-          
-            $SiasCategoriaInteres->empresa_id = $empresa_id;
-            $SiasCategoriaInteres->intereses_importador_id = $InteresesImportador->id;
-            $SiasCategoriaInteres->categoria_id = $categoria;
-            $SiasCategoriaInteres->save();
-        }
+		  
+			$SiasCategoriaInteres->empresa_id = $empresa_id;
+			$SiasCategoriaInteres->intereses_importador_id = $InteresesImportador->id;
+			$SiasCategoriaInteres->categoria_id = $categoria;
+			$SiasCategoriaInteres->save();
+		}
 
 
 }
-        if ($PerfilEmpresa->perfil_id == 3)
-        {
+		if ($PerfilEmpresa->perfil_id == 3)
+		{
 
 
 
 // BORRAR LOS categorias PARA EVITAR DUPLICADOS
-       $valorid = RutaTransportador::where('intereses_transporte_id', $InteresesImportador->id)->get(); 
-             foreach ($valorid as $valorunico){
+	   $valorid = RutaTransportador::where('intereses_transporte_id', $InteresesImportador->id)->get(); 
+			 foreach ($valorid as $valorunico){
 
-                if($valorunico->delete()){
-        Session::set('mensaje','Artículo eliminado con éxito');
-            }else{
-        Session::set('error','Ocurrió un error al intentar eliminar');
-        }
-
-             }
-
-
-
-
-    foreach (Input::get('origenes') as $destino)
-        {
-        
-
-            $RutaTransportador = new RutaTransportador();
-            $RutaTransportador->intereses_transporte_id = $InteresesImportador->id;
-            $RutaTransportador->pais_destino  = Input::get('pais_destino');
-            $RutaTransportador->pais_origen = $destino;
-            $RutaTransportador->save();
-        }
-
-        }
-      
-        if ($PerfilEmpresa->perfil_id == 2)
-        {
-
-           
-       $valorid = RutaImportador::where('intereses_importador_id', $InteresesImportador->id)->get(); 
-             foreach ($valorid as $valorunico){
-
-                if($valorunico->delete()){
-        Session::set('mensaje','Artículo eliminado con éxito');
-            }else{
-        Session::set('error','Ocurrió un error al intentar eliminar');
-        }
-
-             }
-
-
-        // GUARDA LOS DESTINOS
-		foreach (Input::get('origenes') as $origen)
-		{
-	        $RutaImportador = new RutaImportador();
-	        $RutaImportador->intereses_importador_id = $InteresesImportador->id;
-	        $RutaImportador->pais_destino = Input::get('pais_destino');
-	        $RutaImportador->pais_origen  = $origen;
-	        $RutaImportador->save();
+				if($valorunico->delete()){
+		Session::set('mensaje','Artículo eliminado con éxito');
+			}else{
+		Session::set('error','Ocurrió un error al intentar eliminar');
 		}
 
-     }
+			 }
+
+
+
+
+	foreach (Input::get('origenes') as $destino)
+		{
+		
+
+			$RutaTransportador = new RutaTransportador();
+			$RutaTransportador->intereses_transporte_id = $InteresesImportador->id;
+			$RutaTransportador->pais_destino  = Input::get('pais_destino');
+			$RutaTransportador->pais_origen = $destino;
+			$RutaTransportador->save();
+		}
+
+		}
+	  
+		if ($PerfilEmpresa->perfil_id == 2)
+		{
+
+		   
+	   $valorid = RutaImportador::where('intereses_importador_id', $InteresesImportador->id)->get(); 
+			 foreach ($valorid as $valorunico){
+
+				if($valorunico->delete()){
+		Session::set('mensaje','Artículo eliminado con éxito');
+			}else{
+		Session::set('error','Ocurrió un error al intentar eliminar');
+		}
+
+			 }
+
+
+		// GUARDA LOS DESTINOS
+		foreach (Input::get('origenes') as $origen)
+		{
+			$RutaImportador = new RutaImportador();
+			$RutaImportador->intereses_importador_id = $InteresesImportador->id;
+			$RutaImportador->pais_destino = Input::get('pais_destino');
+			$RutaImportador->pais_origen  = $origen;
+			$RutaImportador->save();
+		}
+
+	 }
 		return Response::json(['success'=>true]);
 
-    }
+	}
 
  public function Interes()
-    {
-        $empresa = User::find($this->user_id)->empresas->first();
-                $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
-
-      $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
-
-      $intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
-         $unidades = Unidades::Get();
-
-        return View::make('perfil.completar.importador.index', array( 'categorias' => $categorias, 'paises'=>$paises,'empresa'=>$empresa,'intersesImportador'=>$intersesImportador,'unidades'=>$unidades));
-    }
-
-
-     public function InteresAdd()
-    {
-        $empresa = User::find($this->user_id)->empresas->first();
-        $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
-        $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
-        $intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
-        $unidades = Unidades::Get();
-          $categorias_select = SiasCategoriaInteres::where('intereses_importador_id', $segment)->orderBy('categoria_id', 'ASC')->get(); 
-
-
-        return View::make('perfil.completar.importador.intereses.add', array( 'categorias' => $categorias, 'paises'=>$paises,'empresa'=>$empresa,'intersesImportador'=>$intersesImportador,'categorias_select'=>$categorias_select));
-    }
+	{
+	  $empresa = User::find($this->user_id)->empresas->first();
+	  $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
+	  $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
+	  $taxonomias = Taxonomy::remember(100)->get(); 
+	  $intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
+	  $unidades = Unidades::Get();
 
 
 
-    // obtengo el producto por ID
-    public function InteresEdit($id)
-    {
-        $segment  = Request::segment(4);
-        $interes = InteresesImportador::find($segment);
-        $rutas = $interes->RutaImportador;
-        $categorias = Categorias::orderBy('nombre', 'ASC')->get(); 
+	  
+		return View::make('perfil.completar.importador.index', array( 'categorias' => $categorias, 'paises'=>$paises,'empresa'=>$empresa,'intersesImportador'=>$intersesImportador,'unidades'=>$unidades, 'taxonomias'=>$taxonomias));
+	}
 
-        $unidades = Unidades::Get();
-        $paises = Paises::orderBy('nombre', 'ASC')->get();
 
-        $medidamax = Unidades::where('id', $interes->max_medida)->first();
-        $medidamin = Unidades::where('id', $interes->min_medida)->first();
-         $categorias_select = SiasCategoriaInteres::where('intereses_importador_id', $segment)->orderBy('categoria_id', 'ASC')->get(); 
-        
-        return View::make('perfil.completar.importador.intereses.edit', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin, 'categorias' => $categorias,'unidades' => $unidades,'paises' => $paises,'categorias_select' => $categorias_select));
-    }
+	 public function InteresAdd()
+	{
+		$empresa = User::find($this->user_id)->empresas->first();
+		$categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
+		$taxonomias = Taxonomy::orderBy('name', 'ASC')->get(); // todas las categorias
+		$paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
+		$intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
+		$unidades = Unidades::Get();
+		  $categorias_select = SiasCategoriaInteres::where('intereses_importador_id', $segment)->orderBy('categoria_id', 'ASC')->get(); 
+
+
+		return View::make('perfil.completar.importador.intereses.add', array( 'categorias' => $categorias, 'paises'=>$paises,'empresa'=>$empresa,'intersesImportador'=>$intersesImportador,'categorias_select'=>$categorias_select, 'taxonomias'=>$taxonomias));
+	}
+
+
+	   public function taxonomy()
+	{
+		$taxonomias = Taxonomy::with('childrenRecursive')->where('id', 464)->get();
+
+
+	
+$id1 = null;
+$id2 = null;
+$id3 = null;
+$id4 = null;
+$id5 = null;
+$id6 = null;
+		return View::make('perfil.completar.importador.intereses.taxonomy', array('taxonomias'=>$taxonomias,'id1'=>$id1,'id2'=>$id2,'id3'=>$id3,'id4'=>$id4,'id5'=>$id5,'id6'=>$id6));
+	}
+
+
+
+
+
+
+
+
+
+
+	public function search()
+	{
+		$taxonomias = Taxonomy::where('name', 'like', '%'.Input::get('term').'%')
+		->select('id','name as value','parent as info')->get();
+
+
+		return Response::json(
+			array(
+				'results' => $taxonomias->toArray()
+				),
+			200
+			);
+
+		
+	}
+
+
+	// obtengo el producto por ID
+	public function InteresEdit($id)
+	{
+		$segment  = Request::segment(4);
+		$interes = InteresesImportador::find($segment);
+		$rutas = $interes->RutaImportador;
+		$categorias = Categorias::orderBy('nombre', 'ASC')->get(); 
+
+		$unidades = Unidades::Get();
+		$paises = Paises::orderBy('nombre', 'ASC')->get();
+
+		$medidamax = Unidades::where('id', $interes->max_medida)->first();
+		$medidamin = Unidades::where('id', $interes->min_medida)->first();
+		 $categorias_select = SiasCategoriaInteres::where('intereses_importador_id', $segment)->orderBy('categoria_id', 'ASC')->get(); 
+		
+		return View::make('perfil.completar.importador.intereses.edit', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin, 'categorias' => $categorias,'unidades' => $unidades,'paises' => $paises,'categorias_select' => $categorias_select));
+	}
 
 
 
   public function InteresDelete($id)
-    {
-        $empresa = User::find($this->user_id)->empresas->first();
-        $perfil  = Empresa::find($empresa->id)->perfil->first();
+	{
+		$empresa = User::find($this->user_id)->empresas->first();
+		$perfil  = Empresa::find($empresa->id)->perfil->first();
 
 
-        $segment  = Request::segment(4);
-        $articulo = InteresesImportador::find($segment);
-        if($articulo->delete()){
-        Session::set('mensaje','Artículo eliminado con éxito');
-            }else{
-        Session::set('error','Ocurrió un error al intentar eliminar');
-        }
-        return Redirect::to('/'.$empresa->slug.'/interes_importador');
-        
-    }
+		$segment  = Request::segment(4);
+		$articulo = InteresesImportador::find($segment);
+		if($articulo->delete()){
+		Session::set('mensaje','Artículo eliminado con éxito');
+			}else{
+		Session::set('error','Ocurrió un error al intentar eliminar');
+		}
+		return Redirect::to('/'.$empresa->slug.'/interes_importador');
+		
+	}
 
 
 
 public function InteresDelete2($id)
-    {
-        $empresa = User::find($this->user_id)->empresas->first();
-        $perfil  = Empresa::find($empresa->id)->perfil->first();
+	{
+		$empresa = User::find($this->user_id)->empresas->first();
+		$perfil  = Empresa::find($empresa->id)->perfil->first();
 
 
-        $segment  = Request::segment(4);
-        $articulo2 = FileEmpresas::where('id', $segment)->first();
-        if($articulo2->delete()){
-        Session::set('mensaje','Artículo eliminado con éxito');
-            }else{
-        Session::set('error','Ocurrió un error al intentar eliminar');
-        }
+		$segment  = Request::segment(4);
+		$articulo2 = FileEmpresas::where('id', $segment)->first();
+		if($articulo2->delete()){
+		Session::set('mensaje','Artículo eliminado con éxito');
+			}else{
+		Session::set('error','Ocurrió un error al intentar eliminar');
+		}
 return Redirect::to('/'.$empresa->slug.'/admin/perfil/empresa#datos-empresa');
-        
-    }
+		
+	}
 
 
 
@@ -356,20 +399,20 @@ return Redirect::to('/'.$empresa->slug.'/admin/perfil/empresa#datos-empresa');
 
 
 	// obtengo el producto por ID
-    public function interesById($id)
-    {
-    	$segment  = Request::segment(4);
-    	$interes = InteresesImportador::find($segment);
-    	$rutas = $interes->RutaImportador;
+	public function interesById($id)
+	{
+		$segment  = Request::segment(4);
+		$interes = InteresesImportador::find($segment);
+		$rutas = $interes->RutaImportador;
 
-        $unidades = Unidades::Get();
+		$unidades = Unidades::Get();
 
-        $medidamax = Unidades::where('id', $interes->max_medida)->first();
-        $medidamin = Unidades::where('id', $interes->min_medida)->first();
-           $categorias_select = SiasCategoriaInteres::where('intereses_importador_id', $segment)->orderBy('categoria_id', 'ASC')->get(); 
-    	
-    	return View::make('perfil.completar.importador.intereses.detalles', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin,'categorias_select' => $categorias_select));
-    }
+		$medidamax = Unidades::where('id', $interes->max_medida)->first();
+		$medidamin = Unidades::where('id', $interes->min_medida)->first();
+		   $categorias_select = SiasCategoriaInteres::where('intereses_importador_id', $segment)->orderBy('categoria_id', 'ASC')->get(); 
+		
+		return View::make('perfil.completar.importador.intereses.detalles', array('interes' =>$interes, 'rutas' => $rutas,'medidamax' => $medidamax , 'medidamin' => $medidamin,'categorias_select' => $categorias_select));
+	}
 
 
 
