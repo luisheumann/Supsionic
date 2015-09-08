@@ -137,13 +137,13 @@ input#cantidad_disp {
 @section('content')
 
 
-
-<button class="btn btn-success pull-right" data-toggle="modal" data-target="#addInteres">
+<a href="/{{$empresa->slug}}/interes_transportador/add">
+<button class="btn btn-success pull-right" >
 
  	<i class="fa fa-cube"></i> Agregar Interés
 
  </button>
-
+</a>
  <br><br>
 
 
@@ -206,8 +206,8 @@ input#cantidad_disp {
 
 
 
-<a href="interes_transportador/delete/{{$interes->id}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a> 
-<a href="interes_transportador/edit/{{$interes->id}}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> <a data-toggle="modal" class="link" data-target="#myModalE" href="transportador/interes/{{$interes->id}}" class="btn btn-default btn-xs"><span class="glyphicon  glyphicon-eye-open"></span></a>
+<a href="/{{$empresa->slug}}/interes_transportador/delete/{{$interes->id}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a> 
+<a href="/{{$empresa->slug}}/interes_transportador/edit/{{$interes->id}}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> <a data-toggle="modal" class="link" data-target="#myModalE" href="/{{$empresa->slug}}/interes_transportador/interes/{{$interes->id}}" class="btn btn-default btn-xs"><span class="glyphicon  glyphicon-eye-open"></span></a>
 
 
 
@@ -259,34 +259,6 @@ input#cantidad_disp {
 
 
 
-
-<!-- Modal agregar productos de interes importador -->
-
-<div class="modal fade" id="addInteres" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-
-      <div class="modal-header">
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
-        <h4 class="modal-title" id="myModalLabel">Agregar Interés</h4>
-
-      </div>
-
-      <div class="modal-body">
-
-        @include('perfil/completar/transportador/intereses.add')
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
 
 
   

@@ -34,7 +34,7 @@ class ProductosController extends BaseController {
 
 		$input = Input::all();
 		$reglas =  array(
-			'categoria_producto'   => 'required',
+			
 			'producto'			   => 'required',
 			'codigo'      	       => 'required',
 			//'unidad_medida' 	   => 'required',
@@ -64,11 +64,10 @@ class ProductosController extends BaseController {
 
       //  $producto = new Productos();
         $producto = Productos::findOrNew(Input::get('id'));
-        $producto->categoria_id   = Input::get('categoria_producto');
+        $producto->categoria_id   = 0;
         $producto->empresa_id     = $empresa_id;
         $producto->nombre 	      = Input::get('producto');
         $producto->codigo         = Input::get('codigo');
-        $producto->unidad_id      = Input::get('unidad_medida');
         $producto->descripcion    = Input::get('detalles_producto');
         $producto->produccion_mes = Input::get('capacidad_produccion');
         $producto->venta_minima   = Input::get('cantidad_minima');
@@ -98,6 +97,12 @@ class ProductosController extends BaseController {
         $producto->ancho = Input::get('ancho');
         $producto->profundo = Input::get('profundo');
         $producto->dimencion_unidad = Input::get('dimencion_unidad');
+
+        $producto->altoc = Input::get('altoc');
+        $producto->anchoc = Input::get('anchoc');
+        $producto->profundoc = Input::get('profundoc');
+        $producto->unidad_prod = Input::get('unidad_prod');
+        $producto->unidad_cantidad = Input::get('unidad_cantidad');
 
         $producto->SAE = Input::get('SAE');
         $producto->STE = Input::get('STE');
@@ -137,6 +142,119 @@ class ProductosController extends BaseController {
 
 
 
+
+
+             if (Input::get('demo7_') == null) {
+                $hijo1 = 0;
+             }else{
+                $hijo1 = Input::get('demo7_');
+             }
+
+              if (Input::get('demo7__') == null) {
+                $hijo2 = 0;
+             }else{
+                $hijo2 = Input::get('demo7__');
+             }
+
+              if (Input::get('demo7___') == null) {
+                $hijo3 = 0;
+             }else{
+                $hijo3 = Input::get('demo7___');
+             }
+
+              if (Input::get('demo7____') == null) {
+                $hijo4 = 0;
+             }else{
+                $hijo4 = Input::get('demo7____');
+             }
+
+              if (Input::get('demo7_____') == null) {
+                $hijo5 = 0;
+             }else{
+                $hijo5 = Input::get('demo7_____');
+             }
+
+         if (Input::get('demo7______') == null) {
+                $hijo6 = 0;
+             }else{
+                $hijo6 = Input::get('demo7______');
+             }
+
+
+
+
+    $categorias = [$hijo1,$hijo2,$hijo3,$hijo4,$hijo5,$hijo6];
+
+
+
+         foreach ($categorias as $categoria)
+        {
+
+            if (!$categoria == 0){
+            $SiasCategoriaInteres = SiasCategoriaInteres::findOrNew(Input::get('id'));        
+            $SiasCategoriaInteres->empresa_id = $empresa_id;
+            $SiasCategoriaInteres->producto_id = $producto->id;
+            $SiasCategoriaInteres->categoria_id = $categoria;
+            $SiasCategoriaInteres->save();
+        };
+        }
+
+
+         if (Input::get('shijo1') == null) {
+                $shijo1 = 0;
+             }else{
+                $shijo1 = Input::get('shijo1');
+             }
+
+              if (Input::get('shijo2') == null) {
+                $shijo2 = 0;
+             }else{
+                $shijo2 = Input::get('shijo2');
+             }
+
+              if (Input::get('shijo3') == null) {
+                $shijo3 = 0;
+             }else{
+                $shijo3 = Input::get('shijo3');
+             }
+
+              if (Input::get('shijo4') == null) {
+                $shijo4 = 0;
+             }else{
+                $shijo4 = Input::get('shijo4');
+             }
+
+              if (Input::get('shijo5') == null) {
+                $shijo5 = 0;
+             }else{
+                $shijo5 = Input::get('shijo5');
+             }
+
+         if (Input::get('shijo6') == null) {
+                $shijo6 = 0;
+             }else{
+                $shijo6 = Input::get('shijo6');
+             }
+
+        $scategorias = [$shijo1,$shijo2,$shijo3,$shijo4,$shijo5,$shijo6];
+
+         foreach ($scategorias as $categoria)
+        {
+
+            if (!$categoria == 0){
+            $SiasCategoriaInteres = SiasCategoriaInteres::findOrNew(Input::get('id'));        
+            $SiasCategoriaInteres->empresa_id = $empresa_id;
+            $SiasCategoriaInteres->producto_id = $producto->id;
+            $SiasCategoriaInteres->categoria_id = $categoria;
+            $SiasCategoriaInteres->save();
+        };
+        }
+
+
+
+
+
+
         // GUARDA LOS DESTINOS
 		foreach (Input::get('destinos') as $destino)
 		{
@@ -168,13 +286,20 @@ class ProductosController extends BaseController {
                     $imgth->resize(60, null, function ($constraint) {
                         $constraint->aspectRatio();
                     }); 
+
+                    $imgbig = Image::make($file->getRealPath());
+                      $imgbig->resize(428, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    }); 
                     
-                    $destinationPath = 'uploads/productos';
+                    $destinationPath = 'uploads/productos/original';
                     $extension = $file->getClientOriginalExtension(); 
                     $filename = rand(11111,99999).'.'.$extension; // renameing image
+
+
                     $file->move($destinationPath, $filename);
                      // guardamos un  thumbnail  
-
+                  $imgbig->save('uploads/productos/'.$filename);  // gusrdamos el thumb      
                     $imgth->save('uploads/productos/thumbnail/'.$filename);  // gusrdamos el thumb      
 
                     // gurdamos los datos de la imagen 

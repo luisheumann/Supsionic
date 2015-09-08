@@ -59,65 +59,53 @@ Route::group(array('before' => 'AuthSentryInv'), function()
 
 	// Post cambia el perfil 
 	Route::post('{post}/cambio_perfil','PerfilEmpresaController@getCambioPerfil');
-
 	Route::get('api/buscar_cadena','BusquedaController@getBuscarCadena');
 
 	// Obtiene todos los productos
 	Route::get('{post}/productos','ProductosController@ProductosbyEmpresa');
-
 	Route::get('productos/add','ProductosController@ProductoAdd');
-
-
-	// Obtiene el producto por el id
 	Route::get('{post}/producto/{id}','ProductosController@ProductoById');
 	
 	// post para guardar los productos de interes para el importador
-
 	Route::get('{post}/interes_importador','ImportadorController@Interes');
-
+	Route::get('{post}/interes_importador/lista','ImportadorController@Interes');
 	Route::get('{post}/interes_importador/add','ImportadorController@InteresAdd');
-
 	Route::get('{post}/interes_transportador/edit/{id}','TransportadorController@InteresEdit');
-
-
 	Route::get('{post}/interes_transportador/delete/{id}','TransportadorController@InteresDelete');
-
-Route::get('{post}/interes_importador/delete/{id}','ImportadorController@InteresDelete');
+	Route::get('{post}/interes_importador/delete/{id}','ImportadorController@InteresDelete');
 
 
 	Route::post('{post}/interes_transportador/edit/interes_importador','ImportadorController@postIntereses');	
-
-
-
-Route::get('{post}/interes_importador/edit/{id}','ImportadorController@InteresEdit');
-
+	Route::get('{post}/interes_importador/edit/{id}','ImportadorController@InteresEdit');
 	Route::post('{post}/interes_importador/edit/interes_importador','ImportadorController@postIntereses');
-
 	Route::post('{post}/interes_importador','ImportadorController@postIntereses');	
 	Route::post('{post}/interes_importador/interes_importador','ImportadorController@postIntereses');	
-
-	// Obtiene el detalle de interes (para importador)  por el id
 	Route::get('{post}/importador/interes/{id}','ImportadorController@interesById');
-	
-	// post para guardar los productos de interes para el transportador
-		Route::get('{post}/interes_transportador/add','TransportadorController@InteresAdd');	
-			Route::get('{post}/interes_transportador','TransportadorController@Interes');
 
 
+
+
+	Route::post('{post}/interes_transportador/interes_importador','ImportadorController@postIntereses');
+	Route::get('{post}/interes_transportador/lista','TransportadorController@Interes');
+	Route::get('{post}/interes_transportador/add','TransportadorController@InteresAdd');	
+	Route::get('{post}/interes_transportador','TransportadorController@Interes');
 	Route::post('{post}/interes_transportador','TransportadorController@postIntereses');	
+	
+	Route::get('{post}/interes_transportador/interes/{id}','TransportadorController@interesById');
 
-	// Obtiene el detalle de interes (para importador)  por el id
-	Route::get('{post}/transportador/interes/{id}','TransportadorController@interesById');
-
-		Route::get('{post}/transportador/interesedit/{id}','TransportadorController@interesByIdedit');
+	Route::get('{post}/transportador/interesedit/{id}','TransportadorController@interesByIdedit');
 
 	// post para guardar la información comercial para las SIAS
+
+		
+	Route::get('{post}/info_sias/lista','SiasController@interes');
+	Route::post('{post}/info_sias/info_sias','SiasController@postInfo');	
 	Route::post('{post}/info_sias','SiasController@postInfo');	
 	Route::get('{post}/info_sias','SiasController@interes');	
 	Route::get('{post}/info_sias/add','SiasController@InteresAdd');	
 	Route::get('{post}/info_sias/edit/{id}','SiasController@InteresEdit');	
 	Route::post('{post}/info_sias/edit/info_sias','SiasController@postInfo');
-Route::get('{post}/info_sias/interes/{id}','SiasController@interesById');
+	Route::get('{post}/info_sias/interes/{id}','SiasController@interesById');
 
 	Route::get('{post}/info_sias/delete/{id}','SiasController@InteresDelete');
 
@@ -146,15 +134,10 @@ Route::get('{post}/admin/cambio/pass', 'AdminController@cambiopass');
 
 
 Route::get('{post}/interes_importador2/delete/{id}','ImportadorController@InteresDelete2');
-
 Route::get('{post}/admin/producto/delete2/{borra}','AdminController@producto_delete');
-
-
 Route::post('{post}/admin/perfil/datos_basicos','PerfilEmpresaController@postRegistroDatosBasicos');
 Route::post('{post}/admin/perfil/registro_basico','PerfilEmpresaController@postRegistroBasico');
-
 Route::post('{post}/admin/perfil/datos_basicos_detalle','PerfilEmpresaController@postRegistroBasico2');
-
 Route::post('{post}/admin/producto/producto_exportador','ProductosController@postRegistroProductoExportador');
 
 

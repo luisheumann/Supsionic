@@ -37,11 +37,10 @@
 <body>
 
 
-
   <div>
     <form method="get" action="">
 
-      <label for="testinput">Person</label>
+      <label for="testinput">Categoria</label>
       <input style="width: 200px" type="text" id="testinput" value="" /> 
       <form>
         <button type="button"  id="testid" 
@@ -106,9 +105,6 @@
 
   </form>
   <script type="text/javascript">
-
-
-
     function updateInput(ish){
 
       var url = window.location.href;    
@@ -118,10 +114,7 @@
        url += '?param=1'+ ish
      }
      window.location.href = url;
-
-
    }
-
 
    function changeValueCheckbox(element){
 
@@ -132,8 +125,6 @@
    }
 
    $(function() {
-
-
 
     var options = {
       empty_value: 'null',
@@ -336,8 +327,6 @@ if (!$id5 == null) {
 ?>
 
 <script>
-
-
   var vartatataranieto11 = "<?php echo $valorid5; ?>" ;
   var varpadre11 = "<?php echo $valorid4; ?>" ;
   var varhijo1 = "<?php echo $valorid3; ?>" ;
@@ -351,16 +340,6 @@ if (!$id5 == null) {
   var vartataranieto11 =document.getElementById('tataranieto11').value = vartataranieto11;  
   var vartatataranieto11 =document.getElementById('tatataranieto11').value = vartatataranieto11;  
 
-
-
-
 </script>
-
-
-
-
-
-
-
 
 </html>

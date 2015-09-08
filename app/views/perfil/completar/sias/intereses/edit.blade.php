@@ -124,32 +124,42 @@ form#form_importador {
 <br>
     <legend class="legenda"><strong>Información Básica</strong></legend>
 
+ <input type="hidden" name="valoroculto" id="valoroculto" value="" />
+
+ <input type="hidden" id="padre11" name="shijo1" />
+    <input type="hidden" id="hijo11" name="shijo2" />
+    <input type="hidden" id="nieto1"  name="shijo3"/>
+    <input type="hidden" id="bisnieto11" name="shijo4" />
+    <input type="hidden" id="tataranieto11" name="shijo5" />
+    <input type="hidden" id="tatataranieto11" name="shijo6" />
 
 
 
  
 
 
+      <div class="form-group"><label class="testinputcategoria">Categoria</label><br>
+       <div class="categoriamanual">
 
-<div class="row">
-          <div class="col-md-6"></div>
-     <div class="col-md-6">
-      <div class="form-group">
-        <label for="categoria_producto">Categorias </label><br>
-           <select id="categoria_producto" required name="categoria[]" multiple="multiple">
-            @foreach($categorias as $categoria)
-              <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
-            @endforeach 
-          </select>
-       </div>
-    </div>
- </div>
 
+
+          <label for="testinput-buscador">Por palabra clave:</label>
+          <input style="width: 200px" type="text" id="testinput" value="" /> 
+
+  
+
+
+          <button type="button"  id="testid" 
+          onclick="updateInput(this.value)" 
+          value="" title="Aceptar">Aceptar</button>
+           <input disabled class="testinput-buscador-path" type="text" id="buscador-path" value="" /><br> 
+
+      </div>
+</div>
 
 
   <div class="row">
-   <div class="col-md-6"></div>
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="form-group">
         <label for="productos">
           Escriba los productos que te interesan importar de la categoría:<br>
@@ -168,8 +178,7 @@ form#form_importador {
 
 
     <div class="row">  
-     <div class="col-md-6"></div>
-    <div class="col-md-6 a">
+     <div class="col-md-12 a">
       <div class="form-group">
          <div class="col-md-4">
 		<b>Cantidad Minima</b><br>
@@ -194,16 +203,15 @@ form#form_importador {
     </div>  
   </div>
 
-
-
-
   <hr>
 
+
+
  <div class="row">
-    <div class="col-md-6"></div>
+
    <b>Partida arancelaria.</b><br>
-       <div class="col-md-6"></div>
-    <div class="col-md-6">
+
+    <div class="col-md-12">
       <div class="form-group">
         
         <input type="text" class="form-control" id="partida" name="partida" value="{{$interes->partida}}"> 
@@ -217,12 +225,9 @@ form#form_importador {
   <hr>
 
 
-  <hr>
-
-
 <div class="row">
-          <div class="col-md-6"></div>
-     <div class="col-md-6">
+   
+     <div class="col-md-12">
       <div class="form-group">
         <label for="selec_paises">Pais de Operacion </label><br>
            <select id="selec_paises" required name="operacion[]" multiple="multiple">
@@ -274,6 +279,216 @@ form#form_importador {
 
 </div>
 
+
+<style type="text/css">
+
+input#buscador-path {
+        border: 0px;
+    width: 90%;
+    color: #666;
+    margin: 12px;
+    background-color: #D6D6D6;
+    font-weight: bold;
+}
+    .form-group.multipais {
+    margin-left: 10px !important;
+    /* width: 100%; */
+}
+
+    hr {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+
+    label.testinputcategoria {
+    padding-left: 6px;
+}
+
+    .categoriamanual {
+    background-color: #DDD;
+    margin: 5px;
+    padding: 10px;
+}
+
+
+    .listacategoria{
+    background-color: #DDD;
+        margin: 5px;
+    padding: 10px
+}
+
+
+    section.content {
+    margin: 0px;
+    margin-left: 50px !important;
+    margin-right: 50px !important;
+        padding-bottom: 145px;
+}
+
+ul.multiselect-container.dropdown-menu {
+    padding: 5px;
+}
+
+
+select[name=demo7______] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+  
+
+}
+
+select[name=demo7_____] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+   
+}
+
+select[name=demo7____] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+ 
+}
+
+
+select[name=demo7___] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+
+}
+
+
+select[name=demo7__] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+    
+}
+
+select[name=demo7_] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+    
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+     margin-right: 10px;
+    
+}
+
+
+label.testinput-buscador-select {
+    padding-left: 5px;
+}
+
+
+
+</style>
+
 @stop
 
 
@@ -286,16 +501,382 @@ form#form_importador {
 
 
 
+
 <script type="text/javascript">
 
-
-var values3= "<?foreach ($categorias_select as $ruta) {$resultstr[] = $ruta->categoria_id;}$result = implode(",",$resultstr);echo $result;?>"
-console.log("dos");
-console.log(values3);
-$.each(values3.split(","), function(i,e){
-    $("#categoria_producto option[value='" + e + "']").prop("selected", true);
+var values= "<?foreach ($rutas as $ruta) {$resultstr[] = $ruta->pais_origen;}$result = implode(",",$resultstr);echo $result;?>"
+$.each(values.split(","), function(i,e){
+    $("#selec_paises option[value='" + e + "']").prop("selected", true);
 });
 
+
+var pais_destino  = <?php echo $rutas[0]->pais_destino ?>;
+
+
+
+
+var min_cantidad = <?php echo $interes->min_medida ?>;
+var max_cantidad = <?php echo $interes->max_medida ?>;
+
+var frecuencia = <?php echo $interes->frecuencia ?>;
+
+
+
+document.getElementById("pais_destino").value = pais_destino;
+
+document.getElementById("min_cantidad").value = min_cantidad;
+document.getElementById("min_cantidad").value = min_cantidad;
+
+document.getElementById("frecuencia").value = frecuencia;
+
+
+  function changeValueCheckbox(element){
+
+ 
+  
+
+   if(element.checked){
+    element.value='1';
+    
+ 
+  }else{
+    element.value='0';
+    
+  }
+}
+
+
+
+
+
+</script>
+
+{{HTML::script('/api/tree/jquery.optionTree.js')}}
+  {{HTML::script('/js/autocomplete.js')}}
+  {{HTML::script('js/sias.js')}}
+  {{HTML::script('js/bootstrap-multiselect.js')}}
+  {{HTML::script('js/jasny-bootstrap.min.js')}}
+
+ 
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+
+<script type="text/javascript">
+    function updateInput(ish){
+
+      var url = window.location.href; 
+
+      ///var url2 = url.substring(0, url.length-1);
+
+var url2 = url;
+  
+
+  var pordefecto = document.getElementById('testid').value;
+if( !pordefecto == ""){
+if (url2.indexOf('?') > -1){
+       url2 += '&param='+ document.getElementById('testid').value
+     }else{
+       url2 += '?param='+ document.getElementById('testid').value
+     }
+
+
+}else{
+
+  if (url2.indexOf('?') > -1){
+       url2 += '&param='+ "<?php echo $categorianame->id; ?>" ;
+     }else{
+       url2 += '?param='+ "<?php echo $categorianame->id; ?>" ;
+     }
+}
+      window.location.href = url2;
+   }
+
+   
+   $(function() {
+
+    var options = {
+      empty_value: 'null',
+            indexed: true,  // the data in tree is indexed by values (ids), not by labels
+            on_each_change: '/api/tree/get-subtree.php', // this file will be called with 'id' parameter, JSON data must be returned
+            choose: function(level) {
+              return 'Choose level ' + level;
+            },
+            loading_image: '/api/tree/demo/ajax-load.gif',
+            show_multiple: 10, // if true - will set the size to show all options
+            id:1,
+            choose: '' // no choose item
+            
+          };
+
+          var displayParents = function() {
+
+            var porNombre=document.getElementsByName("demo7_")[0].value;
+            document.getElementById("padre").value = porNombre;
+
+            var hijo1=document.getElementsByName("demo7__")[0].value;
+            document.getElementById("hijo1").value = hijo1;
+
+            var hijo2=document.getElementsByName("demo7___")[0].value;
+            document.getElementById("hijo2").value = hijo2;
+
+            var hijo3=document.getElementsByName("demo7____")[0].value;
+            document.getElementById("hijo3").value = hijo3;
+
+            var hijo4=document.getElementsByName("demo7_____")[0].value;
+            document.getElementById("hijo4").value = hijo4;
+
+            var hijo5=document.getElementsByName("demo7______")[0].value;
+            document.getElementById("hijo5").value = hijo5;
+
+
+
+var categoryselect = [porNombre, hijo1, hijo2,hijo3,hijo4,hijo5];
+
+ document.getElementById("categoria_producto2").value = categoryselect;
+
+
+
+
+     
+
+
+
+            var labels = []; // initialize array
+            $(this).siblings('select') // find all select
+
+                           .find(':selected') // and their current options
+                           
+                             .each(function() { labels.push($(this).text()); }); // and add option text to array
+            $('<div>').text(this.value + ':' + labels.join(' > ')).appendTo('#demo7-result'); 
+
+                       
+             // and display the labels
+   
+
+          }
+
+    $.getJSON('/api/tree/get-subtree.php', function(tree) { // initialize the tree by loading the file first
+      $('input[name=demo7]').optionTree(tree, options).change(displayParents);
+
+
+    });
+
+  });
+
+
+</script>
+
+
+<script type="text/javascript">
+
+  var options = {
+    script:"/json/taxonomy/search",
+    varname:"?term",
+    json:true,
+    callback: function (obj) { 
+     document.getElementById('testid').value = obj.id; 
+
+     
+         var valor = document.getElementById("valoroculto").value = obj.id;
+      
+     
+
+      if (!valor==null ){
+
+        var valor =  valor;
+
+      }else{
+       var valor= 0;
+     }
+
+
+   }
+ };
+ var as_json = new AutoSuggest('testinput', options);
+
+
+ var options_xml = {
+  script:"test.php?",
+  varname:"input"
+};
+var as_xml = new AutoSuggest('testinput_xml', options_xml);
+
+</script>
+
+
+
+<?php
+
+
+
+
+if (isset($_GET["param"]) && !empty($_GET["param"])) {
+  $param = $_GET['param'];
+  $id = Taxonomy::where('id',$param)->first();
+}else{
+  $param = 0;
+
+  $id = Taxonomy::where('id',$categorias_select->categoria_id)->first();
+}
+
+
+
+if( !$id == null){
+$nombreCat = $id->name;
+$nombrePath = $id->path;
+}else{
+$nombreCat = null;
+$nombrePath = null;
+}
+
+if( !$id == null){
+  $id = $id->id;
+}else{
+  $id = null;
+}
+if (!$id == null) {
+  $id1 = Taxonomy::where('id', $id)
+  ->select('parent')
+  ->first();
+
+
+  if(!$id1 == null){
+    $valorid1 = $id1->parent;
+  }else{
+    $valorid1 = null;
+  }
+}else{
+ $valorid1 = null;
+
+}
+
+if (!$id1 == null) {
+  $id2 = Taxonomy::where('id', $id1->parent)
+  ->select('parent')
+  ->first();
+
+
+  if(!$id2 == null){
+    $valorid2 = $id2->parent;
+  }else{
+    $valorid2 = null;
+  }
+}else{
+
+ $valorid2 = null;
+}
+
+if (!$id2 == null) {
+  $id3 = Taxonomy::where('id', $id2->parent)->select('parent')->first();
+
+  if(!$id3 == null){
+    $valorid3 = $id3->parent;
+  }else{
+    $valorid3 = null;
+  }
+}else{
+  $valorid3 = null;
+
+}
+if (!$id3 == null) {
+  $id4 = Taxonomy::where('id', $id3->parent)->select('parent')->first();
+
+  if(!$id4 == null){
+    $valorid4 = $id4->parent;
+  }else{
+    $valorid4 = null;
+  }
+}else{
+
+ $valorid4 = null;
+}
+
+if (!$id4 == null) {
+  $id5 = Taxonomy::where('id', $id4->parent)->select('parent')->first();
+
+  if(!$id5 == null){
+    $valorid5 = $id5->parent;
+  }else{
+    $valorid5 = null;
+  }
+}else{
+  $valorid5 = null;
+}
+
+
+if (!$id5 == null) {
+  $id6 = Taxonomy::where('id', $id5->parent)->select('parent')->first();
+
+  if(!$id6 == null){
+    $valorid6 = $id6->parent;
+  }else{
+    $valorid6 = null;
+  }
+
+}else{
+ $valorid6 = null;
+
+}
+
+
+if (isset($_GET["param"]) && !empty($_GET["param"])) {
+  $param2 = $_GET['param'];
+}else{
+  $param2 = 0;
+}
+?>
+
+<script>
+  
+
+var parametro = "<?php echo $param2; ?>" ;
+
+
+
+
+  if(parametro == 0) {
+      var testinput = "<?php echo $categorianame->name; ?>" ;
+      var testinputpath = "<?php echo $categorianame->path; ?>" ;
+
+  var testinput =document.getElementById('testinput').value = testinput; 
+
+    var testinputpath =document.getElementById('buscador-path').value = testinputpath; 
+
+
+}else{
+  var testinput = "<?php echo $nombreCat; ?>" ;
+  var testinputpath = "<?php echo $nombrePath; ?>" ;
+
+  var testinput =document.getElementById('testinput').value = testinput; 
+  var testinputpath =document.getElementById('buscador-path').value = testinputpath; 
+
+}
+
+var vartatataranieto11 = "<?php echo $valorid5; ?>" ;
+  var varpadre11 = "<?php echo $valorid4; ?>" ;
+  var varhijo1 = "<?php echo $valorid3; ?>" ;
+  var varnieto = "<?php echo $valorid2; ?>" ;
+  var varbisnieto11 = "<?php echo $valorid1; ?>" ;
+  var vartataranieto11 = "<?php echo $id; ?>" ;
+
+
+
+  var padre11 =document.getElementById('padre11').value = varpadre11; 
+  var hijo11 =document.getElementById('hijo11').value = varhijo1; 
+  var nieto1 =document.getElementById('nieto1').value = varnieto; 
+  var bisnieto11 =document.getElementById('bisnieto11').value = varbisnieto11;
+  var vartataranieto11 =document.getElementById('tataranieto11').value = vartataranieto11;  
+  var vartatataranieto11 =document.getElementById('tatataranieto11').value = vartatataranieto11;  
+
+var tips = document.getElementById("valoroculto").value = "<?php echo $categorianame->id; ?>" ;
+
+</script>
+
+
+
+
+<script type="text/javascript">
 
 
 var values2= "<?foreach ($paises_operacion as $ruta) {$resultstr[] = $ruta->pais_id;}$result = implode(",",$resultstr);echo $result;?>"
@@ -341,17 +922,16 @@ document.getElementById("min_cantidad").value = min_cantidad;
 
 </script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-  {{HTML::script('js/sias.js')}}
-  {{HTML::script('js/bootstrap-multiselect.js')}}
-  {{HTML::script('js/jasny-bootstrap.min.js')}}
 @stop
 
 @section('estilos')
 @parent
   {{HTML::style('css/jasny-bootstrap.min.css')}}
   {{HTML::style('css/bootstrap-multiselect.css')}}
+     <link rel="stylesheet" href="/css/autocomplete.css" type="text/css" media="screen" charset="utf-8" />
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 @stop
+
 
 
 

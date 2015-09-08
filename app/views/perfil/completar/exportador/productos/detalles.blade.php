@@ -906,17 +906,7 @@ a.morelink {
                     </tr>
                     @endif
 
-                      @if ($producto->peso_caja == null)
-                    @else
-                    <tr>
                     
-                      <td class="title-item-producto">Peso de Envio</td>
-                      <td>
-                       {{$producto->peso_caja}}  @if ($producto->peso_caja_unidad =1) Kilos @else Libras @endif
-                      </td>
-                   
-                    </tr>
-                    @endif
 
                      @if ($producto->alto == null)
                     @else
@@ -930,6 +920,32 @@ a.morelink {
                     </tr>
                     @endif
 
+
+
+                      @if ($producto->altoc == null)
+                    @else
+                    <tr>
+                    
+                      <td class="title-item-producto">Medidas de caja</td>
+                      <td>
+                      {{$producto->altoc}} @if ($producto->unidad_prod =1) Cm @else In @endif  Alto  x {{$producto->anchoc}}  @if ($producto->unidad_prod =1) Cm @else In @endif Acho   x {{$producto->profundoc}} @if ($producto->unidad_prod =1) Cm @else In @endif Profundo 
+                      </td>
+                   
+                    </tr>
+                    @endif
+
+
+            @if ($producto->peso_caja == null)
+                    @else
+                    <tr>
+                    
+                      <td class="title-item-producto">Peso de Envio</td>
+                      <td>
+                       {{$producto->peso_caja}}  @if ($producto->peso_caja_unidad =1) Kilos @else Libras @endif
+                      </td>
+                   
+                    </tr>
+                    @endif
 
 
 
@@ -1172,7 +1188,7 @@ a.morelink {
                              <div><span class="rating ">
           <img src="http://www.jimmybeanswool.com/secure-html/onlineec/images/stars/4_5StarBlue09.gif">
         </span></div>
-                            <div class="blog carrusel footer">  {{Paises::find($galeria->RutaExportador->first()->pais_origen)->nombre}} </div>
+                          
                           </p>
 
                         </div>

@@ -56,7 +56,14 @@ $('#selec_paises').multiselect({
           }
           else{
             resetForm()
-               location.reload(true);
+             location.reload(true);
+
+ var path = window.location.pathname;
+ var str = path.split("/");
+ var url = document.location.protocol + "//" + document.location.hostname + "/" + str[1] + "/" + str[2];
+
+
+                 window.location.href = url+'/lista';
           }
         } // fin success
       }); // fin ajax

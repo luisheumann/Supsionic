@@ -234,6 +234,8 @@ $pass = Input::get('pass');
 		$empresa_update->descripcion = Input::get('descripcion');
 		$empresa_update->tw = Input::get('twitter');
 		$empresa_update->fb = Input::get('facebook');
+		$empresa_update->cod_area = Input::get('cod_area');
+		$empresa_update->cod_pais = Input::get('cod_pais');
 	
 		$empresa_update->imagen      = $fileName;
 

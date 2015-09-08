@@ -19,17 +19,52 @@
         <fieldset>
           <legend class="legenda"><strong>Información Básica</strong></legend>
 
-          <div class="form-group">
-            <label class="col-md-6 control-label" for="selectbasic">Categoria</label>
-            <div class="col-md-6">
-              <select name="categoria_producto" id="categoria_producto" class="form-control" required>
-                <option value="">Seleccione Categoría...</option> 
-                @foreach($categorias as $categoria)
-                  <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
-                @endforeach
-              </select>
-            </div>
-          </div>
+         
+
+         <div class="col-md-12">
+ 
+<div class="form-group"><label class="testinputcategoria">Categoria</label><br>
+    <ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#home">Busqueda Automatica</a></li>
+  <li><a data-toggle="tab" href="#menu1">Busqueda Manual</a></li>
+  
+</ul>
+  
+<div class="tab-content">
+  <div id="home" class="tab-pane fade in active">
+  
+
+    <div class="categoriamanual">
+
+          <input style="width: 200px" type="text" id="testinput" value="" />  
+
+          <button type="button"  id="testid" 
+          onclick="updateInput(this.value)" 
+          value="" title="Aceptar">Aceptar</button>
+
+      </div>
+
+  </div>
+  <div id="menu1" class="tab-pane fade">
+ 
+      <div class="listacategoria"> 
+       <input type="hidden" name="demo7" />
+       <div class="results" id="demo7-result"></div>
+
+   </div>
+
+   <code><pre>
+
+   </pre></code>
+  </div>
+ 
+</div>
+
+
+</div>
+</div> 
+
+
 
           <div class="form-group">
             <label class="col-md-6 control-label"  for="nombre_producto">Nombre del producto</label>
@@ -236,6 +271,212 @@
 
 <input type="hidden" name="perfil_empresa" value="{{$perfil->pivot->id}}">
 </form>
+
+
+
+<style type="text/css">
+
+label.testinputcategoria {
+    padding-bottom: 7px;
+}
+    .form-group.multipais {
+    margin-left: 10px !important;
+    /* width: 100%; */
+}
+
+    hr {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+
+    label.testinputcategoria {
+    padding-left: 6px;
+}
+
+    .categoriamanual {
+    background-color: #DDD;
+    margin: 5px;
+    padding: 10px;
+}
+
+
+    .listacategoria{
+    background-color: #DDD;
+        margin: 5px;
+    padding: 10px
+}
+
+
+    section.content {
+    margin: 0px;
+    margin-left: 50px !important;
+    margin-right: 50px !important;
+        padding-bottom: 145px;
+}
+
+ul.multiselect-container.dropdown-menu {
+    padding: 5px;
+}
+
+
+select[name=demo7______] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+  
+
+}
+
+select[name=demo7_____] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+   
+}
+
+select[name=demo7____] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+ 
+}
+
+
+select[name=demo7___] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+
+}
+
+
+select[name=demo7__] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+    
+}
+
+select[name=demo7_] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+    
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+     margin-right: 10px;
+    
+}
+
+
+label.testinput-buscador-select {
+    padding-left: 5px;
+}
+
+
+
+</style>
 <!-- Initialize the plugin: -->
   
 	</div>	
@@ -247,6 +488,291 @@
 {{ HTML::style('css/perfil-formulario.css')}}
 @stop
 
+@section('scripts')
+@parent
+
+
+
+
+{{HTML::script('js/importador.js')}}
+{{HTML::script('/api/tree/jquery.optionTree.js')}}
+
+  {{HTML::script('/js/autocomplete.js')}}
+    {{HTML::script('js/bootstrap-multiselect.js')}}
+    {{HTML::script('js/jasny-bootstrap.min.js')}}
+  <link rel="stylesheet" href="/css/autocomplete.css" type="text/css" media="screen" charset="utf-8" />
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+
+
+ <script type="text/javascript">
+    function updateInput(ish){
+
+      var url = window.location.href; 
+
+      var url2 = url.substring(0, url.length-1);
+
+//var url2 = url;
+  
+
+      if (url2.indexOf('?') > -1){
+       url2 += '&param='+ ish
+     }else{
+       url2 += '?param='+ ish
+     }
+
+
+
+
+     window.location.href = url2;
+
+
+
+   }
+
+   
+
+   $(function() {
+
+    var options = {
+      empty_value: 'null',
+            indexed: true,  // the data in tree is indexed by values (ids), not by labels
+            on_each_change: '/api/tree/get-subtree.php', // this file will be called with 'id' parameter, JSON data must be returned
+            choose: function(level) {
+              return 'Choose level ' + level;
+            },
+            loading_image: '/api/tree/demo/ajax-load.gif',
+            show_multiple: 10, // if true - will set the size to show all options
+            id:1,
+            choose: '' // no choose item
+            
+          };
+
+          var displayParents = function() {
+
+            var porNombre=document.getElementsByName("demo7_")[0].value;
+            document.getElementById("padre").value = porNombre;
+
+            var hijo1=document.getElementsByName("demo7__")[0].value;
+            document.getElementById("hijo1").value = hijo1;
+
+            var hijo2=document.getElementsByName("demo7___")[0].value;
+            document.getElementById("hijo2").value = hijo2;
+
+            var hijo3=document.getElementsByName("demo7____")[0].value;
+            document.getElementById("hijo3").value = hijo3;
+
+            var hijo4=document.getElementsByName("demo7_____")[0].value;
+            document.getElementById("hijo4").value = hijo4;
+
+            var hijo5=document.getElementsByName("demo7______")[0].value;
+            document.getElementById("hijo5").value = hijo5;
+
+
+
+var categoryselect = [porNombre, hijo1, hijo2,hijo3,hijo4,hijo5];
+
+ document.getElementById("categoria_producto2").value = categoryselect;
+
+
+
+
+     
+
+
+
+            var labels = []; // initialize array
+            $(this).siblings('select') // find all select
+
+                           .find(':selected') // and their current options
+                           
+                             .each(function() { labels.push($(this).text()); }); // and add option text to array
+            $('<div>').text(this.value + ':' + labels.join(' > ')).appendTo('#demo7-result'); 
+
+                       
+             // and display the labels
+   
+
+          }
+
+    $.getJSON('/api/tree/get-subtree.php', function(tree) { // initialize the tree by loading the file first
+      $('input[name=demo7]').optionTree(tree, options).change(displayParents);
+
+
+    });
+
+  });
+
+
+</script>
+
+
+<script type="text/javascript">
+
+  var options = {
+    script:"/json/taxonomy/search",
+    varname:"?term",
+    json:true,
+    callback: function (obj) { 
+      document.getElementById('testid').value = obj.id; 
+      var valor = document.getElementById("valoroculto").value = obj.id;
+
+      if (!valor==null ){
+
+        var valor =  valor;
+
+      }else{
+       var valor= 0;
+     }
+
+
+   }
+ };
+ var as_json = new AutoSuggest('testinput', options);
+
+
+ var options_xml = {
+  script:"test.php?",
+  varname:"input"
+};
+var as_xml = new AutoSuggest('testinput_xml', options_xml);
+
+</script>
+
+
+
+<?php
+
+if (isset($_GET["param"]) && !empty($_GET["param"])) {
+  $param = $_GET['param'];
+}else{
+  $param = 0;
+}
+
+$id = taxonomy::where('id',$param)->first();
+
+if( !$id == null){
+$nombreCat = $id->name;
+}else{
+$nombreCat = null;
+}
+
+if( !$id == null){
+  $id = $id->id;
+}else{
+  $id = null;
+}
+if (!$id == null) {
+  $id1 = taxonomy::where('id', $id)
+  ->select('parent')
+  ->first();
+
+
+  if(!$id1 == null){
+    $valorid1 = $id1->parent;
+  }else{
+    $valorid1 = null;
+  }
+}else{
+ $valorid1 = null;
+
+}
+
+if (!$id1 == null) {
+  $id2 = taxonomy::where('id', $id1->parent)
+  ->select('parent')
+  ->first();
+
+
+  if(!$id2 == null){
+    $valorid2 = $id2->parent;
+  }else{
+    $valorid2 = null;
+  }
+}else{
+
+ $valorid2 = null;
+}
+
+if (!$id2 == null) {
+  $id3 = taxonomy::where('id', $id2->parent)->select('parent')->first();
+
+  if(!$id3 == null){
+    $valorid3 = $id3->parent;
+  }else{
+    $valorid3 = null;
+  }
+}else{
+  $valorid3 = null;
+
+}
+if (!$id3 == null) {
+  $id4 = taxonomy::where('id', $id3->parent)->select('parent')->first();
+
+  if(!$id4 == null){
+    $valorid4 = $id4->parent;
+  }else{
+    $valorid4 = null;
+  }
+}else{
+
+ $valorid4 = null;
+}
+
+if (!$id4 == null) {
+  $id5 = taxonomy::where('id', $id4->parent)->select('parent')->first();
+
+  if(!$id5 == null){
+    $valorid5 = $id5->parent;
+  }else{
+    $valorid5 = null;
+  }
+}else{
+  $valorid5 = null;
+}
+
+
+if (!$id5 == null) {
+  $id6 = taxonomy::where('id', $id5->parent)->select('parent')->first();
+
+  if(!$id6 == null){
+    $valorid6 = $id6->parent;
+  }else{
+    $valorid6 = null;
+  }
+
+}else{
+ $valorid6 = null;
+
+}
+
+?>
+
+<script>
+  var vartatataranieto11 = "<?php echo $valorid5; ?>" ;
+  var varpadre11 = "<?php echo $valorid4; ?>" ;
+  var varhijo1 = "<?php echo $valorid3; ?>" ;
+  var varnieto = "<?php echo $valorid2; ?>" ;
+  var varbisnieto11 = "<?php echo $valorid1; ?>" ;
+  var vartataranieto11 = "<?php echo $id; ?>" ;
+
+  var testinput = "<?php echo $nombreCat; ?>" ;
+
+  var testinput =document.getElementById('testinput').value = testinput; 
+
+  var padre11 =document.getElementById('padre11').value = varpadre11; 
+  var hijo11 =document.getElementById('hijo11').value = varhijo1; 
+  var nieto1 =document.getElementById('nieto1').value = varnieto; 
+  var bisnieto11 =document.getElementById('bisnieto11').value = varbisnieto11;
+  var vartataranieto11 =document.getElementById('tataranieto11').value = vartataranieto11;  
+  var vartatataranieto11 =document.getElementById('tatataranieto11').value = vartatataranieto11;  
+
+
+
+</script>
 @stop
+
 
 

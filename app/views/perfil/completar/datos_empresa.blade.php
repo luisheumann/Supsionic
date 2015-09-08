@@ -30,6 +30,17 @@ li.itemarchivos {
     padding: 6px;
 }
 
+input#cod_pais {
+    width: 87px;
+}
+
+input#cod_area {
+    width: 92px;
+}
+input#telefono {
+    width: 200px;
+}
+
 
 </style>
 <div class="box-body">
@@ -65,6 +76,8 @@ li.itemarchivos {
                       <div class="input-group-addon">
                         <i class="fa fa-phone"></i>
                       </div>
+                       <input type="text" class="form-control" id="cod_pais" class="telefono" name="cod_pais" placeholder="COD PAIS" value="{{$empresa->cod_pais}}">
+                          <input type="text" class="form-control" id="cod_area" class="telefono" name="cod_area" placeholder="COD AREA" value="{{$empresa->cod_area}}">
                     <input type="text" class="form-control" id="telefono" class="telefono" name="telefono" placeholder="Teléfono" value="{{$empresa->telefono}}">
                     </div><!-- /.input group -->
                   </div><!-- /.form group -->

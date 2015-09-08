@@ -232,6 +232,7 @@ font-size: 16px;
             @endif</span> </li>
             </span> </li>
             <li><p>Direccion:</p> <br><span>{{$empresa->direccion}}</span> </li>
+            <li><p>Telefono:</p> <br><span>{{$empresa->cod_pais}}-{{$empresa->cod_area}}-{{$empresa->telefono}}</span> </li>
             <li><p>Sitio Web:</p> <span>{{$empresa->web}}</span> </li>
           </ul>
         </div>

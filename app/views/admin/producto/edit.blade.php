@@ -64,7 +64,6 @@ input#medida {
   width: 100%;
 }
 
-
 select#peso_unidad {
   width: 115px;
 }
@@ -106,7 +105,50 @@ input#profundo {
 }
 
 
+input#altoc {
+  width: 50px;
+  float: left;
+  margin-right: 10px;
+}
+
+input#anchoc {
+  width: 50px;
+  float: left;
+  margin-right: 10px;
+}
+
+
+input#cantidad_min {
+  width: 50px;
+  float: left;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+input#cantidad_pm {
+  width: 50px;
+  float: left;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
+
+input#profundoc {
+  width: 50px;
+  float: left;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
+
+
 select#dimencion_unidad {
+  width: 114px;
+}
+
+select#unidad_prod {
   width: 114px;
 }
 
@@ -249,35 +291,72 @@ label[title]:hover:after {
 
           <legend class="legenda"><strong>Información Básica</strong></legend>
 
-          <div class="form-group">
-            <label class="col-md-6 control-label" for="selectbasic">Categoria</label>
-            <div class="col-md-6">
-              <select name="categoria_producto" id="categoria_producto"  value="{{$producto->categoria_id}}" class="form-control" required>
-                <option value="">Seleccione Categoría...</option> 
-                @foreach($categorias as $categoria)
-                  <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
-                @endforeach
-              </select>
-            </div>
-          </div>
 
+<input type="hidden" name="valoroculto" id="valoroculto" value="" />
+
+ <input type="hidden" id="padre11" name="shijo1" />
+    <input type="hidden" id="hijo11" name="shijo2" />
+    <input type="hidden" id="nieto1"  name="shijo3"/>
+    <input type="hidden" id="bisnieto11" name="shijo4" />
+    <input type="hidden" id="tataranieto11" name="shijo5" />
+    <input type="hidden" id="tatataranieto11" name="shijo6" />
+
+
+
+
+      <div class="form-group"><label class="testinputcategoria">Categoria</label><br>
+       <div class="categoriamanual">
+
+
+
+          <label for="testinput-buscador">Por palabra clave:</label>
+          <input style="width: 200px" type="text" id="testinput" value="" /> 
+
+  
+
+
+          <button type="button"  id="testid" 
+          onclick="updateInput(this.value)" 
+          value="" title="Aceptar">Aceptar</button>
+           <input disabled class="testinput-buscador-path" type="text" id="buscador-path" value="" /><br> 
+
+      </div>
+
+
+  <!--    <label class="testinput-buscador-select">Seleccion manual:</label>
+      <div class="listacategoria"> 
+       <input type="hidden" name="demo7" />
+       <div class="results" id="demo7-result"></div>
+
+   </div>
+
+   <code><pre>
+
+   </pre></code>-->
+
+</div>
+
+
+
+<div class="col-md-12">
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Nombre del producto</label>
-            <div class="col-md-6">
+            <label class="control-label"  for="nombre_producto">Nombre del producto</label>
+            
               <input type="text" class="form-control" name="producto" id="nombre_producto" value="{{$producto->nombre}}" placeholder="" required>
             </div>
           </div>
 
+
+<div class="col-md-6">
           <div class="form-group">
-            <label class="col-md-6 control-label" for="detalles_producto">Descripción Producto</label>
-            <div class="col-md-6">
-              <textarea name="detalles_producto" class="form-control" id="detalles_producto" value="{{$producto->descripcion}}" rows="4" placeholder="Descripción" required>{{$producto->descripcion}}</textarea>
+            <label class=" control-label" for="detalles_producto">Descripción Producto</label>
+             <textarea name="detalles_producto" class="form-control" id="detalles_producto" value="{{$producto->descripcion}}" rows="4" placeholder="Descripción" required>{{$producto->descripcion}}</textarea>
             </div>
           </div>
 
+ <div class="col-md-12">
           <div class="form-group">
-            <label class="col-md-6 control-label" for="detalles_producto">Imágen de Producto</label>
-            <div class="col-md-6">
+            <label class=" control-label" for="detalles_producto">Imágen de Producto</label>
               <a class="btn btn-default btn-block" data-toggle="modal" data-target="#AddImgModal">
                 <i class="fa fa-picture-o"></i> Agregar imagenes
               </a>
@@ -286,45 +365,84 @@ label[title]:hover:after {
 
            <legend class="legenda"><strong>Detalles del Producto</strong></legend>
 
+
+ <div class="col-md-12">
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Código</label>
-            <div class="col-md-6">
+            <label class=" control-label"  for="nombre_producto">Código</label>
+           
               <input type="text" class="form-control input-md" name="codigo" id="codigo" value="{{$producto->codigo}}" placeholder="" required>
             </div>
           </div>
 
+
+
+ <div class="col-md-12">
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Referencia</label>
-            <div class="col-md-6">
+            <label class=" control-label"  for="nombre_producto">Referencia</label>
               <input type="text" class="form-control" name="referencia" id="referencia"  value="{{$producto->referencia}}" placeholder="" required>
             </div>
           </div>
 
+
+  <div class="col-md-12">
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Marca</label>
-            <div class="col-md-6">
+            <label class="control-label"  for="nombre_producto">Marca</label>
+          
               <input type="text" class="form-control" name="marca" id="marca" placeholder=""  value="{{$producto->marca}}" required>
             </div>
           </div>
 
+
+<div class="col-md-12">
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Material</label>
-            <div class="col-md-6">
+            <label class=" control-label"  for="nombre_producto">Material</label>
+            
               <input type="text" class="form-control" name="material" id="material" placeholder="" value="{{$producto->material}}" required>
             </div>
           </div>
 
+
+ <div class="col-md-12">
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Color</label>
-            <div class="col-md-6">
+            <label class=" control-label"  for="nombre_producto">Color</label>
               <input type="text" class="form-control" name="color" id="color" placeholder="" value="{{$producto->color}}" required>
             </div>
           </div>
 
-           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Peso Producto</label>
-            <div class="col-md-6">
-              <input type="text" class="form-control" name="peso" id="peso" value="{{$producto->peso}}" placeholder="" >
+
+<div>
+
+
+
+
+
+ <label class="control-label"  for="dimenciones_producto">Dimensiones del producto</label>
+<div class="col-md-12">
+          <div class="form-group">
+           
+            
+
+              <label class="label2"  for="nombre_producto">Alto</label>
+              <input type="text" class="form-control" value="{{$producto->alto}}" name="alto" id="alto" placeholder="" >
+              <label class="label2"  for="nombre_producto">Ancho</label>
+                <input type="text" class="form-control" name="ancho" value="{{$producto->ancho}}" id="ancho" placeholder="" >
+                       <label class="label2"  for="nombre_producto">Profundo</label>
+                  <input type="text" class="form-control" name="profundo" value="{{$producto->profundo}}"  id="profundo" placeholder="" >
+                <select name="dimencion_unidad" id="dimencion_unidad" class="form-control">
+                <option value="">Cm / In</option>
+              <option value="1">Centimetros</option>
+              <option value="2">Pulgadas</option>
+              </select>
+            </div>
+          </div>
+
+<div>
+          <label for="nombre_producto">Peso Producto</label>
+  <div class="col-md-12">  
+          <div class="form-group">
+          
+         
+              <input type="text" class="form-control" name="peso" value="{{$producto->peso}}" id="peso" placeholder="" >
                 <select name="peso_unidad" id="peso_unidad" class="form-control">
                 <option value="">Kl / Lb</option>
               <option value="1">Kilos</option>
@@ -334,10 +452,45 @@ label[title]:hover:after {
             </div>
           </div>
 
+</div>
+
+
+
+
+
+
+<br><br>
+<div>
+<label class="control-label"  for="dimenciones_producto">Dimensiones del producto en caja</label>
+
+<div class="col-md-12"> 
+
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Peso con Caja</label>
-            <div class="col-md-6">
-              <input type="text" class="form-control" value="{{$producto->peso_caja}}" name="peso_caja" id="peso_caja" placeholder="" >
+           
+            
+
+              <label class="label2"  for="nombre_producto">Alto</label>
+              <input type="text" class="form-control" value="{{$producto->altoc}}"  name="altoc" id="altoc" placeholder="" >
+              <label class="label2"  for="nombre_producto">Ancho</label>
+                <input type="text" class="form-control" value="{{$producto->anchoc}}"  name="anchoc" id="anchoc" placeholder="" >
+                       <label class="label2"  for="nombre_producto">Profundo</label>
+                  <input type="text" class="form-control" value="{{$producto->profundoc}}"  name="profundoc" id="profundoc" placeholder="" >
+                <select name="unidad_prod" id="unidad_prod" class="form-control">
+                <option value="">Cm / In</option>
+              <option value="1">Centimetros</option>
+              <option value="2">Pulgadas</option>
+              </select>
+            </div>
+          </div>
+          </div>
+
+          <div>
+ <label class=" control-label"  for="nombre_producto">Peso de Envio</label>
+ <div class="col-md-12">
+          <div class="form-group">
+           
+           
+              <input type="text" class="form-control" name="peso_caja" value="{{$producto->peso_caja}}" id="peso_caja" placeholder="" >
                 <select name="peso_caja_unidad" id="peso_caja_unidad" class="form-control">
                 <option value="">Kl / Lb</option>
               <option value="1">Kilos</option>
@@ -345,33 +498,19 @@ label[title]:hover:after {
               </select>
 
             </div>
-          </div>
+          </div></div>
 
 
 
+
+
+
+
+
+    <div class="col-md-12">
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="dimenciones_producto">Dimensiones del producto</label>
-            <div class="col-md-6">
-
-              <label class="label2"  for="nombre_producto">Alto</label>
-              <input type="text" class="form-control" name="alto" value="{{$producto->alto}}"  id="alto" placeholder="" >
-              <label class="label2"  for="nombre_producto">Ancho</label>
-                <input type="text" class="form-control" name="ancho" id="ancho" value="{{$producto->ancho}}" placeholder="" >
-                       <label class="label2"  for="nombre_producto">Profundo</label>
-                  <input type="text" class="form-control" name="profundo" id="profundo" value="{{$producto->profundo}}" placeholder="" >
-                <select name="dimencion_unidad" id="dimencion_unidad" class="form-control">
-                <option value="">Cm / In</option>
-              <option value="1">Centimetros</option>
-              <option value="2">Pulgadas</option>
-              </select>
-            </div>
-          </div>
-
-
-
-          <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Partida Arancelaria</label>
-            <div class="col-md-6">
+            <label class="control-label"  for="nombre_producto">Partida Arancelaria</label>
+        
               <input type="text" class="form-control" name="partida" id="partida" value="{{$producto->partida}}" placeholder="" required>
             </div>
           </div>
@@ -390,9 +529,10 @@ label[title]:hover:after {
           </div>
           -->
 
+<div class="col-md-12">
           <div class="form-group">
-            <label class="col-md-6 control-label" for="pais_origen">País de Origen</label>
-            <div class="col-md-6">
+            <label class=" control-label" for="pais_origen">País de Origen</label>
+            
               <select name="pais_origen" id="pais_origen" class="form-control">
                 <option value="" required>Seleccione...</option>
               @foreach($paises as $pais)
@@ -406,10 +546,10 @@ label[title]:hover:after {
             </div>
           </div>
 
-
+ <div class="col-md-12">
 	  <div class="form-group">
-    	<label for="selec_paises" class="col-md-6 control-label" >Paises de destino</label><br>
-        <div class="col-md-6"> <select id="selec_paises" required name="destinos[]" value="{{$producto->destinos}}" multiple="multiple">
+    	<label for="selec_paises" class="control-label" >Paises de destino</label><br>
+        <select id="selec_paises" required name="destinos[]" value="{{$producto->destinos}}" multiple="multiple">
           @foreach($paises as $pais)
             <option value="{{$pais->id}}">{{$pais->nombre}}</option>
           @endforeach 
@@ -421,9 +561,11 @@ label[title]:hover:after {
  
           <legend class="legenda"><strong>Información Comercial</strong></legend>
 
+
+ <div class="col-md-12">
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Precio FOB</label>
-            <div class="col-md-6">
+            <label class=" control-label"  for="nombre_producto">Precio FOB</label>
+           
             <div class="form-inline">
               <select name="moneda" id="moneda" class="form-control">
               @foreach($monedas as $moneda)
@@ -435,40 +577,58 @@ label[title]:hover:after {
             </div>
           </div>
 
+
+
+
+
+
+
+
+
+
+
+<div class="col-md-12">
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Capacidad de producción al mes</label>
-            <div class="col-md-6">
-              <input type="text" class="form-control" name="capacidad_produccion" id="cantidad_pm" value="{{$producto->produccion_mes}}" placeholder="" required>
+           
+            
+<div class="col-md-3">
+              <label class="label2"  for="nombre_producto">Capacidad por mes</label>
+             <input type="text" class="form-control" name="capacidad_produccion" value="{{$producto->produccion_mes}}" id="cantidad_pm"  placeholder="">
+</div>
+<div class="col-md-3">
+              <label class="label2"  for="nombre_producto">Cantidad mínima de venta</label>
+                <input type="text" class="form-control" name="cantidad_minima" value="{{$producto->venta_minima}}" id="cantidad_min" placeholder="" >
+                </div>
+                <div class="col-md-3">
+                       <label class="label2"  for="nombre_producto">Cantidad disponible</label>
+                   <input type="text" class="form-control" name="cantidad_disponible" value="{{$producto->stock}}" id="cantidad_disp"  placeholder="">
+                   </div>
+                   <div class="col-md-3">
+                  <select name="unidad_cantidad" id="unidad_cantidad" class="form-control" >
+                <option value="">Seleccione Unidad</option> 
+              @foreach($unidades as $unidade)
+                <option value="{{$unidade->id}}">{{$unidade->nombre}}</option>
+              @endforeach
+              </select>
+              </div>
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Cantidad mínima de venta</label>
-            <div class="col-md-6">
-              <input type="text" class="form-control" name="cantidad_minima" id="cantidad_min" placeholder="" value="{{$producto->venta_minima}}"  required>
-            </div>
-          </div>
 
+ <div class="col-md-12">
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Cantidad disponible</label>
-            <div class="col-md-6">
-              <input type="text" class="form-control" name="cantidad_disponible" id="cantidad_disp" value="{{$producto->stock}}"  placeholder="" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Puerto</label>
-            <div class="col-md-6">
+            <label class=" control-label"  for="nombre_producto">Puerto</label>
+           
               <input type="text" class="form-control" name="puerto" id="puerto" placeholder=""  value="{{$producto->puerto}}"  required>              
             </div>
           </div>
 
   
 
-
+<div class="col-md-12">
           <div class="form-group">
-            <label class="col-md-6 control-label"  for="nombre_producto">Términos de Pago</label>
-            <div class="col-md-6">
+            <label class=" control-label"  for="nombre_producto">Términos de Pago</label>
+            
             <div class="cerrar">
                 <input  type="checkbox" type="checkbox" name="LC" id="LC" "@if($producto->LC==1) checked @else @endif"  onclick="changeValueCheckbox(this)"><label title="Letter  of Credit  / Credito Documentario"  class="ancho-checkbox" for="check1">L/C</label>
   				<input  type="checkbox" name="DA" id="DA" "@if($producto->DA==1) checked @else @endif"   onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" title="Documents Against Acceptance / Letra a Plazo o Con vencimiento establecido"  for="check1">D/A</label>
@@ -481,14 +641,14 @@ label[title]:hover:after {
 
 
 
+<!--
 
 
-
-
+       <label class="control-label" for="nombre_producto"><strong>Tipos de Transporte</strong></label>
 
              <div class="form-group row">
-        <label class="col-md-6 control-label" for="nombre_producto"><strong>Tipos de Transporte</strong></label>
-        <div class="col-md-6">
+ 
+        <div class="col-md-12">
           <input type="checkbox" "@if($producto->SAE==1) checked @else @endif"  name="SAE"  value="{{$producto->SAE}}" onclick="changeValueCheckbox(this)" ><label class="ancho-checkbox" for="check1" name="SAE">Aéreo</label>
             <br>
           <input type="checkbox" "@if($producto->STE==1) checked @else @endif"  name="STE"  value="{{$producto->STE}}" onclick="changeValueCheckbox(this)"><label class="ancho-checkbox" for="check1" name="STE">Terrestre</label>
@@ -503,10 +663,10 @@ label[title]:hover:after {
       </div><hr>
 
 
-
+<label class="control-label" for="nombre_producto"><strong>Servicios Adicionales</strong></label>
         <div class="form-group row">
-        <label class="col-md-6 control-label" for="nombre_producto"><strong>Servicios Adicionales</strong></label>
-        <div class="col-md-6">
+        
+        <div class="col-md-12">
         <br>
           <input type="checkbox" "@if($producto->SOL==1) checked @else @endif"  name="SOL"  value="{{$producto->SOL}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SOL">Operadores Logísticos</label>
             <br>
@@ -520,9 +680,11 @@ label[title]:hover:after {
         </div>
       </div><hr>
 
+
+ <label class=" control-label" for="nombre_producto"><strong>Especialidades</strong></label>
             <div class="form-group row">
-        <label class="col-md-6 control-label" for="nombre_producto"><strong>Especialidades</strong></label>
-        <div class="col-md-6">
+       
+        <div class="col-md-12">
           <input type="checkbox" "@if($producto->SAMP==1) checked @else @endif"  name="SAMP"  value="{{$producto->SAMP}}" onclick="changeValueCheckbox(this)" ><label class="ancho-largo-checkbox" for="check1" name="SAMP" title="Aislamiento de mercancías peligrosas">Aislamiento de mercancías peligrosas</label>
             <br>
           <input type="checkbox" "@if($producto->STAC==1) checked @else @endif"  name="STAC"  value="{{$producto->STAC}}" onclick="changeValueCheckbox(this)"><label class="ancho-largo-checkbox" for="check1" name="STAC" title="Transporte Aéreo de cargo">Transporte Aéreo de cargo</label>
@@ -539,7 +701,7 @@ label[title]:hover:after {
 
 
         </fieldset>
-
+!-->
          <!-- Loader -->
   <div align="center">
     <img src="{{asset('images/load.gif')}}" id="load_export" style="display:none">  
@@ -584,6 +746,216 @@ label[title]:hover:after {
 </form>
 
 
+
+<style type="text/css">
+
+input#buscador-path {
+        border: 0px;
+    width: 90%;
+    color: #666;
+    margin: 12px;
+    background-color: #D6D6D6;
+    font-weight: bold;
+}
+    .form-group.multipais {
+    margin-left: 10px !important;
+    /* width: 100%; */
+}
+
+    hr {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+
+    label.testinputcategoria {
+    padding-left: 6px;
+}
+
+    .categoriamanual {
+    background-color: #DDD;
+    margin: 5px;
+    padding: 10px;
+}
+
+
+    .listacategoria{
+    background-color: #DDD;
+        margin: 5px;
+    padding: 10px
+}
+
+
+    section.content {
+    margin: 0px;
+    margin-left: 50px !important;
+    margin-right: 50px !important;
+        padding-bottom: 145px;
+}
+
+ul.multiselect-container.dropdown-menu {
+    padding: 5px;
+}
+
+
+select[name=demo7______] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+  
+
+}
+
+select[name=demo7_____] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+   
+}
+
+select[name=demo7____] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+ 
+}
+
+
+select[name=demo7___] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+
+}
+
+
+select[name=demo7__] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+   
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+    margin-right: 10px;
+    
+}
+
+select[name=demo7_] {    
+
+   
+    padding:3px;
+    margin: 0;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+    background: #f8f8f8;
+    color:#484646;
+    
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    cursor:pointer;
+     margin-right: 10px;
+    
+}
+
+
+label.testinput-buscador-select {
+    padding-left: 5px;
+}
+
+
+
+</style>
+
 <!-- Initialize the plugin: -->
 
 
@@ -595,8 +967,32 @@ label[title]:hover:after {
 @stop
 
 @section('scripts')
+
+
+  
 @parent
 
+
+<link rel="stylesheet" href="/css/autocomplete.css" type="text/css" media="screen" charset="utf-8" />
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+  {{HTML::script('js/productos.js')}}
+  {{HTML::script('js/bootstrap-multiselect.js')}}
+  {{HTML::script('js/jasny-bootstrap.min.js')}}
+
+{{HTML::script('/api/tree/jquery.optionTree.js')}}
+  {{HTML::script('/js/autocomplete.js')}}
+
+
+   
+
+
+ 
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 
 <script type="text/javascript">
@@ -613,12 +1009,29 @@ var pais_origen  = <?php echo $rutas[0]->pais_origen ?>;
 var moneda_id  = <?php echo $producto->moneda ?>;
 
 
-var peso_unidad = <?php if ($producto->peso_unidad == null) {echo 1;}else{echo $producto->peso_unidad;}  ?>;
+
+
+
+
+var unidad_prod = <?php if ($producto->unidad_prod == null) {echo 1;}else{echo $producto->unidad_prod;}  ?>;
+
+document.getElementById("unidad_prod").value = unidad_prod;
+
 var dimencion_unidad = <?php if ($producto->dimencion_unidad == null) {echo 1;}else{echo $producto->dimencion_unidad;}  ?>;
+document.getElementById("dimencion_unidad").value = dimencion_unidad;
+
+
+var peso_unidad = <?php if ($producto->peso_unidad == null) {echo 1;}else{echo $producto->peso_unidad;}  ?>;
+document.getElementById("peso_unidad").value = peso_unidad;
+
 
 
 var peso_caja_unidad = <?php if ($producto->peso_caja_unidad == null) {echo 1;}else{echo $producto->peso_caja_unidad;}  ?>;
+document.getElementById("peso_caja_unidad").value = peso_caja_unidad;
 
+
+var unidad_cantidad = <?php echo $producto->unidad_cantidad ?>;
+document.getElementById("unidad_cantidad").value = unidad_cantidad;
 
 
 var lc_valor  = <?php if ($producto->LC==null){echo 0;}else{echo 1;}?>;
@@ -632,9 +1045,10 @@ document.getElementById("categoria_producto").value = categoria_id;
 
 document.getElementById("pais_origen").value = pais_origen;
 document.getElementById("moneda").value = moneda_id;
-document.getElementById("peso_unidad").value = peso_unidad;
-document.getElementById("peso_caja_unidad").value = peso_caja_unidad;
-document.getElementById("dimencion_unidad").value = dimencion_unidad;
+
+
+
+
 
 
 document.getElementById("LC").value = lc_valor;
@@ -659,15 +1073,324 @@ document.getElementById("TT").value = tt_valor;
 }
 
 
+</script>
 
+
+<script type="text/javascript">
+    function updateInput(ish){
+
+      var url = window.location.href; 
+
+      ///var url2 = url.substring(0, url.length-1);
+
+var url2 = url;
+  
+
+  var pordefecto = document.getElementById('testid').value;
+if( !pordefecto == ""){
+if (url2.indexOf('?') > -1){
+       url2 += '&param='+ document.getElementById('testid').value
+     }else{
+       url2 += '?param='+ document.getElementById('testid').value
+     }
+
+
+}else{
+
+  if (url2.indexOf('?') > -1){
+       url2 += '&param='+ "<?php echo $categorianame->id; ?>" ;
+     }else{
+       url2 += '?param='+ "<?php echo $categorianame->id; ?>" ;
+     }
+}
+      window.location.href = url2;
+   }
+
+   
+   $(function() {
+
+    var options = {
+      empty_value: 'null',
+            indexed: true,  // the data in tree is indexed by values (ids), not by labels
+            on_each_change: '/api/tree/get-subtree.php', // this file will be called with 'id' parameter, JSON data must be returned
+            choose: function(level) {
+              return 'Choose level ' + level;
+            },
+            loading_image: '/api/tree/demo/ajax-load.gif',
+            show_multiple: 10, // if true - will set the size to show all options
+            id:1,
+            choose: '' // no choose item
+            
+          };
+
+          var displayParents = function() {
+
+            var porNombre=document.getElementsByName("demo7_")[0].value;
+            document.getElementById("padre").value = porNombre;
+
+            var hijo1=document.getElementsByName("demo7__")[0].value;
+            document.getElementById("hijo1").value = hijo1;
+
+            var hijo2=document.getElementsByName("demo7___")[0].value;
+            document.getElementById("hijo2").value = hijo2;
+
+            var hijo3=document.getElementsByName("demo7____")[0].value;
+            document.getElementById("hijo3").value = hijo3;
+
+            var hijo4=document.getElementsByName("demo7_____")[0].value;
+            document.getElementById("hijo4").value = hijo4;
+
+            var hijo5=document.getElementsByName("demo7______")[0].value;
+            document.getElementById("hijo5").value = hijo5;
+
+
+
+var categoryselect = [porNombre, hijo1, hijo2,hijo3,hijo4,hijo5];
+
+ document.getElementById("categoria_producto2").value = categoryselect;
+
+
+
+
+     
+
+
+
+            var labels = []; // initialize array
+            $(this).siblings('select') // find all select
+
+                           .find(':selected') // and their current options
+                           
+                             .each(function() { labels.push($(this).text()); }); // and add option text to array
+            $('<div>').text(this.value + ':' + labels.join(' > ')).appendTo('#demo7-result'); 
+
+                       
+             // and display the labels
+   
+
+          }
+
+    $.getJSON('/api/tree/get-subtree.php', function(tree) { // initialize the tree by loading the file first
+      $('input[name=demo7]').optionTree(tree, options).change(displayParents);
+
+
+    });
+
+  });
 
 
 </script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-  {{HTML::script('js/productos.js')}}
-  {{HTML::script('js/bootstrap-multiselect.js')}}
-  {{HTML::script('js/jasny-bootstrap.min.js')}}
+
+<script type="text/javascript">
+
+  var options = {
+    script:"/json/taxonomy/search",
+    varname:"?term",
+    json:true,
+    callback: function (obj) { 
+     document.getElementById('testid').value = obj.id; 
+
+     
+         var valor = document.getElementById("valoroculto").value = obj.id;
+      
+     
+
+      if (!valor==null ){
+
+        var valor =  valor;
+
+      }else{
+       var valor= 0;
+     }
+
+
+   }
+ };
+ var as_json = new AutoSuggest('testinput', options);
+
+
+ var options_xml = {
+  script:"test.php?",
+  varname:"input"
+};
+var as_xml = new AutoSuggest('testinput_xml', options_xml);
+
+</script>
+
+
+
+<?php
+
+
+
+
+if (isset($_GET["param"]) && !empty($_GET["param"])) {
+  $param = $_GET['param'];
+  $id = Taxonomy::where('id',$param)->first();
+}else{
+  $param = 0;
+
+  $id = Taxonomy::where('id',$categorias_select->categoria_id)->first();
+}
+
+
+
+if( !$id == null){
+$nombreCat = $id->name;
+$nombrePath = $id->path;
+}else{
+$nombreCat = null;
+$nombrePath = null;
+}
+
+if( !$id == null){
+  $id = $id->id;
+}else{
+  $id = null;
+}
+if (!$id == null) {
+  $id1 = Taxonomy::where('id', $id)
+  ->select('parent')
+  ->first();
+
+
+  if(!$id1 == null){
+    $valorid1 = $id1->parent;
+  }else{
+    $valorid1 = null;
+  }
+}else{
+ $valorid1 = null;
+
+}
+
+if (!$id1 == null) {
+  $id2 = Taxonomy::where('id', $id1->parent)
+  ->select('parent')
+  ->first();
+
+
+  if(!$id2 == null){
+    $valorid2 = $id2->parent;
+  }else{
+    $valorid2 = null;
+  }
+}else{
+
+ $valorid2 = null;
+}
+
+if (!$id2 == null) {
+  $id3 = Taxonomy::where('id', $id2->parent)->select('parent')->first();
+
+  if(!$id3 == null){
+    $valorid3 = $id3->parent;
+  }else{
+    $valorid3 = null;
+  }
+}else{
+  $valorid3 = null;
+
+}
+if (!$id3 == null) {
+  $id4 = Taxonomy::where('id', $id3->parent)->select('parent')->first();
+
+  if(!$id4 == null){
+    $valorid4 = $id4->parent;
+  }else{
+    $valorid4 = null;
+  }
+}else{
+
+ $valorid4 = null;
+}
+
+if (!$id4 == null) {
+  $id5 = Taxonomy::where('id', $id4->parent)->select('parent')->first();
+
+  if(!$id5 == null){
+    $valorid5 = $id5->parent;
+  }else{
+    $valorid5 = null;
+  }
+}else{
+  $valorid5 = null;
+}
+
+
+if (!$id5 == null) {
+  $id6 = Taxonomy::where('id', $id5->parent)->select('parent')->first();
+
+  if(!$id6 == null){
+    $valorid6 = $id6->parent;
+  }else{
+    $valorid6 = null;
+  }
+
+}else{
+ $valorid6 = null;
+
+}
+
+
+if (isset($_GET["param"]) && !empty($_GET["param"])) {
+  $param2 = $_GET['param'];
+}else{
+  $param2 = 0;
+}
+?>
+
+<script>
+  
+
+var parametro = "<?php echo $param2; ?>" ;
+
+
+
+
+  if(parametro == 0) {
+      var testinput = "<?php echo $categorianame->name; ?>" ;
+      var testinputpath = "<?php echo $categorianame->path; ?>" ;
+
+  var testinput =document.getElementById('testinput').value = testinput; 
+
+    var testinputpath =document.getElementById('buscador-path').value = testinputpath; 
+
+
+}else{
+  var testinput = "<?php echo $nombreCat; ?>" ;
+  var testinputpath = "<?php echo $nombrePath; ?>" ;
+
+  var testinput =document.getElementById('testinput').value = testinput; 
+  var testinputpath =document.getElementById('buscador-path').value = testinputpath; 
+
+}
+
+var vartatataranieto11 = "<?php echo $valorid5; ?>" ;
+  var varpadre11 = "<?php echo $valorid4; ?>" ;
+  var varhijo1 = "<?php echo $valorid3; ?>" ;
+  var varnieto = "<?php echo $valorid2; ?>" ;
+  var varbisnieto11 = "<?php echo $valorid1; ?>" ;
+  var vartataranieto11 = "<?php echo $id; ?>" ;
+
+
+
+  var padre11 =document.getElementById('padre11').value = varpadre11; 
+  var hijo11 =document.getElementById('hijo11').value = varhijo1; 
+  var nieto1 =document.getElementById('nieto1').value = varnieto; 
+  var bisnieto11 =document.getElementById('bisnieto11').value = varbisnieto11;
+  var vartataranieto11 =document.getElementById('tataranieto11').value = vartataranieto11;  
+  var vartatataranieto11 =document.getElementById('tatataranieto11').value = vartatataranieto11;  
+
+var tips = document.getElementById("valoroculto").value = "<?php echo $categorianame->id; ?>" ;
+
+</script>
+
+
+</script>
+
+
 @stop
 
 @section('estilos')

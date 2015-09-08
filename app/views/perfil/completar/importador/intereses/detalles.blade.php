@@ -42,10 +42,10 @@
 
 				<ul class="list-group">
 				   <li class="list-group-item"><strong>Categorias: </strong> 
-				  		@foreach($categorias_select as $categoria)
-						<div>{{Categorias::find($categoria->categoria_id)->nombre}}<div>
+				  		
+						<div>{{$categorianame->path}}<div>
 
-			    	@endforeach
+			    	
 				  </li>
 				  
 				  <li class="list-group-item"><strong>Interes: </strong> 

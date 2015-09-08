@@ -46,11 +46,11 @@ label.col-md-6.control-label {
 		    <div role="tabpanel" class="tab-pane active" id="home">
 
 				<ul class="list-group">
-				   <li class="list-group-item"><strong>Categorias: </strong> 
-              @foreach($categorias_select as $categoria)
-            <div>{{Categorias::find($categoria->categoria_id)->nombre}}<div>
+				    <li class="list-group-item"><strong>Categorias: </strong> 
+              
+            <div>{{$categorianame->path}}<div>
 
-            @endforeach
+            
           </li>
 				  <li class="list-group-item"><strong>Interes: </strong> 
             {{$interes2->productos}}

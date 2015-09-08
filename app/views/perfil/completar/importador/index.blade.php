@@ -1,45 +1,22 @@
-
-
-
 <?php
 
-
   if (Sentry::check())
-
   {
-
     $user_id = Sentry::getuser()->id;
-
-    
-  
-
-    $empresa = User::find($user_id)->empresas->first();
-      $productos = Empresa::find($empresa->id)->productos;
-
-    
-     // $producto = Productos::find();
-      
-
-
-  }
-
-  else{
-
+    $perfil = User::find($user_id)->empresas->first();
+    $usuario = User::find($user_id)->first();
     $avatar = Recursos::ImgAvatar($perfil);
-
+    $empresa = User::find($user_id)->empresas->first();
+    $perfil2  = Empresa::find($empresa->id)->perfil->first();
+    $PerfilEmpresa  = PerfilEmpresa::find($perfil2->pivot->id);
   }
-
-   
+  else{
+    $avatar = Recursos::ImgAvatar($perfil);
+  }
 
 ?>
 
-
-
-
-
 @extends('layouts/backend')
-
-
 
 @section('content-header')
 <style type="text/css">
@@ -138,12 +115,13 @@ input#cantidad_disp {
 @section('content')
 
 
-
-<button class="btn btn-success pull-right" data-toggle="modal" data-target="#addInteres">
+<a href="/{{$empresa->slug}}/interes_importador/add">
+<button class="btn btn-success pull-right" >
 
  	<i class="fa fa-cube"></i> Agregar Interés
 
  </button>
+ </a>
 
  <br><br>
 
@@ -207,8 +185,8 @@ input#cantidad_disp {
 
 
 
-<a href="interes_importador/delete/{{$interes->id}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a> 
-<a href="interes_importador/edit/{{$interes->id}}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> <a data-toggle="modal" class="link" data-target="#myModalE" href="importador/interes/{{$interes->id}}" class="btn btn-default btn-xs"><span class="glyphicon  glyphicon-eye-open"></span></a>
+<a href="/{{$empresa->slug}}/interes_importador/delete/{{$interes->id}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a> 
+<a href="/{{$empresa->slug}}/interes_importador/edit/{{$interes->id}}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> <a data-toggle="modal" class="link" data-target="#myModalE" href="/{{$empresa->slug}}/importador/interes/{{$interes->id}}" class="btn btn-default btn-xs"><span class="glyphicon  glyphicon-eye-open"></span></a>
 
 
 
@@ -243,32 +221,6 @@ input#cantidad_disp {
 
 
 <!-- Modal agregar productos de interes importador -->
-
-<div class="modal fade" id="addInteres" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-
-      <div class="modal-header">
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
-        <h4 class="modal-title" id="myModalLabel">Agregar Interés</h4>
-
-      </div>
-
-      <div class="modal-body">
-
-        @include('perfil/completar/importador/intereses.add')
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
 
 
   
