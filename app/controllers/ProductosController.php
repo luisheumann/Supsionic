@@ -43,7 +43,8 @@ class ProductosController extends BaseController {
 			'cantidad_minima'      => 'required|numeric',
 			'cantidad_disponible'  => 'required|numeric',
 			'pais_origen' 		   => 'required',
-          //  'pais_destino'          => 'required',
+       'destinos'          => 'required',
+       'categoria'          => 'required',
 			'destinos' 			   => 'required'
 		);
 

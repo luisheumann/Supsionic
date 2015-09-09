@@ -34,19 +34,13 @@
 
     $.ajax({
         url:'info_sias',
-        method:'post',
+       method:'post',
         datatype: 'json',
         data: formData, 
         success:function(data){
           console.dir(data);
 
 
- toastr.success('Producto', 'Agregado Correctamente');
-location.reload(true);
-              var path = window.location.pathname;
-              var str = path.split("/");
-              var url = document.location.protocol + "//" + document.location.hostname + "/" + str[1] + "/" + str[2];
-              window.location.href = url+'/lista';
 
           $alerta.hide().find('ul').empty();
 
@@ -60,21 +54,26 @@ location.reload(true);
           }
           else{
             resetForm()
-             location.reload(true);
-              var path = window.location.pathname;
-              var str = path.split("/");
-              var url = document.location.protocol + "//" + document.location.hostname + "/" + str[1] + "/" + str[2];
-              window.location.href = url+'/lista';
+             toastr.success('Interes', 'Agregado Correctamente');
+            location.reload(true);
+
+ var path = window.location.pathname;
+ var str = path.split("/");
+ var url = document.location.protocol + "//" + document.location.hostname + "/" + str[1] + "/" + str[2];
+
+
+                 window.location.href = url+'/lista';
           }
         } // fin success
       }); // fin ajax
 
   // funciones
    function preparaEnvio(){
-      $btn    = $('#btn_sias');
-      $load   = $('#load_sias');
-      $alerta = $('#alerta_sias');
-      $ok     = $('#ok_sias');   
+      $btn    = $('#btn_import');
+      $load   = $('#load_import');
+      $alerta = $('#alerta_import');
+      $ok     = $('#ok_import');   
+      $(this).find(':submit').attr('disabled','disabled'); 
       $(this).find(':submit').attr('disabled','disabled'); 
 
       $btn.hide();

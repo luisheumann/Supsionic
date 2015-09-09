@@ -728,7 +728,9 @@ label[title]:hover:after {
       </div>
       <div class="modal-body">
         <div id="filediv">
-          <input name="file[]" type="file" id="file"/>
+
+        <input name="file[]" onchange="return checkSize(1368953)" class="upload-file"  accept="image/*"  type="file" id="file"/>
+
         </div>
         <button type="button" id="add_more" class="btn btn-default">
           <i class="fa fa-picture-o"></i> Agregar otra imagen
@@ -1183,6 +1185,26 @@ var categoryselect = [porNombre, hijo1, hijo2,hijo3,hijo4,hijo5];
 
 
 <script type="text/javascript">
+
+function checkSize(max_img_size)
+{
+    var input = document.getElementById("file");
+    // check for browser support (may need to be modified)
+    if(input.files && input.files.length == 1)
+    {           
+        if (input.files[0].size > max_img_size) 
+        {
+           var $el = $('#file');
+        $el.wrap('<form>').closest('form').get(0).reset();
+        $el.unwrap();
+
+            alert("La imagen tiene que ser menor de 1 MB");
+            return true;
+        }
+    }
+
+    return true;
+}
 
   var options = {
     script:"/json/taxonomy/search",

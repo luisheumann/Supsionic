@@ -40,10 +40,7 @@ $('#selec_paises').multiselect({
           console.dir(data);
 
 
- toastr.success('Producto', 'Agregado Correctamente');
-          
 
-            location.reload(true);
           $alerta.hide().find('ul').empty();
 
           if(!data.success){
@@ -56,6 +53,7 @@ $('#selec_paises').multiselect({
           }
           else{
             resetForm()
+             toastr.success('Interes', 'Agregado Correctamente');
              location.reload(true);
 
  var path = window.location.pathname;

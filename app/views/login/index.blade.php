@@ -138,13 +138,13 @@
 
 		<div class="row">
 		  <div class="col-xs-4">
-		    <input type="text" class="borde-formulario-registro  form-control input-lg" placeholder="Código País">
+		    <input type="text" class="borde-formulario-registro  form-control input-lg" name="cod_pais" placeholder="Código País">
 		  </div>
 		  <div class="col-xs-4">
-		    <input type="text" class="borde-formulario-registro  form-control input-lg" placeholder="Código Área">
+		    <input type="text" class="borde-formulario-registro  form-control input-lg" name="cod_area" placeholder="Código Área">
 		  </div>
 		  <div class="col-xs-4">
-		    <input type="text" class="borde-formulario-registro  form-control input-lg" placeholder="Teléfono">
+		    <input type="text" class="borde-formulario-registro  form-control input-lg" name="telefono" placeholder="Teléfono">
 		  </div>
 		</div>
 	  </div>	

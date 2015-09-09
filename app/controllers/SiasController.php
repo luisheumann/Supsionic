@@ -22,21 +22,24 @@ class SiasController  extends BaseController {
     {
 
 		$input = Input::all();
-		$reglas =  array(
-	
-			'min_cantidad' => 'max:255'
-		);
+    $reglas =  array(
+    
+      
+    
+      'categoria'      => 'required',
+      'operacion'       => 'required'
+    );
 
-	   $validation = Validator::make($input, $reglas);
+     $validation = Validator::make($input, $reglas);
 
-       if ($validation->fails())
-        {
-            return Response::json([
-            	'success'=>false, 
-            	'errors'=>$validation->errors()->toArray()
-            ]);
-        }
-        
+     if ($validation->fails())
+    {
+      return Response::json([
+        'success'=>false, 
+        'errors'=>$validation->errors()->toArray()
+      ]);
+    }
+    
 
 		$empresa = User::find($this->user_id)->empresas->first();
 		$perfil  = Empresa::find($empresa->id)->perfil->first();

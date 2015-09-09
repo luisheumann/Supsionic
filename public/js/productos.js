@@ -20,14 +20,14 @@
         processData:false,
         success:function(data){
           toastr.options.timeOut = 80;
-          toastr.success('Producto', 'Agregado Correctamente');
+      
           toastr.options.timeOut = 80;
 
           
 
           console.dir(data);
           
-             window.location.href = 'lista';
+            // window.location.href = 'lista';
           $alerta.hide().find('ul').empty();
 
           if(!data.success){
@@ -39,8 +39,9 @@
              $load.hide();
           }
           else{
+                toastr.success('Producto', 'Agregado Correctamente');
             resetForm()
-            window.location.href = 'lista';
+          window.location.href = 'lista';
              
           }
         } // fin success

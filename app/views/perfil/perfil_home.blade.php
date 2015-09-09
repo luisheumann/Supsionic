@@ -233,9 +233,16 @@ font-size: 16px;
             </span> </li>
             <li><p>Direccion:</p> <br><span>{{$empresa->direccion}}</span> </li>
             <li><p>Telefono:</p> <br><span>{{$empresa->cod_pais}}-{{$empresa->cod_area}}-{{$empresa->telefono}}</span> </li>
-            <li><p>Sitio Web:</p> <span>{{$empresa->web}}</span> </li>
-          </ul>
-        </div>
+            <li><p class="none1">Sitio Web:</p> <span>{{$empresa->web}}</span> </li></ul> 
+
+
+
+                
+   
+ 
+
+</div>
+    
         <div class="col-md-4" align="right" style="margin-top:30px">
          <!-- <a href="#" class="btn-borde btn-borde-n-i">PRODUCTOS</a><br>-->
         </div>
@@ -254,14 +261,28 @@ font-size: 16px;
             {{$empresa->descripcion}}
           
            
+
+
           </div>
           <!-- this row will not appear when printing -->
      
 </section>
 
+@if (!$archivos  == null)
+<hr>
+
+<div class="perfil-descripcion">
+<h1>ARCHIVOS ANEXOS </h1>
+</div>
 
 
+ @foreach ($archivos as $archivo )
 
+         
+<li class="itemarchivos"><a href="/uploads/files/{{$archivo->files}}" target="_blank">{{$archivo->name}} </a> </li>
+
+ @endforeach</span> 
+@endif
 
 <hr>
     <div class="perfil-descripcion">

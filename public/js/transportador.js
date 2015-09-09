@@ -37,7 +37,7 @@ $('#selec_paises').multiselect({
         datatype: 'json',
         data: formData, 
         success:function(data){
-          console.dir(data);
+        
           $alerta.hide().find('ul').empty();
 
           if(!data.success){
@@ -50,16 +50,25 @@ $('#selec_paises').multiselect({
           }
           else{
             resetForm()
+            toastr.success('Interes', 'Agregado Correctamente');
+             location.reload(true);
+
+ var path = window.location.pathname;
+ var str = path.split("/");
+ var url = document.location.protocol + "//" + document.location.hostname + "/" + str[1] + "/" + str[2];
+
+
+                 window.location.href = url+'/lista';
           }
         } // fin success
       }); // fin ajax
 
   // funciones
    function preparaEnvio(){
-      $btn    = $('#btn_transporte');
-      $load   = $('#load_transporte');
-      $alerta = $('#alerta_transporte');
-      $ok     = $('#ok_transporte');   
+     $btn    = $('#btn_import');
+      $load   = $('#load_import');
+      $alerta = $('#alerta_import');
+      $ok     = $('#ok_import');   
       $(this).find(':submit').attr('disabled','disabled'); 
 
       $btn.hide();

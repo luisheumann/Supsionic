@@ -114,7 +114,10 @@ class LoginController extends \BaseController {
             $empresa = new Empresa();
             $empresa->user_id = $userId;
             $empresa->nombre = Input::get('nombre');
-              $empresa->email = Input::get('email');
+            $empresa->email = Input::get('email');
+            $empresa->cod_area = Input::get('cod_area');
+            $empresa->cod_pais = Input::get('cod_pais');
+            $empresa->telefono = Input::get('telefono');
             $empresa->save();
 
             // Agregamos el perfil_empresa

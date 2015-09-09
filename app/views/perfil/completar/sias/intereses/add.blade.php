@@ -58,9 +58,11 @@ Dashboard
 
 
 
-<form class="form-horizontal" id="form_sias"  enctype="multipart/form-data">
+<form class="form-horizontal" id="form_sias"  enctype="multipart/form-data" novalidate>
   
+  <fieldset>
 
+        <input type="hidden" id="categoria" name="categoria" />
  <input type="hidden" id="padre11" name="shijo1" />
     <input type="hidden" id="hijo11" name="shijo2" />
     <input type="hidden" id="nieto1"  name="shijo3"/>
@@ -186,7 +188,7 @@ Dashboard
         
       <div class="col-md-12">
      
-        <label for="selec_paises">Paises donde tiene presencia</label><br>
+        <label for="selec_paises">Paises donde tiene operacion</label><br>
            <select id="selec_paises" name="operacion[]" multiple="multiple" required>
             @foreach($paises as $pais)
            
@@ -198,28 +200,27 @@ Dashboard
       </div>  </div>
 <hr>
 
+
+</fieldset>
+
+
 <!-- Loader -->
 <div align="center">
-  <img src="{{asset('images/load.gif')}}" id="load_basico" style="display:none">  
+    <img src="{{asset('images/load.gif')}}" id="load_import" style="display:none">  
 </div>
 
-  <!-- Mensaje de errores -->
-  <div class="alert alert-danger danger" id="alerta_basico" style="display:none">
+<!-- Mensaje de errores -->
+<div class="alert alert-danger danger" id="alerta_import" style="display:none">
     <ul></ul>
-  </div> 
+</div> 
 
-<!-- Mensaje de exito -->
-  <div class="alert alert-success alert-dismissible fade in" role="alert" id="alerta_ok" style="display:none">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-    <strong><i class="fa fa-check"></i></strong> Los datos se guardaron correctamente
-  </div>
+<div align="center">
+    <button class="btn btn-success" id="btn_import"><i class="fa fa-check"></i> GUARDAR</button>
+</div>
 
- <div align="center">
-  
-    <input type="submit" id="btn_basico" class="btn btn-success" value="GUARDAR">
-  </div>
 
 </form>
+
 
 
   
@@ -455,6 +456,17 @@ label.testinput-buscador-select {
 
 
 
+
+
+<?php
+$paramcategory = null;
+if (isset($_GET["param"]) && !empty($_GET["param"])) {
+  $paramcategory = $_GET['param'];
+  
+}
+?>
+
+
  <script type="text/javascript">
     function updateInput(ish){
 
@@ -481,6 +493,8 @@ label.testinput-buscador-select {
    }
 
    
+ var varcategoria =document.getElementById('categoria').value = "<?php echo $paramcategory; ?>" ;
+
 
    $(function() {
 
@@ -499,7 +513,7 @@ label.testinput-buscador-select {
           };
 
           var displayParents = function() {
-
+            var validarcategoriaselect=  document.getElementById("categoria").value = 12;
             var porNombre=document.getElementsByName("demo7_")[0].value;
             document.getElementById("padre").value = porNombre;
 

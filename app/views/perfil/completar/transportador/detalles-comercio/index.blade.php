@@ -93,7 +93,7 @@ button.btn.btn-info.btn-md {
         </div>
       </div><hr>
 
-
+<!--
 
         <div class="form-group row">
         <label class="col-md-6 control-label" for="nombre_producto"><strong>Servicios Adicionales</strong></label>
@@ -109,7 +109,7 @@ button.btn.btn-info.btn-md {
            <br>
 
         </div>
-      </div><hr>
+      </div><hr>-->
 
             <div class="form-group row">
         <label class="col-md-6 control-label" for="nombre_producto"><strong>Especialidades</strong></label>

@@ -79,16 +79,20 @@ Dashboard
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> dashboard</a></li>
-            <li class="active">Productos</li>
+            <li class="active">Interes</li>
           </ol>
 @stop
 
 @section('content')
 
 
-<form class="form-horizontal" id="form_importador">
 
 
+<form class="form-horizontal" id="form_importador" novalidate>
+
+ <fieldset>
+
+        <input type="hidden" id="categoria" name="categoria" />  
  <input type="hidden" id="padre11" name="shijo1" />
     <input type="hidden" id="hijo11" name="shijo2" />
     <input type="hidden" id="nieto1"  name="shijo3"/>
@@ -151,7 +155,7 @@ Dashboard
     <div class="col-md-12">
       <div class="form-group">
         <label for="productos">
-          Escriba los productos que te interesan importar de la categoría:<br>
+         Descripción adicional del interés:<br>
             <strong>
               <em><span id="view_cate"></span></em>
             </strong>
@@ -216,7 +220,7 @@ Dashboard
 
     <div class="col-md-6">
       <div class="form-group">
-        <label for="pais_origen">País de Origen</label>
+        <label for="pais_origen">País de Destino</label>
         <select name="pais_destino" id="pais_destino" class="form-control">
           <option value="" required>Seleccione...</option>
           @foreach($paises as $pais)
@@ -231,7 +235,7 @@ Dashboard
       </div>
      <div class="col-md-6">
       <div class="form-group">
-        <label for="selec_paises">Paises de Destino </label><br>
+        <label for="selec_paises">Paises de Origen </label><br>
            <select id="selec_paises" required name="origenes[]" multiple="multiple">
             @foreach($paises as $pais)
               <option value="{{$pais->id}}">{{$pais->nombre}}</option>
@@ -298,22 +302,26 @@ Dashboard
 
 
 
+</fieldset>
 
-  <!-- Loader -->
-  <div align="center">
+
+<!-- Loader -->
+<div align="center">
     <img src="{{asset('images/load.gif')}}" id="load_import" style="display:none">  
-  </div>
+</div>
 
-  <!-- Mensaje de errores -->
-  <div class="alert alert-danger danger" id="alerta_import" style="display:none">
+<!-- Mensaje de errores -->
+<div class="alert alert-danger danger" id="alerta_import" style="display:none">
     <ul></ul>
-  </div> 
+</div> 
 
-  <div align="center">
+<div align="center">
     <button class="btn btn-success" id="btn_import"><i class="fa fa-check"></i> GUARDAR</button>
-  </div>
+</div>
 
-  </form>
+
+</form>
+
 
 
 <style type="text/css">
@@ -569,6 +577,14 @@ label.testinput-buscador-select {
 
 
 
+<?php
+$paramcategory = null;
+if (isset($_GET["param"]) && !empty($_GET["param"])) {
+  $paramcategory = $_GET['param'];
+  
+}
+?>
+
  <script type="text/javascript">
     function updateInput(ish){
 
@@ -596,6 +612,9 @@ label.testinput-buscador-select {
 
    
 
+ var varcategoria =document.getElementById('categoria').value = "<?php echo $paramcategory; ?>" ;
+
+
    $(function() {
 
     var options = {
@@ -613,7 +632,7 @@ label.testinput-buscador-select {
           };
 
           var displayParents = function() {
-
+ var validarcategoriaselect=  document.getElementById("categoria").value = 12;
             var porNombre=document.getElementsByName("demo7_")[0].value;
             document.getElementById("padre").value = porNombre;
 

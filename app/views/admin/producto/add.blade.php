@@ -317,10 +317,16 @@ label[title]:hover:after {
 }
 
 
+table.tablacapacidad {
+    width: 100%;
+}
 
 
-
-
+td.unidad_cantidad_td {
+    padding: 0px !important;
+    margin: 0px !important;
+   vertical-align: -webkit-baseline-middle;
+}
 
 
 
@@ -339,14 +345,14 @@ label[title]:hover:after {
 
 @section('content')
 
-<form class="form-horizontal" id="form_exportador"  enctype="multipart/form-data">
+<form class="form-horizontal" id="form_exportador"  enctype="multipart/form-data" novalidate>
   <fieldset>
 
 
   <input type="hidden" class="form-control" name="id" id="id" value="0" placeholder="">
-   <legend class="legenda"><strong>Información Básica</strong></legend>
+   <legend class="legenda"><strong>Agregar Producto</strong></legend>
 
-        
+        <input type="hidden" id="categoria" name="categoria" />  
     <input type="hidden" id="padre11" name="shijo1" />
     <input type="hidden" id="hijo11" name="shijo2" />
     <input type="hidden" id="nieto1"  name="shijo3"/>
@@ -355,7 +361,7 @@ label[title]:hover:after {
     <input type="hidden" id="tatataranieto11" name="shijo6" />
 
 <br><br>
-<h3>Agregar Interes</h3><br>
+
     <div class="col-md-12">
  
 <div class="form-group"><label class="testinputcategoria">Categoria</label><br>
@@ -383,7 +389,7 @@ label[title]:hover:after {
   <div id="menu1" class="tab-pane fade">
  
       <div class="listacategoria"> 
-       <input type="hidden" name="demo7" />
+       <input type="hidden"  name="demo7" />
        <div class="results" id="demo7-result"></div>
 
    </div>
@@ -638,7 +644,7 @@ label[title]:hover:after {
 
 
 
-
+<!--
 
 <div class="col-md-12">
           <div class="form-group">
@@ -665,7 +671,49 @@ label[title]:hover:after {
               </select>
               </div>
             </div>
-          </div>
+          </div>-->
+
+
+<div class="CSSTableGenerator" >
+                <table  class="tablacapacidad">
+                    <tr>
+                        <td>
+                          <b>  Capacidad por mes</b>
+                        </td>
+                        <td >
+                           <b>  Cantidad mínima de venta</b>
+                        </td>
+                        <td>
+                           <b>  Cantidad disponible</b>
+                        </td>
+                        <td>
+                           <b>   </b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                           <input type="text" class="form-control" name="capacidad_produccion" id="cantidad_pm"  placeholder="">
+                        </td>
+                        <td>
+                           <input type="text" class="form-control" name="cantidad_minima" id="cantidad_min" placeholder="" >
+                        </td>
+                        <td>
+                         <input type="text" class="form-control" name="cantidad_disponible" id="cantidad_disp"  placeholder="">
+                        </td>
+
+                        <td class="unidad_cantidad_td">
+                             <select name="unidad_cantidad" id="unidad_cantidad" class="form-control" >
+                <option value="">Seleccione Unidad</option> 
+              @foreach($unidades as $unidade)
+                <option value="{{$unidade->id}}">{{$unidade->nombre}}</option>
+              @endforeach
+              </select>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </div>
+
 
 
 
@@ -767,18 +815,7 @@ label[title]:hover:after {
 
 
         <!-- Loader -->
-  <div align="center">
-    <img src="{{asset('images/load.gif')}}" id="load_export" style="display:none">  
-  </div>
-
-  <!-- Mensaje de errores -->
-  <div class="alert alert-danger danger" id="alerta_export" style="display:none">
-    <ul></ul>
-  </div> 
-
-<div align="center">
-  <button class="btn btn-success" id="btn_export"><i class="fa fa-check"></i> GUARDAR</button>
-</div>
+  
 
 
 <!-- Modal Agregar imagenes -->
@@ -807,9 +844,26 @@ label[title]:hover:after {
     </div>
   </div>
 </div>
+</fieldset>
 
 
 <input type="hidden" name="perfil_empresa" value="{{$perfil->pivot->id}}">
+
+
+<div align="center">
+    <img src="{{asset('images/load.gif')}}" id="load_export" style="display:none">  
+  </div>
+
+  <!-- Mensaje de errores -->
+  <div class="alert alert-danger danger" id="alerta_export" style="display:none">
+    <ul></ul>
+  </div> 
+
+<div align="center">
+  <button class="btn btn-success" id="btn_export"><i class="fa fa-check"></i> GUARDAR</button>
+</div>
+
+
 </form>
 
 
@@ -1051,6 +1105,17 @@ label.testinput-buscador-select {
 
 
 
+
+
+<?php
+$paramcategory = null;
+if (isset($_GET["param"]) && !empty($_GET["param"])) {
+  $paramcategory = $_GET['param'];
+  
+}
+?>
+
+
  <script type="text/javascript">
     function updateInput(ish){
 
@@ -1076,7 +1141,9 @@ label.testinput-buscador-select {
 
    }
 
-   
+
+ var varcategoria =document.getElementById('categoria').value = "<?php echo $paramcategory; ?>" ;
+
 
    $(function() {
 
@@ -1095,12 +1162,16 @@ label.testinput-buscador-select {
           };
 
           var displayParents = function() {
-
+ var validarcategoriaselect=  document.getElementById("categoria").value = 12;
             var porNombre=document.getElementsByName("demo7_")[0].value;
             document.getElementById("padre").value = porNombre;
+            
 
             var hijo1=document.getElementsByName("demo7__")[0].value;
             document.getElementById("hijo1").value = hijo1;
+       
+            
+         
 
             var hijo2=document.getElementsByName("demo7___")[0].value;
             document.getElementById("hijo2").value = hijo2;
@@ -1129,6 +1200,8 @@ var categoryselect = [porNombre, hijo1, hijo2,hijo3,hijo4,hijo5];
                              .each(function() { labels.push($(this).text()); }); // and add option text to array
             $('<div>').text(this.value + ':' + labels.join(' > ')).appendTo('#demo7-result'); 
 
+         
+
                        
              // and display the labels
    
@@ -1137,6 +1210,7 @@ var categoryselect = [porNombre, hijo1, hijo2,hijo3,hijo4,hijo5];
 
     $.getJSON('/api/tree/get-subtree.php', function(tree) { // initialize the tree by loading the file first
       $('input[name=demo7]').optionTree(tree, options).change(displayParents);
+
 
 
     });
@@ -1182,6 +1256,7 @@ var as_xml = new AutoSuggest('testinput_xml', options_xml);
 
 if (isset($_GET["param"]) && !empty($_GET["param"])) {
   $param = $_GET['param'];
+
 }else{
   $param = 0;
 }
@@ -1285,7 +1360,12 @@ if (!$id5 == null) {
 
 ?>
 
+
+
 <script>
+
+
+
   var vartatataranieto11 = "<?php echo $valorid5; ?>" ;
   var varpadre11 = "<?php echo $valorid4; ?>" ;
   var varhijo1 = "<?php echo $valorid3; ?>" ;
@@ -1348,6 +1428,11 @@ function checkSize(max_img_size)
     
   }
 }
+
+
+
+
+
 
 </script>
 

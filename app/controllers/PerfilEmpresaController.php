@@ -20,14 +20,10 @@ class PerfilEmpresaController extends BaseController {
 	    $empresa = Empresa::findBySlug($slug);
 	    $perfil  = Empresa::find($empresa->id)->perfil->first();
     	$productos = Empresa::find($empresa->id)->productos;
+    	$archivos = FileEmpresas::where('empresa_id', $empresa->id)->get();
 	
-
-    	 
-
-    	 
-
     	//$imagenes = $productos->imagen;
-	    return View::make('perfil.index', array('empresa'=> $empresa, 'perfil'=>$perfil,'productos'=>$productos));
+	    return View::make('perfil.index', array('empresa'=> $empresa, 'perfil'=>$perfil,'productos'=>$productos,'archivos'=>$archivos));
 
 		View::composer(array('includes.header'), function($view)
 		{

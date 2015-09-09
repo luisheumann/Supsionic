@@ -41,8 +41,9 @@ class ImportadorController extends BaseController {
 		$input = Input::all();
 		$reglas =  array(
 		
-			'productos'			 => 'required',
+			
 			'pais_destino' 		 => 'required',
+			'categoria' 		 => 'required',
 			'origenes' 			 => 'required'
 		);
 
@@ -166,7 +167,7 @@ class ImportadorController extends BaseController {
             if (!$categoria == 0){
             $SiasCategoriaInteres = SiasCategoriaInteres::findOrNew(Input::get('id'));        
             $SiasCategoriaInteres->empresa_id = $empresa_id;
-            $SiasCategoriaInteres->intereses_transporte_id = $InteresesTransportador->id;
+            $SiasCategoriaInteres->intereses_transporte_id = $InteresesImportador->id;
             $SiasCategoriaInteres->categoria_id = $categoria;
             $SiasCategoriaInteres->save();
         };

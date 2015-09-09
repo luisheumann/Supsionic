@@ -121,14 +121,14 @@ section.content {
 
 
 
-<form class="form-horizontal" id="form_importador">
+<form class="form-horizontal" id="form_importador" novalidate>
    <input type="hidden" class="form-control" id="id" name="id" value="{{$interes->id}}"> 
 
 <br>
     <legend class="legenda"><strong>Información Básica</strong></legend>
     <br>
  <input type="hidden" name="valoroculto" id="valoroculto" value="" />
-
+    <input type="hidden" id="categoria" name="categoria" />  
  <input type="hidden" id="padre11" name="shijo1" />
     <input type="hidden" id="hijo11" name="shijo2" />
     <input type="hidden" id="nieto1"  name="shijo3"/>
@@ -181,12 +181,12 @@ section.content {
     <div class="col-md-12">
       <div class="form-group">
         <label for="productos">
-          Escriba los productos que te interesan importar de la categoría:<br>
+         Descripción adicional del interés:<br>
             <strong>
               <em><span id="view_cate"></span></em>
             </strong>
         </label>
-        <textarea name="productos" class="form-control" id="productos" rows="4" placeholder="productos de interés"  required>{{$interes->productos}}</textarea>
+        <textarea name="productos" class="form-control" id="productos" rows="4" placeholder="productos de interés"  >{{$interes->productos}}</textarea>
       </div>
     </div>  
  </div>
@@ -207,7 +207,7 @@ section.content {
          </div>
 <div class="col-md-4">
  <b> Unidad</b><br>
-        <select name="min_cantidad" id="min_cantidad" class="form-control" required>
+        <select name="min_cantidad" id="min_cantidad" class="form-control" >
           <option value="">Seleccione...</option> 
           @foreach($unidades as $unidade)
           <option value="{{$unidade->id}}">{{$unidade->nombre}}</option>
@@ -246,7 +246,7 @@ section.content {
     <div class="col-md-12">
       <div class="form-group">
         
-       <select id="frecuencia" required name="frecuencia" class="form-control" >
+       <select id="frecuencia"  name="frecuencia" class="form-control" >
            
               <option value="1">Semanal</option>
               <option value="2">Mensual</option>
@@ -935,7 +935,7 @@ var vartatataranieto11 = "<?php echo $valorid5; ?>" ;
   var vartatataranieto11 =document.getElementById('tatataranieto11').value = vartatataranieto11;  
 
 var tips = document.getElementById("valoroculto").value = "<?php echo $categorianame->id; ?>" ;
-
+var tips2 = document.getElementById("categoria").value = "<?php echo $categorianame->id; ?>" ;
 </script>
 
 
