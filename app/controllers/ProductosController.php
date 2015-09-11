@@ -289,7 +289,7 @@ class ProductosController extends BaseController {
                     }); 
 
                     $imgbig = Image::make($file->getRealPath());
-                      $imgbig->resize(428, null, function ($constraint) {
+                      $imgbig->resize(428, 600, function ($constraint) {
                         $constraint->aspectRatio();
                     }); 
                     

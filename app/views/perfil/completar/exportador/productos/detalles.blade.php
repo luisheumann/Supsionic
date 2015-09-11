@@ -685,7 +685,7 @@ a.morelink {
 
       <div class="productImage">
      <div class="full"> 
-        <img id="imagen2" title1="@if ($producto->imagen->count()>0){{$img= $imagenes[0]->imagen}} @else {{$img= 'producto.png'}} @endif" height="620" width="428" style="float:right;"  alt="Image" src="/uploads/productos/{{$img}}"/> 
+        <img id="imagen2" title1="@if ($producto->imagen->count()>0){{$img= $imagenes[0]->imagen}} @else {{$img= 'producto.png'}} @endif"  style="float:right;"  alt="Image" src="/uploads/productos/{{$img}}"/> 
 </div>
           </div>  
       </div>
