@@ -256,6 +256,11 @@ if ($producto == Null && $origen == Null && $destino == Null && $categoria == Nu
 
 }
 
+
+
+   
+
+
 </style>
 <div class="espacio_empresa" data-ckeck="false">
 	<img src="{{asset('images/cadena/comprador.png')}}">
@@ -402,7 +407,16 @@ while ($j <= $i ){
 
 	echo '$(\'.espacio_empresa\').append((\'<div style="display:none" class="contenido_producto2"><span class="tpc2"> \'+titulo2+\' </span></div>\'));'."\n";
 
+	echo '$(\'.espacio_empresa_emp_select\').append((\'<div  class="contenido_producto2"><span class="tpc2"> \'+titulo2+\' </span></div>\'));'."\n";
+
+
+
 	echo '$(\'.espacio_empresa\').append((\'<img  src=" \'+imagen+\' "> <div class="contenido_producto"><span class="tpc"> \'+titulo+\' </span><br><span>Vendedor</span></div>\'));'."\n";
+
+		echo '$(\'.espacio_empresa_select\').append((\'<img  src=" \'+imagen+\' "> <div class="contenido_producto"><span class="tpc"> \'+titulo+\' </span><br><span>Vendedor</span></div>\'));'."\n";
+
+
+
 
 	echo '$(\'.boton_conectar\').show(\'last\');'."\n";
 
@@ -418,6 +432,10 @@ $j++;
 
 ?>
 });
+
+
+
+
 </script>
 
 

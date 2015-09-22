@@ -301,7 +301,11 @@ while ($j <= $i){
 	echo 'var titulo = $(".titulo_sias'.$j.'").text();'."\n";
 	echo '$(".espacio_sias").empty();'."\n";
 	echo '$(\'.espacio_sias\').attr(\'data-ckeck\', true);';
+
 	echo '$(\'.espacio_sias\').append((\'<img src=" \'+imagen+\' "> <div class="contenido_producto"><span class="tpc"> \'+titulo+\' </span><br><span>SIAS</span></div>\'));'."\n";
+
+		echo '$(\'.espacio_sias_select\').append((\'<img src=" \'+imagen+\' "> <div class="contenido_producto"><span class="tpc"> \'+titulo+\' </span><br><span>SIAS</span></div>\'));'."\n";
+		
 
 	echo '$(\'.boton_conectar\').show(\'last\');'."\n";
 

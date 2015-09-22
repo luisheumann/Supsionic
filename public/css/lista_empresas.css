@@ -265,3 +265,101 @@ ul.r_dtalles_producto li{
 	/*background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3);*/
 	background: #FFEDD5;
 }
+
+
+
+#espacio_empresa_select img{
+
+float: left;
+    padding: 5px 10px 0px 58px;
+    height: 90px;
+
+}
+
+#espacio_empresa_select {
+
+ width: 345px;
+    height: 90px;
+    text-align: center;
+    padding-right: 20px;
+    margin-left: -5px;
+
+}
+
+
+.espacio_empresa_select, .espacio_comprador{
+	
+	width: 330px;
+	height: 90px;
+	text-align: center;
+	padding-right: 20px;
+}
+
+.espacio_comprador img, .espacio_empresa_select img{
+  float: left;
+  padding: 5px 10px 0px 38px;
+  height: 90px;
+}
+
+
+
+
+#espacio_sias_select {
+
+ width: 345px;
+    height: 90px;
+    text-align: center;
+    padding-right: 20px;
+    margin-left: -5px;
+
+}
+
+
+.espacio_sias_select, .espacio_comprador{
+	
+	width: 330px;
+	height: 90px;
+	text-align: center;
+	padding-right: 20px;
+}
+
+.espacio_comprador img, .espacio_sias_select img{
+  float: left;
+  padding: 5px 10px 0px 38px;
+  height: 90px;
+}
+
+
+
+
+#espacio_transporte_select {
+
+ width: 345px;
+    height: 90px;
+    text-align: center;
+    padding-right: 20px;
+    margin-left: -5px;
+
+}
+
+
+.espacio_transporte_select, .espacio_comprador{
+	
+	width: 330px;
+	height: 90px;
+	text-align: center;
+	padding-right: 20px;
+}
+
+.espacio_comprador img, .espacio_transporte_select img{
+  float: left;
+  padding: 5px 10px 0px 38px;
+  height: 90px;
+}
+
+
+
+
+
+
+

@@ -216,8 +216,8 @@ if (!$country == Null && $origen == Null && $destino == Null && $categoria == Nu
 
 <div class="boton_conectar" style="display:none">
 	<div class="marquee">
-		<p><a class="mostar_mi_cadena">CONECTAR</a></p>
-		<p><a class="mostar_mi_cadena">CLIC AQUÍ PARA VER SU CADENA</a></p>
+		<p><a data-toggle="modal" class="link" data-target="#ModalCadena" class="mostar_mi_cadena">CONECTAR</a></p>
+		<p><a data-toggle="modal" class="link" data-target="#ModalCadena" class="mostar_mi_cadena">CLIC AQUÍ PARA VER SU CADENA</a></p>
 	</div>
 </div>
 
@@ -444,6 +444,10 @@ echo '$(\'.espacio_transporte\').attr(\'data-ckeck\', true);'."\n";
 	echo 'var titulo = $(".titulo_transporte'.$j.'").text();'."\n";
 	echo '$(".espacio_transporte").empty();'."\n";
 	echo '$(\'.espacio_transporte\').append((\'<img src=" \'+imagen+\' "> <div class="contenido_producto"><span class="tpc"> \'+titulo+\' </span><br><span>Transportador</span></div>\'));'."\n";
+
+
+	echo '$(\'.espacio_transporte_select\').append((\'<img src=" \'+imagen+\' "> <div class="contenido_producto"><span class="tpc"> \'+titulo+\' </span><br><span>Transportador</span></div>\'));'."\n";
+
 
 	echo '$(\'.boton_conectar\').show(\'last\');'."\n";
 
