@@ -216,8 +216,8 @@ if (!$country == Null && $origen == Null && $destino == Null && $categoria == Nu
 
 <div class="boton_conectar" style="display:none">
 	<div class="marquee">
-		<p><a data-toggle="modal" class="link" data-target="#ModalCadena" class="mostar_mi_cadena">CONECTAR</a></p>
-		<p><a data-toggle="modal" class="link" data-target="#ModalCadena" class="mostar_mi_cadena">CLIC AQUÍ PARA VER SU CADENA</a></p>
+		<p><a class="mostar_mi_cadena">CONECTAR</a></p>
+		<p><a  class="mostar_mi_cadena">CLIC AQUÍ PARA VER SU CADENA</a></p>
 	</div>
 </div>
 

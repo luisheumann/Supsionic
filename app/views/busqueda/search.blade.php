@@ -50,7 +50,17 @@
   
 </style>
 
+<?php 
 
+if (isset($_GET["perfil"]) && !empty($_GET["perfil"])) {
+  $getperfil = $_GET['perfil'];
+}else{
+  $getperfil = null;
+}
+
+
+
+ ?>
 <a data-toggle="modal" class="link" data-target="#ModalCadena" href="" class="btn btn-default btn-xs"><span class="glyphicon  glyphicon-eye-open"></span></a>
 
 
@@ -213,69 +223,6 @@
 <script>
   $(document).ready(function(){
 
- // $('#ModalCadena').modal('show');
-
-  // chekea si ya se agrego una empresa de Transporte o SIAS
-  var data_c = $( ".espacio_empresa" ).attr('data-ckeck');
-  var data_t = $( ".espacio_transporte" ).attr('data-ckeck');
-  var data_s = $( ".espacio_sias" ).attr('data-ckeck');
-
-  // chekea si se ha seleccionado una empresa
-
-
-
-// chekea si se ha seleccionado una empresa
-    if ( data_c == 'true' ) {
-      $("#su_producto").empty();
-
-      var get_img = $( ".espacio_empresa img" ).attr('src');// img Prodcuto
-       var get_nombre = $( ".espacio_empresa .contenido_producto .tpc" ).text();
-      $('#su_producto').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span> ')); 
-
-      // Empresa de Seleccionada
-      $("#su_empresa").empty();
-       
-   var get_img =  $( ".espacio_empresa .contenido_producto2 .tpc2" ).text(); ///imagen del Empresa
-
-      $('#su_empresa').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span> <img src="../images/fc.png" width="25px"> ')); 
-    }
-    else{
-      $("#su_producto, #su_empresa").empty();
-      $("#su_producto").append('<h2>No se ha seleccionado !</h2>');
-      $("#su_empresa").append('<h2>No se ha seleccionado !</h2>');
-    }
-
-
-
-  // chekea si se ha seleccionado una transportadora
-  if ( data_t == 'true' ) {
-    $("#su_transporte").empty();
-    var get_img = $( ".espacio_transporte img" ).attr('src');
-    var get_nombre = $( ".espacio_transporte .contenido_producto .tpc" ).text();
-    $('#su_transporte').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span>  <img src="../images/fc.png" width="25px">')); 
-  }
-  else{
-    $("#su_transporte").empty();
-    $("#su_transporte").append('<h2>No se ha seleccionado !</h2>');
-  }  
-
-  // chekea si se ha seleccionado una SIA
-  if ( data_s == 'true' ) {
-    $("#su_sia").empty();
-    var get_img = $( ".espacio_sias img" ).attr('src');
-    var get_nombre = $( ".espacio_sias .contenido_producto .tpc" ).text();
-    $('#su_sia').append(('<img src=" '+get_img+' "  width="87" height="83"> <span class="tec">'+get_nombre+'</span>  <img src="../images/fc.png" width="25px"> ' )); 
-  } 
-  else{
-    $("#su_sia").empty();
-    $("#su_sia").append('<h2>No se ha seleccionado !</h2>');
-  }  
-
-
-
-
-
-
 
 
      $(".mostar_mi_cadena").on('click', ArmaCadena);
@@ -308,7 +255,7 @@ function ArmaCadena() {
 
    // var vista = $( "#cambio_vista" ).attr('data-cambio');
 
-    var vista = <?php echo $perfil ?>;
+    var vista = <?php echo $getperfil; ?>
  
      if(vista=='1'){
       
