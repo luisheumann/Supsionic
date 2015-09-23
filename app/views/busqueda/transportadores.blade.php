@@ -443,10 +443,10 @@ echo '$(\'.espacio_transporte\').attr(\'data-ckeck\', true);'."\n";
  	echo 'var imagen = $(\'#img_trans'.$j.'\').attr(\'src\');'."\n";
 	echo 'var titulo = $(".titulo_transporte'.$j.'").text();'."\n";
 	echo '$(".espacio_transporte").empty();'."\n";
-	echo '$(\'.espacio_transporte\').append((\'<img src=" \'+imagen+\' "> <div class="contenido_producto"><span class="tpc"> \'+titulo+\' </span><br><span>Transportador</span></div>\'));'."\n";
+	echo '$(\'.espacio_transporte\').append((\'<img src=" \'+imagen+\' "> <div class="contenido_producto"><div class="tpc"> \'+titulo+\' </div><br><span>Transportador</span></div>\'));'."\n";
 
 
-	echo '$(\'.espacio_transporte_select\').append((\'<img src=" \'+imagen+\' "> <div class="contenido_producto"><span class="tpc"> \'+titulo+\' </span><br><span>Transportador</span></div>\'));'."\n";
+	
 
 
 	echo '$(\'.boton_conectar\').show(\'last\');'."\n";

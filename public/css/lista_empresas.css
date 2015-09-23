@@ -219,7 +219,11 @@ ul.r_dtalles_producto li{
 	 margin-bottom: 20px;
  }
  .tec{
-   font-size:19px;
+  /* font-size:19px;*/
+
+   font-size: 12px;
+    width: 70px !important;
+    float: left;
  }
  .ico_f_r{
 	  position: absolute;

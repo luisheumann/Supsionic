@@ -12,9 +12,10 @@ class BusquedaController extends BaseController {
 	    $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
 	    $productos = Productos::orderBy('nombre', 'ASC')->get();
 	    	$empresapais = DB::table('empresas')->whereUser_id($user_id)->first();
+	    	 $taxonomias = Taxonomy::orderBy('name', 'ASC')->get(); // todas las categorias
 
 
-	    return View::make('busqueda.index', array('slug' => $slug_empresa, 'paises' => $paises, 'categorias' =>$categorias, 'productos' =>$productos, 'empresa3' =>$slug, 'empresapais' =>$empresapais));
+	    return View::make('busqueda.index', array('slug' => $slug_empresa, 'paises' => $paises, 'categorias' =>$categorias, 'productos' =>$productos, 'empresa3' =>$slug, 'empresapais' =>$empresapais, 'taxonomias' =>$taxonomias));
 	}
 
 	public function getBuscarCadena()
@@ -60,15 +61,20 @@ class BusquedaController extends BaseController {
 	    $lista_exportadores = PerfilEmpresa::where('perfil_id','=','2')->get();
  		//$lista_transportadores = PerfilEmpresa::where('perfil_id','=','3')->get();
 	    $lista_sias = PerfilEmpresa::where('perfil_id','=','4')->get();
-
-
+    	 $taxonomias = Taxonomy::orderBy('name', 'ASC')->get(); // todas las categorias
+ 		$id1 = null;
+        $id2 = null;
+        $id3 = null;
+        $id4 = null;
+        $id5 = null;
+        $id6 = null;
 
 		//TRANSPORTADOR
 		
 
 
 
-	    return View::make('busqueda.search', array('lista_exportadores'=>$lista_exportadores,'lista_sias'=>$lista_sias, 'lista_importadores'=> $lista_importadores, 'slug' => $slug_empresa, 'paises' => $paises, 'categorias' =>$categorias, 'productos' =>$productos, 'rutas'=>$rutas, 'transportadores'=>$transportadores, 'intereses'=>$intereses, 'sias'=>$sias, 'vendedors'=>$vendedors, 'perfil'=>$perfil, 'empresapais' =>$empresapais, 'unidades' =>$unidades));
+	    return View::make('busqueda.search', array('lista_exportadores'=>$lista_exportadores,'lista_sias'=>$lista_sias, 'lista_importadores'=> $lista_importadores, 'slug' => $slug_empresa, 'paises' => $paises, 'categorias' =>$categorias, 'productos' =>$productos, 'rutas'=>$rutas, 'transportadores'=>$transportadores, 'intereses'=>$intereses, 'sias'=>$sias, 'vendedors'=>$vendedors, 'perfil'=>$perfil, 'empresapais' =>$empresapais, 'unidades' =>$unidades, 'taxonomias' =>$taxonomias,'id1'=>$id1,'id2'=>$id2,'id3'=>$id3,'id4'=>$id4,'id5'=>$id5,'id6'=>$id6));
 	}
 
 
