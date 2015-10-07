@@ -6,89 +6,84 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <?php
 
-  if (Sentry::check())
+if (Sentry::check())
 
-  {
+{
 
-    $user_id = Sentry::getuser()->id;
+  $user_id = Sentry::getuser()->id;
 
-    $perfil = User::find($user_id)->empresas->first();
-    $usuario = User::find($user_id)->first();
+  $perfil = User::find($user_id)->empresas->first();
+  $usuario = User::find($user_id)->first();
 
-    $avatar = Recursos::ImgAvatar($perfil);
-      
+  $avatar = Recursos::ImgAvatar($perfil);
 
+  $empresa = User::find($user_id)->empresas->first();
+  $perfil2  = Empresa::find($empresa->id)->perfil->first();
 
-      $empresa = User::find($user_id)->empresas->first();
-    $perfil2  = Empresa::find($empresa->id)->perfil->first();
-
-        $PerfilEmpresa  = PerfilEmpresa::find($perfil2->pivot->id);
+  $PerfilEmpresa  = PerfilEmpresa::find($perfil2->pivot->id);
 
   $perfilpoint = 30;
 
-      if (!$usuario->cargo == null ) {
+  if (!$usuario->cargo == null ) {
 
-        $progreso = 1;
-      }else
-      {
-        $progreso = 0;
-      }
+    $progreso = 1;
+  }else
+  {
+    $progreso = 0;
+  }
 
-     if (!$empresa->nombre == null ) {$progreso =$progreso + 1;}
-     if (!$empresa->descripcion == null ) {$progreso =$progreso + 1;}
-     if (!$empresa->email == null ) {$progreso =$progreso + 1;}
-     if (!$empresa->web == null ) {$progreso =$progreso + 1;}
-     if (!$empresa->direccion == null ) {$progreso =$progreso + 1;}
-     if (!$empresa->telefono == null ) {$progreso =$progreso + 1;}
-     if (!$empresa->postal == null ) {$progreso =$progreso + 1;}
-     if (!$empresa->ciudad == null ) {$progreso =$progreso + 1;}
-     if (!$empresa->personacontacto == null ) {$progreso =$progreso + 1;}
-
-
-     $progreso = $progreso * 4;
+  if (!$empresa->nombre == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->descripcion == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->email == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->web == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->direccion == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->telefono == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->postal == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->ciudad == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->personacontacto == null ) {$progreso =$progreso + 1;}
 
 
-     $empresapoint = 0;
+  $progreso = $progreso * 4;
+
+
+  $empresapoint = 0;
 
   if (!$empresa->FOB == null or !$empresa->CFR == null or !$empresa->CIF == null or !$empresa->EXW == null or !$empresa->FAS == null or !$empresa->CIP == null or !$empresa->FCA == null or !$empresa->CPT == null or !$empresa->DEQ == null or !$empresa->DDP == null or !$empresa->DDU == null or !$empresa->DAF == null or !$empresa->DES == null or !$empresa->Expres == null) {$empresapoint =  10;}
 
   if (!$empresa->COP == null or !$empresa->USD == null or !$empresa->EUR == null or !$empresa->CAD == null or !$empresa->AUD == null or !$empresa->HKD == null or !$empresa->GBP == null or !$empresa->CNY == null or !$empresa->CHF == null) {$empresapoint = $empresapoint +  10;}
 
-    if (!$empresa->TT == null or !$empresa->LC == null or !$empresa->DP == null or !$empresa->DA == null) {$empresapoint = $empresapoint +  5;}
+  if (!$empresa->TT == null or !$empresa->LC == null or !$empresa->DP == null or !$empresa->DA == null) {$empresapoint = $empresapoint +  5;}
 
-    if (!$empresa->aleman == null or !$empresa->arabe == null or !$empresa->frances == null or !$empresa->ruso == null or !$empresa->koreano == null or !$empresa->hindu == null or !$empresa->italiano == null  or !$empresa->espanol == null  or !$empresa->chino == null  or !$empresa->japones == null  or !$empresa->portugues == null) {$empresapoint = $empresapoint +  5;}
-
-
-
+  if (!$empresa->aleman == null or !$empresa->arabe == null or !$empresa->frances == null or !$empresa->ruso == null or !$empresa->koreano == null or !$empresa->hindu == null or !$empresa->italiano == null  or !$empresa->espanol == null  or !$empresa->chino == null  or !$empresa->japones == null  or !$empresa->portugues == null) {$empresapoint = $empresapoint +  5;}
 
   if (!$perfil->imagen == null ) {$progreso_imagen =100;}else{$progreso_imagen =0;}
 
+  $tareaspendientes = 0;
 
-
-
-
-
-
-
-$tareaspendientes = 0;
-
-if ($progreso_imagen != 100 ) {$tareaspendientes = $tareaspendientes +1;}
+  if ($progreso_imagen != 100 ) {$tareaspendientes = $tareaspendientes +1;}
 
 
   $totalpoint = 0; 
 
   $totalpoint =   $empresapoint  +   $progreso + $perfilpoint;
-if ($totalpoint != 100) {$tareaspendientes = $tareaspendientes +1;}
+  if ($totalpoint != 100) {$tareaspendientes = $tareaspendientes +1;}
 
-  }
+}
 
-  else{
+else{
 
-    $avatar = Recursos::ImgAvatar($perfil);
+  $avatar = Recursos::ImgAvatar($perfil);
 
-  }
+}
 
-   
+
+
+
+
+$socials = SocialRelation::where('empresa_id',$empresa->id)->get();
+$socialrelations = SocialRelation::where('empresa_id_related', $empresa->id)->get();
+
+
 
 ?>
 <html>
@@ -107,6 +102,17 @@ if ($totalpoint != 100) {$tareaspendientes = $tareaspendientes +1;}
 
 
    @include('includes.head-backend')
+
+   <style>
+.navbar-nav>.notifications-menu>.dropdown-menu>li .menu>li>a {
+    color: #444444;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 3px;
+    font-size: 11px;
+}
+   </style>
   </head>
   <!--
   BODY TAG OPTIONS:
@@ -200,21 +206,64 @@ if ($totalpoint != 100) {$tareaspendientes = $tareaspendientes +1;}
                 <!-- Menu toggle button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">10</span>
+                  @if(!$socials->count() == 0)
+                  <span class="label label-warning">{{$socials->count()}} </span>
+                @endif
+
+                  @if(!$socialrelations->count() == 0)
+                  <span class="label label-warning">{{$socialrelations->count()}} </span>
+                @endif
+
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">Tienes 10 Notificaciones</li>
+                   @if(!$socials->count() == null)
+                  <li class="header">Tienes {{$socials->count()}}  Notificaciones</li>
+                  @endif
+
+                    @if(!$socialrelations->count() == null)
+                  <li class="header">Tienes {{$socialrelations->count()}}  Notificaciones</li>
+                  @endif
+
+
+
                   <li>
                     <!-- Inner Menu: contains the notifications -->
                     <ul class="menu">
                       <li><!-- start notification -->
-                        <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 5 Nuevos Usuarios Te Siguen 
+
+                         @foreach($socials as $social)
+                        <a href="/{{$social->empresas->slug}}">
+                          <i class="fa fa-user text-aqua"></i>Has empezado a seguir a  <b>  {{$social->empresas->nombre}} </b> 
+
                         </a>
+
+
+                        @endforeach
+
+
+
+                       
+
+
                       </li><!-- end notification -->
+
+
+<li>
+
+                       @foreach($socialrelations as $socialrelation)
+                        <a href="/{{$socialrelation->empresas->slug}}">
+                          <i class="fa fa-user text-aqua"></i> <b>  {{$socialrelation->empresasrelated->nombre}} </b> Te ha seguido.
+                       
+
+                        </a>
+
+
+                        @endforeach
+</li>
+
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">Ver Todos</a></li>
+                 <!-- <li class="footer"><a href="#">Ver Todos</a></li>-->
                 </ul>
               </li>
               <!-- Tasks Menu -->
@@ -528,16 +577,10 @@ if ($totalpoint != 100) {$tareaspendientes = $tareaspendientes +1;}
    @section('scripts') 
 
 	 {{HTML::script('js/jquery-1.11.0.min.js')}}	
-
-
-
-
-	 {{HTML::script('js/bootstrap.min.js')}}
-
-
-	 	 {{HTML::script('js/app.min.js')}}
-      {{HTML::script('js/toastr.js')}}
-        {{HTML::script('js/ckeditor/ckeditor.js')}}
+   {{HTML::script('js/bootstrap.min.js')}}
+   {{HTML::script('js/app.min.js')}}
+   {{HTML::script('js/toastr.js')}}
+   {{HTML::script('js/ckeditor/ckeditor.js')}}
 
 
   

@@ -263,7 +263,7 @@ font-size: 16px;
           </form>
 
           @else
-          <form method="post" action="{{$empresa->slug}}/id/{{$empresa->id}}/relation/{{$perfil_login->id}}/unjoin">
+          <form method="post" action="{{$empresa->slug}}/id/{{$empresa->id}}/relation/{{$social->id}}/unjoin">
            
 
             <input type="image"  src="{{asset('images/perfil/conectar.png')}}" alt="Submit">

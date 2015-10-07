@@ -17,7 +17,8 @@ public function join($post, $empresaid, $relationid)
 		}
 		
 
-		$Socialrelation = SocialRelation::findOrNew($social);        
+			$Socialrelation = new SocialRelation();
+      
             $Socialrelation->empresa_id = $relationid;
             $Socialrelation->empresa_id_related = $empresaid;
             $Socialrelation->save();
@@ -30,7 +31,7 @@ return Redirect::to('/'.$empresa->slug);
 		public function unjoin($post, $empresaid, $relationid)
 	{
 		$empresa = Empresa::find($empresaid);
-		$social = SocialRelation::where('empresa_id', $relationid)->first();
+		$social = SocialRelation::where('id', $relationid)->first();
 		$Socialrelation = SocialRelation::find($social->id);        
         $Socialrelation->delete();
 

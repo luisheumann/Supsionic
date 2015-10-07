@@ -6,33 +6,118 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <?php
 
-  if (Sentry::check())
+if (Sentry::check())
 
+{
+
+  $user_id = Sentry::getuser()->id;
+
+  $perfil = User::find($user_id)->empresas->first();
+  $usuario = User::find($user_id)->first();
+
+  $avatar = Recursos::ImgAvatar($perfil);
+
+  $empresa = User::find($user_id)->empresas->first();
+  $perfil2  = Empresa::find($empresa->id)->perfil->first();
+
+  $PerfilEmpresa  = PerfilEmpresa::find($perfil2->pivot->id);
+
+  $perfilpoint = 30;
+
+  if (!$usuario->cargo == null ) {
+
+    $progreso = 1;
+  }else
   {
-
-    $user_id = Sentry::getuser()->id;
-
-    $perfil = User::find($user_id)->empresas->first();
-    $usuario = User::find($user_id)->first();
-    $empresa = User::find($user_id)->empresas->first();
-
-    $avatar = Recursos::ImgAvatar($perfil);
-      
-
+    $progreso = 0;
   }
 
-  else{
+  if (!$empresa->nombre == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->descripcion == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->email == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->web == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->direccion == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->telefono == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->postal == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->ciudad == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->personacontacto == null ) {$progreso =$progreso + 1;}
 
-    $avatar = Recursos::ImgAvatar($perfil);
 
-  }
+  $progreso = $progreso * 4;
 
-   
+
+  $empresapoint = 0;
+
+  if (!$empresa->FOB == null or !$empresa->CFR == null or !$empresa->CIF == null or !$empresa->EXW == null or !$empresa->FAS == null or !$empresa->CIP == null or !$empresa->FCA == null or !$empresa->CPT == null or !$empresa->DEQ == null or !$empresa->DDP == null or !$empresa->DDU == null or !$empresa->DAF == null or !$empresa->DES == null or !$empresa->Expres == null) {$empresapoint =  10;}
+
+  if (!$empresa->COP == null or !$empresa->USD == null or !$empresa->EUR == null or !$empresa->CAD == null or !$empresa->AUD == null or !$empresa->HKD == null or !$empresa->GBP == null or !$empresa->CNY == null or !$empresa->CHF == null) {$empresapoint = $empresapoint +  10;}
+
+  if (!$empresa->TT == null or !$empresa->LC == null or !$empresa->DP == null or !$empresa->DA == null) {$empresapoint = $empresapoint +  5;}
+
+  if (!$empresa->aleman == null or !$empresa->arabe == null or !$empresa->frances == null or !$empresa->ruso == null or !$empresa->koreano == null or !$empresa->hindu == null or !$empresa->italiano == null  or !$empresa->espanol == null  or !$empresa->chino == null  or !$empresa->japones == null  or !$empresa->portugues == null) {$empresapoint = $empresapoint +  5;}
+
+  if (!$perfil->imagen == null ) {$progreso_imagen =100;}else{$progreso_imagen =0;}
+
+  $tareaspendientes = 0;
+
+  if ($progreso_imagen != 100 ) {$tareaspendientes = $tareaspendientes +1;}
+
+
+  $totalpoint = 0; 
+
+  $totalpoint =   $empresapoint  +   $progreso + $perfilpoint;
+  if ($totalpoint != 100) {$tareaspendientes = $tareaspendientes +1;}
+
+}
+
+else{
+
+  $avatar = Recursos::ImgAvatar($perfil);
+
+}
+
+
+
+
+
+$socials = SocialRelation::where('empresa_id',$empresa->id)->get();
+$socialrelations = SocialRelation::where('empresa_id_related', $empresa->id)->get();
+
+
 
 ?>
 <html>
   <head>
+  <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  
+
+<title> @section('title') @show </title>  
+
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<meta name="description" content="">
+<meta name="keywords" content="" />
+<meta name="author" content="" />
+<link rel="shortcut icon" href="../favicon.ico">
+
+
    @include('includes.head-backend')
+
+   <style>
+.navbar-nav>.notifications-menu>.dropdown-menu>li .menu>li>a {
+    color: #444444;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 3px;
+    font-size: 11px;
+}
+
+.content-wrapper{
+
+  margin-left: 0px;
+}
+   </style>
   </head>
   <!--
   BODY TAG OPTIONS:
@@ -54,8 +139,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   |               | sidebar-mini                            |
   |---------------------------------------------------------|
   -->
-  <body class="skin-blue sidebar-collapse">
-
+  <body class="skin-blue sidebar-mini">
     <div class="wrapper">
 
       <!-- Main Header -->
@@ -71,24 +155,62 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Sidebar toggle button
+          <!-- Sidebar toggle button-->
+
+
+<!--
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
-          </a>-->  
-
-
-<a href="/"> 
-<div style="float:left; margin-right:20px; color:#fff; margin-top: 14px; padding-left: 5px;" > <i class="fa fa-home"></i> Inicio   </div></a>
-<a href="/{{$empresa->slug}}/"> 
-<div style="float:left; margin-right:20px; color:#fff; margin-top: 14px; padding-left: 5px;">  <i class="fa fa-user"></i> Perfil </div> 
-</a>
-<a href="/{{$empresa->slug}}/admin/producto/add">
-<div style="float:left; margin-right:20px; color:#fff; margin-top: 14px; padding-left: 5px;">   <i class="fa fa-plus-circle"></i> Agregar Productos   </div> </a>
-<div style="float:left; margin-right:20px; color:#fff; margin-top: 14px; padding-left: 5px;">  <i class="fa fa-search"></i>Buscar Productos  </div> 
-
+          </a>-->
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+
+
+
+            <li class="dropdown messages-menu">
+                <!-- INICIO -->
+                <a href="/{{$empresa->slug}}/" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-home"></i>
+                
+                </a>
+            
+              </li><!-- /.INICIO -->
+
+
+
+            <li class="dropdown messages-menu">
+                <!-- perfil -->
+                <a href="/{{$empresa->slug}}/" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-user"></i>
+                
+                </a>
+            
+              </li><!-- /.perfil -->
+
+
+               <li class="dropdown messages-menu">
+                <!-- Agregar producto -->
+                <a href="/{{$empresa->slug}}/admin/producto/add" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-plus-circle"></i>
+             
+                </a>
+            
+              </li><!-- /.Agregar producto -->
+
+                   <li class="dropdown messages-menu">
+                <!-- Buscar -->
+                <a href="/{{$empresa->slug}}/admin/producto/add" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-search"></i>
+                 
+                </a>
+            
+              </li><!-- /.Buscar -->
+
+
+
+
+
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
                 <!-- Menu toggle button -->
@@ -127,21 +249,80 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Menu toggle button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">10</span>
+              
+                  
+                  <?php 
+
+
+                    if(!$socials->count() == null or !$socialrelations->count() == null){
+
+                      $valsocial = 0;
+                      $valsocialrelations = 0;
+                      $valtotal = 0;
+
+                      $valsocial = $socials->count();
+                      $valsocialrelations = $socialrelations->count();
+
+                      $valtotal = $valsocial +$valsocialrelations;
+                    }
+
+                  ?>
+
+                
+                  @if(!$valtotal == 0)
+                  <span class="label label-warning">{{$valtotal}} </span>
+                @endif
+
+
+
+
+
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">Tienes 10 Notificaciones</li>
+                   @if(!$socials->count() == null or !$socialrelations->count() == null)
+                  <li class="header">Tienes {{$valtotal}}  Notificaciones</li>
+                  @endif
+
+
+
                   <li>
                     <!-- Inner Menu: contains the notifications -->
                     <ul class="menu">
                       <li><!-- start notification -->
-                        <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 5 Nuevos Usuarios Te Siguen 
+
+                         @foreach($socials as $social)
+                        <a href="/{{$social->empresas->slug}}">
+                          <i class="fa fa-user text-aqua"></i>Has empezado a seguir a  <b>  {{$social->empresas->nombre}} </b> 
+
                         </a>
+
+
+                        @endforeach
+
+
+
+                       
+
+
                       </li><!-- end notification -->
+
+
+<li>
+
+                       @foreach($socialrelations as $socialrelation)
+                        <a href="/{{$socialrelation->empresas->slug}}">
+                          <i class="fa fa-user text-aqua"></i> <b>  {{$socialrelation->empresasrelated->nombre}} </b> Te ha seguido.
+                       
+
+                        </a>
+
+
+                        @endforeach
+</li>
+
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">Ver Todos</a></li>
+                 <!-- <li class="footer"><a href="#">Ver Todos</a></li>-->
                 </ul>
               </li>
               <!-- Tasks Menu -->
@@ -149,10 +330,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-flag-o"></i>
-                  <span class="label label-danger">9</span>
+                  @if($tareaspendientes > 0)
+                  <span class="label label-danger">{{$tareaspendientes}}</span>
+                  @endif
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">Tienes 9 Tareas</li>
+                  <li class="header">Tienes {{$tareaspendientes}} Tareas</li>
                   <li>
                     <!-- Inner menu: contains the tasks -->
                     <ul class="menu">
@@ -160,14 +343,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a href="#">
                           <!-- Task title and progress text -->
                           <h3>
-                           Completar Perfil
-                            <small class="pull-right">20%</small>
+                          Imagen Perfil
+                            <small class="pull-right">{{$progreso_imagen}}%</small>
                           </h3>
                           <!-- The progress bar -->
                           <div class="progress xs">
                             <!-- Change the css width attribute to simulate progress -->
-                            <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                              <span class="sr-only">20% Completado</span>
+
+
+                            <div class="progress-bar progress-bar-aqua" style="width: {{$progreso_imagen}}%" role="progressbar" aria-valuenow="{{$progreso_imagen}}" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">{{$progreso_imagen}}% Completado</span>
+                
+                            </div>
+                          </div>
+                        </a>
+
+
+                        <a href="#">
+                          <!-- Task title and progress text -->
+                          <h3>
+                           Perfil Completado
+                            <small class="pull-right">{{$totalpoint}}%</small>
+                          </h3>
+                          <!-- The progress bar -->
+                          <div class="progress xs">
+                            <!-- Change the css width attribute to simulate progress -->
+
+
+                            <div class="progress-bar progress-bar-aqua" style="width: {{$totalpoint}}%" role="progressbar" aria-valuenow="{{$progreso}}" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">{{$totalpoint}}% Completado</span>
+                
                             </div>
                           </div>
                         </a>
@@ -175,7 +380,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </ul>
                   </li>
                   <li class="footer">
-                    <a href="#">Ver todas las tareas</a>
+                  <!--  <a href="#">Ver todas las tareas</a>-->
                   </li>
                 </ul>
               </li>
@@ -235,8 +440,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
         </nav>
       </header>
-      <!-- Left side column. contains the logo and sidebar -->
-
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
