@@ -13,8 +13,9 @@ class HomeController extends BaseController {
 		$slug_empresa = User::find($user_id)->empresas->first()->slug;
 	    $paises     = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
 	    $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
+		$data['datanoticias'] = Noticias::orderBy('updated_at', 'DESC')->paginate(15);
 
-		return View::make('index', array('slug' => $slug_empresa, 'paises' => $paises, 'categorias' =>$categorias));
+		return View::make('index',$data, array('slug' => $slug_empresa, 'paises' => $paises, 'categorias' =>$categorias));
 	}
 
 	public function salir()

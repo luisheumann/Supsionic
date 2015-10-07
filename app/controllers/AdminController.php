@@ -18,8 +18,36 @@ class AdminController extends BaseController {
     
 	public function index()
 	{
+
+
+		$usuario = Sentry::findUserById($this->user_id);
+		$empresa = User::find($this->user_id)->empresas->first();
+		$perfil  = Empresa::find($empresa->id)->perfil->first();
+	    $productos  = Empresa::find($empresa->id)->productos; //los productos de la empresa en cuestión
+	    $intersesImportador  = Empresa::find($empresa->id)->intersesImportador; // intereses del importador en cuenstion
+	    $intersesTransportador  = Empresa::find($empresa->id)->intersesTransportador; // intereses del transportador en cuenstion
+	    $progreso = Null;
+
+
+	    if (!$usuario->cargo == null ) {
+
+	    	$progreso = 1;
+	    }
+$progreso = Sentry::findUserById($this->user_id);
+		return View::make('admin.default', array(
+			      'empresa'=> $empresa, 
+				  'perfil'=>$perfil,
+				  'productos'=>$productos,
+				  'intersesImportador'=>$intersesImportador,
+				  'intersesTransportador'=>$intersesTransportador,
+				  'usuario'=>$usuario,
+				  'progreso'=>$progreso
+
+				)
+			);
+
 		
-		return View::make('admin.default');
+
 	}
 
 		public function producto_lista()
@@ -58,10 +86,6 @@ public function file_delete($borra)
 
 
 }
-
-
-
-
 
 
 

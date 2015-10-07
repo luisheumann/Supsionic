@@ -39,6 +39,8 @@ App::missing(function($exception)
 
 // perfil publico de la empresa
 Route::get('{post}','PerfilEmpresaController@index');
+Route::post('{post}/id/{empresaid}/relation/{relationid}','SocialController@join');
+Route::post('{post}/id/{empresaid}/relation/{relationid}/unjoin','SocialController@unjoin');
 
 // url para ver el detalle del producto
 Route::get('{post}/productos/{producto}/{id}','ProductosController@ProductoBySlugId');
@@ -132,6 +134,13 @@ Route::get('{post}/admin/producto/add', 'AdminController@producto_add');
 Route::get('{post}/admin/producto/edit', 'AdminController@producto_edit');
 Route::get('{post}/admin/cambio/pass', 'AdminController@cambiopass');
 
+Route::get('admin/noticias/lista', 'NoticiasController@index');
+Route::get('admin/noticias/editar/{id}', 'NoticiasController@editar');
+Route::get('admin/noticias/editar', 'NoticiasController@editar');
+Route::post('admin/noticias/editar/{id}', 'NoticiasController@editarpost');
+Route::post('admin/noticias/editar', 'NoticiasController@editarpost');
+
+Route::get('admin/noticias/{id}/delete', 'NoticiasController@eliminar');
 
 Route::get('{post}/interes_importador2/delete/{id}','ImportadorController@InteresDelete2');
 Route::get('{post}/admin/producto/delete2/{borra}','AdminController@producto_delete');

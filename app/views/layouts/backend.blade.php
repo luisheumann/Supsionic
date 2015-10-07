@@ -24,7 +24,61 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         $PerfilEmpresa  = PerfilEmpresa::find($perfil2->pivot->id);
 
+  $perfilpoint = 30;
 
+      if (!$usuario->cargo == null ) {
+
+        $progreso = 1;
+      }else
+      {
+        $progreso = 0;
+      }
+
+     if (!$empresa->nombre == null ) {$progreso =$progreso + 1;}
+     if (!$empresa->descripcion == null ) {$progreso =$progreso + 1;}
+     if (!$empresa->email == null ) {$progreso =$progreso + 1;}
+     if (!$empresa->web == null ) {$progreso =$progreso + 1;}
+     if (!$empresa->direccion == null ) {$progreso =$progreso + 1;}
+     if (!$empresa->telefono == null ) {$progreso =$progreso + 1;}
+     if (!$empresa->postal == null ) {$progreso =$progreso + 1;}
+     if (!$empresa->ciudad == null ) {$progreso =$progreso + 1;}
+     if (!$empresa->personacontacto == null ) {$progreso =$progreso + 1;}
+
+
+     $progreso = $progreso * 4;
+
+
+     $empresapoint = 0;
+
+  if (!$empresa->FOB == null or !$empresa->CFR == null or !$empresa->CIF == null or !$empresa->EXW == null or !$empresa->FAS == null or !$empresa->CIP == null or !$empresa->FCA == null or !$empresa->CPT == null or !$empresa->DEQ == null or !$empresa->DDP == null or !$empresa->DDU == null or !$empresa->DAF == null or !$empresa->DES == null or !$empresa->Expres == null) {$empresapoint =  10;}
+
+  if (!$empresa->COP == null or !$empresa->USD == null or !$empresa->EUR == null or !$empresa->CAD == null or !$empresa->AUD == null or !$empresa->HKD == null or !$empresa->GBP == null or !$empresa->CNY == null or !$empresa->CHF == null) {$empresapoint = $empresapoint +  10;}
+
+    if (!$empresa->TT == null or !$empresa->LC == null or !$empresa->DP == null or !$empresa->DA == null) {$empresapoint = $empresapoint +  5;}
+
+    if (!$empresa->aleman == null or !$empresa->arabe == null or !$empresa->frances == null or !$empresa->ruso == null or !$empresa->koreano == null or !$empresa->hindu == null or !$empresa->italiano == null  or !$empresa->espanol == null  or !$empresa->chino == null  or !$empresa->japones == null  or !$empresa->portugues == null) {$empresapoint = $empresapoint +  5;}
+
+
+
+
+  if (!$perfil->imagen == null ) {$progreso_imagen =100;}else{$progreso_imagen =0;}
+
+
+
+
+
+
+
+
+$tareaspendientes = 0;
+
+if ($progreso_imagen != 100 ) {$tareaspendientes = $tareaspendientes +1;}
+
+
+  $totalpoint = 0; 
+
+  $totalpoint =   $empresapoint  +   $progreso + $perfilpoint;
+if ($totalpoint != 100) {$tareaspendientes = $tareaspendientes +1;}
 
   }
 
@@ -168,10 +222,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-flag-o"></i>
-                  <span class="label label-danger">9</span>
+                  @if($tareaspendientes > 0)
+                  <span class="label label-danger">{{$tareaspendientes}}</span>
+                  @endif
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">Tienes 9 Tareas</li>
+                  <li class="header">Tienes {{$tareaspendientes}} Tareas</li>
                   <li>
                     <!-- Inner menu: contains the tasks -->
                     <ul class="menu">
@@ -179,14 +235,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a href="#">
                           <!-- Task title and progress text -->
                           <h3>
-                           Completar Perfil
-                            <small class="pull-right">20%</small>
+                          Imagen Perfil
+                            <small class="pull-right">{{$progreso_imagen}}%</small>
                           </h3>
                           <!-- The progress bar -->
                           <div class="progress xs">
                             <!-- Change the css width attribute to simulate progress -->
-                            <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                              <span class="sr-only">20% Completado</span>
+
+
+                            <div class="progress-bar progress-bar-aqua" style="width: {{$progreso_imagen}}%" role="progressbar" aria-valuenow="{{$progreso_imagen}}" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">{{$progreso_imagen}}% Completado</span>
+                
+                            </div>
+                          </div>
+                        </a>
+
+
+                        <a href="#">
+                          <!-- Task title and progress text -->
+                          <h3>
+                           Perfil Completado
+                            <small class="pull-right">{{$totalpoint}}%</small>
+                          </h3>
+                          <!-- The progress bar -->
+                          <div class="progress xs">
+                            <!-- Change the css width attribute to simulate progress -->
+
+
+                            <div class="progress-bar progress-bar-aqua" style="width: {{$totalpoint}}%" role="progressbar" aria-valuenow="{{$progreso}}" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">{{$totalpoint}}% Completado</span>
+                
                             </div>
                           </div>
                         </a>
@@ -194,7 +272,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </ul>
                   </li>
                   <li class="footer">
-                    <a href="#">Ver todas las tareas</a>
+                  <!--  <a href="#">Ver todas las tareas</a>-->
                   </li>
                 </ul>
               </li>
@@ -459,6 +537,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 	 	 {{HTML::script('js/app.min.js')}}
       {{HTML::script('js/toastr.js')}}
+        {{HTML::script('js/ckeditor/ckeditor.js')}}
 
 
   

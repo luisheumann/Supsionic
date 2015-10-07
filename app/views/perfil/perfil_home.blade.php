@@ -18,10 +18,13 @@
 
     $user_id = Sentry::getuser()->id;
 
-    $perfil2 = User::find($user_id)->empresas->first();
-    $usuario = User::find($user_id)->first();
+    $perfil2 = User::find($usuario_id_slug)->empresas->first();
+    $perfil_login = User::find($user_id)->empresas->first();
+    $usuario = User::find($usuario_id_slug)->first();
 
     $avatar = Recursos::ImgAvatar($perfil);
+
+    $social = SocialRelation::where('empresa_id', $perfil_login->id)->where('empresa_id_related',$empresa->id)->first();
       
 
   }
@@ -31,7 +34,11 @@
     $avatar = Recursos::ImgAvatar($perfil);
 
   }
-  $empresa = User::find($user_id)->empresas->first();
+
+
+
+
+  //$empresa = User::find($user_id)->empresas->first();
 ?>
 
 
@@ -237,17 +244,37 @@ font-size: 16px;
 
 
 
-                
-   
- 
+            
+            
+            
 
-</div>
-    
-        <div class="col-md-4" align="right" style="margin-top:30px">
-         <!-- <a href="#" class="btn-borde btn-borde-n-i">PRODUCTOS</a><br>-->
-        </div>
-        <div class="col-md-3" align="right">
-          <a href="#"><img width="125px" src="{{asset('images/perfil/conectar.png')}}"></a>
+          </div>
+          
+          <div class="col-md-4" align="right" style="margin-top:30px">
+           <!-- <a href="#" class="btn-borde btn-borde-n-i">PRODUCTOS</a><br>-->
+         </div>
+         <div class="col-md-3" align="right">
+
+          @if ($social == null)
+          <form method="post" action="{{$empresa->slug}}/id/{{$empresa->id}}/relation/{{$perfil_login->id}}">
+           
+
+            <input type="image" src="{{asset('images/perfil/conectar.png')}}" alt="Submit">
+          </form>
+
+          @else
+          <form method="post" action="{{$empresa->slug}}/id/{{$empresa->id}}/relation/{{$perfil_login->id}}/unjoin">
+           
+
+            <input type="image"  src="{{asset('images/perfil/conectar.png')}}" alt="Submit">
+          </form>
+
+
+          @endif
+
+
+         
+
         </div>
 
       </div> 

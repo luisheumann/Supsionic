@@ -13,6 +13,7 @@ class PerfilEmpresaController extends BaseController {
             return App::abort(404);
         }
         $this->user_id = $perfil->id;
+        
     }
 
 	public function index($slug)
@@ -21,9 +22,10 @@ class PerfilEmpresaController extends BaseController {
 	    $perfil  = Empresa::find($empresa->id)->perfil->first();
     	$productos = Empresa::find($empresa->id)->productos;
     	$archivos = FileEmpresas::where('empresa_id', $empresa->id)->get();
-	
+		$data['datanoticias'] = Noticias::orderBy('updated_at', 'DESC')->paginate(15);
+		$usuario_id_slug = $this->user_id;
     	//$imagenes = $productos->imagen;
-	    return View::make('perfil.index', array('empresa'=> $empresa, 'perfil'=>$perfil,'productos'=>$productos,'archivos'=>$archivos));
+	    return View::make('perfil.index',$data, array('empresa'=> $empresa, 'perfil'=>$perfil,'productos'=>$productos,'archivos'=>$archivos, 'usuario_id_slug' => $usuario_id_slug));
 
 		View::composer(array('includes.header'), function($view)
 		{
