@@ -1,4 +1,4 @@
-@extends('layouts/search')
+@extends('layouts/busqueda')
 @section('content')
 
 @section('title')

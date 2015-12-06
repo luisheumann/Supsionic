@@ -1,28 +1,107 @@
-<!doctype html>
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+
 <?php
 
-  if (Sentry::check())
+if (Sentry::check())
 
+{
+
+  $user_id = Sentry::getuser()->id;
+
+  $perfil = User::find($user_id)->empresas->first();
+  $usuario = User::find($user_id)->first();
+
+  $avatar = Recursos::ImgAvatar($perfil);
+
+  $empresa = User::find($user_id)->empresas->first();
+  $perfil2  = Empresa::find($empresa->id)->perfil->first();
+
+  $PerfilEmpresa  = PerfilEmpresa::find($perfil2->pivot->id);
+
+  $perfilpoint = 30;
+
+  if (!$usuario->cargo == null ) {
+
+    $progreso = 1;
+  }else
   {
+    $progreso = 0;
+  }
 
-    $user_id = Sentry::getuser()->id;
+  if (!$empresa->nombre == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->descripcion == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->email == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->web == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->direccion == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->telefono == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->postal == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->ciudad == null ) {$progreso =$progreso + 1;}
+  if (!$empresa->personacontacto == null ) {$progreso =$progreso + 1;}
 
-    $perfil = User::find($user_id)->empresas->first();
-    $usuario = User::find($user_id)->first();
-    $empresa = User::find($user_id)->empresas->first();
 
-    $avatar = Recursos::ImgAvatar($perfil);
+  $progreso = $progreso * 4;
+
+
+  $empresapoint = 0;
+
+  if (!$empresa->FOB == null or !$empresa->CFR == null or !$empresa->CIF == null or !$empresa->EXW == null or !$empresa->FAS == null or !$empresa->CIP == null or !$empresa->FCA == null or !$empresa->CPT == null or !$empresa->DEQ == null or !$empresa->DDP == null or !$empresa->DDU == null or !$empresa->DAF == null or !$empresa->DES == null or !$empresa->Expres == null) {$empresapoint =  10;}
+
+  if (!$empresa->COP == null or !$empresa->USD == null or !$empresa->EUR == null or !$empresa->CAD == null or !$empresa->AUD == null or !$empresa->HKD == null or !$empresa->GBP == null or !$empresa->CNY == null or !$empresa->CHF == null) {$empresapoint = $empresapoint +  10;}
+
+  if (!$empresa->TT == null or !$empresa->LC == null or !$empresa->DP == null or !$empresa->DA == null) {$empresapoint = $empresapoint +  5;}
+
+  if (!$empresa->aleman == null or !$empresa->arabe == null or !$empresa->frances == null or !$empresa->ruso == null or !$empresa->koreano == null or !$empresa->hindu == null or !$empresa->italiano == null  or !$empresa->espanol == null  or !$empresa->chino == null  or !$empresa->japones == null  or !$empresa->portugues == null) {$empresapoint = $empresapoint +  5;}
+
+  if (!$perfil->imagen == null ) {$progreso_imagen =100;}else{$progreso_imagen =0;}
+
+  $tareaspendientes = 0;
+
+  if ($progreso_imagen != 100 ) {$tareaspendientes = $tareaspendientes +1;}
+
+
+  $totalpoint = 0; 
+
+  $totalpoint =   $empresapoint  +   $progreso + $perfilpoint;
+  if ($totalpoint != 100) {$tareaspendientes = $tareaspendientes +1;}
+$tareaspendientesoff = 1;
+}
+
+else{
+$tareaspendientesoff = 0;
+  $avatar = Recursos::ImgAvatar($perfil);
+
+}
+
+
+$mensajes = Mensajes::where('empresa_id',$empresa->id)->get();
+$mensajesrelations = Mensajes::where('empresa_mensaje', $empresa->id)->get();
+
+
+$busquedas = Busquedas::where('producto_id', $empresa->id)->get();
+ 
+  $productos = Busquedas::where('empresa_id','=',$empresa->id)->get();
+
+
+
+      $productosbyempresas = Empresa::find($empresa->id)->productos;
+      $interesesbyempresas = Empresa::find($empresa->id)->intersesImportador;
+      $transportadorbyempresas = Empresa::find($empresa->id)->intersesTransportador;
+      $siasbyempresas = Empresa::find($empresa->id)->intersesSias;
+
       
 
-  }
 
-  else{
 
-    $avatar = Recursos::ImgAvatar($perfil);
 
-  }
 
-   
+$socials = SocialRelation::where('empresa_id',$empresa->id)->get();
+$socialrelations = SocialRelation::where('empresa_id_related', $empresa->id)->get();
+
+
 
 ?>
 <html>
@@ -71,14 +150,7 @@
 
 
 </head>
-<body>
-
-<!--[if lt IE 7]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
-  @if (Sentry::check())
-		<body class="skin-blue sidebar-collapse">
-
+<body class="skin-blue sidebar-mini">
     <div class="wrapper">
 
       <!-- Main Header -->
@@ -94,88 +166,637 @@
 
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Sidebar toggle button
+          <!-- Sidebar toggle button-->
+
+
+
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
-          </a>-->  
-
-
-<a href="/"> 
-<div style="float:left; margin-right:20px; color:#fff; margin-top: 14px; padding-left: 5px;" > <i class="fa fa-home"></i> Inicio   </div></a>
-<a href="/{{$empresa->slug}}/"> 
-<div style="float:left; margin-right:20px; color:#fff; margin-top: 14px; padding-left: 5px;">  <i class="fa fa-user"></i> Perfil </div> 
-</a>
-<a href="/{{$empresa->slug}}/admin/producto/add">
-<div style="float:left; margin-right:20px; color:#fff; margin-top: 14px; padding-left: 5px;">   <i class="fa fa-plus-circle"></i> Agregar Productos   </div> </a>
-<div style="float:left; margin-right:20px; color:#fff; margin-top: 14px; padding-left: 5px;">  <i class="fa fa-search"></i>Buscar Productos  </div> 
+          </a>
 
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+
+    <li class="dropdown messages-menu">
+   <input style="width: 200px; margin-top:13px;" type="text" id="testinputx" value="" />  
+
+          <button style="display:none;" type="button"  id="testid" 
+          onclick="updateInput(this.value)" 
+          value=""  title="Aceptar">Aceptar</button>
+
+          
+
+<input style="width: 200px" type="hidden" id="valoroculto" value="" />  
+<input style="width: 200px" type="hidden" id="slug" value="" />  
+
+              </li> 
+
+            <li class="dropdown messages-menu">
+                <!-- INICIO -->
+                <a href="/" class="dropdown-toggle">
+                  <i class="fa fa-home"></i>
+                
+                </a>
+            
+              </li><!-- /.INICIO -->
+
+
+
+
+
+            <li class="dropdown messages-menu">
+                <!-- perfil -->
+                <a href="/{{$empresa->slug}}/" class="dropdown-toggle">
+                  <i class="fa fa-user"></i>
+                
+                </a>
+            
+              </li><!-- /.perfil -->
+
+
+               <li class="dropdown messages-menu">
+                <!-- Agregar producto -->
+                <a href="/{{$empresa->slug}}/admin/producto/add" class="dropdown-toggle">
+                  <i class="fa fa-plus-circle"></i>
+             
+                </a>
+            
+              </li><!-- /.Agregar producto -->
+
+                   <li class="dropdown messages-menu">
+                <!-- Buscar -->
+                <a href="/api/buscar_cadena?perfil=2&categoria=&productohidden=&selectProducto=producto&producto=&country=&origen=&destino=" class="dropdown-toggle">
+                  <i class="fa fa-search"></i>
+                 
+                </a>
+            
+              </li><!-- /.Buscar -->
+
+
+
+ @if (!$tareaspendientesoff == 0)
+
+
+
+
+
               <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
                 <!-- Menu toggle button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>
-                  <span class="label label-success">4</span>
+
+
+  <?php 
+
+
+                    if(!$mensajesrelations->count() == null){
+
+                      $valmensajes = 0;
+                      $valmensajesrelations = 0;
+                      $valtotalmensajes = 0;
+
+                      $valmensajes = $mensajes->count();
+                      $valmensajesrelations = $mensajesrelations->count();
+
+                      $valtotalmensajes = $mensajesrelations->count();
+                    }else{
+
+                       $valmensajes = null;
+                      $valmensajesrelations = null;
+                      $valtotalmensajes = null;
+                    }
+
+                     
+                  ?>
+
+                
+                      @if(!$valtotalmensajes == null)
+                  <span class="label label-success">{{$valtotalmensajes}} </span>
+                @endif
+
+
+
+
+
+
+
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">Tienes 4 Mensajes </li>
+                   @if(!$valtotalmensajes == null)
+                  <li class="header">Tienes  {{$valtotalmensajes}} Notificaciones</li>
+                  @else
+
+            <li class="header">Tienes 0  Notificaciones</li>
+                  @endif
+
+
                   <li>
                     <!-- inner menu: contains the messages -->
                     <ul class="menu">
-                      <li><!-- start message -->
-                        <a href="#">
+                       @foreach($mensajesrelations as $mensajesrelation)<li><!-- start message -->
+                         <a  href="/{{$empresa->slug}}/mensajes" >
+
+                          
+
+
+
+                      
+<?php
+$perfilmensaje = User::find($mensajesrelation->empresa_id)->empresas->first();
+?>
+
+
+
+
+                        
                           <div class="pull-left">
                             <!-- User Image -->
-                            <img src="../images/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                           @if(empty($perfilmensaje->imagen))
+
+ <img id="imagen" height="100" width="100" style="float:left; " class="img-circle" alt="Image" src="/images/producto.png"/>    
+
+@else
+ <img id="imagen" height="40" width="40" class="img-circle" alt="Image" src="/uploads/{{$perfilmensaje->imagen}}"/>      
+ @endif
                           </div>
                           <!-- Message title and timestamp -->
                           <h4>
-                           Grupo soporte
-                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                            {{$mensajesrelation->empresasmensaje->nombre}}
+                          
+                           
                           </h4>
                           <!-- The message -->
-                          <p>Tienes caraotas disponibles?</p>
+                          <p>
+
+                        
+
+                              @if(@$mensajesrelation->mensaje) {{Str::words(@$mensajesrelation->mensaje,5,$separator = '...')}} @endif
+
+                          </p>
+
+
+
+
                         </a>
-                      </li><!-- end message -->
+                      </li>@endforeach<!-- end message -->
                     </ul><!-- /.menu -->
                   </li>
-                  <li class="footer"><a href="#">Ver todos los mensajes</a></li>
+                  <li class="footer"><a href="#"></a></li>
                 </ul>
               </li><!-- /.messages-menu -->
 
               <!-- Notifications Menu -->
-              <li class="dropdown notifications-menu">
+
+
+
+              <!-- Notifications BUSQUEDA -->
+
+
+
+
+
+  <li class="dropdown notifications-menu">
+
+                
                 <!-- Menu toggle button -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">10</span>
+              
+
+                @if ($PerfilEmpresa->perfil_id == 1)
+                <a href="#" class="dropdown-toggle" onclick="viewProductos({{$empresa->id}})"  data-toggle="dropdown">
+                @endif
+
+                  @if ($PerfilEmpresa->perfil_id == 2)
+                <a href="#" class="dropdown-toggle" onclick="viewInteres({{$empresa->id}})"  data-toggle="dropdown">
+                @endif
+
+                  @if ($PerfilEmpresa->perfil_id == 3)
+                <a href="#" class="dropdown-toggle" onclick="viewTransportadores({{$empresa->id}})"  data-toggle="dropdown">
+                @endif
+
+                  @if ($PerfilEmpresa->perfil_id == 4)
+                <a href="#" class="dropdown-toggle" onclick="viewSias({{$empresa->id}})"  data-toggle="dropdown">
+                @endif
+
+
+
+                  <i class="fa fa-globe"></i>
+              
+
+
+<!--EMPRESA CON PRODUCTOS -->
+  <?php $contadorPRODUCTOS=0 ?>
+                @foreach($productosbyempresas as $productosbyempresa)
+
+                @foreach (Busquedas::where('producto_id',$productosbyempresa->id)->where('view','=',Null)->select('empresa_id')->get() as $empresainvolucrada)
+ 
+                <?php $contadorPRODUCTOS++ ?>
+               
+                   @endforeach
+                   @endforeach
+
+                   @if (!$contadorPRODUCTOS ==0)
+
+       
+                    <span class="label label-warning">{{$contadorPRODUCTOS}}</span>
+                  @endif
+                  
+<!--EMPRESA CON PRODUCTOS  END-->
+
+
+<!--INTERES CONTADOR-->
+
+            <?php $contadorINTERES=0 ?>
+                @foreach($interesesbyempresas as $interesesbyempresa)
+
+                @foreach (Busquedas::where('interes_id',$interesesbyempresa->id)->where('view','=',Null)->select('empresa_id')->get() as $empresainvolucrada)
+ 
+                <?php $contadorINTERES++ ?>
+               
+                   @endforeach
+                   @endforeach
+
+                   @if (!$contadorINTERES ==0)
+
+              
+
+                    <span class="label label-warning">{{$contadorINTERES}} </span>
+                  @endif
+                  
+<!--INTERES CONTADOR END--> 
+
+
+
+<!--TRANSPORTADOR CONTADOR-->
+
+            <?php $contadorTRANSPORTE=0 ?>
+                @foreach($transportadorbyempresas as $transportadorbyempresa)
+
+                @foreach (Busquedas::where('transporte_id',$transportadorbyempresa->id)->where('view','=',Null)->select('empresa_id')->get() as $empresainvolucrada)
+ 
+                <?php $contadorTRANSPORTE++ ?>
+               
+                   @endforeach
+                   @endforeach
+
+                   @if (!$contadorTRANSPORTE ==0)
+
+                 
+                     <span class="label label-warning">{{$contadorTRANSPORTE}}  </span>
+                  @endif
+                  
+<!--TRANSPORTADOR CONTADOR END--> 
+
+
+          
+<!--SIAS CONTADOR-->
+
+            <?php $contadorSIAS=0 ?>
+                @foreach($siasbyempresas as $siasbyempresa)
+
+                @foreach (Busquedas::where('sias_id',$siasbyempresa->id)->where('view','=',Null)->select('empresa_id')->get() as $empresainvolucrada)
+ 
+                <?php $contadorSIAS++ ?>
+               
+                   @endforeach
+                   @endforeach
+
+                   @if (!$contadorSIAS ==0)
+
+<span class="label label-warning">{{$contadorSIAS}}</span>
+           
+                  @endif
+                  
+<!--SIAS CONTADOR END--> 
+
+
+
+
+
+           
+
                 </a>
+                   
+
                 <ul class="dropdown-menu">
-                  <li class="header">Tienes 10 Notificaciones</li>
+
+
+
+
+
+
+
+
+
+
+<!--PRODUCTOS CONTADOR-->
+
+            <?php $contadorPRODUCTOS=0 ?>
+                @foreach($productosbyempresas as $productosbyempresa)
+
+                @foreach (Busquedas::where('producto_id',$productosbyempresa->id)->select('empresa_id')->get() as $empresainvolucrada)
+ 
+                <?php $contadorPRODUCTOS++ ?>
+               
+                   @endforeach
+                   @endforeach
+
+                   @if (!$contadorPRODUCTOS ==0)
+
+                   <li class="header">Tienes {{$contadorPRODUCTOS}} Notificaciones</li>
+                  @endif
+                  
+<!--PRODUCTOS CONTADOR END--> 
+
+
+
+
+
+<!--TRANSPORTADOR CONTADOR-->
+
+            <?php $contadorTRANSPORTE=0 ?>
+                @foreach($transportadorbyempresas as $transportadorbyempresa)
+
+                @foreach (Busquedas::where('transporte_id',$transportadorbyempresa->id)->select('empresa_id')->get() as $empresainvolucrada)
+ 
+                <?php $contadorTRANSPORTE++ ?>
+               
+                   @endforeach
+                   @endforeach
+
+                   @if (!$contadorTRANSPORTE ==0)
+
+                   <li class="header">Tienes {{$contadorTRANSPORTE}} Notificaciones</li>
+                  @endif
+                  
+<!--TRANSPORTADOR CONTADOR END--> 
+
+
+<!--INTERES CONTADOR-->
+
+            <?php $contadorINTERES=0 ?>
+                @foreach($interesesbyempresas as $interesesbyempresa)
+
+                @foreach (Busquedas::where('interes_id',$interesesbyempresa->id)->select('empresa_id')->get() as $empresainvolucrada)
+ 
+                <?php $contadorINTERES++ ?>
+               
+                   @endforeach
+                   @endforeach
+
+                   @if (!$contadorINTERES ==0)
+
+                   <li class="header">Tienes {{$contadorINTERES}} Notificaciones</li>
+                  @endif
+                  
+<!--INTERES CONTADOR END--> 
+
+
+
+
+<!--SIAS CONTADOR-->
+
+            <?php $contadorSIAS=0 ?>
+                @foreach($siasbyempresas as $siasbyempresa)
+
+                @foreach (Busquedas::where('sias_id',$siasbyempresa->id)->select('empresa_id')->get() as $empresainvolucrada)
+ 
+                <?php $contadorSIAS++ ?>
+               
+                   @endforeach
+                   @endforeach
+
+                   @if (!$contadorSIAS ==0)
+
+                   <li class="header">Tienes {{$contadorSIAS}} Notificaciones</li>
+                  @endif
+                  
+<!--SIAS CONTADOR END--> 
+
+
+
+
+
+          
+
+
                   <li>
                     <!-- Inner Menu: contains the notifications -->
                     <ul class="menu">
                       <li><!-- start notification -->
-                        <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 5 Nuevos Usuarios Te Siguen 
+
+                    <!--
+
+                          @foreach($productos as $producto)
+           <a href="/">
+                          <i class="fa fa-user text-aqua"></i> tu empresa {{Empresa::find($producto->empresa_id)->nombre}} ha agredo una nueva cadena  <b> </b> 
+
                         </a>
+
+                        @endforeach
+-->
+
+
+<!--EMPRESA CON PRODUCTOS-->
+
+                        @foreach($productosbyempresas as $productosbyempresa)
+
+                          @foreach (Busquedas::where('producto_id',$productosbyempresa->id)->select('empresa_id')->get() as $empresainvolucrada)
+
+                        <a href="/">     <i class="fa fa-user text-aqua"></i> La empresa  <b>{{Empresa::find($empresainvolucrada->empresa_id)->nombre }}</b> lo a agregado a una de sus cadenas.  </a>
+                           @endforeach
+
+                         @endforeach
+
+
+<!--EMPRESA CON PRODUCTOS END-->
+
+
+<!--EMPRESA CON INTERES-->
+
+        @foreach($interesesbyempresas as $interesesbyempresa)
+
+                          @foreach (Busquedas::where('interes_id',$interesesbyempresa->id)->select('empresa_id')->get() as $empresainvolucrada)
+
+                        <a href="/">     <i class="fa fa-user text-aqua"></i> La empresa  <b>{{Empresa::find($empresainvolucrada->empresa_id)->nombre }}</b> lo a agregado a una de sus cadenas.  </a>
+                           @endforeach
+
+                         @endforeach
+
+<!--EMPRESA CON INTERES END-->
+
+
+
+
+<!--EMPRESA CON TRANSPORTADOR-->
+
+        @foreach($transportadorbyempresas as $transportadorbyempresa)
+
+                          @foreach (Busquedas::where('transporte_id',$transportadorbyempresa->id)->select('empresa_id')->get() as $empresainvolucrada)
+
+                        <a href="/">     <i class="fa fa-user text-aqua"></i> La empresa  <b>{{Empresa::find($empresainvolucrada->empresa_id)->nombre }}</b> lo a agregado a una de sus cadenas.  </a>
+                           @endforeach
+
+                         @endforeach
+
+<!--EMPRESA CON TRANSPORTADOR END-->
+
+
+
+<!--EMPRESA CON SIAS-->
+
+        @foreach($siasbyempresas as $siasbyempresa)
+
+                          @foreach (Busquedas::where('sias_id',$siasbyempresa->id)->select('empresa_id')->get() as $empresainvolucrada)
+
+                        <a href="/">     <i class="fa fa-user text-aqua"></i> La empresa  <b>{{Empresa::find($empresainvolucrada->empresa_id)->nombre }}</b> lo a agregado a una de sus cadenas.  </a>
+                           @endforeach
+
+                         @endforeach
+
+<!--EMPRESA CON SIAS END-->
+
+
+
+
+
+
+                       
+
+
                       </li><!-- end notification -->
+
+
+<li>
+
+                     
+</li>
+
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">Ver Todos</a></li>
+                 <!-- <li class="footer"><a href="#">Ver Todos</a></li>-->
                 </ul>
+
+               
               </li>
-              <!-- Tasks Menu -->
-              <li class="dropdown tasks-menu">
-                <!-- Menu Toggle Button -->
+
+
+     <!-- Notifications BUSQUEDA FIN -->
+
+              <li class="dropdown notifications-menu">
+
+                
+                <!-- Menu toggle button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-flag-o"></i>
-                  <span class="label label-danger">9</span>
+                  <i class="fa fa-bell-o"></i>
+              
+
+
+                  <?php 
+
+
+
+
+
+
+
+                    if(!$socials->count() == null or !$socialrelations->count() == null ){
+
+                      $valsocial = 0;
+                      $valsocialrelations = 0;
+                      $valtotal = 0;
+                      $valcontactoProducto = 0;
+
+
+                   
+                      $valsocial = $socials->count();
+                      $valsocialrelations = $socialrelations->count();
+
+                      $valtotal = $valsocial +$valsocialrelations;
+                    }else{
+
+                       $valsocial = null;
+                      $valsocialrelations = null;
+                      $valtotal = null;
+                      $valcontactoProducto = null;
+                    }
+
+                     
+                  ?>
+
+                
+                  @if(!$valtotal == 0)
+                  <span class="label label-warning">{{$valtotal}} </span>
+                @endif
+
+
+
+
+
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">Tienes 9 Tareas</li>
+                   @if(!$socials->count() == null or !$socialrelations->count() == null)
+                  <li class="header">Tienes {{$valtotal}}  Notificaciones</li>
+                  @endif
+
+
+
+                  <li>
+                    <!-- Inner Menu: contains the notifications -->
+                    <ul class="menu">
+                      <li><!-- start notification -->
+
+                         @foreach($socials as $social)
+                        <a href="/{{$social->empresas->slug}}">
+                          <i class="fa fa-user text-aqua"></i>Has empezado a seguir a  <b>  {{$social->empresas->nombre}} </b> 
+
+                        </a>
+
+
+                        @endforeach
+
+                        
+                       
+
+
+                      </li><!-- end notification -->
+
+
+<li>
+
+                       @foreach($socialrelations as $socialrelation)
+                        <a href="/{{$socialrelation->empresas->slug}}">
+                          <i class="fa fa-user text-aqua"></i> <b>  {{$socialrelation->empresasrelated->nombre}} </b> Te ha seguido.
+                       
+
+                        </a>
+
+
+                        @endforeach
+</li>
+
+                    </ul>
+                  </li>
+                 <!-- <li class="footer"><a href="#">Ver Todos</a></li>-->
+                </ul>
+
+               
+              </li> @endif
+              <!-- Tasks Menu --> @if (!$tareaspendientesoff == 0)
+              <li class="dropdown tasks-menu">
+                <!-- Menu Toggle Button -->
+  
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-flag-o"></i>
+
+           
+                  @if($tareaspendientes > 0)
+                  <span class="label label-danger">{{$tareaspendientes}}</span>
+                  @endif
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">Tienes {{$tareaspendientes}} Tareas</li>
                   <li>
                     <!-- Inner menu: contains the tasks -->
                     <ul class="menu">
@@ -183,27 +804,52 @@
                         <a href="#">
                           <!-- Task title and progress text -->
                           <h3>
-                           Completar Perfil
-                            <small class="pull-right">20%</small>
+                          Imagen Perfil
+                            <small class="pull-right">{{$progreso_imagen}}%</small>
                           </h3>
                           <!-- The progress bar -->
                           <div class="progress xs">
                             <!-- Change the css width attribute to simulate progress -->
-                            <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                              <span class="sr-only">20% Completado</span>
+
+
+                            <div class="progress-bar progress-bar-aqua" style="width: {{$progreso_imagen}}%" role="progressbar" aria-valuenow="{{$progreso_imagen}}" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">{{$progreso_imagen}}% Completado</span>
+                
+                            </div>
+                          </div>
+                        </a>
+
+
+                        <a href="#">
+                          <!-- Task title and progress text -->
+                          <h3>
+                           Perfil Completado
+                            <small class="pull-right">{{$totalpoint}}%</small>
+                          </h3>
+                          <!-- The progress bar -->
+                          <div class="progress xs">
+                            <!-- Change the css width attribute to simulate progress -->
+
+
+                            <div class="progress-bar progress-bar-aqua" style="width: {{$totalpoint}}%" role="progressbar" aria-valuenow="{{$progreso}}" aria-valuemin="0" aria-valuemax="100">
+                              <span class="sr-only">{{$totalpoint}}% Completado</span>
+                
                             </div>
                           </div>
                         </a>
                       </li><!-- end task item -->
                     </ul>
-                  </li>
+                   
+                  </li> 
                   <li class="footer">
-                    <a href="#">Ver todas las tareas</a>
+                  <!--  <a href="#">Ver todas las tareas</a>-->
                   </li>
                 </ul>
-              </li>
-              <!-- User Account Menu -->
+              </li>@endif
+              <!-- User Account Menu --> 
+              @if (!$tareaspendientesoff == 0)
               <li class="dropdown user user-menu">
+                
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
@@ -249,16 +895,130 @@
                     </div>
                   </li>
                 </ul>
-              </li>
+          
+              </li>    
               <!-- Control Sidebar Toggle Button -->
               <li>
-                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-              </li>
+                <!--<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>-->
+                <a href="/{{$empresa->slug}}/admin/backend"><i class="fa fa-gears"></i></a>
+              </li>  @endif
             </ul>
           </div>
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel">
+            <div class="pull-left image">
+           
+     @if($perfil->imagen == Null) 
+        @else 
+    <img id="imagen" height="40" width="40" class="img-circle" alt="Image" src="/uploads/{{$perfil->imagen}}"/>              
+        @endif
+
+            </div>
+            <div class="pull-left info">
+              <p>{{$perfil->nombre}}</p>
+              <!-- Status -->
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+          </div>
+
+          <!-- search form (Optional) -->
+          <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search..."/>
+              <span class="input-group-btn">
+                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </form>
+          <!-- /.search form -->
+
+          <!-- Sidebar Menu -->
+          <ul class="sidebar-menu">
+            <li class="header">MENU</li>
+            <!-- Optionally, you can add icons to the links -->
+     
+
+
+            @if($PerfilEmpresa->perfil_id == 1)
+            <li class="treeview">
+              <a href="#"><i class='fa fa-link'></i> <span>Productos </span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="/{{$empresa->slug}}/admin/producto/lista">Lista</a></li>
+                <li><a href="/{{$empresa->slug}}/admin/producto/add">Agregar Producto</a></li>
+              </ul>
+            </li>
+
+
+            @endif
+  @if($PerfilEmpresa->perfil_id == 2)
+        
+            <li class="treeview">
+              <a href="/{{$empresa->slug}}/interes_importador"><i class='fa fa-link'></i> <span>Intereses </span> <i class="fa fa-angle-left pull-right"></i></a>
+              <!--<ul class="treeview-menu">
+                <li><a href="/{{$empresa->slug}}/interes_importador">Lista</a></li>
+           
+              </ul>-->
+            </li>
+
+
+            @endif
+
+
+  @if($PerfilEmpresa->perfil_id == 4)
+        
+            <li class="treeview">
+              <a href="/{{$empresa->slug}}/info_sias"><i class='fa fa-link'></i> <span>Intereses </span> <i class="fa fa-angle-left pull-right"></i></a>
+              <!--<ul class="treeview-menu">
+                <li><a href="/{{$empresa->slug}}/interes_importador">Lista</a></li>
+           
+              </ul>-->
+            </li>
+
+
+            @endif
+
+
+              @if($PerfilEmpresa->perfil_id == 3)
+        
+            <li class="treeview">
+              <a href="/{{$empresa->slug}}/interes_transportador"><i class='fa fa-link'></i> <span>Intereses </span> <i class="fa fa-angle-left pull-right"></i></a>
+             
+            </li>
+
+
+            @endif
+
+
+
+
+              <li >
+              <a href="/{{$empresa->slug}}/admin/perfil/empresa#datos-basicos"><i class='fa fa-link'></i> <span>Perfil</span> <i class="fa fa-user-left pull-right"></i></a>
+             
+            </li>
+
+              <li class="treeview">
+              <a href="/{{$empresa->slug}}/cadenas/lista"><i class='fa fa-link'></i> <span>Cadenas </span> <i class="fa fa-angle-left pull-right"></i></a>
+              <!--<ul class="treeview-menu">
+                <li><a href="/{{$empresa->slug}}/interes_importador">Lista</a></li>
+           
+              </ul>-->
+            </li>
+
+
+
+          </ul><!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
 
 
       <!-- Content Wrapper. Contains page content -->
@@ -350,7 +1110,7 @@
       <div class='control-sidebar-bg'></div>
     </div><!-- ./wrapper -->
  
-  @endif
+
 
  {{-- @include('includes.header') --}}
 

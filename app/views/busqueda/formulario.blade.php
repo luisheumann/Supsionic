@@ -44,7 +44,7 @@ button#testid {
 <div class="busqueda">
 
   <img src="{{asset('images/home/arme_su_cadena_small.png')}}" class="titulo_busqueda">
-  <div class="salto_linea"></div>
+
 
 
   <form class="form-horizontal form_home_buscar" id="busqueda" action="/api/buscar_cadena"  method="get">
@@ -81,7 +81,6 @@ button#testid {
 <fieldset>
 
 
- <input type="hidden" id="valoroculto" name="categoria" />
 
 
       <!--   <input type="hidden" id="categoria" name="categoria" />
@@ -102,6 +101,10 @@ button#testid {
         <div class="col-xs-10">
         
    <input style="width: 228px; padding: 5px;" type="text" id="testinput" value="" />  
+  
+
+  <input  style="width: 228px; padding: 5px;" type="hidden" name="categoria" id="testid3"  />  
+
 
  <button type="hidden"  id="testid" 
           onclick="updateInput(this.value)" 
@@ -834,7 +837,10 @@ var categoryselect = [porNombre, hijo1, hijo2,hijo3,hijo4,hijo5];
     varname:"?term",
     json:true,
     callback: function (obj) { 
+      console.log(obj.id);
       document.getElementById('testid').value = obj.id; 
+        document.getElementById('testid3').value = obj.id; 
+   
       var valor = document.getElementById("valoroculto").value = obj.id;
 
       if (!valor==null ){
@@ -848,6 +854,8 @@ var categoryselect = [porNombre, hijo1, hijo2,hijo3,hijo4,hijo5];
 
    }
  };
+
+
  var as_json = new AutoSuggest('testinput', options);
 
 
@@ -977,6 +985,7 @@ if (!$id5 == null) {
   var vartataranieto11 = "<?php echo $id; ?>" ;
 
   var testinput = "<?php echo $nombreCat; ?>" ;
+  console.log(testinput);
 
   var testinput =document.getElementById('testinput').value = testinput; 
 
