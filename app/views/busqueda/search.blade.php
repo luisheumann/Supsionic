@@ -1,4 +1,4 @@
-@extends('layouts/busqueda')
+@extends('layouts/search')
 @section('content')
 
 @section('title')
@@ -32,23 +32,7 @@
 
 ?>
 
-<style type="text/css">
-  
-.bloqueBusqueda{
-  float: left;
-}
-.col-xs-9 {
-    width: 62%;
-}
-  .col-xs-4{
 
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-  }
-
-
-  
-</style>
 
 <?php 
 
@@ -61,9 +45,73 @@ if (isset($_GET["perfil"]) && !empty($_GET["perfil"])) {
 
 
  ?>
+ <!--
 <a data-toggle="modal" class="link" data-target="#ModalCadena" href="" class="btn btn-default btn-xs"><span class="glyphicon  glyphicon-eye-open"></span></a>
 
+-->
+<style>
+.col-md-4 {
+   padding-left: 0px !important;
+   padding-right: 0px !important;
+}
 
+
+.col-md-4 {
+    width: 22.333333% !important;
+}
+
+.div-contenedor{
+  width:1600px;
+}
+.div-contenedor-block{
+    width:350px;
+    float: left;
+}
+
+
+.div-contenedor-block-left{
+    width:350px;
+    float: left;
+
+    border-right: 1px solid #ccc;
+    color: #5B5B5B;
+    margin-left: 0px !important;
+}
+
+
+
+
+
+
+
+
+.content-wrapper {
+
+  min-height: 710px !important;
+}
+
+
+.espacio_empresa {
+
+    background-color: #E6A990;
+        width: 350px;
+}
+
+ .espacio_transporte {
+   background-color: #E6A990;
+        width: 350px;
+ }
+
+.espacio_sias {
+
+   background-color: #E6A990;
+        width: 362px;
+}
+
+
+
+
+</style>
 
 
 
@@ -88,18 +136,13 @@ if (isset($_GET["perfil"]) && !empty($_GET["perfil"])) {
 
 
 
+<div class="div-contenedor">
+<div class="div-contenedor-block">
+@include('busqueda/formulario')
+</div>
 
 
-
-
-<div class="row home-red center-block" style="float:none">
-  <div class="bloqueBusqueda">
-      @include('busqueda/formulario')
-  </div>
-
-<div class="col-xs-9">
-
-  <div class="col-xs-4" id="cambio_vista" data-cambio="<?php echo $perfil ?>">
+   <div class="div-contenedor-block" id="cambio_vista" data-cambio="<?php echo $perfil ?>">
       <div id="vista_vendedor">
           <?php  $varperfil = $_GET['perfil']; if ($varperfil == 1) { ?>
  @include('busqueda/vendedor')
@@ -128,18 +171,25 @@ if (isset($_GET["perfil"]) && !empty($_GET["perfil"])) {
 
   </div>  
 
-  <div class="col-xs-4">
+  <div class="div-contenedor-block">
       @include('busqueda/transportadores')
   </div>  
 
-  <div class="col-xs-4">
+  <div class="div-contenedor-block-left">
       @include('busqueda/sias')
   </div> 
   
 </div>
  
-
 </div>
+
+
+
+
+
+
+
+
 
 
 <!-- Modal Cadena   -->

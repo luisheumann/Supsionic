@@ -101,7 +101,7 @@ button#testid {
         </label>
         <div class="col-xs-10">
         
-   <input style="width: 200px" type="text" id="testinput" value="" />  
+   <input style="width: 228px; padding: 5px;" type="text" id="testinput" value="" />  
 
  <button type="hidden"  id="testid" 
           onclick="updateInput(this.value)" 
@@ -210,7 +210,7 @@ button#testid {
 <div class="salto_linea"></div>
 <div class="form-group">
   <label for="origen" class="col-xs-2 control-label num_form">
-    <img src="{{asset('images/home/seis.png')}}" alt="">
+    <img src="{{asset('images/home/seix.png')}}" alt="">
   </label>
   <div class="col-xs-10">
     <select name="destino" id="destino"  class="form-control">
@@ -223,7 +223,7 @@ button#testid {
   </div>
 </div>
 
-<div class="salto_linea"></div>	 	 
+
 <button class="btn-borde btn-borde-n">BUSCAR</button>
 </div>
 </form>
