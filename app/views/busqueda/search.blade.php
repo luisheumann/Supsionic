@@ -87,7 +87,7 @@ if (isset($_GET["perfil"]) && !empty($_GET["perfil"])) {
 
 .content-wrapper {
 
-  min-height: 710px !important;
+  min-height: 740px !important;
 }
 
 

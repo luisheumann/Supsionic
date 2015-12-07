@@ -179,7 +179,7 @@ $socialrelations = SocialRelation::where('empresa_id_related', $empresa->id)->ge
             <ul class="nav navbar-nav">
 
     <li class="dropdown messages-menu">
-   <input style="width: 200px; margin-top:13px;" type="text" id="testinputx" value="" />  
+  <!-- <input style="width: 200px; margin-top:13px;" type="text" id="testinputx" value="" />-->  
 
           <button style="display:none;" type="button"  id="testid" 
           onclick="updateInput(this.value)" 
@@ -874,24 +874,15 @@ $perfilmensaje = User::find($mensajesrelation->empresa_id)->empresas->first();
                     </p>
                   </li>
                   <!-- Menu Body -->
-                  <li class="user-body">
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Seguidores</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">xxx</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Amigos</a>
-                    </div>
-                  </li>
+                  
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Perfil</a>
+
+                      <a href="/{{$empresa->slug}}/" class="btn btn-default btn-flat">Perfil</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Deslogeo</a>
+                      <a href="/salir" class="btn btn-default btn-flat">Deslogeo</a>
                     </div>
                   </li>
                 </ul>

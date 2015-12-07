@@ -1,4 +1,4 @@
-@extends('layouts/default')
+@extends('layouts/backend')
 @section('content')
 
 @section('title')
