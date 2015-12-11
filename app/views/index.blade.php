@@ -10,17 +10,12 @@
 
 
 <div class="row home-red center-block" style="float:none">
-  <div class="col-xs-6">
+  
     <div class="row contenedor-home">
       @include('busqueda')
     </div>
-  </div>
-  <div class="col-xs-3">
-      @include('noticias/index')
-  </div>    
-  <div class="col-xs-3">
-      @include('pautas/index')
-  </div>  
+  
+
 
 </div>
 

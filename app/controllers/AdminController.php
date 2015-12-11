@@ -93,11 +93,11 @@ public function file_delete($borra)
 	{
 		
 		     $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
-     $producto  = Empresa::find(12)->productos; //los productos de la empresa en cuestión
+     $producto  = Empresa::find($this->user_id)->productos; //los productos de la empresa en cuestión
          $unidades = Unidades::Get();
       $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
-        $empresa = User::find(12)->empresas->first();
-        $perfil  = Empresa::find(12)->perfil->first();
+        $empresa = User::find($this->user_id)->empresas->first();
+        $perfil  = Empresa::find($this->user_id)->perfil->first();
            $monedas = Monedas::orderBy('nombre', 'ASC')->get(); 
 
 
@@ -123,11 +123,11 @@ $id6 = null;
 		
 
 		     $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
-     $producto  = Empresa::find(12)->productos; //los productos de la empresa en cuestión
+     $producto  = Empresa::find($this->user_id)->productos; //los productos de la empresa en cuestión
          $unidades = Unidades::Get();
       $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
-        $empresa = User::find(12)->empresas->first();
-        $perfil  = Empresa::find(12)->perfil->first();
+        $empresa = User::find($this->user_id)->empresas->first();
+        $perfil  = Empresa::find($this->user_id)->perfil->first();
            $monedas = Monedas::orderBy('nombre', 'ASC')->get(); 
 
             $categorias_select = SiasCategoriaInteres::where('producto_id', Input::get('id'))->orderBy('categoria_id', 'DESC')->first(); 

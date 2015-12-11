@@ -185,11 +185,9 @@ $socialrelations = SocialRelation::where('empresa_id_related', $empresa->id)->ge
             <ul class="nav navbar-nav">
 
     <li class="dropdown messages-menu">
-   <input style="width: 200px; margin-top:13px;" type="text" id="testinputx" value="" />  
 
-          <button style="display:none;" type="button"  id="testid" 
-          onclick="updateInput(this.value)" 
-          value=""  title="Aceptar">Aceptar</button>
+
+        
 
           
 
@@ -1134,88 +1132,6 @@ $perfilmensaje = User::find($mensajesrelation->empresa_id)->empresas->first();
 
 
 
-<script type="text/javascript">
-
-  var options = {
-    script:"/json/busqueda",
-    varname:"?term",
-    json:true,
-    maxresults: 10,
-    callback: function (obj) { 
-      document.getElementById('testid').value = obj.id; 
-      var valor = document.getElementById("valoroculto").value = obj.id;
-       var slug2 = document.getElementById("slug").value = obj.info;
-
-     var search_empresa = document.getElementById("testinputx").value;
-
-
-//window.location.href = "/coyote22/producto/" + valor + slug;
-
-
-
-function string_to_slug(str) {
-  str = str.replace(/^\s+|\s+$/g, ''); // trim
-  str = str.toLowerCase();
-  
-  // remove accents, swap ñ for n, etc
-  var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
-  var to   = "aaaaeeeeiiiioooouuuunc------";
-  for (var i=0, l=from.length ; i<l ; i++) {
-    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-  }
-
-  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-    .replace(/\s+/g, '-') // collapse whitespace and replace by -
-    .replace(/-+/g, '-'); // collapse dashes
-
-  return str;
-}
-$(document).ready(function() {
-    $('#test').submit(function(){
-        var val = string_to_slug($('#t').val());
-        alert(val);
-        return false;
-    });
-});
-
-
-
-          switch (slug2) {
-
-    case 1:
-         window.location.href = "/coyote22/producto/" + valor;
-        break;
-    case 2:
-          window.location.href = "/" + string_to_slug(search_empresa);
-        break;
-}
-
-
-
-      if (!valor==null ){
-         
-              var valor =  valor;
-
-      }else{
-       var valor= 0;
-     }
-
-
-   }
- };
- var as_json = new AutoSuggest('testinputx', options);
-
-
- var options_xml = {
-  script:"test.php?",
-  varname:"input"
-};
-var as_xml = new AutoSuggest('testinput_xml', options_xml);
-
-
-
-
-</script>
 
 <script>
 function viewProductos(id) {

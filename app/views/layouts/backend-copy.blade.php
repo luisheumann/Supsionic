@@ -3,23 +3,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<style>
-aside.main-sidebar {
-    display: none !important;
-}
 
-
-
-.content-wrapper{
-
-  margin-left: 0px !important;
-}
-
-a.sidebar-toggle {
-    display: none !important;
-}
-
-</style>
 <?php
 
 if (Sentry::check())
@@ -121,12 +105,12 @@ $socialrelations = SocialRelation::where('empresa_id_related', $empresa->id)->ge
 
 ?>
 <html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+
+
+  <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  
 
 <title> @section('title') @show </title>  
 
@@ -136,42 +120,43 @@ $socialrelations = SocialRelation::where('empresa_id_related', $empresa->id)->ge
 <meta name="author" content="" />
 <link rel="shortcut icon" href="../favicon.ico">
 
-<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<head>
+
+   @include('includes.head-backend')
+
+   <style>
+.navbar-nav>.notifications-menu>.dropdown-menu>li .menu>li>a {
+    color: #444444;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 3px;
+    font-size: 11px;
+}
 
 
-
-
-
-<!--********** HEAD *************-->
-	@include('includes.head')
-
-
-
- {{HTML::style('css/AdminLTE.min.css')}}
-     {{HTML::style('css/skin-blue.min.css')}}
-
-     {{HTML::style('css/bootstrap.min.css')}}
-	 {{--HTML::style('css/non-responsive.css')--}}
-	 {{--HTML::style('css/flat-ui.css')--}}
-	 {{HTML::style('css/font-awesome.min.css')}}
-	 {{HTML::style('css/validationEngine.jquery.css')}}
-	 {{HTML::style('css/validationEngine.jquery.css')}}
-	 {{HTML::style('css/font-awesome.css')}}
-	  {{HTML::style('css/infinitycarrusel.css')}}
-	   {{HTML::style('css/toastr.css')}}
-	 
-
-	 
-	 	
-	 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
-
-
-
-
-</head>
-<body class="skin-blue sidebar-mini">
+   </style>
+  </head>
+  <!--
+  BODY TAG OPTIONS:
+  =================
+  Apply one or more of the following classes to get the
+  desired effect
+  |---------------------------------------------------------|
+  | SKINS         | skin-blue                               |
+  |               | skin-black                              |
+  |               | skin-purple                             |
+  |               | skin-yellow                             |
+  |               | skin-red                                |
+  |               | skin-green                              |
+  |---------------------------------------------------------|
+  |LAYOUT OPTIONS | fixed                                   |
+  |               | layout-boxed                            |
+  |               | layout-top-nav                          |
+  |               | sidebar-collapse                        |
+  |               | sidebar-mini                            |
+  |---------------------------------------------------------|
+  -->
+  <body class="skin-blue sidebar-mini">
     <div class="wrapper">
 
       <!-- Main Header -->
@@ -200,7 +185,7 @@ $socialrelations = SocialRelation::where('empresa_id_related', $empresa->id)->ge
             <ul class="nav navbar-nav">
 
     <li class="dropdown messages-menu">
-  <!-- <input style="width: 200px; margin-top:13px;" type="text" id="testinputx" value="" />-->  
+   <input style="width: 200px; margin-top:13px;" type="text" id="testinputx" value="" />  
 
           <button style="display:none;" type="button"  id="testid" 
           onclick="updateInput(this.value)" 
@@ -895,11 +880,10 @@ $perfilmensaje = User::find($mensajesrelation->empresa_id)->empresas->first();
                     </p>
                   </li>
                   <!-- Menu Body -->
-                  
+                 
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-
                       <a href="/{{$empresa->slug}}/" class="btn btn-default btn-flat">Perfil</a>
                     </div>
                     <div class="pull-right">
@@ -1031,13 +1015,11 @@ $perfilmensaje = User::find($mensajesrelation->empresa_id)->empresas->first();
         <!-- /.sidebar -->
       </aside>
 
-
-
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-  		@yield('content-header') 
+      @yield('content-header') 
         </section>
 
         <!-- Main content -->
@@ -1059,7 +1041,7 @@ $perfilmensaje = User::find($mensajesrelation->empresa_id)->empresas->first();
       </footer>
       
       <!-- Control Sidebar -->      
-      <aside class="control-sidebar control-sidebar-dark">                
+         <aside class="control-sidebar control-sidebar-dark">                    
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
           <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
@@ -1121,15 +1103,181 @@ $perfilmensaje = User::find($mensajesrelation->empresa_id)->empresas->first();
            immediately after the control sidebar -->
       <div class='control-sidebar-bg'></div>
     </div><!-- ./wrapper -->
- 
 
 
- {{-- @include('includes.header') --}}
-
-<!--********** Contenido ***************-->
 
 
-<!--********** Fin contenido ***********-->
 
-</body>
+   @section('scripts') 
+
+   {{HTML::script('js/jquery-1.11.0.min.js')}}  
+   {{HTML::script('js/bootstrap.min.js')}}
+   {{HTML::script('js/app.min.js')}}
+   {{HTML::script('js/toastr.js')}}
+   {{HTML::script('js/ckeditor/ckeditor.js')}}
+
+
+
+
+{{HTML::script('js/jquery.fancybox.js')}}
+
+    
+
+{{HTML::script('/api/tree/jquery.optionTree.js')}}
+
+{{HTML::script('/js/autocomplete.js')}}
+{{HTML::script('js/bootstrap-multiselect.js')}}
+
+<link rel="stylesheet" href="/css/autocomplete.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+
+<script type="text/javascript">
+
+  var options = {
+    script:"/json/busqueda",
+    varname:"?term",
+    json:true,
+    maxresults: 10,
+    callback: function (obj) { 
+      document.getElementById('testid').value = obj.id; 
+      var valor = document.getElementById("valoroculto").value = obj.id;
+       var slug2 = document.getElementById("slug").value = obj.info;
+
+     var search_empresa = document.getElementById("testinputx").value;
+
+
+//window.location.href = "/coyote22/producto/" + valor + slug;
+
+
+
+function string_to_slug(str) {
+  str = str.replace(/^\s+|\s+$/g, ''); // trim
+  str = str.toLowerCase();
+  
+  // remove accents, swap ñ for n, etc
+  var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+  var to   = "aaaaeeeeiiiioooouuuunc------";
+  for (var i=0, l=from.length ; i<l ; i++) {
+    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+  }
+
+  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+    .replace(/-+/g, '-'); // collapse dashes
+
+  return str;
+}
+$(document).ready(function() {
+    $('#test').submit(function(){
+        var val = string_to_slug($('#t').val());
+        alert(val);
+        return false;
+    });
+});
+
+
+
+          switch (slug2) {
+
+    case 1:
+         window.location.href = "/coyote22/producto/" + valor;
+        break;
+    case 2:
+          window.location.href = "/" + string_to_slug(search_empresa);
+        break;
+}
+
+
+
+      if (!valor==null ){
+         
+              var valor =  valor;
+
+      }else{
+       var valor= 0;
+     }
+
+
+   }
+ };
+ var as_json = new AutoSuggest('testinputx', options);
+
+
+ var options_xml = {
+  script:"test.php?",
+  varname:"input"
+};
+var as_xml = new AutoSuggest('testinput_xml', options_xml);
+
+
+
+
+</script>
+
+<script>
+function viewProductos(id) {
+   $.get('/viewconterProductos/'+ id,
+    {
+        name: "busqueda"
+     
+    },
+    function(data, status){
+    
+    });
+
+}
+
+
+function viewSias(id) {
+   $.get('/viewconterSias/'+ id,
+    {
+        name: "busqueda"
+     
+    },
+    function(data, status){
+    
+    });
+
+}
+
+function viewTransportadores(id) {
+   $.get('/viewconterTransportadores/'+ id,
+    {
+        name: "busqueda"
+     
+    },
+    function(data, status){
+    
+    });
+
+}
+
+function viewInteres(id) {
+   $.get('/viewconterInteres/'+ id,
+    {
+        name: "busqueda"
+     
+    },
+    function(data, status){
+    
+    });
+
+}
+
+
+
+
+
+
+
+
+</script>
+  
+
+
+@show
+  </body>
 </html>

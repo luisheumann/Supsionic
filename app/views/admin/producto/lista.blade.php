@@ -132,6 +132,7 @@
                       <th>Stock</th>
                       <th>Accion</th>
                     </tr>
+                    
                     @foreach($productos as $producto)
                     <tr>
                       <td>{{$producto->codigo}}</td>

@@ -137,7 +137,7 @@ equalHeight($(".column"));
 									<div id="block-addthis-0" class="block block-addthis">
 
 
-
+  <div class="content"><div class='addthis_toolbox addthis_default_style &lt;div class=&quot;addthis_toolbox addthis_default_style&quot;&gt;&lt;a class=&quot;addthis_button_facebook_like&quot; fb:like:layout=&quot;button_count&quot;&gt;&lt;/div&gt;' ><a class='addthis_toolbox_item addthis_button_facebook_like' fb:like:layout="button_count"&gt;></a><a class='addthis_toolbox_item addthis_button_tweet' ></a></div></div>
 </div>								</div> <!--/relevant-->
 								
 														
