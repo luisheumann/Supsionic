@@ -529,7 +529,7 @@ if (isset($_GET["param"]) && !empty($_GET["param"])) {
 
       var url = window.location.href; 
 
-      var url2 = url.substring(0, url.length-1);
+      var url2 = url.substring(0, url.length);
 
 //var url2 = url;
   
