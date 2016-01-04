@@ -82,145 +82,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <a href="/{{$empresa->slug}}/"> 
 <div style="float:left; margin-right:20px; color:#fff; margin-top: 14px; padding-left: 5px;">  <i class="fa fa-user"></i> Perfil </div> 
 </a>
-<a href="/{{$empresa->slug}}/admin/producto/add">
-<div style="float:left; margin-right:20px; color:#fff; margin-top: 14px; padding-left: 5px;">   <i class="fa fa-plus-circle"></i> Agregar Productos   </div> </a>
-<div style="float:left; margin-right:20px; color:#fff; margin-top: 14px; padding-left: 5px;">  <i class="fa fa-search"></i>Buscar Productos  </div> 
-
+ 
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
-              <li class="dropdown messages-menu">
-                <!-- Menu toggle button -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-envelope-o"></i>
-                  <span class="label label-success">4</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="header">Tienes 4 Mensajes </li>
-                  <li>
-                    <!-- inner menu: contains the messages -->
-                    <ul class="menu">
-                      <li><!-- start message -->
-                        <a href="#">
-                          <div class="pull-left">
-                            <!-- User Image -->
-                            <img src="../images/user2-160x160.jpg" class="img-circle" alt="User Image"/>
-                          </div>
-                          <!-- Message title and timestamp -->
-                          <h4>
-                           Grupo soporte
-                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                          </h4>
-                          <!-- The message -->
-                          <p>Tienes caraotas disponibles?</p>
-                        </a>
-                      </li><!-- end message -->
-                    </ul><!-- /.menu -->
-                  </li>
-                  <li class="footer"><a href="#">Ver todos los mensajes</a></li>
-                </ul>
-              </li><!-- /.messages-menu -->
+             
 
-              <!-- Notifications Menu -->
-              <li class="dropdown notifications-menu">
-                <!-- Menu toggle button -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">10</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="header">Tienes 10 Notificaciones</li>
-                  <li>
-                    <!-- Inner Menu: contains the notifications -->
-                    <ul class="menu">
-                      <li><!-- start notification -->
-                        <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 5 Nuevos Usuarios Te Siguen 
-                        </a>
-                      </li><!-- end notification -->
-                    </ul>
-                  </li>
-                  <li class="footer"><a href="#">Ver Todos</a></li>
-                </ul>
-              </li>
-              <!-- Tasks Menu -->
-              <li class="dropdown tasks-menu">
-                <!-- Menu Toggle Button -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-flag-o"></i>
-                  <span class="label label-danger">9</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li class="header">Tienes 9 Tareas</li>
-                  <li>
-                    <!-- Inner menu: contains the tasks -->
-                    <ul class="menu">
-                      <li><!-- Task item -->
-                        <a href="#">
-                          <!-- Task title and progress text -->
-                          <h3>
-                           Completar Perfil
-                            <small class="pull-right">20%</small>
-                          </h3>
-                          <!-- The progress bar -->
-                          <div class="progress xs">
-                            <!-- Change the css width attribute to simulate progress -->
-                            <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                              <span class="sr-only">20% Completado</span>
-                            </div>
-                          </div>
-                        </a>
-                      </li><!-- end task item -->
-                    </ul>
-                  </li>
-                  <li class="footer">
-                    <a href="#">Ver todas las tareas</a>
-                  </li>
-                </ul>
-              </li>
-              <!-- User Account Menu -->
-              <li class="dropdown user user-menu">
-                <!-- Menu Toggle Button -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <!-- The user image in the navbar-->
-                @if($perfil->imagen == Null) 
-        @else 
-    <img id="imagen" height="20" width="20" class="img-circle" alt="Image" src="/uploads/{{$perfil->imagen}}"/>              
-        @endif
-                  <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                  <span class="hidden-xs">{{$perfil->nombre}}</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <!-- The user image in the menu -->
-                  <li class="user-header">
-                    @if($perfil->imagen == Null) 
-        @else 
-    <img id="imagen" height="40" width="40" class="img-circle" alt="Image" src="/uploads/{{$perfil->imagen}}"/>              
-        @endif
-                    <p>
-                      Empresa : {{$perfil->nombre}} <br>
-                      Usuario : {{$usuario->first_name}} <br>
-                      <small>Email: {{$usuario->email}} </small>
-                    </p>
-                  </li>
-                  <!-- Menu Body -->
-      
-                  <!-- Menu Footer-->
-                  <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="/{{$empresa->slug}}/" class="btn btn-default btn-flat">Perfil</a>
-                    </div>
-                    <div class="pull-right">
-                      <a href="/salir" class="btn btn-default btn-flat">Deslogeo</a>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <!-- Control Sidebar Toggle Button -->
-              <li>
-                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-              </li>
+              
             </ul>
           </div>
         </nav>

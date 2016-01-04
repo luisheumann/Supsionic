@@ -44,7 +44,6 @@ class ProductosController extends BaseController {
 			'cantidad_disponible'  => 'required|numeric',
 			'pais_origen' 		   => 'required',
        'destinos'          => 'required',
-       'categoria'          => 'required',
 			'destinos' 			   => 'required'
 		);
 
@@ -130,17 +129,7 @@ class ProductosController extends BaseController {
 
 
         // BORRAR LOS categorias PARA EVITAR DUPLICADOS
-       $valorid = RutaExportador::where('producto_id', $producto->id)->get(); 
-             foreach ($valorid as $valorunico){
-
-                if($valorunico->delete()){
-        Session::set('mensaje','Artículo eliminado con éxito');
-            }else{
-        Session::set('error','Ocurrió un error al intentar eliminar');
-        }
-
-             }
-
+      
 
 
 
@@ -188,10 +177,33 @@ class ProductosController extends BaseController {
 
 
 
+
+  $valorid = SiasCategoriaInteres::where('producto_id', Input::get('id'))->get(); 
+             foreach ($valorid as $valorunico){
+
+                if($valorunico->delete()){
+        Session::set('mensaje','Artículo eliminado con éxito');
+            }else{
+        Session::set('error','Ocurrió un error al intentar eliminar');
+        }
+
+             }
+
+
+             
+
          foreach ($categorias as $categoria)
         {
 
             if (!$categoria == 0){
+
+
+             
+
+
+
+
+
             $SiasCategoriaInteres = SiasCategoriaInteres::findOrNew(Input::get('id'));        
             $SiasCategoriaInteres->empresa_id = $empresa_id;
             $SiasCategoriaInteres->producto_id = $producto->id;

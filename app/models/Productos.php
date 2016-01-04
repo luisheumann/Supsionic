@@ -24,6 +24,14 @@ class Productos extends Eloquent implements SluggableInterface
         return $this->hasMany('RutaExportador', 'producto_id');
     } 
 
+
+       public function Categoria()
+    {
+        return $this->hasMany('SiasCategoriaInteres', 'producto_id');
+    } 
+
+
+
     public function imagen()
     {
         return $this->hasMany('ImgProductos', 'producto_id');

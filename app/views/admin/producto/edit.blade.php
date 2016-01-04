@@ -32,6 +32,17 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
 
    
 
+foreach ( $producto->categoria as $category){
+
+
+  $categoria_update = $category->categoria_id;
+}
+
+  
+
+
+
+
 ?>
 
 
@@ -284,7 +295,6 @@ label[title]:hover:after {
 
 
 
- 
 
   <input type="hidden" class="form-control" name="id" id="id" value="{{$id}}" placeholder="">
    
@@ -300,6 +310,8 @@ label[title]:hover:after {
     <input type="hidden" id="bisnieto11" name="shijo4" />
     <input type="hidden" id="tataranieto11" name="shijo5" />
     <input type="hidden" id="tatataranieto11" name="shijo6" />
+
+
 
 
 
@@ -534,17 +546,56 @@ label[title]:hover:after {
             <label class=" control-label" for="pais_origen">País de Origen</label>
             
               <select name="pais_origen" id="pais_origen" class="form-control">
-                <option value="" required>Seleccione...</option>
+          
+
+
+               <?php 
+
+                  foreach ($producto->ruta_exportador as $product){
+               
+                      $valorpaisorigen = $product->pais_origen;
+                    
+              
+}
+
+
+                 ?>
+
+
+
+
               @foreach($paises as $pais)
-               @if($empresa->pais_id == $pais->id)
-                <option selected value="{{$pais->id}}">{{$pais->nombre}}</option>
-              @else
-                <option value="{{$pais->id}}">{{$pais->nombre}}</option>
-              @endif
+              
+
+        
+                <option <?php 
+
+                 
+                    if( $valorpaisorigen == $pais->id){
+                      echo "selected";
+                    }else {
+
+                      echo "no";
+                    }
+
+
+          
+
+
+
+                 ?> value="{{$pais->id}}">{{$pais->nombre}}</option>
+             
               @endforeach 
               </select>
             </div>
           </div>
+
+
+
+
+
+
+
 
  <div class="col-md-12">
 	  <div class="form-group">
@@ -558,6 +609,10 @@ label[title]:hover:after {
      </div>
 
    
+
+
+
+
  
           <legend class="legenda"><strong>Información Comercial</strong></legend>
 
@@ -997,6 +1052,11 @@ label.testinput-buscador-select {
   <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 
+
+
+
+
+
 <script type="text/javascript">
 
 var values= "<?foreach ($rutas as $ruta) {$resultstr[] = $ruta->pais_destino;}$result = implode(",",$resultstr);echo $result;?>"
@@ -1005,7 +1065,7 @@ $.each(values.split(","), function(i,e){
 });
 
 
-var categoria_id = <?php echo $producto->categoria_id ?>;
+var categoria_id = <?php echo $categoria_update ?>;
 var unidad_id = <?php echo $producto->unidad_id ?>;
 var pais_origen  = <?php echo $rutas[0]->pais_origen ?>;
 var moneda_id  = <?php echo $producto->moneda ?>;

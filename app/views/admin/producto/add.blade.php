@@ -10,7 +10,23 @@
     $avatar = Recursos::ImgAvatar($perfil);
   }
 
+
+$paramcategory = null;
+if (isset($_GET["param"]) && !empty($_GET["param"])) {
+  $paramcategory = $_GET['param'];
+  
+}
+
+$ncategory = '<script type="text/javascript"> var ncategory=document.getElementsByName("demo7")[0].value;</script>';
+echo $ncategory;
+
+
+
+
+
 ?>
+
+
 
 @extends('layouts/backend')
 
@@ -329,7 +345,9 @@ td.unidad_cantidad_td {
 }
 
 
-
+input#testinput {
+    width: 90% !important;
+}
 </style>
  <h1>
             Dashboard
@@ -389,7 +407,11 @@ td.unidad_cantidad_td {
   <div id="menu1" class="tab-pane fade">
  
       <div class="listacategoria"> 
-       <input type="hidden"  name="demo7" />
+       <input type="text"  name="demo7" />
+  <button type="button"  id="testid-google" 
+          onclick="updateInput(this.value)" 
+          value="" title="Aceptar">Aceptar</button>
+
        <div class="results" id="demo7-result"></div>
 
    </div>
@@ -404,13 +426,14 @@ td.unidad_cantidad_td {
 
 </div>
 </div> 
-
+@if ($paramcategory != null) 
  <div class="col-md-12">
           <div class="form-group">
             <label class="control-label"  for="nombre_producto">Nombre del producto</label>
               <input type="text" class="form-control" name="producto" id="nombre_producto"  placeholder="" required>
             </div>
           </div>
+
 
 
 <div class="col-md-12">
@@ -862,7 +885,7 @@ td.unidad_cantidad_td {
 <div align="center">
   <button class="btn btn-success" id="btn_export"><i class="fa fa-check"></i> GUARDAR</button>
 </div>
-
+@endif
 
 </form>
 
@@ -1143,6 +1166,18 @@ if (isset($_GET["param"]) && !empty($_GET["param"])) {
 
 
  var varcategoria =document.getElementById('categoria').value = "<?php echo $paramcategory; ?>" ;
+  $(document).ready(function(){
+  $("input[name=demo7]").change(function(){
+
+
+
+
+
+   document.getElementById('testid-google').value = $('input[name=demo7]').val(); 
+ 
+  });
+ 
+});
 
 
    $(function() {
@@ -1165,6 +1200,7 @@ if (isset($_GET["param"]) && !empty($_GET["param"])) {
  var validarcategoriaselect=  document.getElementById("categoria").value = 12;
             var porNombre=document.getElementsByName("demo7_")[0].value;
             document.getElementById("padre").value = porNombre;
+
             
 
             var hijo1=document.getElementsByName("demo7__")[0].value;
@@ -1210,7 +1246,7 @@ var categoryselect = [porNombre, hijo1, hijo2,hijo3,hijo4,hijo5];
 
     $.getJSON('/api/tree/get-subtree.php', function(tree) { // initialize the tree by loading the file first
       $('input[name=demo7]').optionTree(tree, options).change(displayParents);
-
+   
 
 
     });
