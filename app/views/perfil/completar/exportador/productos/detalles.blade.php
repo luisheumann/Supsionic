@@ -37,7 +37,8 @@
 
 
 @section('content-header')
-
+   {{HTML::script('js/jquery.galleriffic.js')}}  
+      {{HTML::script('js/jquery.opacityrollover.js')}}  
 
 <style>
 
@@ -601,6 +602,25 @@ a.morelink {
 
 
 
+div#slideshow {
+    width: 428px;
+  
+ 
+}
+div#gallery {
+    float: right;
+}
+
+#thumbs{
+      width: 85px !important;
+    float: left !important;
+    opacity: 1
+}
+span.image-wrapper .previous {
+  display: none;
+}
+
+
 </style>
 
 
@@ -650,43 +670,48 @@ a.morelink {
                 <div class="box-body">
              
 
-<div class="">    
-
-  <div class="tele">
 
 
+    
+    <div class="row  galeriaImg col-xs-12">
+<div class="col-xs-7">
 
 
- <div class="container2">
-      <div class="gallery">
-<div style="width:380px">
+       <!-- @foreach($imagenes as $imagen)
+        <li><a href="#" id="teco" class="teco" data-full="/uploads/productos/{{$imagen->imagen}}"><img id="teco"  class="teco" height="40" width="40"  src="/uploads/productos/{{$imagen->imagen}}" /></a> </li>
 
-     <ul class="imageList">
-        
- <div class="previews">
+        @endforeach
+      </ul>-->
+
+           <div id="thumbs" class="navigation">
+          <ul class="thumbs noscript">
           @foreach($imagenes as $imagen)
-    <li><a href="#" id="teco" class="teco" data-full="/uploads/productos/{{$imagen->imagen}}"><img id="teco"  class="teco" height="40" width="40"  src="/uploads/productos/{{$imagen->imagen}}" /></a> </li>
-
-            @endforeach
+            <li>
+              <a class="thumb" name="leaf"  href="/uploads/productos/{{$imagen->imagen}}" title="Title #0">
+                <img height="40" width="40"  src="/uploads/productos/{{$imagen->imagen}}" alt="Title #0" />
+              </a>
+           
+            </li>
+        @endforeach
           </ul>
+        </div>
+       
+
+
+
+   
+     <!-- <img id="imagen2" title="@if ($producto->imagen->count()>0){{$img= $imagenes[0]->imagen}} @else {{$img= 'producto.png'}} @endif"  style="float:right;"  alt="Image" src="/uploads/productos/{{$img}}"/> -->
+
+         <div id="gallery" class="content">
+      
+          <div class="slideshow-container">
+    
+            <div id="slideshow" class="slideshow"></div>
           </div>
-
-
-      <div class="productImage">
-     <div class="full"> 
-        <img id="imagen2" title1="@if ($producto->imagen->count()>0){{$img= $imagenes[0]->imagen}} @else {{$img= 'producto.png'}} @endif"  style="float:right;"  alt="Image" src="/uploads/productos/{{$img}}"/> 
-</div>
-          </div>  
-      </div>
-     
-      </div>
-      </div>
-
-
-
-      </div><!--COL MD6-->
-
-      <div class="det">
+         
+        </div>
+ </div>
+<div class="col-xs-5">   <div class="det">
 
 <div><span class="a-list-item-empresa"><a href="/{{$empresa->slug}}">{{$empresa->nombre}}</a></span></div>
 <span id="productTitle" class="a-size-large">{{$producto->nombre}}</span>
@@ -728,26 +753,26 @@ a.morelink {
 
 
 <div id="feature-bullets" class="a-section a-spacing-medium a-spacing-top-small">
-	
-		
-			<!--
-				<ul class="a-vertical a-spacing-none">
-					
-						<li><span class="a-list-item"> Cantidad : {{$producto->stock}}</span></li>
-					
-						<li><span class="a-list-item"> Precio : {{$producto->precio}}</span></li>
-					
-						<li><span class="a-list-item"> Marca: {{$producto->marca}}</span></li>
-					
-						<li><span class="a-list-item"> Color :{{$producto->Color}}</span></li>
-					
-						<li><span class="a-list-item"> Peso: {{$producto->Peso}}</span></li>
-					
-					
-					
-				</ul>
-			-->
-			
+  
+    
+      <!--
+        <ul class="a-vertical a-spacing-none">
+          
+            <li><span class="a-list-item"> Cantidad : {{$producto->stock}}</span></li>
+          
+            <li><span class="a-list-item"> Precio : {{$producto->precio}}</span></li>
+          
+            <li><span class="a-list-item"> Marca: {{$producto->marca}}</span></li>
+          
+            <li><span class="a-list-item"> Color :{{$producto->Color}}</span></li>
+          
+            <li><span class="a-list-item"> Peso: {{$producto->Peso}}</span></li>
+          
+          
+          
+        </ul>
+      -->
+      
 </div>
         
 
@@ -758,7 +783,17 @@ a.morelink {
         
 -->
        
-</div>
+</div> </div>
+     </div>
+
+
+
+
+
+
+
+
+   
 
    
 </div>
@@ -1222,7 +1257,99 @@ a.morelink {
 
 
 
+<script type="text/javascript">
+      jQuery(document).ready(function($) {
+        // We only want these styles applied when javascript is enabled
+        $('div.navigation').css({'width' : '300px', 'float' : 'left'});
+        $('div.content').css('display', 'block');
 
+        // Initially set opacity on thumbs and add
+        // additional styling for hover effect on thumbs
+        var onMouseOutOpacity = 0.67;
+        $('#thumbs ul.thumbs li').opacityrollover({
+          mouseOutOpacity:   onMouseOutOpacity,
+          mouseOverOpacity:  1.0,
+          fadeSpeed:         'fast',
+          exemptionSelector: '.selected'
+        });
+        
+        // Initialize Advanced Galleriffic Gallery
+        var gallery = $('#thumbs').galleriffic({
+          delay:                     1,
+          numThumbs:                 15,
+          preloadAhead:              10,
+          enableTopPager:            false,
+          enableBottomPager:         false,
+          maxPagesToShow:            7,
+          imageContainerSel:         '#slideshow',
+          controlsContainerSel:      '#controls',
+          captionContainerSel:       '#caption',
+          loadingContainerSel:       '#loading',
+          renderSSControls:          true,
+          renderNavControls:         true,
+          playLinkText:              'Play Slideshow',
+          pauseLinkText:             'Pause Slideshow',
+          prevLinkText:              '&lsaquo; Previous Photo',
+          nextLinkText:              'Next Photo &rsaquo;',
+          nextPageLinkText:          'Next &rsaquo;',
+          prevPageLinkText:          '&lsaquo; Prev',
+          enableHistory:             true,
+          autoStart:                 false,
+          syncTransitions:           true,
+          defaultTransitionDuration: 0,
+          onSlideChange:             function(prevIndex, nextIndex) {
+            // 'this' refers to the gallery, which is an extension of $('#thumbs')
+            this.find('ul.thumbs').children()
+              .eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
+              .eq(nextIndex).fadeTo('fast', 1.0);
+          },
+          onPageTransitionOut:       function(callback) {
+            this.fadeTo('fast', 0.0, callback);
+          },
+          onPageTransitionIn:        function() {
+            this.fadeTo('fast', 1.0);
+          }
+        });
+
+        /**** Functions to support integration of galleriffic with the jquery.history plugin ****/
+
+        // PageLoad function
+        // This function is called when:
+        // 1. after calling $.historyInit();
+        // 2. after calling $.historyLoad();
+        // 3. after pushing "Go Back" button of a browser
+        function pageload(hash) {
+          // alert("pageload: " + hash);
+          // hash doesn't contain the first # character.
+          if(hash) {
+            $.galleriffic.gotoImage(hash);
+          } else {
+            gallery.gotoIndex(0);
+          }
+        }
+
+        // Initialize history plugin.
+        // The callback is called at once by present location.hash. 
+        $.historyInit(pageload, "advanced.html");
+
+        // set onlick event for buttons using the jQuery 1.3 live method
+        $("a[rel='history']").live('click', function(e) {
+          if (e.button != 0) return true;
+          
+          var hash = this.href;
+          hash = hash.replace(/^.*#/, '');
+
+          // moves to a new page. 
+          // pageload is called at once. 
+          // hash don't contain "#", "?"
+          $.historyLoad(hash);
+
+          return false;
+        });
+
+        /****************************************************************************************/
+      });
+    </script>
 
 
 
