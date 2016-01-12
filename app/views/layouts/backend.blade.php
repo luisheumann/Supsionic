@@ -1115,7 +1115,7 @@ $perfilmensaje = User::find($mensajesrelation->empresa_id)->empresas->first();
    {{HTML::script('js/bootstrap.min.js')}}
    {{HTML::script('js/app.min.js')}}
    {{HTML::script('js/toastr.js')}}
-   {{HTML::script('js/ckeditor/ckeditor.js')}}
+  
 
 
 

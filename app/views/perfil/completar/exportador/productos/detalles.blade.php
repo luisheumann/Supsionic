@@ -629,12 +629,12 @@ a.morelink {
 
 
          <form action="#" method="get" class="sidebar-form">
-           <div class="input-group">
+          <!-- <div class="input-group">
               <input type="text" name="q" class="form-control" placeholder="Search...">
               <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
-            </div>
+            </div>-->
           </form>
 
 
@@ -698,12 +698,12 @@ a.morelink {
 
         @if ($producto->precio == null)
         @else
-        <span class="a-list-item-precio"> Precio : <span class="a-color-price">{{$producto->precio}}  {{$monedas->codigo}}</span>  
+        <span class="a-list-item-precio"> <b>Precio : </b><span class="a-color-price">{{$producto->precio}}  {{$monedas->codigo}}</span>  
         @endif
 
         @if ($producto->produccion_mes == null)
         @else
-        <div><span class="a-list-item"> <b>Produccion por mes : </b>{{$producto->color}}</span></div>
+        <div><span class="a-list-item"> <b>Produccion por mes : </b>{{$producto->produccion_mes}}</span></div>
         @endif
 
         @if ($producto->venta_minima == null)
@@ -752,11 +752,11 @@ a.morelink {
         
 
     
-
+<!--
                    
  <button class="btn btn-success" id="btn_import"><i class="fa fa-check"></i> Seleccionar</button>
         
-
+-->
        
 </div>
 
@@ -970,31 +970,35 @@ a.morelink {
 <div class="box box-warning box-solid">
                 <div class="box-header with-border">
                   <h3 class="box-title">Origen</h3>
-                  <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                  </div><!-- /.box-tools -->
+                  
                 </div><!-- /.box-header -->
                 <div class="box-body" style="display: block;">
                  {{Paises::find($rutas->first()->pais_origen)->nombre}}
                 </div><!-- /.box-body -->
               </div>
 
-
-<div class="box box-warning collapsed-box box-solid">
+<div class="box box-warning box-solid">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Destinos</h3>
-                  <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                  </div><!-- /.box-tools -->
+                  <h3 class="box-title">Destino</h3>
+                  
                 </div><!-- /.box-header -->
-                <div class="box-body">
-                <div class="box-destino-limite">
+                <div class="box-body" style="display: block;">
+                  @if ($rutas->count() < 10)
                  @foreach($rutas as $ruta)
+
+               
 <li class="floatleft">{{Paises::find($ruta->pais_destino)->nombre}}</li>
+
 @endforeach
-</div>
+@else 
+  Todos los Paises
+@endif
                 </div><!-- /.box-body -->
               </div>
+
+
+
+
 
 
 

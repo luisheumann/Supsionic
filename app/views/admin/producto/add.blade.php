@@ -348,6 +348,69 @@ td.unidad_cantidad_td {
 input#testinput {
     width: 90% !important;
 }
+
+
+
+img#preview-img {
+    height: 77px;
+    width: 100%;
+}
+.contenedor-img {
+    width: 160px;
+    float: left;
+}
+.modal-body {
+    position: relative;
+ padding: 0px !important; 
+}
+img#previewimg1 {
+   
+height: 76px;
+width: initial;
+}
+img#previewimg2 {
+   
+height: 76px;
+width: initial;
+}
+img#previewimg3 {
+   
+height: 76px;
+width: initial;
+}
+img#previewimg4 {
+   
+height: 76px;
+width: initial;
+}
+img#previewimg5 {
+   
+height: 76px;
+width: initial;
+}
+img#previewimg6 {
+   
+height: 76px;
+width: initial;
+}
+img#previewimg7 {
+   
+height: 76px;
+width: initial;
+}
+
+.abcd {
+    float: left;
+}
+
+
+.contenedor-img {
+    background-color: rgba(68, 68, 68, 0.1);
+    margin: 2px;
+    padding: 2px;
+}
+
+
 </style>
  <h1>
             Dashboard
@@ -448,10 +511,20 @@ input#testinput {
  <div class="col-md-12">
           <div class="form-group">
             <label class="control-label" for="detalles_producto">Imágen de Producto</label>
-           
-              <a class="btn btn-default btn-block" data-toggle="modal" data-target="#AddImgModal">
-                <i class="fa fa-picture-o"></i> Agregar imagenes
-              </a>
+            <div class="modal-body">
+        <div id="filediv">
+
+
+        <input name="file[]" onchange="return checkSize(1368953)" class="upload-file"  accept="image/*"  type="file" id="file"/>
+
+        </div>
+        <button type="button" id="add_more" class="btn btn-default">
+          <i class="fa fa-picture-o"></i> Agregar otra imagen
+        </button>
+      </div>
+
+
+             
             </div>
           </div>    
 

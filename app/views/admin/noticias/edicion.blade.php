@@ -142,7 +142,7 @@
 				</div>
 			</div>
 		</div>
-
+ {{HTML::script('js/ckeditor/ckeditor.js')}}
 		{{Form::close()}}
 
 

@@ -67,6 +67,8 @@ Route::group(array('before' => 'AuthSentryInv'), function()
 	Route::get('{post}/productos','ProductosController@ProductosbyEmpresa');
 	Route::get('productos/add','ProductosController@ProductoAdd');
 	Route::get('{post}/producto/{id}','ProductosController@ProductoById');
+
+	Route::get('{post}/producto/delete/{id}','AdminController@file_delete_img');
 	
 	// post para guardar los productos de interes para el importador
 	Route::get('{post}/interes_importador','ImportadorController@Interes');
@@ -144,6 +146,9 @@ Route::get('admin/noticias/{id}/delete', 'NoticiasController@eliminar');
 
 
 Route::get('{post}/producto/delete/{id}','ImportadorController@ProductoDelete');
+Route::get('{post}/producto/deleteOne/{id}/{idproducto}','ImportadorController@ProductoDeleteOne');
+
+
 
 
 Route::get('{post}/interes_importador2/delete/{id}','ImportadorController@InteresDelete2');

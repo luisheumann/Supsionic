@@ -600,6 +600,34 @@ return Redirect::to('/'.$empresa->slug.'/admin/perfil/empresa#datos-empresa');
 	}
 
 
+public function ProductoDeleteOne($id)
+
+
+{	
+$messages = "Producto Borrado";
+        Toastr::success($messages, $title = null, $options = ['positionClass'=>'toast-bottom-right']);
+
+	$segment  = Request::segment(4);
+		$segment2  = Request::segment(5);
+
+	$producto = ImgProductos::find($segment);
+	$empresa = User::find($this->user_id)->empresas->first();
+		if($producto->delete()){
+			$message = "Producto";
+			$title = "Borrado";
+
+
+	
+
+
+			}else{
+		Session::set('error','Ocurrió un error al intentar eliminar');
+		}
+		return Redirect::to('/'.$empresa->slug.'/admin/producto/edit?id='.$segment2);
+
+
+}
+
 
 	public function ProductoDelete($id)
 
@@ -611,6 +639,36 @@ $messages = "Producto Borrado";
 	$segment  = Request::segment(4);
 
 	$empresa = User::find($this->user_id)->empresas->first();
+
+
+
+   $producto = Productos::find($segment);
+      
+	$imagenes = $producto->imagen;
+
+		foreach ($imagenes as $imagen ) {
+			$fileName = 'uploads/productos/'. $imagen->imagen ;
+		$thubName = 'uploads/productos/thumbnail/'. $imagen->imagen ;
+
+		$Imgproducto = ImgProductos::where('producto_id', $segment);
+		if($Imgproducto->delete()){
+			$message = "Producto";
+			$title = "Borrado";
+		}else{
+		Session::set('error','Ocurrió un error al intentar eliminar');
+		}
+		
+
+		if (File::exists($fileName,$thubName)) {
+		    File::delete($fileName,$thubName);
+		} 
+		}
+
+
+		
+
+
+
 		$producto = Productos::find($segment);
 		if($producto->delete()){
 			$message = "Producto";

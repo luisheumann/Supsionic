@@ -89,6 +89,21 @@ public function file_delete($borra)
 
 }
 
+public function file_delete_img($borra)
+{
+
+	
+		$producto = ImgProductos::find($borra);
+		if($producto->delete()){
+		Session::set('mensaje','Imagen Borrada');
+			}else{
+		Session::set('error','Ocurrió un error al intentar eliminar');
+		}
+		return Redirect::to('/producto/lista');
+
+
+}
+
 
 
 		public function producto_add()
@@ -120,34 +135,34 @@ $id6 = null;
 	}
 
 
-		public function producto_edit()
+	public function producto_edit()
 	{
 		
 
-		     $categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
-     $producto  = Empresa::find($this->user_id)->productos; //los productos de la empresa en cuestión
-         $unidades = Unidades::Get();
-      $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
-        $empresa = User::find($this->user_id)->empresas->first();
-        $perfil  = Empresa::find($this->user_id)->perfil->first();
-           $monedas = Monedas::orderBy('nombre', 'ASC')->get(); 
+	$categorias = Categorias::orderBy('nombre', 'ASC')->get(); // todas las categorias
+    $producto  = Empresa::find($this->user_id)->productos; //los productos de la empresa en cuestión
+ 
+    
+    $imagenes = "hola"
+    $unidades = Unidades::Get();
+    $paises = Paises::orderBy('nombre', 'ASC')->get(); // todos los paises
+    $empresa = User::find($this->user_id)->empresas->first();
+    $perfil  = Empresa::find($this->user_id)->perfil->first();
+    $monedas = Monedas::orderBy('nombre', 'ASC')->get(); 
+	$categorias_select = SiasCategoriaInteres::where('producto_id', Input::get('id'))->orderBy('categoria_id', 'DESC')->first(); 
+	$categorianame = Taxonomy::where('id',$categorias_select->categoria_id)->first();
 
-            $categorias_select = SiasCategoriaInteres::where('producto_id', Input::get('id'))->orderBy('categoria_id', 'DESC')->first(); 
-		
-
-		$categorianame = Taxonomy::where('id',$categorias_select->categoria_id)->first();
-
-		$id1 = null;
-$id2 = null;
-$id3 = null;
-$id4 = null;
-$id5 = null;
-$id6 = null;
-	$taxonomias = Taxonomy::orderBy('name', 'ASC')->get();
+      $id1 = null;
+      $id2 = null;
+      $id3 = null;
+      $id4 = null;
+      $id5 = null;
+      $id6 = null;
+      $taxonomias = Taxonomy::orderBy('name', 'ASC')->get();
 
 
 
-        return View::make('admin.producto.edit', array('producto' =>$producto, 'categorias' => $categorias, 'unidades' =>$unidades, 'paises'=>$paises, 'empresa'=>$empresa,'perfil'=>$perfil, 'monedas'=>$monedas,'categorias_select' => $categorias_select,'taxonomias'=>$taxonomias, 'id1'=>$id1,'id2'=>$id2,'id3'=>$id3,'id4'=>$id4,'id5'=>$id5,'id6'=>$id6, 'categorianame' => $categorianame));
+      return View::make('admin.producto.edit', array('producto' =>$producto, 'categorias' => $categorias, 'unidades' =>$unidades, 'paises'=>$paises, 'empresa'=>$empresa,'perfil'=>$perfil, 'monedas'=>$monedas,'categorias_select' => $categorias_select,'taxonomias'=>$taxonomias, 'id1'=>$id1,'id2'=>$id2,'id3'=>$id3,'id4'=>$id4,'id5'=>$id5,'id6'=>$id6, 'categorianame' => $categorianame, ' imagenes' =>  $imagenes));
 
 
 	}
