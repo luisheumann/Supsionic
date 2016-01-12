@@ -601,6 +601,34 @@ return Redirect::to('/'.$empresa->slug.'/admin/perfil/empresa#datos-empresa');
 
 
 
+	public function ProductoDelete($id)
+
+
+{	
+$messages = "Producto Borrado";
+        Toastr::success($messages, $title = null, $options = ['positionClass'=>'toast-bottom-right']);
+
+	$segment  = Request::segment(4);
+
+	$empresa = User::find($this->user_id)->empresas->first();
+		$producto = Productos::find($segment);
+		if($producto->delete()){
+			$message = "Producto";
+			$title = "Borrado";
+
+
+	
+
+
+			}else{
+		Session::set('error','Ocurrió un error al intentar eliminar');
+		}
+		return Redirect::to('/'.$empresa->slug.'/admin/producto/lista');
+
+
+}
+
+
 
 
 

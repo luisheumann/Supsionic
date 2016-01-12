@@ -52,12 +52,14 @@ $progreso = Sentry::findUserById($this->user_id);
 
 		public function producto_lista()
 	{
-		
+		$messages = "Producto Borrado";
+        Toastr::success($messages, $title = null, $options = ['positionClass'=>'toast-bottom-right']);
+        
 		return View::make('admin.producto.lista');
 	}
 
 
-	public function producto_delete($borra)
+	public function ProductoDelete($id)
 {
 
 	

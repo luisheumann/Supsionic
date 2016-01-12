@@ -37,6 +37,17 @@
 }
 
 
+
+button {
+    border: 1px #AAA solid;
+    padding: 4px 10px;
+}
+.hide {
+    display: none;
+}
+
+
+
 </style>
 
  <h1>
@@ -52,7 +63,6 @@
 
 
 @section('content')
-
 
 
 
@@ -140,10 +150,35 @@
                       <td>{{$producto->color}}</td>
                       <td>{{$producto->produccion_mes}}</td>
                       <td><span class="label label-success">{{$producto->stock}}</span></td>
-                      <td><a href="{{URL::to($empresa->slug.'/admin/producto/'.$producto->id.'/delete')}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a> <a href="{{URL::to($empresa->slug.'/admin/producto/edit?id='.$producto->id)}}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> <a href="{{URL::to($empresa->slug.'/producto/'.$producto->id)}}" class="btn btn-default btn-xs"><span class="glyphicon  glyphicon-eye-open"></span></a></td>
-
+                      <td><a  data-toggle="modal" data-target="#myModal" href="#"  class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a> <a href="{{URL::to($empresa->slug.'/admin/producto/edit?id='.$producto->id)}}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> <a href="{{URL::to($empresa->slug.'/producto/'.$producto->id)}}" class="btn btn-default btn-xs"><span class="glyphicon  glyphicon-eye-open"></span></a></td>
 
                         
+        <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Pregunta Seguridad</h4>
+      </div>
+      <div class="modal-body">
+        <p>Seguro que requiere eliminar el siguiente registro?</p>
+        
+      </div>
+      <div class="modal-footer">
+
+                   
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            
+
+             <a href="{{URL::to($empresa->slug.'/producto/delete/'.$producto->id.'')}}">  <input type="submit"  class="btn btn-info btn-md" value="Aceptar"></a>
+
+      </div>
+    </div>
+
+  </div>
+</div>
                     </tr>
                    @endforeach
                     
@@ -153,9 +188,11 @@
               </div><!-- /.box -->
             </div>
             </div>
+
+
+
+
 @stop
-
-
 
 
 

@@ -6,17 +6,8 @@
   {
 
     $user_id = Sentry::getuser()->id;
-
-    
-
-
-  
-
     $empresa = User::find($user_id)->empresas->first();
-      $productos = Empresa::find($empresa->id)->productos;
-
-
- 
+   $productos = Empresa::find($empresa->id)->productos;
 
   }
 
@@ -41,7 +32,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 
-@extends('layouts/frontend')
+@extends('layouts/busqueda')
 
 
 
@@ -607,24 +598,22 @@ a.morelink {
    
     margin: 10px;
 }
+
+
+
 </style>
 
 
 
   
-            <small> Inicio</small>
-       <h1>   </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> dashboard</a></li>
-            <li class="active">Productos</li>
-          </ol>
+       
 @stop
 
 
 
 @section('content')
 
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <div class="row">
             <!-- Left col -->
             <div class="col-md-8">
@@ -639,8 +628,8 @@ a.morelink {
               </div><!-- /.row -->
 
 
-              <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
+         <form action="#" method="get" class="sidebar-form">
+           <div class="input-group">
               <input type="text" name="q" class="form-control" placeholder="Search...">
               <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>

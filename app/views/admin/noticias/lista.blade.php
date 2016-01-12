@@ -66,51 +66,7 @@
 @section('content')
 
 
-<div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="info-box">
-
-                <span class="info-box-icon bg-aqua"><i class="fa  fa-bar-chart"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text">Noticias </span>
-                  <span class="info-box-number"> <small>Cantidad: </small>{{$productos->count()}}</span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-tachometer"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text">Ejemplo</span>
-                  <span class="info-box-number">xxx</span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
-
-            <!-- fix for small devices only -->
-            <div class="clearfix visible-sm-block"></div>
-
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="fa fa-cart-plus"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text">Ejemplo</span>
-                  <span class="info-box-number">xxx</span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="fa fa-cog"></i></span>
-                <div class="info-box-content">
-                  <span class="info-box-text">Ejemplo</span>
-                  <span class="info-box-number">xx</span>
-                </div><!-- /.info-box-content -->
-              </div><!-- /.info-box -->
-            </div><!-- /.col -->
-          </div>
-
-    @if($PerfilEmpresa->perfil_id == 1)
+    @if($PerfilEmpresa->perfil_id == 5)
 
 
 <button class="btn btn-success pull-right" >
@@ -150,10 +106,38 @@
                       <td>{{$producto->color}}</td>
                       <td>{{$producto->produccion_mes}}</td>
                
-                      <td><a href="{{URL::to('admin/noticias/'.$producto->id.'/delete')}}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a> <a href="{{URL::to('admin/noticias/editar/'.$producto->id)}}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> <a href="{{URL::to($empresa->slug.'/noticias/'.$producto->id)}}" class="btn btn-default btn-xs"><span class="glyphicon  glyphicon-eye-open"></span></a></td>
+                      <td><a data-toggle="modal" data-target="#myModal" href="#"  class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a> <a href="{{URL::to('admin/noticias/editar/'.$producto->id)}}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> <a href="{{URL::to($empresa->slug.'/noticias/'.$producto->id)}}" class="btn btn-default btn-xs"><span class="glyphicon  glyphicon-eye-open"></span></a></td>
 
+
+               
 
                         
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Pregunta Seguridad</h4>
+      </div>
+      <div class="modal-body">
+        <p>Seguro que requiere eliminar el siguiente registro?</p>
+        
+      </div>
+      <div class="modal-footer">
+
+                   
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            
+
+             <a href="{{URL::to('admin/noticias/'.$producto->id.'/delete')}}" >  <input type="submit"  class="btn btn-info btn-md" value="Aceptar"></a>
+
+      </div>
+    </div>
+
+  </div>
+</div>
                     </tr>
                    @endforeach
                     
@@ -165,7 +149,7 @@
             </div>
 
             @else
-PAGINA PRINCIPAL INTERESES
+PAGINA PRINCIPAL
 
             @endif
 @stop

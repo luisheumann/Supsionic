@@ -998,13 +998,16 @@ $perfilmensaje = User::find($mensajesrelation->empresa_id)->empresas->first();
              
             </li>
 
-              <li class="treeview">
-              <a href="/{{$empresa->slug}}/cadenas/lista"><i class='fa fa-link'></i> <span>Cadenas </span> <i class="fa fa-angle-left pull-right"></i></a>
-              <!--<ul class="treeview-menu">
-                <li><a href="/{{$empresa->slug}}/interes_importador">Lista</a></li>
-           
-              </ul>-->
+     @if($PerfilEmpresa->perfil_id == 5)
+        
+            <li class="treeview">
+              <a href="/admin/noticias/lista"><i class='fa fa-link'></i> <span>Noticias </span> <i class="fa fa-angle-left pull-right"></i></a>
+             
             </li>
+
+
+            @endif
+
 
 
 

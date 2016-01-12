@@ -142,8 +142,12 @@ Route::post('admin/noticias/editar', 'NoticiasController@editarpost');
 
 Route::get('admin/noticias/{id}/delete', 'NoticiasController@eliminar');
 
+
+Route::get('{post}/producto/delete/{id}','ImportadorController@ProductoDelete');
+
+
 Route::get('{post}/interes_importador2/delete/{id}','ImportadorController@InteresDelete2');
-Route::get('{post}/admin/producto/delete2/{borra}','AdminController@producto_delete');
+
 Route::post('{post}/admin/perfil/datos_basicos','PerfilEmpresaController@postRegistroDatosBasicos');
 Route::post('{post}/admin/perfil/registro_basico','PerfilEmpresaController@postRegistroBasico');
 Route::post('{post}/admin/perfil/datos_basicos_detalle','PerfilEmpresaController@postRegistroBasico2');

@@ -1,3 +1,21 @@
+
+<?php
+
+
+$paramcategory = null;
+if (isset($_GET["param"]) && !empty($_GET["param"])) {
+  $paramcategory = $_GET['param'];
+  
+}
+
+$ncategory = '<script type="text/javascript"> var ncategory=document.getElementsByName("demo7")[0].value;</script>';
+echo $ncategory;
+
+
+
+
+
+?>
 <style type="text/css">
     .modal-body {
   padding: 40px;
@@ -133,6 +151,11 @@ Dashboard
  
       <div class="listacategoria"> 
        <input type="hidden" name="demo7" />
+        <button type="button"  id="testid-google" 
+          onclick="updateInput(this.value)" 
+          value="" title="Aceptar">Aceptar</button>
+
+          
        <div class="results" id="demo7-result"></div>
 
    </div>
@@ -148,7 +171,7 @@ Dashboard
 </div>
 </div> 
 
-
+@if ($paramcategory != null) 
   
 
 
@@ -319,7 +342,7 @@ Dashboard
     <button class="btn btn-success" id="btn_import"><i class="fa fa-check"></i> GUARDAR</button>
 </div>
 
-
+@endif
 </form>
 
 
@@ -614,7 +637,15 @@ if (isset($_GET["param"]) && !empty($_GET["param"])) {
 
  var varcategoria =document.getElementById('categoria').value = "<?php echo $paramcategory; ?>" ;
 
+$(document).ready(function(){
+  $("input[name=demo7]").change(function(){
 
+
+   document.getElementById('testid-google').value = $('input[name=demo7]').val(); 
+ 
+  });
+ 
+});
    $(function() {
 
     var options = {

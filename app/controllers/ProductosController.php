@@ -268,11 +268,27 @@ class ProductosController extends BaseController {
 
 
 
+
+
+  $Rutaeliminar = RutaExportador::where('producto_id', Input::get('id'))->get(); 
+             foreach ($Rutaeliminar as $valorunico){
+
+                if($valorunico->delete()){
+        Session::set('mensaje','rutas eliminadas');
+            }else{
+        Session::set('error','Ocurrió un error al intentar eliminar');
+        }
+
+             }
+
+
+
+
         // GUARDA LOS DESTINOS
 		foreach (Input::get('destinos') as $destino)
 		{
 	       $RutaExportador = new RutaExportador();
-         //   $RutaExportador = RutaExportador::findOrNew(Input::get($destino));
+      //   $RutaExportador = RutaExportador::findOrNew(Input::get($destino));
 	        $RutaExportador->perfil_empresa_id = Input::get('perfil_empresa');
 	        $RutaExportador->producto_id  = $producto->id;
 	        $RutaExportador->pais_origen  = Input::get('pais_origen');

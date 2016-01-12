@@ -165,9 +165,9 @@ if ($producto == Null && $origen == Null && $destino == Null && !$categoria == N
 		 join('empresas', 'productos.empresa_id', '=', 'empresas.id')
 		 ->join('ruta_exportador', 'productos.id', '=', 'ruta_exportador.producto_id')
 		 ->join('img_productos', 'productos.id', '=', 'img_productos.producto_id')
-		 ->join('categorias', 'productos.categoria_id', '=', 'categorias.id')
+		 ->join('sias_categoria_interes', 'productos.id', '=', 'sias_categoria_interes.producto_id')
      	
-     	 ->where('categorias.id',$categoria)
+     	 ->where('sias_categoria_interes.categoria_id',$categoria)
      	 ->groupBy('ruta_exportador.producto_id')
      	  ->select('img_productos.imagen as imagenes', 'empresas.nombre as nombre', 'productos.nombre as productos', 'productos.venta_minima', 'productos.stock', 'productos.unidad_id')
      	 

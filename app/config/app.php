@@ -126,7 +126,8 @@ return array(
 		'Cviebrock\EloquentSluggable\SluggableServiceProvider',
 		'Thapp\JitImage\JitImageServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
-		'Darsain\Console\ConsoleServiceProvider'
+		'Darsain\Console\ConsoleServiceProvider',
+		'Kamaln7\Toastr\ToastrServiceProvider',
 	),
 
 	/*
@@ -195,7 +196,8 @@ return array(
 		'View'              => 'Illuminate\Support\Facades\View',
 		'Sentry' 			=> 'Cartalyst\Sentry\Facades\Laravel\Sentry',
 		'JitImage'		    => 'Thapp\JitImage\Facades\JitImage',
-		'Image' 			=> 'Intervention\Image\Facades\Image'		
+		'Image' 			=> 'Intervention\Image\Facades\Image',
+		'Toastr' => 'Kamaln7\Toastr\Facades\Toastr',		
 	),
 
 );
