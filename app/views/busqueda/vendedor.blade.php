@@ -119,6 +119,27 @@ if (!$origen == Null && !$destino == Null && $categoria == Null   && $country ==
 
 }
 
+/////////////
+
+////  origen
+
+if (!$origen == Null && $destino == Null && $categoria == Null   && $country == Null && $producto == Null ) {
+	$lista_transportadores = InteresesImportador::
+	join('ruta_importador', 'intereses_importador.id', '=', 'ruta_importador.intereses_importador_id')
+	->join('empresas', 'intereses_importador.empresa_id', '=', 'empresas.id')
+	->where('ruta_importador.pais_destino',$origen)
+	->select('empresas.nombre as nombre', 'intereses_importador.productos as productos', 'intereses_importador.min', 'intereses_importador.max', 'intereses_importador.min_medida', 'empresas.imagen')
+	->get();
+
+	if (!$lista_transportadores->count()){
+
+		$lista_transportadores = null;
+	}
+
+
+
+}
+
 
 ///// REGION
 ///// DESTINO

@@ -157,6 +157,33 @@ if ($producto == Null && !$origen == Null && !$destino == Null && $categoria == 
 
 }
 
+//////////////////
+////  ORIGEN
+
+if ($producto == Null && !$origen == Null && $destino == Null && $categoria == Null && $country == Null) {
+		$lista_importadoresalls = Productos::
+		 join('empresas', 'productos.empresa_id', '=', 'empresas.id')
+		 ->join('ruta_exportador', 'productos.id', '=', 'ruta_exportador.producto_id')
+		 ->join('img_productos', 'productos.id', '=', 'img_productos.producto_id')
+     	
+     	 ->where('ruta_exportador.pais_origen',$origen)
+     	  ->select('img_productos.imagen as imagenes', 'empresas.nombre as nombre', 'productos.nombre as productos', 'productos.venta_minima', 'productos.stock', 'productos.unidad_id')
+     	  ->groupBy('img_productos.producto_id')
+		 ->get();
+
+		  if (!$lista_importadoresalls->count()){
+
+		$lista_importadoresalls = null;
+	}
+
+
+
+
+}
+
+
+
+//////////////////
 
 ////  CATEGORIA
 

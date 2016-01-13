@@ -606,6 +606,7 @@ width: initial;
                 <option value="">Kl / Lb</option>
               <option value="1">Kilos</option>
               <option value="2">Libras</option>
+              <option value="3">Gramos</option>
               </select>
 
             </div>
@@ -629,7 +630,7 @@ width: initial;
                 <input type="text" class="form-control" name="anchoc" id="anchoc" placeholder="" >
                        <label class="label2"  for="nombre_producto">Profundo</label>
                   <input type="text" class="form-control" name="profundoc" id="profundoc" placeholder="" >
-                <select name="unidad_prod" id="unidad_prod" class="form-control">
+                <select disabled name="unidad_prod" id="unidad_prod" class="form-control">
                 <option value="">Cm / In</option>
               <option value="1">Centimetros</option>
               <option value="2">Pulgadas</option>
@@ -645,10 +646,11 @@ width: initial;
            
            
               <input type="text" class="form-control" name="peso_caja" id="peso_caja" placeholder="" >
-                <select name="peso_caja_unidad" id="peso_caja_unidad" class="form-control">
+                <select name="peso_caja_unidad"  disabled id="peso_caja_unidad" class="form-control">
                 <option value="">Kl / Lb</option>
               <option value="1">Kilos</option>
               <option value="2">Libras</option>
+              <option value="3">Gramos</option>
               </select>
 
             </div>
@@ -1212,6 +1214,28 @@ if (isset($_GET["param"]) && !empty($_GET["param"])) {
 ?>
 
 
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#dimencion_unidad').change(function() {
+        
+       var mivalor = $("#dimencion_unidad").val();
+
+       $("#unidad_prod").val(mivalor);
+
+    });
+
+        $('#peso_unidad').change(function() {
+        
+       var mivalor = $("#peso_unidad").val();
+
+       $("#peso_caja_unidad").val(mivalor);
+
+    });
+
+
+});
+
+</script>
  <script type="text/javascript">
     function updateInput(ish){
 
@@ -1270,7 +1294,7 @@ if (isset($_GET["param"]) && !empty($_GET["param"])) {
           };
 
           var displayParents = function() {
- var validarcategoriaselect=  document.getElementById("categoria").value = 12;
+            var validarcategoriaselect=  document.getElementById("categoria").value = 12;
             var porNombre=document.getElementsByName("demo7_")[0].value;
             document.getElementById("padre").value = porNombre;
 

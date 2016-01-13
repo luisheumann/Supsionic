@@ -629,12 +629,12 @@ $messages = "Producto Borrado";
 }
 
 
-	public function ProductoDelete($id)
+public function ProductoDelete($id)
 
 
 {	
-$messages = "Producto Borrado";
-        Toastr::success($messages, $title = null, $options = ['positionClass'=>'toast-bottom-right']);
+	$messages = "Producto Borrado";
+	Toastr::success($messages, $title = null, $options = ['positionClass'=>'toast-bottom-right']);
 
 	$segment  = Request::segment(4);
 
@@ -642,12 +642,39 @@ $messages = "Producto Borrado";
 
 
 
-   $producto = Productos::find($segment);
-      
+	$producto = Productos::find($segment);
+
+// ELIMINAR CATEGORIA
+	$valorid = SiasCategoriaInteres::where('producto_id', $segment)->get(); 
+	foreach ($valorid as $valorunico){
+
+		if($valorunico->delete()){
+			Session::set('mensaje','Artículo eliminado con éxito');
+		}else{
+			Session::set('error','Ocurrió un error al intentar eliminar');
+		}
+
+	}
+
+///ELIMINAR RUTA
+	$Rutaeliminar = RutaExportador::where('producto_id', $segment)->get(); 
+	foreach ($Rutaeliminar as $valorunico){
+
+		if($valorunico->delete()){
+			Session::set('mensaje','rutas eliminadas');
+		}else{
+			Session::set('error','Ocurrió un error al intentar eliminar');
+		}
+
+	}
+
+
+
+	
 	$imagenes = $producto->imagen;
 
-		foreach ($imagenes as $imagen ) {
-			$fileName = 'uploads/productos/'. $imagen->imagen ;
+	foreach ($imagenes as $imagen ) {
+		$fileName = 'uploads/productos/'. $imagen->imagen ;
 		$thubName = 'uploads/productos/thumbnail/'. $imagen->imagen ;
 
 		$Imgproducto = ImgProductos::where('producto_id', $segment);
@@ -655,14 +682,14 @@ $messages = "Producto Borrado";
 			$message = "Producto";
 			$title = "Borrado";
 		}else{
-		Session::set('error','Ocurrió un error al intentar eliminar');
+			Session::set('error','Ocurrió un error al intentar eliminar');
 		}
 		
 
 		if (File::exists($fileName,$thubName)) {
-		    File::delete($fileName,$thubName);
+			File::delete($fileName,$thubName);
 		} 
-		}
+	}
 
 
 		

@@ -93,6 +93,28 @@ if (!$origen == Null && !$destino == Null && $producto == Null  && $categoria ==
 
 }
 
+
+
+
+////////////////////
+
+////  ORIGEN
+
+if (!$origen == Null && $destino == Null && $producto == Null  && $categoria == Null  && $country == Null) {
+		$lista_transportadores = InteresesTransportador::
+		join('ruta_transporte', 'intereses_transporte.id', '=', 'ruta_transporte.intereses_transporte_id')
+		 ->join('empresas', 'intereses_transporte.empresa_id', '=', 'empresas.id')
+		->where('ruta_transporte.pais_destino',$origen)
+		 ->get();
+
+		 if (!$lista_transportadores->count()){
+
+		$lista_transportadores = null;
+	}
+
+
+}
+///////////////////
 ///// PRODUCTO
 
 if (!$producto == Null && $origen == Null && $destino == Null && $categoria == Null  && $country == Null) {

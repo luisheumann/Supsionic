@@ -620,6 +620,34 @@ span.image-wrapper .previous {
   display: none;
 }
 
+.content {
+    overflow: hidden;
+    background: #fff;
+    width: 100%;
+
+}
+.col-xs-8 {
+    padding: 0px;
+}
+.col-xs-1 {
+    padding: 0px;
+}
+.main-footer {
+    /* background: #fff; */
+     padding: 0px !important;
+    
+ border-top: 0px !important;
+    color: #FFF;
+}
+
+.col-xs-4 {
+    padding: 0px;
+}
+
+.ImagenPreview {
+    width: 450px;
+    float: left;
+}
 
 </style>
 
@@ -635,46 +663,14 @@ span.image-wrapper .previous {
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <div class="row">
-            <!-- Left col -->
-            <div class="col-md-8">
-            
-              <div class="row">
-             
+         
+              
 
-                <div class="col-md-6">
-                  <!-- USERS LIST -->
-                  
-                </div><!-- /.col -->
-              </div><!-- /.row -->
-
-
-         <form action="#" method="get" class="sidebar-form">
-          <!-- <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>-->
-          </form>
-
-
-
-        <div class="box box">
-          <!--      <div class="box-header with-border">
-                  <h3 class="box-title">Producto</h3>
-                  <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                  </div>
-                </div>--><!-- /.box-header -->
-                <div class="box-body">
-             
-
-
+<div class="col-md-8">
 
     
-    <div class="row  galeriaImg col-xs-12">
-<div class="col-xs-7">
+    <div class="galeriaImgList">
+
 
 
        <!-- @foreach($imagenes as $imagen)
@@ -695,13 +691,13 @@ span.image-wrapper .previous {
         @endforeach
           </ul>
         </div>
-       
+     </div>
 
 
 
    
      <!-- <img id="imagen2" title="@if ($producto->imagen->count()>0){{$img= $imagenes[0]->imagen}} @else {{$img= 'producto.png'}} @endif"  style="float:right;"  alt="Image" src="/uploads/productos/{{$img}}"/> -->
-
+<div class="ImagenPreview">
          <div id="gallery" class="content">
       
           <div class="slideshow-container">
@@ -710,8 +706,9 @@ span.image-wrapper .previous {
           </div>
          
         </div>
+   
  </div>
-<div class="col-xs-5">   <div class="det">
+<div class="BoxItemDesc">   <div class="det">
 
 <div><span class="a-list-item-empresa"><a href="/{{$empresa->slug}}">{{$empresa->nombre}}</a></span></div>
 <span id="productTitle" class="a-size-large">{{$producto->nombre}}</span>
@@ -752,54 +749,13 @@ span.image-wrapper .previous {
 
 
 
-<div id="feature-bullets" class="a-section a-spacing-medium a-spacing-top-small">
-  
-    
-      <!--
-        <ul class="a-vertical a-spacing-none">
-          
-            <li><span class="a-list-item"> Cantidad : {{$producto->stock}}</span></li>
-          
-            <li><span class="a-list-item"> Precio : {{$producto->precio}}</span></li>
-          
-            <li><span class="a-list-item"> Marca: {{$producto->marca}}</span></li>
-          
-            <li><span class="a-list-item"> Color :{{$producto->Color}}</span></li>
-          
-            <li><span class="a-list-item"> Peso: {{$producto->Peso}}</span></li>
-          
-          
-          
-        </ul>
-      -->
-      
-</div>
+<div id="feature-bullets" class="a-section a-spacing-medium a-spacing-top-small"></div>
         
-
-    
-<!--
-                   
- <button class="btn btn-success" id="btn_import"><i class="fa fa-check"></i> Seleccionar</button>
-        
--->
-       
-</div> </div>
-     </div>
-
-
-
-
-
-
-
-
-   
-
-   
 </div>
 
 
-                </div><!-- /.box-body -->
+
+
               
 
                 <div class="box-footer clearfix">
@@ -924,7 +880,9 @@ span.image-wrapper .previous {
                     
                       <td class="title-item-producto">peso</td>
                       <td>
-                       {{$producto->peso}}  @if ($producto->peso_unidad =1) Kilos @else Libras @endif
+                       {{$producto->peso}}  @if ($producto->peso_unidad ==1) Kilos @endif 
+                       @if ($producto->peso_unidad ==2) Libras @endif 
+                       @if ($producto->peso_unidad ==3) Gramos @endif 
                       </td>
                    
                     </tr>
@@ -965,7 +923,11 @@ span.image-wrapper .previous {
                     
                       <td class="title-item-producto">Peso de Envio</td>
                       <td>
-                       {{$producto->peso_caja}}  @if ($producto->peso_caja_unidad =1) Kilos @else Libras @endif
+                       {{$producto->peso_caja}}  @if ($producto->peso_unidad ==1) Kilos @endif 
+                       @if ($producto->peso_unidad ==2) Libras @endif 
+                       @if ($producto->peso_unidad ==3) Gramos @endif 
+
+
                       </td>
                    
                     </tr>
@@ -1054,7 +1016,7 @@ span.image-wrapper .previous {
            
             </div><!-- /.col -->
 
-
+</span></div>
 
 
             <div class="col-md-4">
@@ -1119,32 +1081,6 @@ span.image-wrapper .previous {
                 </div><!-- /.box-footer -->
               </div><!-- /.box -->
             </div><!-- /.col -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       
-
-
-
-
-
-
-
-
 
 
 

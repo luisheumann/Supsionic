@@ -333,6 +333,10 @@ width: initial;
     padding: 2px;
 }
 
+table.tablacapacidad {
+    width: 100%;
+}
+
 </style>
  <h1>
             Dashboard
@@ -543,6 +547,7 @@ width: initial;
                 <option value="">Kl / Lb</option>
               <option value="1">Kilos</option>
               <option value="2">Libras</option>
+              <option value="3">Gramos</option>
               </select>
 
             </div>
@@ -571,7 +576,7 @@ width: initial;
                 <input type="text" class="form-control" value="{{$producto->anchoc}}"  name="anchoc" id="anchoc" placeholder="" >
                        <label class="label2"  for="nombre_producto">Profundo</label>
                   <input type="text" class="form-control" value="{{$producto->profundoc}}"  name="profundoc" id="profundoc" placeholder="" >
-                <select name="unidad_prod" id="unidad_prod" class="form-control">
+                <select name="unidad_prod" disabled  id="unidad_prod" class="form-control">
                 <option value="">Cm / In</option>
               <option value="1">Centimetros</option>
               <option value="2">Pulgadas</option>
@@ -587,10 +592,11 @@ width: initial;
            
            
               <input type="text" class="form-control" name="peso_caja" value="{{$producto->peso_caja}}" id="peso_caja" placeholder="" >
-                <select name="peso_caja_unidad" id="peso_caja_unidad" class="form-control">
+                <select name="peso_caja_unidad" disabled id="peso_caja_unidad" class="form-control">
                 <option value="">Kl / Lb</option>
               <option value="1">Kilos</option>
               <option value="2">Libras</option>
+              <option value="3">Gramos</option>
               </select>
 
             </div>
@@ -726,39 +732,59 @@ width: initial;
 
 
 
-<div class="col-md-12">
-          <div class="form-group">
-           
-            
-<div class="col-md-3">
-              <label class="label2"  for="nombre_producto">Capacidad por mes</label>
-             <input type="text" class="form-control" name="capacidad_produccion" value="{{$producto->produccion_mes}}" id="cantidad_pm"  placeholder="">
-</div>
-<div class="col-md-3">
-              <label class="label2"  for="nombre_producto">Cantidad mínima de venta</label>
-                <input type="text" class="form-control" name="cantidad_minima" value="{{$producto->venta_minima}}" id="cantidad_min" placeholder="" >
-                </div>
-                <div class="col-md-3">
-                       <label class="label2"  for="nombre_producto">Cantidad disponible</label>
-                   <input type="text" class="form-control" name="cantidad_disponible" value="{{$producto->stock}}" id="cantidad_disp"  placeholder="">
-                   </div>
-                   <div class="col-md-3">
-                  <select name="unidad_cantidad" id="unidad_cantidad" class="form-control" >
+
+
+
+<div class="CSSTableGenerator" >
+                <table  class="tablacapacidad">
+                    <tr>
+                        <td>
+                          <b>  Capacidad por mes</b>
+                        </td>
+                        <td >
+                           <b>  Cantidad mínima de venta</b>
+                        </td>
+                        <td>
+                           <b>  Cantidad disponible</b>
+                        </td>
+                        <td>
+                           <b>   </b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td >
+                          <input type="text" class="form-control" name="capacidad_produccion" value="{{$producto->produccion_mes}}" id="cantidad_pm"  placeholder="">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="cantidad_minima" value="{{$producto->venta_minima}}" id="cantidad_min" placeholder="" >
+                        </td>
+                        <td>
+                        <input type="text" class="form-control" name="cantidad_disponible" value="{{$producto->stock}}" id="cantidad_disp"  placeholder="">
+                        </td>
+
+                        <td class="unidad_cantidad_td">
+                             <select name="unidad_cantidad" id="unidad_cantidad" class="form-control" >
                 <option value="">Seleccione Unidad</option> 
               @foreach($unidades as $unidade)
                 <option value="{{$unidade->id}}">{{$unidade->nombre}}</option>
               @endforeach
               </select>
-              </div>
+                        </td>
+                    </tr>
+                    
+                </table>
             </div>
-          </div>
+
+
+
+
 
 
  <div class="col-md-12">
           <div class="form-group">
             <label class=" control-label"  for="nombre_producto">Puerto</label>
            
-              <input type="text" class="form-control" name="puerto" id="puerto" placeholder=""  value="{{$producto->puerto}}"  required>              
+              <input type="text" class="form-control" name="puerto" id="puerto" placeholder=""  value="{{$producto->puerto}}">              
             </div>
           </div>
 
@@ -1139,6 +1165,28 @@ label.testinput-buscador-select {
 
 
 
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#dimencion_unidad').change(function() {
+        
+       var mivalor = $("#dimencion_unidad").val();
+
+       $("#unidad_prod").val(mivalor);
+
+    });
+
+        $('#peso_unidad').change(function() {
+        
+       var mivalor = $("#peso_unidad").val();
+
+       $("#peso_caja_unidad").val(mivalor);
+
+    });
+
+
+});
+
+</script>
 
 
 

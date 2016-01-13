@@ -202,7 +202,10 @@ input#telefono {
     <span class="btn btn-primary btn-file">
     <span class="fileinput-new">{{$texto}}</span>
     <span class="fileinput-exists">Cambiar</span>
-    <input type="file" id="file_image" name="imagen" accept="image/gif, image/jpeg, image/png"></span>
+
+  
+
+    <input onchange="return checkSize(1368953)" type="file" id="file" name="imagen" accept="image/gif, image/jpeg, image/png"></span>
     <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Eliminar</a>
   </div>
 </div>
@@ -296,4 +299,28 @@ options = {onKeyPress: function(val, e, field, options) {
 };
 
 $('.telefono').mask(maskBehavior, options);
+
+
+
+
+function checkSize(max_img_size)
+{
+    var input = document.getElementById("file");
+    // check for browser support (may need to be modified)
+    if(input.files && input.files.length == 1)
+    {           
+        if (input.files[0].size > max_img_size) 
+        {
+           var $el = $('#file');
+        $el.wrap('<form>').closest('form').get(0).reset();
+        $el.unwrap();
+
+            alert("La imagen tiene que ser menor de 1 MB");
+            return true;
+        }
+    }
+
+    return true;
+}
+
 </script>

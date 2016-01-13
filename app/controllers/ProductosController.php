@@ -197,13 +197,6 @@ class ProductosController extends BaseController {
 
             if (!$categoria == 0){
 
-
-             
-
-
-
-
-
             $SiasCategoriaInteres = SiasCategoriaInteres::findOrNew(Input::get('id'));        
             $SiasCategoriaInteres->empresa_id = $empresa_id;
             $SiasCategoriaInteres->producto_id = $producto->id;

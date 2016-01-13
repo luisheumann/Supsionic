@@ -69,6 +69,26 @@ if (!$lista_transportadores->count()) {
 		$lista_transportadores =null;
 	}
 }
+////////
+
+
+
+////  ORIGEN
+
+
+if ($producto == Null && !$origen == Null && $destino == Null && $categoria == Null && $country == Null) {
+		$lista_transportadores = InteresesSias::
+		 join('sias_paises_operacion', 'intereses_sias.id', '=', 'sias_paises_operacion.intereses_sias_id')
+		->join('empresas', 'intereses_sias.empresa_id', '=', 'empresas.id')
+		->where('sias_paises_operacion.pais_id',$origen)
+		 ->get();
+
+if (!$lista_transportadores->count()) {
+		$lista_transportadores =null;
+	}
+}
+
+
 
 ////  PRODUCTO
 

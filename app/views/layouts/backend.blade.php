@@ -873,8 +873,8 @@ $perfilmensaje = User::find($mensajesrelation->empresa_id)->empresas->first();
         @endif
                     <p>
                       Empresa : {{$perfil->nombre}} <br>
-                      Usuario : {{$usuario->first_name}} <br>
-                      <small>Email: {{$usuario->email}} </small>
+                      Usuario : {{$perfil->first_name}} <br>
+                      <small>Email: {{$perfil->email}} </small>
                     </p>
                   </li>
                   <!-- Menu Body -->
